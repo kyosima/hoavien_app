@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/views/screens/forgot_password_page.dart';
-import 'package:hoavien_app/views/screens/login_page.dart';
-import 'package:hoavien_app/views/screens/new_password.dart';
-import 'package:hoavien_app/views/screens/otp_page.dart';
+import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
+import 'package:hoavien_app/controllers/auth/login_controller.dart';
+import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
+import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
+import 'package:hoavien_app/views/screens/auth/login_page.dart';
+import 'package:hoavien_app/views/screens/auth/new_password.dart';
+import 'package:hoavien_app/views/screens/auth/otp_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,23 +24,27 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Mulish',
           primarySwatch: Colors.blue,
         ),
-        home: const LoginPage(),
+        home: LoginPage(),
+        initialBinding: LoginBinding(),
         getPages: [
           GetPage(
             name: '/login',
-            page: () => const LoginPage(),
+            page: () => LoginPage(),
+            binding: LoginBinding(),
           ),
           GetPage(
             name: '/forgotpassword',
             page: () => const ForgotPassword(),
+            binding: ForgetPasswordBinding(),
           ),
           GetPage(
             name: '/otp',
-            page: () => OtpPage(),
+            page: () => const OtpPage(),
           ),
           GetPage(
             name: '/newpassword',
             page: () => NewPassword(),
+            binding: ResetPasswordBinding(),
           ),
         ]);
   }

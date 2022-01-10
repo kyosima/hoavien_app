@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/views/screens/forgot_password_page.dart';
+import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -45,16 +44,18 @@ class LoginPage extends StatelessWidget {
                     height: 100,
                   ),
                   Column(
-                    children: const [
+                    children: [
                       CustomTextField(
+                        controller: controller.phoneNumber,
                         title: 'Số điện thoại',
                         hintText: 'Số điện thoại',
                         inputType: TextInputType.number,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       CustomTextField(
+                        controller: controller.passWord,
                         title: 'Password',
                         hintText: 'Password',
                         obscureText: true,
@@ -68,9 +69,25 @@ class LoginPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Nhớ mật khẩu",
-                        style: TextStyle(fontSize: 15),
+                      Row(
+                        children: [
+                          Obx(
+                            () => Checkbox(
+                              value: controller.isChecked.value,
+                              onChanged: (value) {
+                                controller.check();
+                                if (value == true) {
+                                  var savePassword = controller.passWord.text;
+                                  print(savePassword);
+                                }
+                              },
+                            ),
+                          ),
+                          const Text(
+                            "Nhớ mật khẩu",
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        ],
                       ),
                       TextButton(
                           onPressed: () {
@@ -89,16 +106,10 @@ class LoginPage extends StatelessWidget {
                   ),
                   Center(
                       child: CustomButtonLoginPage(
-                    title: 'Đăng nhập',
-                    onPressed: () {
-                      Get.snackbar(
-                        "Đăng nhập thành công",
-                        "Chúc mừng bạn đã đăng nhập thành công",
-                        icon: Icon(Icons.check_circle, color: primaryColor),
-                        snackPosition: SnackPosition.TOP,
-                      );
-                    },
-                  )),
+                          title: 'Đăng nhập',
+                          onPressed: () {
+                            controller.login();
+                          })),
                 ],
               ),
             ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends GetView<ForgetPasswordController> {
   const ForgotPassword({Key? key}) : super(key: key);
 
   @override
@@ -26,7 +27,7 @@ class ForgotPassword extends StatelessWidget {
                       title: 'Quên mật khẩu',
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Center(
@@ -40,8 +41,9 @@ class ForgotPassword extends StatelessWidget {
                     height: 70,
                   ),
                   Column(
-                    children: const [
+                    children: [
                       CustomTextField(
+                        controller: controller.phoneNumber,
                         title: 'Số điện thoại',
                         hintText: 'Số điện thoại',
                         inputType: TextInputType.number,
@@ -55,7 +57,7 @@ class ForgotPassword extends StatelessWidget {
                       child: CustomButtonLoginPage(
                     title: 'Tiếp tục',
                     onPressed: () {
-                      Get.toNamed('/otp');
+                      controller.forgetpassword();
                     },
                   )),
                   SizedBox(

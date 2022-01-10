@@ -4,12 +4,16 @@ class CustomTextField extends StatelessWidget {
   final String title;
   final String hintText;
   final bool obscureText;
+  final String? Function(String?)? validator;
   final TextInputType inputType;
+  final TextEditingController? controller;
   const CustomTextField({
     required this.title,
     required this.hintText,
     this.obscureText = false,
     required this.inputType,
+    this.controller,
+    this.validator,
   });
 
   @override
@@ -28,6 +32,7 @@ class CustomTextField extends StatelessWidget {
         SizedBox(
           height: 55,
           child: TextField(
+            controller: controller,
             obscureText: obscureText,
             keyboardType: inputType,
             decoration: InputDecoration(

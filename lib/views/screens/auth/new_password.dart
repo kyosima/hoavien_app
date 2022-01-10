@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class NewPassword extends StatelessWidget {
+class NewPassword extends GetView<ResetPasswordController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +29,19 @@ class NewPassword extends StatelessWidget {
                     height: 70,
                   ),
                   Column(
-                    children: const [
+                    children: [
                       CustomTextField(
+                        controller: controller.passWordController,
                         title: 'Mật khẩu mới',
                         hintText: '',
                         inputType: TextInputType.text,
                         obscureText: true,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       CustomTextField(
+                        controller: controller.newPassWordController,
                         title: 'Nhập lại mật khẩu mới',
                         hintText: '',
                         inputType: TextInputType.text,
@@ -46,14 +49,15 @@ class NewPassword extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 40,
                   ),
                   Center(
                       child: CustomButtonLoginPage(
                     title: 'Xác nhận',
                     onPressed: () {
-                      Get.toNamed('/login');
+                      controller.resetpassword();
+                      // Get.toNamed('/login');
                     },
                   )),
                 ],
