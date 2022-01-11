@@ -36,12 +36,41 @@ class LoginController extends GetxController {
   void login() {
     if (phoneNumber.text.isEmpty || passWord.text.isEmpty) {
       Get.defaultDialog(
-        title: "Phát hiện lỗi",
-        middleText: "Số điện thoại hoặc password không được để trống!",
-        backgroundColor: Colors.grey[200],
-        titleStyle: TextStyle(color: Colors.red),
-        middleTextStyle: TextStyle(color: Colors.black),
-      );
+          content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 60.0,
+                width: 60,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Image.asset(
+                'assets/images/error.gif',
+                width: 55,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Center(
+            child: Text(
+              '''Số điện thoại hoặc password không được để trống!''',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ));
     } else {
       Get.snackbar(
         "Đăng nhập thành công",
