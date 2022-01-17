@@ -11,12 +11,22 @@ class ResetPasswordBinding implements Bindings {
 class ResetPasswordController extends GetxController {
   final passWordController = TextEditingController();
   final newPassWordController = TextEditingController();
+  var obscureTextPassword = true.obs;
+  var obscureTextNewPassword = true.obs;
 
   @override
   void onClose() {
     passWordController.dispose();
     newPassWordController.dispose();
     super.onClose();
+  }
+
+  void showpassword() {
+    obscureTextPassword.value = !obscureTextPassword.value;
+  }
+
+  void shownewpassword() {
+    obscureTextNewPassword.value = !obscureTextNewPassword.value;
   }
 
   void resetpassword() {

@@ -19,8 +19,15 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
               padding: const EdgeInsets.all(17.0),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 144,
+                  ),
                   const SizedBox(
-                    height: 100,
+                    height: 40,
                   ),
                   const Center(
                     child: CustomTitleText(
@@ -45,7 +52,6 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
                       CustomTextField(
                         controller: controller.phoneNumber,
                         title: 'Số điện thoại',
-                        hintText: 'Số điện thoại',
                         inputType: TextInputType.number,
                       ),
                       SizedBox(

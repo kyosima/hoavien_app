@@ -16,6 +16,7 @@ class LoginController extends GetxController {
   final phoneNumber = TextEditingController();
   final passWord = TextEditingController();
   var isChecked = false.obs;
+  var obscureText = true.obs;
 
   @override
   void onInit() {
@@ -27,6 +28,10 @@ class LoginController extends GetxController {
   void onClose() {
     // TODO: implement onClose
     super.onClose();
+  }
+
+  void checkpass() {
+    obscureText.value = !obscureText.value;
   }
 
   void check() {
@@ -72,6 +77,7 @@ class LoginController extends GetxController {
         ],
       ));
     } else {
+      Get.toNamed('/home');
       Get.snackbar(
         "Đăng nhập thành công",
         "Chúc mừng bạn đã đăng nhập thành công",

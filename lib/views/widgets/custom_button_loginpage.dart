@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../constance.dart';
 
@@ -15,11 +14,11 @@ class CustomButtonLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 250,
-      height: 40,
+      height: 45,
       child: Container(
         decoration: BoxDecoration(
             color: primaryColor,
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(10.0),
             border: Border.all(color: primaryColor, width: 1.0)),
         child: TextButton(
           onPressed: onPressed,
@@ -33,7 +32,10 @@ class CustomButtonLoginPage extends StatelessWidget {
           // },
           child: Text(
             title,
-            style: TextStyle(color: Colors.white, fontSize: 17),
+            style: const TextStyle(
+                color: secondaryColor,
+                fontSize: 17,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ),

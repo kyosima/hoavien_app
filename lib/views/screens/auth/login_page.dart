@@ -19,7 +19,7 @@ class LoginPage extends GetView<LoginController> {
         Hotline: 1900776589''',
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.brown,
             fontSize: 15,
           ),
         ),
@@ -32,36 +32,49 @@ class LoginPage extends GetView<LoginController> {
               padding: const EdgeInsets.all(17.0),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: 80,
+                  ),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    width: 144,
+                  ),
                   const SizedBox(
-                    height: 100,
+                    height: 40,
                   ),
                   const Center(
                     child: CustomTitleText(
-                      title: 'ĐĂNG NHẬP',
+                      title: 'Đăng nhập',
                     ),
                   ),
                   const SizedBox(
-                    height: 100,
+                    height: 70,
                   ),
                   Column(
                     children: [
                       CustomTextField(
                         controller: controller.phoneNumber,
                         title: 'Số điện thoại',
-                        hintText: 'Số điện thoại',
                         inputType: TextInputType.number,
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      CustomTextField(
-                        controller: controller.passWord,
-                        title: 'Password',
-                        hintText: 'Password',
-                        obscureText: true,
-                        inputType: TextInputType.text,
+                      Obx(
+                        () => CustomTextField(
+                          controller: controller.passWord,
+                          title: 'Mật khẩu',
+                          icon: controller.obscureText.value == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          obscureText: controller.obscureText.value,
+                          inputType: TextInputType.text,
+                          onPressed: () {
+                            controller.checkpass();
+                          },
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                     ],

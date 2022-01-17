@@ -28,26 +28,36 @@ class NewPassword extends GetView<ResetPasswordController> {
                   const SizedBox(
                     height: 70,
                   ),
-                  Column(
-                    children: [
-                      CustomTextField(
-                        controller: controller.passWordController,
-                        title: 'Mật khẩu mới',
-                        hintText: '',
-                        inputType: TextInputType.text,
-                        obscureText: true,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      CustomTextField(
-                        controller: controller.newPassWordController,
-                        title: 'Nhập lại mật khẩu mới',
-                        hintText: '',
-                        inputType: TextInputType.text,
-                        obscureText: true,
-                      ),
-                    ],
+                  Obx(
+                    () => Column(
+                      children: [
+                        CustomTextField(
+                          controller: controller.passWordController,
+                          title: 'Mật khẩu mới',
+                          inputType: TextInputType.text,
+                          obscureText: controller.obscureTextPassword.value,
+                          icon: controller.obscureTextPassword.value == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          onPressed: () => controller.showpassword(),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        CustomTextField(
+                          controller: controller.newPassWordController,
+                          title: 'Nhập lại mật khẩu mới',
+                          icon: controller.obscureTextNewPassword.value == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          inputType: TextInputType.text,
+                          obscureText: controller.obscureTextNewPassword.value,
+                          onPressed: () {
+                            controller.shownewpassword();
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 40,

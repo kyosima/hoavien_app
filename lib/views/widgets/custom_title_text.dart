@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hoavien_app/constance.dart';
 
 class CustomTitleText extends StatelessWidget {
   final String title;
   final double? fontSize;
   const CustomTitleText({
     required this.title,
-    this.fontSize = 30,
+    this.fontSize = 20,
   });
 
   @override
@@ -13,7 +14,7 @@ class CustomTitleText extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: Colors.black,
+        color: secondaryColor,
         fontSize: fontSize,
         fontWeight: FontWeight.bold,
       ),
