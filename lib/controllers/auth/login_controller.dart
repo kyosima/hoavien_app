@@ -81,8 +81,10 @@ class LoginController extends GetxController {
       Get.snackbar(
         "Đăng nhập thành công",
         "Chúc mừng bạn đã đăng nhập thành công",
-        icon: Icon(Icons.check_circle, color: primaryColor),
+        icon: Icon(Icons.check_circle, color: Colors.green),
         snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
       );
     }
   }

@@ -88,12 +88,15 @@ class CustomService extends StatelessWidget {
                 const SizedBox(
                   height: 5,
                 ),
-                Text(
-                  info,
-                  style: const TextStyle(
-                    fontSize: 16,
+                Flexible(
+                  child: RichText(
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    strutStyle: StrutStyle(fontSize: 19.0),
+                    text: TextSpan(
+                        style: TextStyle(color: secondaryColor), text: info),
                   ),
-                )
+                ),
               ],
             ),
           ),

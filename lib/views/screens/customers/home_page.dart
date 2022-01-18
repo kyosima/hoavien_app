@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/home_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_home_page.dart';
+import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -25,6 +28,12 @@ class HomePage extends StatelessWidget {
                   autofocus: false,
                   style: const TextStyle(fontSize: 16.0, color: secondaryColor),
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        Get.toNamed('/searchresuft');
+                      },
+                      icon: Icon(Icons.search),
+                    ),
                     filled: true,
                     fillColor: Colors.white,
                     hintText: 'Tìm kiếm',
@@ -54,10 +63,12 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              const Center(
-                  child: Icon(
-                Icons.notifications,
-                size: 28,
+              Center(
+                  child: IconButton(
+                onPressed: () {
+                  Get.toNamed('/notification');
+                },
+                icon: Icon(Icons.notifications),
               ))
             ],
           ),
@@ -413,6 +424,64 @@ class HomePage extends StatelessWidget {
                     CustomTitleText(title: 'Vật dụng thờ cúng'),
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                Obx(
+                  () => GridView.count(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    childAspectRatio: (0.64),
+
+                    // Create a grid with 2 columns. If you change the scrollDirection to
+                    // horizontal, this produces 2 rows.
+                    crossAxisCount: 2,
+                    // Generate 100 widgets that display their index in the List.
+                    children:
+                        List.generate(controller.productCount.value, (index) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomProducts(
+                                  onTap: () => print('product'),
+                                  image: 'assets/images/product.png',
+                                  title: 'Đĩa hoa quả chất liệu đồng 3 chân',
+                                  size: 'D170 X H20',
+                                  price: 'đ 125.000'),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
+                Center(
+                  child: SizedBox(
+                    width: 200,
+                    child: OutlinedButton(
+                      onPressed: () {
+                        controller.readmore();
+                      },
+                      child: Text('Xem Thêm'),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

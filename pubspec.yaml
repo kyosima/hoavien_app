@@ -70,6 +70,8 @@ flutter:
     - assets/images/logo.png
     - assets/images/dichvu.png
     - assets/images/vector.png
+    - assets/images/product.png
+    - assets/images/search_resuft.png
     - assets/images/hot.png
     - assets/images/loi.gif
 

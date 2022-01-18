@@ -4,11 +4,16 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
+import 'package:hoavien_app/controllers/customers/home_controller.dart';
+import 'package:hoavien_app/controllers/customers/search_controller.dart';
 import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
 import 'package:hoavien_app/views/screens/auth/otp_page.dart';
 import 'package:hoavien_app/views/screens/customers/home_page.dart';
+import 'package:hoavien_app/views/screens/customers/notification_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/notifications_page.dart';
+import 'package:hoavien_app/views/screens/customers/search_resuft_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -51,7 +56,21 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/home',
             page: () => HomePage(),
-          )
+            binding: HomeBinding(),
+          ),
+          GetPage(
+            name: '/searchresuft',
+            page: () => SearchResuftPage(),
+            binding: SearchBindings(),
+          ),
+          GetPage(
+            name: '/notification',
+            page: () => NotificationsPage(),
+          ),
+          GetPage(
+            name: '/notificationdetail',
+            page: () => NotificationDetailPage(),
+          ),
         ]);
   }
 }
