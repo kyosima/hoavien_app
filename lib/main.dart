@@ -6,14 +6,19 @@ import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/search_controller.dart';
+import 'package:hoavien_app/controllers/customers/taisanso_detail_controller.dart';
 import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
 import 'package:hoavien_app/views/screens/auth/otp_page.dart';
+import 'package:hoavien_app/views/screens/customers/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/notification_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/notifications_page.dart';
+import 'package:hoavien_app/views/screens/customers/qr_scan_page.dart';
 import 'package:hoavien_app/views/screens/customers/search_resuft_page.dart';
+import 'package:hoavien_app/views/screens/customers/taisanso_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/taisanso_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,6 +75,23 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/notificationdetail',
             page: () => NotificationDetailPage(),
+          ),
+          GetPage(
+            name: '/taisanso',
+            page: () => TaiSanSoPage(),
+          ),
+          GetPage(
+            name: '/taisansodetail',
+            page: () => TaisansoDetailPage(),
+            binding: TaisansoDetailBindings(),
+          ),
+          GetPage(
+            name: '/sodochidan',
+            page: () => DirectMapPage(),
+          ),
+          GetPage(
+            name: '/qrscan',
+            page: () => QrScanPage(),
           ),
         ]);
   }

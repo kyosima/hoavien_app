@@ -7,6 +7,7 @@ import 'package:hoavien_app/views/widgets/custom_button_home_page.dart';
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
+import 'package:hoavien_app/views/widgets/customsearch.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -16,39 +17,11 @@ class HomePage extends GetView<HomeController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Container(
-            height: 40.0,
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            child: Directionality(
-                textDirection: TextDirection.ltr,
-                child: TextField(
-                  controller: null,
-                  autofocus: false,
-                  style: const TextStyle(fontSize: 16.0, color: secondaryColor),
-                  decoration: InputDecoration(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        Get.toNamed('/searchresuft');
-                      },
-                      icon: Icon(Icons.search),
-                    ),
-                    filled: true,
-                    fillColor: Colors.white,
-                    hintText: 'Tìm kiếm',
-                    contentPadding: const EdgeInsets.only(
-                        left: 14.0, bottom: 13.0, top: 8.0),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(color: Colors.white),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                ))),
+        title: CustomSearch(
+          onPressed: () {
+            Get.toNamed('/searchresuft');
+          },
+        ),
         actions: [
           Stack(
             alignment: Alignment.center,
@@ -168,14 +141,14 @@ class HomePage extends GetView<HomeController> {
                       tittle: 'Quét Qr',
                       icon: Icons.qr_code,
                       onTap: () {
-                        print('QR');
+                        Get.toNamed('/qrscan');
                       },
                     ),
                     CustomButtonHomePage(
                       tittle: 'Tài sản số',
                       icon: Icons.account_balance,
                       onTap: () {
-                        print('QR');
+                        Get.toNamed('/taisanso');
                       },
                     ),
                     CustomButtonHomePage(

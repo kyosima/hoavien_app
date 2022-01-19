@@ -10,7 +10,9 @@ class SearchBindings implements Bindings {
 }
 
 class SearchController extends GetxController {
-  var isChecked = false.obs;
+  var isCheckedAll = false.obs;
+  var isCheckedService = false.obs;
+  var isCheckedItem = false.obs;
   @override
   void onReady() {
     // TODO: implement onReady
@@ -29,7 +31,19 @@ class SearchController extends GetxController {
     super.onClose();
   }
 
-  void checkbox() {
-    isChecked.value = !isChecked.value;
+  void checkboxAll() {
+    isCheckedAll.value = !isCheckedAll.value;
+    if (isCheckedAll.value = true) {
+      isCheckedService.value = true;
+      isCheckedItem.value = true;
+    } else {}
+  }
+
+  void checkboxService() {
+    isCheckedService.value = !isCheckedService.value;
+  }
+
+  void checkboxItem() {
+    isCheckedItem.value = !isCheckedItem.value;
   }
 }

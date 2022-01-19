@@ -75,9 +75,9 @@ class SearchResuftPage extends GetView<SearchController> {
                                 child: Obx(
                                   () => Checkbox(
                                       shape: CircleBorder(),
-                                      value: controller.isChecked.value,
+                                      value: controller.isCheckedAll.value,
                                       onChanged: (value) {
-                                        controller.checkbox();
+                                        controller.checkboxAll();
                                       }),
                                 ),
                               ),
@@ -95,9 +95,9 @@ class SearchResuftPage extends GetView<SearchController> {
                                 child: Obx(
                                   () => Checkbox(
                                       shape: CircleBorder(),
-                                      value: controller.isChecked.value,
+                                      value: controller.isCheckedService.value,
                                       onChanged: (value) {
-                                        controller.checkbox();
+                                        controller.checkboxService();
                                       }),
                                 ),
                               ),
@@ -112,12 +112,14 @@ class SearchResuftPage extends GetView<SearchController> {
                             children: [
                               Transform.scale(
                                 scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {
-                                      print(value);
-                                    }),
+                                child: Obx(
+                                  () => Checkbox(
+                                      shape: CircleBorder(),
+                                      value: controller.isCheckedItem.value,
+                                      onChanged: (value) {
+                                        controller.checkboxItem();
+                                      }),
+                                ),
                               ),
                               const Text(
                                 'Vật dụng',
