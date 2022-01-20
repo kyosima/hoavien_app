@@ -155,14 +155,14 @@ class HomePage extends GetView<HomeController> {
                       tittle: 'Thanh toán',
                       icon: Icons.credit_card,
                       onTap: () {
-                        print('QR');
+                        Get.toNamed('/checkout');
                       },
                     ),
                     CustomButtonHomePage(
                       tittle: 'TK phụ',
                       icon: Icons.group,
                       onTap: () {
-                        print('QR');
+                        Get.toNamed('/secondaccount');
                       },
                     ),
                     CustomButtonHomePage(

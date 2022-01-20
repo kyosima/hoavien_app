@@ -11,12 +11,16 @@ import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
 import 'package:hoavien_app/views/screens/auth/otp_page.dart';
+import 'package:hoavien_app/views/screens/customers/add_second_account_page.dart';
+import 'package:hoavien_app/views/screens/customers/checkout_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/checkout_page.dart';
 import 'package:hoavien_app/views/screens/customers/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/notification_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/notifications_page.dart';
 import 'package:hoavien_app/views/screens/customers/qr_scan_page.dart';
 import 'package:hoavien_app/views/screens/customers/search_resuft_page.dart';
+import 'package:hoavien_app/views/screens/customers/second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/taisanso_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/taisanso_page.dart';
 
@@ -92,6 +96,22 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/qrscan',
             page: () => QrScanPage(),
+          ),
+          GetPage(
+            name: '/checkout',
+            page: () => CheckoutPage(),
+          ),
+          GetPage(
+            name: '/checkoutdetail',
+            page: () => CheckoutDetail(),
+          ),
+          GetPage(
+            name: '/secondaccount',
+            page: () => SecondAccount(),
+          ),
+          GetPage(
+            name: '/addsecondaccount',
+            page: () => AddSecondAccountPage(),
           ),
         ]);
   }
