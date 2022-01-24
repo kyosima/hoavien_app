@@ -190,7 +190,9 @@ class HomePage extends GetView<HomeController> {
                       ],
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed('/combohot');
+                        },
                         child: const Text(
                           'Xem thêm',
                           style: TextStyle(

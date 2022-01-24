@@ -56,6 +56,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                   CustomTextField(
                     title: 'Họ và tên',
                     inputType: TextInputType.text,
+                    controller: controller.fullName,
                   ),
                   SizedBox(
                     height: 20,
@@ -63,11 +64,13 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                   CustomTextField(
                     title: 'Quan hệ với bạn',
                     inputType: TextInputType.text,
+                    controller: controller.relationship,
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   CustomTextField(
+                    controller: controller.phoneNumber,
                     title: 'Số điện thoại đăng ký tài khoản',
                     inputType: TextInputType.number,
                   ),
@@ -75,6 +78,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
+                    controller: controller.passWord,
                     title: 'Mật khẩu',
                     inputType: TextInputType.text,
                     obscureText: !controller.obscureTextPassword.value,
@@ -89,7 +93,8 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
-                    title: 'Mật khẩu',
+                    controller: controller.confirmPassWord,
+                    title: 'Xác nhận Mật khẩu',
                     inputType: TextInputType.text,
                     obscureText: !controller.obscureTextConfirmPassword.value,
                     icon: controller.obscureTextConfirmPassword.value == false
@@ -139,7 +144,12 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                   SizedBox(
                     height: 40,
                   ),
-                  CustomButtonLoginPage(title: 'Xong'),
+                  CustomButtonLoginPage(
+                    title: 'Xong',
+                    onPressed: () {
+                      controller.addSecondAccount();
+                    },
+                  ),
                 ],
               ),
             ),

@@ -15,6 +15,8 @@ import 'package:hoavien_app/views/screens/auth/otp_page.dart';
 import 'package:hoavien_app/views/screens/customers/add_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/checkout_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/checkout_page.dart';
+import 'package:hoavien_app/views/screens/customers/combo_hot_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/combo_hot_page.dart';
 import 'package:hoavien_app/views/screens/customers/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/notification_detail_page.dart';
@@ -119,6 +121,14 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/picktaisanso',
             page: () => PickTaisanso(),
+          ),
+          GetPage(
+            name: '/combohot',
+            page: () => ComboHotPage(),
+          ),
+          GetPage(
+            name: '/combohotdetail',
+            page: () => ComboHotDetailPage(),
           ),
         ]);
   }

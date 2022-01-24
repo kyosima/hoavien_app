@@ -35,6 +35,7 @@ dependencies:
   webview_flutter: ^3.0.0
   qr_code_scanner: ^0.6.1
   buttons_tabbar: ^1.3.2
+  flutter_rating_bar: ^4.0.0
   flutter:
     sdk: flutter
 
@@ -77,6 +78,8 @@ flutter:
     - assets/images/search_resuft.png
     - assets/images/taisanso.png
     - assets/images/thanhvien.jpg
+    - assets/images/combohot.png
+    - assets/images/combodetail.png
     - assets/images/hot.png
     - assets/images/loi.gif
 
