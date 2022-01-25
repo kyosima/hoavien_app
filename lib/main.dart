@@ -5,6 +5,7 @@ import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/add_second_account_controller.dart';
+import 'package:hoavien_app/controllers/customers/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/taisanso_detail_controller.dart';
@@ -13,6 +14,7 @@ import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
 import 'package:hoavien_app/views/screens/auth/otp_page.dart';
 import 'package:hoavien_app/views/screens/customers/add_second_account_page.dart';
+import 'package:hoavien_app/views/screens/customers/cart_page.dart';
 import 'package:hoavien_app/views/screens/customers/checkout_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/checkout_page.dart';
 import 'package:hoavien_app/views/screens/customers/combo_hot_detail_page.dart';
@@ -22,6 +24,7 @@ import 'package:hoavien_app/views/screens/customers/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/notification_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/notifications_page.dart';
 import 'package:hoavien_app/views/screens/customers/pick_taisanso_page.dart';
+import 'package:hoavien_app/views/screens/customers/product_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/qr_scan_page.dart';
 import 'package:hoavien_app/views/screens/customers/search_resuft_page.dart';
 import 'package:hoavien_app/views/screens/customers/second_account_page.dart';
@@ -129,6 +132,15 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/combohotdetail',
             page: () => ComboHotDetailPage(),
+          ),
+          GetPage(
+            name: '/productdetail',
+            page: () => ProductDetailPage(),
+          ),
+          GetPage(
+            name: '/cart',
+            page: () => CartPage(),
+            binding: CartBinding(),
           ),
         ]);
   }

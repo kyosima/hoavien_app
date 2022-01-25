@@ -61,10 +61,14 @@ class HomePage extends GetView<HomeController> {
                   ),
                 ),
               ),
-              const Center(
-                  child: Icon(
-                Icons.shopping_basket,
-                size: 28,
+              Center(
+                  child: IconButton(
+                icon: Icon(
+                  Icons.shopping_basket,
+                ),
+                onPressed: () {
+                  Get.toNamed('/cart');
+                },
               ))
             ],
           ),
@@ -434,7 +438,7 @@ class HomePage extends GetView<HomeController> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CustomProducts(
-                                  onTap: () => print('product'),
+                                  onTap: () => Get.toNamed('/productdetail'),
                                   image: 'assets/images/product.png',
                                   title: 'Đĩa hoa quả chất liệu đồng 3 chân',
                                   size: 'D170 X H20',

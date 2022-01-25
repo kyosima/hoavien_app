@@ -32,7 +32,6 @@ class ComboHotPage extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10),
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Row(
@@ -40,6 +39,8 @@ class ComboHotPage extends StatelessWidget {
                         children: [
                           Image.asset(
                             'assets/images/combohot.png',
+                            height: double.infinity,
+                            width: 120,
                             fit: BoxFit.cover,
                           ),
                           SizedBox(

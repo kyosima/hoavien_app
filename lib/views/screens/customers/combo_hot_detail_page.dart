@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
+import 'package:hoavien_app/views/widgets/custom_service.dart';
+import 'package:hoavien_app/views/widgets/custom_share_button.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ComboHotDetailPage extends StatelessWidget {
   const ComboHotDetailPage({Key? key}) : super(key: key);
@@ -10,6 +14,7 @@ class ComboHotDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      bottomNavigationBar: CustomBottomBar(),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
@@ -39,26 +44,14 @@ class ComboHotDetailPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Center(
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    color: secondaryColor,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-              const Center(
-                  child: Icon(
-                Icons.share,
-                size: 20,
-              ))
-            ],
+          CustomShareButton(
+            onTap: () {
+              Share.share('123');
+            },
           ),
+          SizedBox(
+            width: 15,
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -186,6 +179,75 @@ class ComboHotDetailPage extends StatelessWidget {
                     ),
                     Text(
                         '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Netus arcu, quis mi magna dui molestie scelerisque nam euismod. Consequat nullam gravida pellentesque quis faucibus. Nunc non gravida eget ultrices. Cras nunc euismod at urna ligula.'''),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                        '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Netus arcu, quis mi magna dui molestie scelerisque nam euismod. Consequat nullam gravida pellentesque quis faucibus. Nunc non gravida eget ultrices. Cras nunc euismod at urna ligula.'''),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                        '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Netus arcu, quis mi magna dui molestie scelerisque nam euismod. Consequat nullam gravida pellentesque quis faucibus. Nunc non gravida eget ultrices. Cras nunc euismod at urna ligula.'''),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Dịch vụ khác',
+                      style: TextStyle(
+                        color: secondaryColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10.0),
+                      height: 289,
+                      child: ListView(
+                        // This next line does the trick.
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          CustomService(
+                              onTap: () {
+                                print('COMBO HOT');
+                              },
+                              image: 'assets/images/dichvu.png',
+                              title: 'Combo gói dịch vụ HOT',
+                              price: 'đ 500.000',
+                              priceSale: 'đ 500.000',
+                              info:
+                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                          CustomService(
+                              image: 'assets/images/dichvu.png',
+                              title: 'Combo gói dịch vụ HOT',
+                              price: 'đ 500.000',
+                              priceSale: 'đ 500.000',
+                              info:
+                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                          CustomService(
+                              image: 'assets/images/dichvu.png',
+                              title: 'Combo gói dịch vụ HOT',
+                              price: 'đ 500.000',
+                              priceSale: 'đ 500.000',
+                              info:
+                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                          CustomService(
+                              image: 'assets/images/dichvu.png',
+                              title: 'Combo gói dịch vụ HOT',
+                              price: 'đ 500.000',
+                              priceSale: 'đ 500.000',
+                              info:
+                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                          CustomService(
+                              image: 'assets/images/dichvu.png',
+                              title: 'Combo gói dịch vụ HOT',
+                              price: 'đ 500.000',
+                              priceSale: 'đ 500.000',
+                              info:
+                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),

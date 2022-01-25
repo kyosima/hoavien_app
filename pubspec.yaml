@@ -36,6 +36,7 @@ dependencies:
   qr_code_scanner: ^0.6.1
   buttons_tabbar: ^1.3.2
   flutter_rating_bar: ^4.0.0
+  share_plus: ^3.0.4
   flutter:
     sdk: flutter
 
@@ -75,6 +76,7 @@ flutter:
     - assets/images/dichvu.png
     - assets/images/vector.png
     - assets/images/product.png
+    - assets/images/productdetail.png
     - assets/images/search_resuft.png
     - assets/images/taisanso.png
     - assets/images/thanhvien.jpg
