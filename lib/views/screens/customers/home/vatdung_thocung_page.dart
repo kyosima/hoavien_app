@@ -74,12 +74,10 @@ class VatdungThocungPage extends StatelessWidget {
                             children: [
                               Transform.scale(
                                 scale: 1.2,
-                                child: Obx(
-                                  () => Checkbox(
-                                      shape: CircleBorder(),
-                                      value: true,
-                                      onChanged: (value) {}),
-                                ),
+                                child: Checkbox(
+                                    shape: CircleBorder(),
+                                    value: true,
+                                    onChanged: (value) {}),
                               ),
                               Text(
                                 'Tất cả',
@@ -92,12 +90,10 @@ class VatdungThocungPage extends StatelessWidget {
                             children: [
                               Transform.scale(
                                 scale: 1.2,
-                                child: Obx(
-                                  () => Checkbox(
-                                      shape: CircleBorder(),
-                                      value: true,
-                                      onChanged: (value) {}),
-                                ),
+                                child: Checkbox(
+                                    shape: CircleBorder(),
+                                    value: true,
+                                    onChanged: (value) {}),
                               ),
                               const Text(
                                 'Dịch vụ xây dựng và thiết kế',
@@ -110,12 +106,10 @@ class VatdungThocungPage extends StatelessWidget {
                             children: [
                               Transform.scale(
                                 scale: 1.2,
-                                child: Obx(
-                                  () => Checkbox(
-                                      shape: CircleBorder(),
-                                      value: true,
-                                      onChanged: (value) {}),
-                                ),
+                                child: Checkbox(
+                                    shape: CircleBorder(),
+                                    value: true,
+                                    onChanged: (value) {}),
                               ),
                               const Text(
                                 'Vật dụng',
@@ -202,6 +196,15 @@ class VatdungThocungPage extends StatelessWidget {
       ),
       appBar: AppBar(
         backgroundColor: primaryColor,
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            size: 38,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         title: Container(
             height: 40.0,
             decoration: const BoxDecoration(

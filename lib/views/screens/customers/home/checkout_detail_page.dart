@@ -11,10 +11,10 @@ class CheckoutDetail extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Chi tiết lịch thanh toán',
         ),
       ),
@@ -22,7 +22,7 @@ class CheckoutDetail extends StatelessWidget {
           color: Colors.grey[300],
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -34,15 +34,15 @@ class CheckoutDetail extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Trạng thái',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Chờ thanh toán',
                             style: TextStyle(
                               fontSize: 16,
@@ -52,42 +52,42 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Ngày thanh toán dự kiến',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '20/06/2022',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Lần thanh toán',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Đợt 2',
                             style: TextStyle(
                               fontSize: 16,
@@ -97,20 +97,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Tỷ lệ thanh toán',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '30%',
                             style: TextStyle(
                               fontSize: 16,
@@ -119,22 +119,22 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Số tiền',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '1.059.750.000',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: secondaryColor,
@@ -142,20 +142,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Người thanh toán',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Nguyễn Chính Hưng',
                             style: TextStyle(
                               fontSize: 16,
@@ -168,7 +168,7 @@ class CheckoutDetail extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -180,7 +180,7 @@ class CheckoutDetail extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Thông tin lô',
                             style: TextStyle(
                               fontSize: 16,
@@ -190,20 +190,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Mã lô',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'PQ2.3-02-01',
                             style: TextStyle(
                               fontSize: 16,
@@ -213,20 +213,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Vị trí (khu)',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             'Phú Quý',
                             style: TextStyle(
                               fontSize: 16,
@@ -235,42 +235,42 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Hàng số',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '2',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Vị trí số',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '02',
                             style: TextStyle(
                               fontSize: 16,
@@ -279,20 +279,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Kích thước',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '7.2 x 9',
                             style: TextStyle(
                               fontSize: 16,
@@ -301,20 +301,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Diện tích',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '64.8 m2',
                             style: TextStyle(
                               fontSize: 16,
@@ -323,22 +323,22 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Chi phí chăm sóc',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '27.000.000 đ',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
                               color: secondaryColor,
@@ -346,20 +346,20 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Kim tĩnh',
                             style: TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '15.000.000 đ',
                             style: TextStyle(
                               fontSize: 16,
@@ -369,22 +369,22 @@ class CheckoutDetail extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             'Tổng giá tiền( 100%)',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 16,
                               color: secondaryColor,
                             ),
                           ),
-                          Text(
+                          const Text(
                             '2.879.000.000 đ',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 16,
                               color: secondaryColor,
@@ -396,7 +396,7 @@ class CheckoutDetail extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               Center(
@@ -408,7 +408,7 @@ class CheckoutDetail extends StatelessWidget {
                   width: 250,
                   child: TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Liên hệ',
                       style: TextStyle(
                           color: secondaryColor,
