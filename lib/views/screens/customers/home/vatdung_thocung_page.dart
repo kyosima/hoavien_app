@@ -1,11 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/controllers/customers/search_controller.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:hoavien_app/views/widgets/custom_products.dart';
 
-import '../../../constance.dart';
+import '../../../../constance.dart';
 
-class SearchResuftPage extends GetView<SearchController> {
+class VatdungThocungPage extends StatelessWidget {
+  const VatdungThocungPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,10 +77,8 @@ class SearchResuftPage extends GetView<SearchController> {
                                 child: Obx(
                                   () => Checkbox(
                                       shape: CircleBorder(),
-                                      value: controller.isCheckedAll.value,
-                                      onChanged: (value) {
-                                        controller.checkboxAll();
-                                      }),
+                                      value: true,
+                                      onChanged: (value) {}),
                                 ),
                               ),
                               Text(
@@ -95,10 +95,8 @@ class SearchResuftPage extends GetView<SearchController> {
                                 child: Obx(
                                   () => Checkbox(
                                       shape: CircleBorder(),
-                                      value: controller.isCheckedService.value,
-                                      onChanged: (value) {
-                                        controller.checkboxService();
-                                      }),
+                                      value: true,
+                                      onChanged: (value) {}),
                                 ),
                               ),
                               const Text(
@@ -115,10 +113,8 @@ class SearchResuftPage extends GetView<SearchController> {
                                 child: Obx(
                                   () => Checkbox(
                                       shape: CircleBorder(),
-                                      value: controller.isCheckedItem.value,
-                                      onChanged: (value) {
-                                        controller.checkboxItem();
-                                      }),
+                                      value: true,
+                                      onChanged: (value) {}),
                                 ),
                               ),
                               const Text(
@@ -267,92 +263,137 @@ class SearchResuftPage extends GetView<SearchController> {
           ),
         ],
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/search_resuft.png',
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                RichText(
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                  strutStyle: StrutStyle(fontSize: 19.0),
-                                  text: TextSpan(
-                                      style: TextStyle(
-                                        color: secondaryColor,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                      ),
-                                      text: 'Cải táng hộc lưu tro HVBA '),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
+      body: SingleChildScrollView(
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          TextButton(
+              onPressed: () {
+                Get.bottomSheet(
+                  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10)),
+                      ),
+                      height: 200,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                                child: Text('Sắp xếp kết quả',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ))),
+                            TextButton(
+                              onPressed: () {},
+                              child: Row(children: [
                                 Text(
-                                  'đ 500.000',
+                                  'Giá tăng dần',
                                   style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Flexible(
-                                  child: RichText(
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    strutStyle: StrutStyle(fontSize: 19.0),
-                                    text: TextSpan(
-                                        style: TextStyle(
-                                          color: secondaryColor,
-                                        ),
-                                        text:
-                                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                                    fontSize: 16,
                                   ),
                                 ),
-                              ],
+                                Icon(
+                                  Icons.add,
+                                  color: Colors.red,
+                                  size: 17,
+                                ),
+                              ]),
                             ),
-                          )
-                        ],
+                            TextButton(
+                              onPressed: () {},
+                              child: Row(children: [
+                                Text(
+                                  'Giá giảm dần',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.remove,
+                                  color: Colors.red,
+                                  size: 17,
+                                ),
+                              ]),
+                            ),
+                          ],
+                        ),
+                      )),
+                  isDismissible: true,
+                  enableDrag: true,
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: secondaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Sắp xếp giá',
+                      style: TextStyle(
+                        color: Colors.white,
                       ),
                     ),
-                    height: MediaQuery.of(context).size.height / 7,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 10,
-                          offset:
-                              const Offset(0, 0), // changes position of shadow
-                        ),
-                      ],
-                    ),
                   ),
-                );
-              }),
-        ),
-      ),
+                ),
+              )),
+          Container(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                childAspectRatio: (0.64),
+
+                // Create a grid with 2 columns. If you change the scrollDirection to
+                // horizontal, this produces 2 rows.
+                crossAxisCount: 2,
+                // Generate 100 widgets that display their index in the List.
+                children: List.generate(10, (index) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 1,
+                              blurRadius: 10,
+                              offset: const Offset(
+                                  0, 0), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CustomProducts(
+                              onTap: () => Get.toNamed('/productdetail'),
+                              image: 'assets/images/product.png',
+                              title: 'Đĩa hoa quả chất liệu đồng 3 chân',
+                              size: 'D170 X H20',
+                              price: 'đ 125.000'),
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ),
+            ),
+          ),
+        ],
+      )),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/home_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_home_page.dart';
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
@@ -266,7 +266,9 @@ class HomePage extends GetView<HomeController> {
                       ],
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed('/dichvuantangcaitang');
+                        },
                         child: const Text(
                           'Xem thêm',
                           style: TextStyle(
@@ -336,7 +338,9 @@ class HomePage extends GetView<HomeController> {
                       ],
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed('/dichvuthietkexaydung');
+                        },
                         child: const Text(
                           'Xem thêm',
                           style: TextStyle(
@@ -398,9 +402,20 @@ class HomePage extends GetView<HomeController> {
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CustomTitleText(title: 'Vật dụng thờ cúng'),
+                    TextButton(
+                        onPressed: () {
+                          Get.toNamed('/vatdungthocung');
+                        },
+                        child: const Text(
+                          'Xem thêm',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black,
+                          ),
+                        ))
                   ],
                 ),
                 SizedBox(

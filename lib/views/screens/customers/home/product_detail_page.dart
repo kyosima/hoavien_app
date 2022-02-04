@@ -5,7 +5,7 @@ import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_share_button.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../../constance.dart';
+import '../../../../constance.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({Key? key}) : super(key: key);

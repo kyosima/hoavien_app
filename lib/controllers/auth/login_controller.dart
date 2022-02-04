@@ -77,7 +77,7 @@ class LoginController extends GetxController {
         ],
       ));
     } else {
-      Get.toNamed('/home');
+      Get.toNamed('/dashboard');
       Get.snackbar(
         "Đăng nhập thành công",
         "Chúc mừng bạn đã đăng nhập thành công",
