@@ -5,6 +5,7 @@ import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
+import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/add_second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
@@ -16,6 +17,7 @@ import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
 import 'package:hoavien_app/views/screens/auth/otp_page.dart';
 import 'package:hoavien_app/views/screens/customers/event/event_page.dart';
+import 'package:hoavien_app/views/screens/customers/genealogy/add_genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/add_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/cart_page.dart';
@@ -37,6 +39,7 @@ import 'package:hoavien_app/views/screens/customers/home/qr_scan_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso_page.dart';
+import 'package:hoavien_app/views/screens/customers/memories/list_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
 
@@ -183,6 +186,15 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/canhan',
             page: () => UserPage(),
+          ),
+          GetPage(
+            name: '/danhsachthanhvien',
+            page: () => ListUserPage(),
+          ),
+          GetPage(
+            name: '/taogiapha',
+            page: () => AddGenealogyPage(),
+            binding: AddGenealogyBinding(),
           ),
         ]);
   }

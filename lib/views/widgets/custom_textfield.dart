@@ -3,12 +3,15 @@ import 'package:hoavien_app/constance.dart';
 
 class CustomTextField extends StatelessWidget {
   final String title;
+  final int? maxLines;
+  final double? height;
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextInputType inputType;
   final TextEditingController? controller;
   final IconData? icon;
   final Function()? onPressed;
+  final String? hintText;
   const CustomTextField({
     required this.title,
     this.obscureText = false,
@@ -17,6 +20,9 @@ class CustomTextField extends StatelessWidget {
     this.icon,
     this.validator,
     this.onPressed,
+    this.maxLines,
+    this.height = 55,
+    this.hintText,
   });
 
   @override
@@ -29,14 +35,17 @@ class CustomTextField extends StatelessWidget {
           height: 10,
         ),
         SizedBox(
-          height: 55,
+          height: height,
+          width: double.infinity,
           child: TextField(
+            maxLines: maxLines,
             keyboardType: inputType,
             obscureText: obscureText,
             controller: controller,
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
               labelText: title,
+              hintText: hintText,
               labelStyle: const TextStyle(
                 color: secondaryColor,
                 fontSize: 20,

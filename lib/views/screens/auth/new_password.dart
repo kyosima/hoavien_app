@@ -32,6 +32,7 @@ class NewPassword extends GetView<ResetPasswordController> {
                     () => Column(
                       children: [
                         CustomTextField(
+                          maxLines: 1,
                           controller: controller.passWordController,
                           title: 'Mật khẩu mới',
                           inputType: TextInputType.text,
@@ -45,6 +46,7 @@ class NewPassword extends GetView<ResetPasswordController> {
                           height: 10,
                         ),
                         CustomTextField(
+                          maxLines: 1,
                           controller: controller.newPassWordController,
                           title: 'Nhập lại mật khẩu mới',
                           icon: controller.obscureTextNewPassword.value == true

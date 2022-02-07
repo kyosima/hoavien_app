@@ -350,7 +350,6 @@ class TaiSanSoPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            height: MediaQuery.of(context).size.height / 7,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),

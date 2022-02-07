@@ -53,6 +53,7 @@ class LoginPage extends GetView<LoginController> {
                   Column(
                     children: [
                       CustomTextField(
+                        maxLines: 1,
                         controller: controller.phoneNumber,
                         title: 'Số điện thoại',
                         inputType: TextInputType.number,
@@ -62,6 +63,7 @@ class LoginPage extends GetView<LoginController> {
                       ),
                       Obx(
                         () => CustomTextField(
+                          maxLines: 1,
                           controller: controller.passWord,
                           title: 'Mật khẩu',
                           icon: controller.obscureText.value == true

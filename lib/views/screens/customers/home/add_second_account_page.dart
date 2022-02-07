@@ -54,6 +54,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
+                    maxLines: 1,
                     title: 'Họ và tên',
                     inputType: TextInputType.text,
                     controller: controller.fullName,
@@ -62,6 +63,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
+                    maxLines: 1,
                     title: 'Quan hệ với bạn',
                     inputType: TextInputType.text,
                     controller: controller.relationship,
@@ -70,6 +72,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
+                    maxLines: 1,
                     controller: controller.phoneNumber,
                     title: 'Số điện thoại đăng ký tài khoản',
                     inputType: TextInputType.number,
@@ -78,6 +81,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
+                    maxLines: 1,
                     controller: controller.passWord,
                     title: 'Mật khẩu',
                     inputType: TextInputType.text,
@@ -93,6 +97,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     height: 20,
                   ),
                   CustomTextField(
+                    maxLines: 1,
                     controller: controller.confirmPassWord,
                     title: 'Xác nhận Mật khẩu',
                     inputType: TextInputType.text,

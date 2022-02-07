@@ -50,6 +50,7 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
                   Column(
                     children: [
                       CustomTextField(
+                        maxLines: 1,
                         controller: controller.phoneNumber,
                         title: 'Số điện thoại',
                         inputType: TextInputType.number,

@@ -253,7 +253,6 @@ class CheckoutPage extends StatelessWidget {
                                           ),
                                         ],
                                       )),
-                                  height: 230,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
