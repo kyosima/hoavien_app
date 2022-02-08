@@ -59,7 +59,6 @@ class SecondAccount extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          height: 100,
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(

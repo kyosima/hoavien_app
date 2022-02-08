@@ -5,6 +5,7 @@ import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
+import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/add_second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart_controller.dart';
@@ -16,6 +17,7 @@ import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
 import 'package:hoavien_app/views/screens/auth/otp_page.dart';
+import 'package:hoavien_app/views/screens/customers/event/create_event_page.dart';
 import 'package:hoavien_app/views/screens/customers/event/event_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/add_genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/genealogy_page.dart';
@@ -42,9 +44,10 @@ import 'package:hoavien_app/views/screens/customers/home/taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/list_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
-  runApp(const MyApp());
+  initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -195,6 +198,11 @@ class MyApp extends StatelessWidget {
             name: '/taogiapha',
             page: () => AddGenealogyPage(),
             binding: AddGenealogyBinding(),
+          ),
+          GetPage(
+            name: '/taosukien',
+            page: () => CreateEventPage(),
+            binding: CreateEventBindings(),
           ),
         ]);
   }
