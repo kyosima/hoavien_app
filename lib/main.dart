@@ -12,6 +12,7 @@ import 'package:hoavien_app/controllers/customers/home/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
 import 'package:hoavien_app/views/dashboard/dashboard_page.dart';
 import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
@@ -43,6 +44,8 @@ import 'package:hoavien_app/views/screens/customers/home/taisanso_detail_page.da
 import 'package:hoavien_app/views/screens/customers/home/taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/list_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/cart_history_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/info_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -203,6 +206,15 @@ class MyApp extends StatelessWidget {
             name: '/taosukien',
             page: () => CreateEventPage(),
             binding: CreateEventBindings(),
+          ),
+          GetPage(
+            name: '/thongtincanhan',
+            page: () => InfoUserPage(),
+            binding: InfoUserBinding(),
+          ),
+          GetPage(
+            name: '/lichsumuahang',
+            page: () => CartHistoryPage(),
           ),
         ]);
   }

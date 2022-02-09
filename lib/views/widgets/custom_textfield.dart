@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   final IconData? icon;
   final Function()? onPressed;
   final String? hintText;
+  final bool? enable;
   const CustomTextField({
     required this.title,
     this.obscureText = false,
@@ -23,6 +24,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.height = 55,
     this.hintText,
+    this.enable = true,
   });
 
   @override
@@ -38,6 +40,7 @@ class CustomTextField extends StatelessWidget {
           height: height,
           width: double.infinity,
           child: TextField(
+            enabled: enable,
             maxLines: maxLines,
             keyboardType: inputType,
             obscureText: obscureText,

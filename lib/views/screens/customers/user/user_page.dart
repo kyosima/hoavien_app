@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 import '../../../../constance.dart';
@@ -89,7 +90,9 @@ class UserPage extends StatelessWidget {
                       _customButtonUser(
                         icon: Icons.person,
                         label: 'Thông tin cá nhân',
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed('/thongtincanhan');
+                        },
                       ),
                       SizedBox(
                         height: 10,
@@ -97,7 +100,9 @@ class UserPage extends StatelessWidget {
                       _customButtonUser(
                         icon: Icons.shopping_cart,
                         label: 'Lịch sử mua hàng',
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed('/lichsumuahang');
+                        },
                       ),
                       SizedBox(
                         height: 10,
