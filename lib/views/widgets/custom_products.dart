@@ -31,22 +31,23 @@ class CustomProducts extends StatelessWidget {
             child: RichText(
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
-              strutStyle: const StrutStyle(fontSize: 17.0),
+              strutStyle: const StrutStyle(fontSize: 16.0),
               text: TextSpan(
                   style: const TextStyle(color: secondaryColor), text: title),
             ),
           ),
           const SizedBox(
-            height: 10,
+            height: 5,
           ),
           Row(
             children: [
-              const Text('Kích thước:'),
+              const Text('KT:'),
               Text(
                 size,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: secondaryColor,
+                  fontSize: 13,
                 ),
               ),
             ],
@@ -62,14 +63,14 @@ class CustomProducts extends StatelessWidget {
                 style: const TextStyle(
                   color: Colors.red,
                   fontWeight: FontWeight.w500,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
               const Text(
                 '(Đã bán 120)',
                 style: TextStyle(
                   color: secondaryColor,
-                  fontSize: 13,
+                  fontSize: 12,
                 ),
               ),
             ],

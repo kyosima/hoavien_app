@@ -142,7 +142,7 @@ class CheckoutPage extends StatelessWidget {
                                                           style: TextStyle(
                                                               color:
                                                                   secondaryColor,
-                                                              fontSize: 16,
+                                                              fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w500),
@@ -172,7 +172,7 @@ class CheckoutPage extends StatelessWidget {
                                                           style: TextStyle(
                                                               color:
                                                                   secondaryColor,
-                                                              fontSize: 16,
+                                                              fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w300),
@@ -196,13 +196,16 @@ class CheckoutPage extends StatelessWidget {
                                                       height: 10,
                                                     ),
                                                     Row(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: [
                                                         Text(
                                                           'Thanh toán đợt 2:',
                                                           style: TextStyle(
                                                               color:
                                                                   secondaryColor,
-                                                              fontSize: 15,
+                                                              fontSize: 14,
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w300),
@@ -212,9 +215,9 @@ class CheckoutPage extends StatelessWidget {
                                                         ),
                                                         Flexible(
                                                           child: Text(
-                                                            '2.000.000.000',
+                                                            '2.000.000.000 đ',
                                                             style: TextStyle(
-                                                                fontSize: 15,
+                                                                fontSize: 14,
                                                                 color:
                                                                     secondaryColor,
                                                                 fontWeight:

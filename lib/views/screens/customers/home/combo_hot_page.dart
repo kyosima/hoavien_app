@@ -53,17 +53,19 @@ class ComboHotPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      strutStyle: StrutStyle(fontSize: 19.0),
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                          text: 'Cải táng hộc lưu tro HVBA'),
+                                    Flexible(
+                                      child: RichText(
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        strutStyle: StrutStyle(fontSize: 19.0),
+                                        text: TextSpan(
+                                            style: TextStyle(
+                                              color: secondaryColor,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
+                                            text: 'Cải táng hộc lưu tro HVBA'),
+                                      ),
                                     ),
                                     Image.asset('assets/images/hot.png')
                                   ],
@@ -75,7 +77,7 @@ class ComboHotPage extends StatelessWidget {
                                   'đ 500.000',
                                   style: TextStyle(
                                       color: Colors.red,
-                                      fontSize: 16,
+                                      fontSize: 15,
                                       fontWeight: FontWeight.w500),
                                 ),
                                 SizedBox(
@@ -88,7 +90,7 @@ class ComboHotPage extends StatelessWidget {
                                   text: TextSpan(
                                       style: TextStyle(
                                         color: secondaryColor,
-                                        fontSize: 15,
+                                        fontSize: 14,
                                       ),
                                       text:
                                           'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình A'),
@@ -99,7 +101,7 @@ class ComboHotPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    height: 140,
+                    height: 160,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),

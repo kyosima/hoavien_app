@@ -6,7 +6,7 @@ class CustomTitleText extends StatelessWidget {
   final double? fontSize;
   const CustomTitleText({
     required this.title,
-    this.fontSize = 20,
+    this.fontSize = 17,
   });
 
   @override

@@ -305,7 +305,7 @@ class TaiSanSoPage extends StatelessWidget {
                                               'Thuộc khu :',
                                               style: TextStyle(
                                                   color: secondaryColor,
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                             SizedBox(
@@ -315,7 +315,7 @@ class TaiSanSoPage extends StatelessWidget {
                                               'Khu Phú Quý 2',
                                               style: TextStyle(
                                                   color: secondaryColor,
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.w500),
                                             ),
                                           ],
@@ -329,7 +329,7 @@ class TaiSanSoPage extends StatelessWidget {
                                               'Chủ sở hữu :',
                                               style: TextStyle(
                                                   color: secondaryColor,
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   fontWeight: FontWeight.w300),
                                             ),
                                             SizedBox(
@@ -338,7 +338,7 @@ class TaiSanSoPage extends StatelessWidget {
                                             Text(
                                               'Tần Văn Bá',
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   color: secondaryColor,
                                                   fontWeight: FontWeight.w300),
                                             ),

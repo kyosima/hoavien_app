@@ -155,7 +155,7 @@ class MemoriesPage extends StatelessWidget {
                         padding: const EdgeInsets.all(8),
                         crossAxisSpacing: 8,
                         mainAxisSpacing: 8,
-                        childAspectRatio: 1 / 1.4,
+                        childAspectRatio: 1 / 1.6,
                         // Generate 100 widgets that display their index in the List.
                         children: List.generate(ImageMemories.length, (index) {
                           return InkWell(
@@ -245,7 +245,7 @@ class MemoriesPage extends StatelessWidget {
                                               },
                                               child: Container(
                                                 height: 40,
-                                                width: 150,
+                                                width: 130,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -265,7 +265,7 @@ class MemoriesPage extends StatelessWidget {
                                               onPressed: () {},
                                               child: Container(
                                                 height: 40,
-                                                width: 150,
+                                                width: 130,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(10),

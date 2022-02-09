@@ -54,17 +54,19 @@ class DichvuThietkeXaydungPage extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 1,
-                                      strutStyle: StrutStyle(fontSize: 19.0),
-                                      text: TextSpan(
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                          text: 'Cải táng hộc lưu tro HVBA'),
+                                    Flexible(
+                                      child: RichText(
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
+                                        strutStyle: StrutStyle(fontSize: 19.0),
+                                        text: TextSpan(
+                                            style: TextStyle(
+                                              color: secondaryColor,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 15,
+                                            ),
+                                            text: 'Cải táng hộc lưu tro HVBA'),
+                                      ),
                                     ),
                                     Image.asset('assets/images/hot.png')
                                   ],
