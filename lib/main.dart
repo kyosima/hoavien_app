@@ -12,6 +12,7 @@ import 'package:hoavien_app/controllers/customers/home/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
 import 'package:hoavien_app/views/dashboard/dashboard_page.dart';
 import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
@@ -44,8 +45,14 @@ import 'package:hoavien_app/views/screens/customers/home/taisanso_detail_page.da
 import 'package:hoavien_app/views/screens/customers/home/taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/list_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/about_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/cart_history_detail_cancel_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/cart_history_detail_done_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/cart_history_detail_waiting_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/cart_history_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/change_password_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/info_user_page.dart';
+import 'package:hoavien_app/views/screens/customers/user/rate_product_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -60,6 +67,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.brown,
@@ -215,6 +223,31 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/lichsumuahang',
             page: () => CartHistoryPage(),
+          ),
+          GetPage(
+            name: '/donhangchoxacnhan',
+            page: () => CartHistoryDetailWaittingPage(),
+          ),
+          GetPage(
+            name: '/donhangdahoanthanh',
+            page: () => CartHistoryDetailDonePage(),
+          ),
+          GetPage(
+            name: '/danhgiasanpham',
+            page: () => RateProductPage(),
+          ),
+          GetPage(
+            name: '/donhangdahuy',
+            page: () => CartHistoryDetailCancelPage(),
+          ),
+          GetPage(
+            name: '/thaydoimatkhau',
+            page: () => ChangePasswordPage(),
+            binding: ChangePasswordUserBinding(),
+          ),
+          GetPage(
+            name: '/gioithieu',
+            page: () => AboutPage(),
           ),
         ]);
   }

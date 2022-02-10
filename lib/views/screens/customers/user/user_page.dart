@@ -118,7 +118,9 @@ class UserPage extends StatelessWidget {
                       _customButtonUser(
                         icon: Icons.lock,
                         label: 'Thay đổi mật khẩu',
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed('/thaydoimatkhau');
+                        },
                       ),
                     ],
                   ),
@@ -136,7 +138,9 @@ class UserPage extends StatelessWidget {
                       _customButtonUser(
                         icon: Icons.assignment_outlined,
                         label: 'Giới thiệu về ứng dụng',
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed('/gioithieu');
+                        },
                       ),
                       SizedBox(
                         height: 10,
