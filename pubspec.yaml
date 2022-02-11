@@ -75,6 +75,9 @@ flutter:
   assets:
     - assets/images/error.gif
     - assets/images/error.png
+    - assets/images/khuvuc.png
+    - assets/images/map.png
+    - assets/images/bds.png
     - assets/images/banner.png
     - assets/images/logo.png
     - assets/images/dichvu.png

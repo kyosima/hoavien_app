@@ -14,7 +14,13 @@ import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
-import 'package:hoavien_app/views/dashboard/dashboard_page.dart';
+import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
+import 'package:hoavien_app/controllers/saler/home/saler_home_controller.dart';
+import 'package:hoavien_app/controllers/saler/statistical/statistical_controller.dart';
+import 'package:hoavien_app/controllers/saler/transaction/transaction_controller.dart';
+import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
+import 'package:hoavien_app/views/dashboard/dashboard_customer_page.dart';
+import 'package:hoavien_app/views/dashboard/dashboard_saler_page.dart';
 import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
@@ -54,6 +60,12 @@ import 'package:hoavien_app/views/screens/customers/user/change_password_page.da
 import 'package:hoavien_app/views/screens/customers/user/info_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/rate_product_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
+import 'package:hoavien_app/views/screens/saler/home/bds_detail_page.dart';
+import 'package:hoavien_app/views/screens/saler/home/home_page.dart';
+import 'package:hoavien_app/views/screens/saler/home/notifications_page.dart';
+import 'package:hoavien_app/views/screens/saler/statistical_page.dart';
+import 'package:hoavien_app/views/screens/saler/transaction_page.dart';
+import 'package:hoavien_app/views/screens/saler/user_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 void main() {
@@ -76,6 +88,7 @@ class MyApp extends StatelessWidget {
         home: LoginPage(),
         initialBinding: LoginBinding(),
         getPages: [
+          //Customer
           GetPage(
             name: '/login',
             page: () => LoginPage(),
@@ -248,6 +261,40 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/gioithieu',
             page: () => AboutPage(),
+          ),
+          // Saler
+          GetPage(
+            name: '/homesaler',
+            page: () => SalerHomePage(),
+            binding: SalerHomeBinding(),
+          ),
+          GetPage(
+            name: '/salerdashboard',
+            page: () => DashboardSalerPage(),
+            binding: SalerDashboardBinding(),
+          ),
+          GetPage(
+            name: '/giaodich',
+            page: () => TransactionPage(),
+            binding: TransactionBinding(),
+          ),
+          GetPage(
+            name: '/thongke',
+            page: () => StatisticalPage(),
+            binding: StatisticalBindings(),
+          ),
+          GetPage(
+            name: '/usersaler',
+            page: () => SalerUserPage(),
+            binding: SalerUserBinding(),
+          ),
+          GetPage(
+            name: '/thongbaosaler',
+            page: () => SalerNotificationsPage(),
+          ),
+          GetPage(
+            name: '/chitietbatdongsan',
+            page: () => BdsDetailPage(),
           ),
         ]);
   }

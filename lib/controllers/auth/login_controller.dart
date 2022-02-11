@@ -76,8 +76,18 @@ class LoginController extends GetxController {
           ),
         ],
       ));
-    } else {
+    } else if (phoneNumber.text == '1' || passWord.text == '1') {
       Get.toNamed('/dashboard');
+      Get.snackbar(
+        "Đăng nhập thành công",
+        "Chúc mừng bạn đã đăng nhập thành công",
+        icon: Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
+      );
+    } else if (phoneNumber.text == '2' || passWord.text == '2') {
+      Get.toNamed('/salerdashboard');
       Get.snackbar(
         "Đăng nhập thành công",
         "Chúc mừng bạn đã đăng nhập thành công",
