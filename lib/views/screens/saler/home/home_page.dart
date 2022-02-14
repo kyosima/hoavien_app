@@ -193,59 +193,65 @@ class SalerHomePage extends GetView<SalerHomeController> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: controller.productCount.value,
                   itemBuilder: (BuildContext context, index) {
-                    return Padding(
-                      padding:
-                          const EdgeInsets.only(left: 15.0, right: 15, top: 15),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 1,
-                              blurRadius: 10,
-                              offset: const Offset(
-                                  0, 0), // changes position of shadow
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/khuvuc.png',
-                                fit: BoxFit.cover,
-                                height: 80,
+                    return InkWell(
+                      onTap: () {
+                        Get.toNamed('/chitietbatdongsan');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 15.0, right: 15, top: 15),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                                offset: const Offset(
+                                    0, 0), // changes position of shadow
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Phú Quý 1',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus,',
-                                      overflow: TextOverflow.ellipsis,
-                                      maxLines: 2,
-                                    )
-                                  ],
-                                ),
-                              )
                             ],
+                            color: Colors.white,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/images/khuvuc.png',
+                                  fit: BoxFit.cover,
+                                  height: 80,
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Phú Quý 1',
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus,',
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -286,9 +292,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                   crossAxisCount: 2,
                   children: List.generate(controller.bdsCount.value, (index) {
                     return InkWell(
-                      onTap: () {
-                        Get.toNamed('/chitietbatdongsan');
-                      },
+                      onTap: () {},
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(

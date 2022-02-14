@@ -50,8 +50,8 @@ class DashboardPage extends StatelessWidget {
               ),
               _bottomNavigationBarItem(
                 icon: controller.tabIndex == 2
-                    ? CupertinoIcons.bubble_left_bubble_right_fill
-                    : CupertinoIcons.bubble_left_bubble_right,
+                    ? Icons.account_tree_sharp
+                    : Icons.account_tree_outlined,
                 label: 'Gia phả',
               ),
               _bottomNavigationBarItem(

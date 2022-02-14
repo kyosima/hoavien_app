@@ -5,8 +5,8 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
 
 import 'package:hoavien_app/views/screens/saler/home/home_page.dart';
-import 'package:hoavien_app/views/screens/saler/statistical_page.dart';
-import 'package:hoavien_app/views/screens/saler/transaction_page.dart';
+import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dart';
+import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
 import 'package:hoavien_app/views/screens/saler/user_page.dart';
 
 class DashboardSalerPage extends StatelessWidget {

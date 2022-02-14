@@ -15,6 +15,7 @@ import 'package:hoavien_app/controllers/customers/home/taisanso_detail_controlle
 import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
 import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
+import 'package:hoavien_app/controllers/saler/home/bds_detail_controller.dart';
 import 'package:hoavien_app/controllers/saler/home/saler_home_controller.dart';
 import 'package:hoavien_app/controllers/saler/statistical/statistical_controller.dart';
 import 'package:hoavien_app/controllers/saler/transaction/transaction_controller.dart';
@@ -63,8 +64,9 @@ import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
 import 'package:hoavien_app/views/screens/saler/home/bds_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/home/home_page.dart';
 import 'package:hoavien_app/views/screens/saler/home/notifications_page.dart';
-import 'package:hoavien_app/views/screens/saler/statistical_page.dart';
-import 'package:hoavien_app/views/screens/saler/transaction_page.dart';
+import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dart';
+import 'package:hoavien_app/views/screens/saler/transaction/transaction_detail_page.dart';
+import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
 import 'package:hoavien_app/views/screens/saler/user_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -263,6 +265,11 @@ class MyApp extends StatelessWidget {
             page: () => AboutPage(),
           ),
           // Saler
+          // Saler
+          // Saler
+          // Saler
+          // Saler
+          // Saler
           GetPage(
             name: '/homesaler',
             page: () => SalerHomePage(),
@@ -281,7 +288,7 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/thongke',
             page: () => StatisticalPage(),
-            binding: StatisticalBindings(),
+            binding: StatisticalBinding(),
           ),
           GetPage(
             name: '/usersaler',
@@ -295,6 +302,11 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/chitietbatdongsan',
             page: () => BdsDetailPage(),
+            binding: BdsDetailsBinding(),
+          ),
+          GetPage(
+            name: '/chitietgiaodich',
+            page: () => TransactionDetailPage(),
           ),
         ]);
   }
