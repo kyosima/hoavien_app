@@ -65,6 +65,7 @@ import 'package:hoavien_app/views/screens/saler/home/bds_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/home/home_page.dart';
 import 'package:hoavien_app/views/screens/saler/home/notifications_page.dart';
 import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dart';
+import 'package:hoavien_app/views/screens/saler/statistical/total_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
 import 'package:hoavien_app/views/screens/saler/user_page.dart';
@@ -307,6 +308,10 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/chitietgiaodich',
             page: () => TransactionDetailPage(),
+          ),
+          GetPage(
+            name: '/tongdoanhthu',
+            page: () => TotalDetailPage(),
           ),
         ]);
   }

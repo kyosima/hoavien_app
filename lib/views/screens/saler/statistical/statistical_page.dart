@@ -49,6 +49,9 @@ class StatisticalPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextField(
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       autofocus: false,
                       readOnly: true,
                       controller: controller.pickStartDateController,
@@ -71,7 +74,7 @@ class StatisticalPage extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
+                              const BorderSide(width: 1, color: colorText),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -83,7 +86,10 @@ class StatisticalPage extends StatelessWidget {
                           onPressed: () {
                             controller.pickStartDate();
                           },
-                          icon: Icon(Icons.calendar_today),
+                          icon: Icon(
+                            Icons.calendar_today,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),
@@ -93,6 +99,9 @@ class StatisticalPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextField(
+                      style: TextStyle(
+                        fontSize: 14,
+                      ),
                       autofocus: false,
                       controller: controller.pickEndDateController,
                       showCursor: false,
@@ -115,7 +124,7 @@ class StatisticalPage extends StatelessWidget {
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                         enabledBorder: OutlineInputBorder(
                           borderSide:
-                              const BorderSide(width: 1, color: Colors.grey),
+                              const BorderSide(width: 1, color: colorText),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -127,7 +136,10 @@ class StatisticalPage extends StatelessWidget {
                           onPressed: () {
                             controller.pickEndDate();
                           },
-                          icon: Icon(Icons.calendar_today),
+                          icon: Icon(
+                            Icons.calendar_today,
+                            size: 20,
+                          ),
                         ),
                       ),
                     ),
@@ -210,6 +222,185 @@ class StatisticalPage extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              InkWell(
+                onTap: () {
+                  Get.toNamed('/tongdoanhthu');
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.monetization_on,
+                          color: secondaryColor,
+                          size: 50,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Tổng doanh thu (tạm tính)',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: secondaryColor,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              '11.200.000.000 đ',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.green,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Danh sách giao dịch',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: colorText,
+                                  decoration: TextDecoration.underline),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.monetization_on,
+                        color: secondaryColor,
+                        size: 50,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Doanh thu đã ký hợp đồng',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: secondaryColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '11.200.000.000 đ',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.green,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Danh sách giao dịch',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: colorText,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.monetization_on,
+                        color: secondaryColor,
+                        size: 50,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Doanh thu đã cọc',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: secondaryColor,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '11.200.000.000 đ',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.green,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Danh sách giao dịch',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: colorText,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
