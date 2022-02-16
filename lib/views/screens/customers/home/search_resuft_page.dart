@@ -267,90 +267,100 @@ class SearchResuftPage extends GetView<SearchController> {
           ),
         ],
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/search_resuft.png',
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Flexible(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
                               children: [
-                                RichText(
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                  strutStyle: StrutStyle(fontSize: 19.0),
-                                  text: TextSpan(
-                                      style: TextStyle(
-                                        color: secondaryColor,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                      ),
-                                      text: 'Cải táng hộc lưu tro HVBA '),
+                                Image.asset(
+                                  'assets/images/search_resuft.png',
                                 ),
                                 SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  'đ 500.000',
-                                  style: TextStyle(
-                                      color: Colors.red,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(
-                                  height: 5,
+                                  width: 10,
                                 ),
                                 Flexible(
-                                  child: RichText(
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    strutStyle: StrutStyle(fontSize: 19.0),
-                                    text: TextSpan(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      RichText(
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 2,
+                                        strutStyle: StrutStyle(fontSize: 19.0),
+                                        text: TextSpan(
+                                            style: TextStyle(
+                                              color: secondaryColor,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14,
+                                            ),
+                                            text: 'Cải táng hộc lưu tro HVBA '),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        'đ 500.000',
                                         style: TextStyle(
-                                          color: secondaryColor,
+                                            color: Colors.red,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Flexible(
+                                        child: RichText(
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,
+                                          strutStyle:
+                                              StrutStyle(fontSize: 19.0),
+                                          text: TextSpan(
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                              ),
+                                              text:
+                                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
                                         ),
-                                        text:
-                                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
+                                      ),
+                                    ],
                                   ),
-                                ),
+                                )
                               ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                    height: MediaQuery.of(context).size.height / 7,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 1,
-                          blurRadius: 10,
-                          offset:
-                              const Offset(0, 0), // changes position of shadow
+                          ),
+                          height: MediaQuery.of(context).size.height / 7,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.5),
+                                spreadRadius: 1,
+                                blurRadius: 10,
+                                offset: const Offset(
+                                    0, 0), // changes position of shadow
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                );
-              }),
+                      );
+                    }),
+              ],
+            ),
+          ),
         ),
       ),
     );

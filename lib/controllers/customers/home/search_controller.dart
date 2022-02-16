@@ -12,6 +12,7 @@ class SearchController extends GetxController {
   var isCheckedAll = false.obs;
   var isCheckedService = false.obs;
   var isCheckedItem = false.obs;
+
   @override
   void onReady() {
     // TODO: implement onReady
@@ -32,10 +33,7 @@ class SearchController extends GetxController {
 
   void checkboxAll() {
     isCheckedAll.value = !isCheckedAll.value;
-    if (isCheckedAll.value = true) {
-      isCheckedService.value = true;
-      isCheckedItem.value = true;
-    } else {}
+    print(isCheckedAll.value);
   }
 
   void checkboxService() {
