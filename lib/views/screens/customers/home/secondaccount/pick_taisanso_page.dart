@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class PickTaisanso extends StatelessWidget {
@@ -13,17 +12,17 @@ class PickTaisanso extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Chọn tài khoản số',
         ),
       ),
       body: Container(
         color: Colors.grey[300],
         child: ListView.builder(
-            padding: EdgeInsets.only(top: 5, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
@@ -40,7 +39,7 @@ class PickTaisanso extends StatelessWidget {
                           Image.asset(
                             'assets/images/taisanso.png',
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Flexible(
@@ -52,7 +51,7 @@ class PickTaisanso extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   strutStyle: StrutStyle(fontSize: 19.0),
-                                  text: TextSpan(
+                                  text: const TextSpan(
                                       style: TextStyle(
                                         color: secondaryColor,
                                         fontWeight: FontWeight.w600,
