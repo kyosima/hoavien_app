@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-import '../../../../constance.dart';
+import '../../../../../constance.dart';
 
 class DichvuThietkeXaydungPage extends StatelessWidget {
   const DichvuThietkeXaydungPage({Key? key}) : super(key: key);

@@ -96,6 +96,16 @@ class LoginController extends GetxController {
         colorText: secondaryColor,
         backgroundColor: Colors.white.withOpacity(0.7),
       );
+    }  else if (phoneNumber.text == '3' || passWord.text == '3'){
+      Get.toNamed('/secondaccountdashboard');
+      Get.snackbar(
+      "Đăng nhập thành công",
+      "Chúc mừng bạn đã đăng nhập thành công",
+      icon: Icon(Icons.check_circle, color: Colors.green),
+      snackPosition: SnackPosition.TOP,
+      colorText: secondaryColor,
+      backgroundColor: Colors.white.withOpacity(0.7),
+      );
     }
   }
 }

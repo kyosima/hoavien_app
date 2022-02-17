@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-import '../../../../constance.dart';
+import '../../../../../constance.dart';
 import 'package:get/get.dart';
 
 class DichvuAntangCaiTangPage extends StatelessWidget {

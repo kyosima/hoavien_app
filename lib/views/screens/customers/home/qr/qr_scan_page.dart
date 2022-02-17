@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
-import '../../../../constance.dart';
+import '../../../../../constance.dart';
 
 class QrScanPage extends StatefulWidget {
   const QrScanPage({Key? key}) : super(key: key);
