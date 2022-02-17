@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 
@@ -53,6 +54,7 @@ class SearchResuftPage extends GetView<SearchController> {
                     child: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Padding(
                             padding: EdgeInsets.only(left: 15),
@@ -64,68 +66,31 @@ class SearchResuftPage extends GetView<SearchController> {
                               ),
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Obx(
-                                  () => Checkbox(
-                                      shape: CircleBorder(),
-                                      value: controller.isCheckedAll.value,
-                                      onChanged: (value) {
-                                        controller.checkboxAll();
-                                      }),
-                                ),
-                              ),
-                              Text(
-                                'Tất cả',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Obx(
-                                  () => Checkbox(
-                                      shape: CircleBorder(),
-                                      value: controller.isCheckedService.value,
-                                      onChanged: (value) {
-                                        controller.checkboxService();
-                                      }),
-                                ),
-                              ),
-                              const Text(
-                                'Dịch vụ xây dựng và thiết kế',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Obx(
-                                  () => Checkbox(
-                                      shape: CircleBorder(),
-                                      value: controller.isCheckedItem.value,
-                                      onChanged: (value) {
-                                        controller.checkboxItem();
-                                      }),
-                                ),
-                              ),
-                              const Text(
-                                'Vật dụng',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
+                          GetBuilder<SearchController>(
+                            builder: (_) => controller.phanLoai.isEmpty
+                                ? CircularProgressIndicator()
+                                : ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: controller.phanLoai.length,
+                                    itemBuilder: (_, index) {
+                                      return CheckboxListTile(
+                                          contentPadding: EdgeInsets.all(0),
+                                          shape: CircleBorder(),
+                                          controlAffinity:
+                                              ListTileControlAffinity.leading,
+                                          title: Text(controller.phanLoai[index]
+                                              ['title']),
+                                          value: controller.phanLoai[index]
+                                              ['isCheck'],
+                                          onChanged: (value) {
+                                            controller.isCheck(index);
+                                          });
+                                    }),
                           ),
                           SizedBox(
                             height: 20,
@@ -276,7 +241,7 @@ class SearchResuftPage extends GetView<SearchController> {
                 ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: 5,
+                    itemCount: 10,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
                         padding: const EdgeInsets.only(top: 10),

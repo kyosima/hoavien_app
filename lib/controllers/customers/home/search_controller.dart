@@ -9,9 +9,11 @@ class SearchBindings implements Bindings {
 }
 
 class SearchController extends GetxController {
-  var isCheckedAll = false.obs;
-  var isCheckedService = false.obs;
-  var isCheckedItem = false.obs;
+  final phanLoai = <Map>[
+    {"title": "Tất cả", "isCheck": false},
+    {"title": "Dịch vụ xây dựng và thiết kế", "isCheck": false},
+    {"title": "Vật dụng", "isCheck": false}
+  ].obs;
 
   @override
   void onReady() {
@@ -31,16 +33,9 @@ class SearchController extends GetxController {
     super.onClose();
   }
 
-  void checkboxAll() {
-    isCheckedAll.value = !isCheckedAll.value;
-    print(isCheckedAll.value);
-  }
+  void isCheck(index) {
+    phanLoai[index]['isCheck'] = !phanLoai[index]['isCheck'];
 
-  void checkboxService() {
-    isCheckedService.value = !isCheckedService.value;
-  }
-
-  void checkboxItem() {
-    isCheckedItem.value = !isCheckedItem.value;
+    refresh();
   }
 }

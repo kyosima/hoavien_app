@@ -7,11 +7,12 @@ import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
-import 'package:hoavien_app/controllers/customers/home/add_second_account_controller.dart';
-import 'package:hoavien_app/controllers/customers/home/cart_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
-import 'package:hoavien_app/controllers/customers/home/taisanso_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
 import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
@@ -142,6 +143,7 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/taisanso',
             page: () => TaiSanSoPage(),
+            binding: TaisansoBinding(),
           ),
           GetPage(
             name: '/taisansodetail',

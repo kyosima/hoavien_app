@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/home/add_second_account_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';

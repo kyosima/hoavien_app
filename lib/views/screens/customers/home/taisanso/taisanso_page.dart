@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
 import 'package:get/get.dart';
 
-class TaiSanSoPage extends StatelessWidget {
+class TaiSanSoPage extends GetView<TaisansoController> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   @override
@@ -69,118 +70,25 @@ class TaiSanSoPage extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              Text(
-                                'Tất cả',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              const Text(
-                                'Khu Phú Quý 1',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              const Text(
-                                'Khu Phú Quý 2',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              const Text(
-                                'Khu Phú Quý 3',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              const Text(
-                                'Khu Phú Quý 5',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              const Text(
-                                'Thanh Long Cát Tường',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Checkbox(
-                                    shape: CircleBorder(),
-                                    value: false,
-                                    onChanged: (value) {}),
-                              ),
-                              const Text(
-                                'Thanh Long Vương Tộc',
-                                style: TextStyle(fontSize: 16),
-                              ),
-                            ],
-                          ),
+                          GetBuilder<TaisansoController>(
+                              builder: (_) => controller.phanLoaiKhu.isEmpty
+                                  ? CircularProgressIndicator()
+                                  : ListView.builder(
+                                      padding: EdgeInsets.all(0),
+                                      shrinkWrap: true,
+                                      itemCount: controller.phanLoaiKhu.length,
+                                      itemBuilder: (_, index) {
+                                        return CheckboxListTile(
+                                            controlAffinity:
+                                                ListTileControlAffinity.leading,
+                                            title: Text(controller
+                                                .phanLoaiKhu[index]['name']),
+                                            value: controller.phanLoaiKhu[index]
+                                                ['isCheck'],
+                                            onChanged: (value) {
+                                              controller.isCheck(index);
+                                            });
+                                      })),
                         ],
                       ),
                     ),

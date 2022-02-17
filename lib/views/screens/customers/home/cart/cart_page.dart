@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/home/cart_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class CartPage extends GetView<CartController> {
