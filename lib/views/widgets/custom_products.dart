@@ -22,6 +22,7 @@ class CustomProducts extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(image),
           const SizedBox(

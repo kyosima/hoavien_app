@@ -7,6 +7,7 @@ import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
@@ -47,9 +48,9 @@ import 'package:hoavien_app/views/screens/customers/home/taisanso/direct_map_pag
 import 'package:hoavien_app/views/screens/customers/home/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/notification/notification_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/notification/notifications_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/product_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/product/product_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/search_resuft_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/vatdung_thocung_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/product/products_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/pick_taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/qr/qr_scan_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_account_page.dart';
@@ -208,7 +209,8 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/vatdungthocung',
-            page: () => VatdungThocungPage(),
+            page: () => ProductPage(),
+            binding: ProductsBinding(),
           ),
           GetPage(
             name: '/memories',
