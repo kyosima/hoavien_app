@@ -5,9 +5,11 @@ import '../../constance.dart';
 
 class CustomSearch extends StatelessWidget {
   final Function()? onPressed;
+  final Function(String)? onChanged;
 
   const CustomSearch({
     this.onPressed,
+    this.onChanged,
   });
 
   @override
@@ -20,6 +22,7 @@ class CustomSearch extends StatelessWidget {
         child: Directionality(
             textDirection: TextDirection.ltr,
             child: TextField(
+              onChanged: onChanged,
               controller: null,
               autofocus: false,
               style: const TextStyle(fontSize: 16.0, color: secondaryColor),

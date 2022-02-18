@@ -82,27 +82,22 @@ class LoginPage extends GetView<LoginController> {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          Obx(
-                            () => Checkbox(
-                              value: controller.isChecked.value,
-                              onChanged: (value) {
-                                controller.check();
-                                if (value == true) {
-                                  var savePassword = controller.passWord.text;
-                                  print(savePassword);
-                                }
-                              },
+                      Obx(
+                        () => Expanded(
+                          child: CheckboxListTile(
+                            contentPadding: EdgeInsets.zero,
+                            controlAffinity: ListTileControlAffinity.leading,
+                            title: Text(
+                              "Nhớ mật khẩu",
+                              style: TextStyle(fontSize: 15),
                             ),
+                            value: controller.isChecked.value,
+                            onChanged: (value) {
+                              controller.check();
+                            },
                           ),
-                          const Text(
-                            "Nhớ mật khẩu",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                        ],
+                        ),
                       ),
                       TextButton(
                           onPressed: () {

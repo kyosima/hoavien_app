@@ -11,6 +11,7 @@ import 'package:hoavien_app/controllers/customers/home/second_account/add_second
 import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
@@ -169,6 +170,7 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/secondaccount',
             page: () => SecondAccount(),
+            binding: SecondAccountBinding(),
           ),
           GetPage(
             name: '/addsecondaccount',

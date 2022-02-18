@@ -146,11 +146,46 @@ class TaiSanSoPage extends GetView<TaisansoController> {
             children: [
               Row(
                 children: [
-                  const Expanded(
+                  Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(
                           left: 15, right: 15, top: 10, bottom: 10),
-                      child: SizedBox(height: 45, child: CustomSearch()),
+                      child: SizedBox(
+                        height: 45,
+                        child: Container(
+                            height: 40.0,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
+                            child: Directionality(
+                                textDirection: TextDirection.ltr,
+                                child: TextField(
+                                  onChanged: (value) {
+                                    controller.findTaisanso(value);
+                                  },
+                                  autofocus: false,
+                                  style: TextStyle(
+                                      fontSize: 16.0, color: secondaryColor),
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: 'Tìm kiếm',
+                                    contentPadding: EdgeInsets.only(
+                                        left: 14.0, bottom: 13.0, top: 8.0),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.white),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                ))),
+                      ),
                     ),
                   ),
                   IconButton(
@@ -161,120 +196,131 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                   )
                 ],
               ),
-              Expanded(
-                child: ListView.builder(
-                    padding: EdgeInsets.only(top: 5, left: 15, right: 15),
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: () {
-                          Get.toNamed('/taisansodetail');
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/taisanso.png',
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        RichText(
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 2,
-                                          strutStyle:
-                                              StrutStyle(fontSize: 19.0),
-                                          text: TextSpan(
-                                              style: TextStyle(
-                                                color: secondaryColor,
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 19,
-                                              ),
-                                              text: 'PQ2.3-02-01'),
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Thuộc khu :',
-                                              style: TextStyle(
-                                                  color: secondaryColor,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              'Khu Phú Quý 2',
-                                              style: TextStyle(
-                                                  color: secondaryColor,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              'Chủ sở hữu :',
-                                              style: TextStyle(
-                                                  color: secondaryColor,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w300),
-                                            ),
-                                            SizedBox(
-                                              width: 5,
-                                            ),
-                                            Text(
-                                              'Tần Văn Bá',
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: secondaryColor,
-                                                  fontWeight: FontWeight.w300),
-                                            ),
-                                          ],
-                                        )
-                                      ],
+              Obx(
+                () => Expanded(
+                  child: ListView.builder(
+                      padding: EdgeInsets.only(top: 5, left: 15, right: 15),
+                      itemCount: controller.foundTaisanso.value.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed('/taisansodetail');
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/taisanso.png',
+                                      width: 80,
+                                      fit: BoxFit.cover,
                                     ),
-                                  )
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Flexible(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          RichText(
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                            strutStyle:
+                                                StrutStyle(fontSize: 19.0),
+                                            text: TextSpan(
+                                                style: TextStyle(
+                                                  color: secondaryColor,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 19,
+                                                ),
+                                                text: controller.foundTaisanso
+                                                    .value[index]['name']),
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Thuộc khu :',
+                                                style: TextStyle(
+                                                    color: secondaryColor,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                controller.foundTaisanso
+                                                    .value[index]['location'],
+                                                style: TextStyle(
+                                                    color: secondaryColor,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                'Chủ sở hữu :',
+                                                style: TextStyle(
+                                                    color: secondaryColor,
+                                                    fontSize: 14,
+                                                    fontWeight:
+                                                        FontWeight.w300),
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text(
+                                                controller.foundTaisanso
+                                                    .value[index]['host'],
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: secondaryColor,
+                                                  fontWeight: FontWeight.w300,
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
                                 ],
                               ),
                             ),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 1,
-                                  blurRadius: 10,
-                                  offset: const Offset(
-                                      0, 0), // changes position of shadow
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+                ),
               )
             ],
           ),
