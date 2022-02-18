@@ -71,54 +71,28 @@ class ProductPage extends GetView<ProductsController> {
                             const SizedBox(
                               height: 10,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Transform.scale(
-                                  scale: 1.2,
-                                  child: Checkbox(
-                                      shape: CircleBorder(),
-                                      value: true,
-                                      onChanged: (value) {}),
-                                ),
-                                Text(
-                                  'Tất cả',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Transform.scale(
-                                  scale: 1.2,
-                                  child: Checkbox(
-                                      shape: CircleBorder(),
-                                      value: true,
-                                      onChanged: (value) {}),
-                                ),
-                                const Text(
-                                  'Dịch vụ xây dựng và thiết kế',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Transform.scale(
-                                  scale: 1.2,
-                                  child: Checkbox(
-                                      shape: CircleBorder(),
-                                      value: true,
-                                      onChanged: (value) {}),
-                                ),
-                                const Text(
-                                  'Vật dụng',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                              ],
-                            ),
+                            GetBuilder<ProductsController>(builder: (_) {
+                              return ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
+                                  itemCount: controller.filterCategory.length,
+                                  itemBuilder: (_, index) {
+                                    return CheckboxListTile(
+                                        contentPadding: EdgeInsets.zero,
+                                        controlAffinity:
+                                            ListTileControlAffinity.leading,
+                                        title: Text(
+                                          controller.filterCategory[index]
+                                              ['category'],
+                                        ),
+                                        value: controller.filterCategory[index]
+                                            ['isCheck'],
+                                        onChanged: (value) {
+                                          controller.filterProduct(index);
+                                        });
+                                  });
+                            }),
                             SizedBox(
                               height: 20,
                             ),

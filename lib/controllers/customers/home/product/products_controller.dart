@@ -9,6 +9,29 @@ class ProductsBinding implements Bindings {
 }
 
 class ProductsController extends GetxController {
+  final filterCategory = <Map>[
+    {
+      'category': 'Tất cả',
+      'isCheck': false,
+    },
+    {
+      'category': 'Danh mục 1',
+      'isCheck': false,
+    },
+    {
+      'category': 'Danh mục 2',
+      'isCheck': false,
+    },
+    {
+      'category': 'Danh mục 3',
+      'isCheck': false,
+    },
+    {
+      'category': 'Danh mục 4',
+      'isCheck': false,
+    },
+  ].obs;
+
   List<Map<String, dynamic>> allProduct = [
     {
       "name": "Đĩa hoa quả chất liệu đồng 3 chân",
@@ -81,6 +104,11 @@ class ProductsController extends GetxController {
           .toList();
     }
     foundProduct.value = resuft;
+    refresh();
+  }
+
+  void filterProduct(int index) {
+    filterCategory[index]['isCheck'] = !filterCategory[index]['isCheck'];
     refresh();
   }
 }

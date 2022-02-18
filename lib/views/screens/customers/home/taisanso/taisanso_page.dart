@@ -71,24 +71,23 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                             height: 10,
                           ),
                           GetBuilder<TaisansoController>(
-                              builder: (_) => controller.phanLoaiKhu.isEmpty
-                                  ? CircularProgressIndicator()
-                                  : ListView.builder(
-                                      padding: EdgeInsets.all(0),
-                                      shrinkWrap: true,
-                                      itemCount: controller.phanLoaiKhu.length,
-                                      itemBuilder: (_, index) {
-                                        return CheckboxListTile(
-                                            controlAffinity:
-                                                ListTileControlAffinity.leading,
-                                            title: Text(controller
-                                                .phanLoaiKhu[index]['name']),
-                                            value: controller.phanLoaiKhu[index]
-                                                ['isCheck'],
-                                            onChanged: (value) {
-                                              controller.isCheck(index);
-                                            });
-                                      })),
+                              builder: (_) => ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.all(0),
+                                  shrinkWrap: true,
+                                  itemCount: controller.phanLoaiKhu.length,
+                                  itemBuilder: (_, index) {
+                                    return CheckboxListTile(
+                                        controlAffinity:
+                                            ListTileControlAffinity.leading,
+                                        title: Text(controller
+                                            .phanLoaiKhu[index]['name']),
+                                        value: controller.phanLoaiKhu[index]
+                                            ['isCheck'],
+                                        onChanged: (value) {
+                                          controller.isCheck(index);
+                                        });
+                                  })),
                         ],
                       ),
                     ),

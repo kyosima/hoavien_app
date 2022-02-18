@@ -6,7 +6,8 @@ import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 
 import '../../../../constance.dart';
 
-class SearchResuftPage extends GetView<SearchController> {
+class SearchResuftPage extends StatelessWidget {
+  final SearchController controller = Get.put(SearchController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,29 +70,26 @@ class SearchResuftPage extends GetView<SearchController> {
                           SizedBox(
                             height: 10,
                           ),
-                          GetBuilder<SearchController>(
-                            builder: (_) => controller.phanLoai.isEmpty
-                                ? CircularProgressIndicator()
-                                : ListView.builder(
-                                    padding: EdgeInsets.zero,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: controller.phanLoai.length,
-                                    itemBuilder: (_, index) {
-                                      return CheckboxListTile(
-                                          contentPadding: EdgeInsets.all(0),
-                                          shape: CircleBorder(),
-                                          controlAffinity:
-                                              ListTileControlAffinity.leading,
-                                          title: Text(controller.phanLoai[index]
-                                              ['title']),
-                                          value: controller.phanLoai[index]
-                                              ['isCheck'],
-                                          onChanged: (value) {
-                                            controller.isCheck(index);
-                                          });
-                                    }),
-                          ),
+                          GetBuilder<SearchController>(builder: (_) {
+                            return ListView.builder(
+                                padding: EdgeInsets.zero,
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: controller.phanLoai.length,
+                                itemBuilder: (_, index) {
+                                  return CheckboxListTile(
+                                      contentPadding: EdgeInsets.all(0),
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      title: Text(
+                                          controller.phanLoai[index]['title']),
+                                      value: controller.phanLoai[index]
+                                          ['isCheck'],
+                                      onChanged: (value) {
+                                        controller.isCheck(index);
+                                      });
+                                });
+                          }),
                           SizedBox(
                             height: 20,
                           ),

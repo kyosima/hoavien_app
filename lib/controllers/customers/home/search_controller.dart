@@ -27,15 +27,8 @@ class SearchController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
-
   void isCheck(index) {
     phanLoai[index]['isCheck'] = !phanLoai[index]['isCheck'];
-
     refresh();
   }
 }
