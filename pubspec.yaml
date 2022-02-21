@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  graphview: any
   get:
   otp_text_field: any
   awesome_dialog: any
@@ -89,6 +90,7 @@ flutter:
     - assets/images/taisanso.png
     - assets/images/thanhvien.jpg
     - assets/images/combohot.png
+    - assets/images/giapha.png
     - assets/images/combodetail.png
     - assets/images/mienkyuc.png
     - assets/images/eventbackground.png

@@ -227,7 +227,9 @@ class GenealogyPage extends StatelessWidget {
                             ),
                             height: 40,
                             child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.toNamed('/chitietgiapha');
+                                },
                                 child: Row(
                                   children: [
                                     Icon(

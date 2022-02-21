@@ -7,6 +7,7 @@ import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
+import 'package:hoavien_app/controllers/customers/genealogy/genealogy_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
@@ -35,6 +36,7 @@ import 'package:hoavien_app/views/screens/customers/event/create_event_page.dart
 import 'package:hoavien_app/views/screens/customers/event/event_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/add_genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/genealogy_page.dart';
+import 'package:hoavien_app/views/screens/customers/genealogy/genealory_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/cart/cart_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_detail_page.dart';
@@ -218,6 +220,11 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/giapha',
             page: () => GenealogyPage(),
+          ),
+          GetPage(
+            name: '/chitietgiapha',
+            page: () => GenealoryDetailPage(),
+            binding: GenealoryDetailBindings(),
           ),
           GetPage(
             name: '/sukien',
