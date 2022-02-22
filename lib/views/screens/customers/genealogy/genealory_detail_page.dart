@@ -16,6 +16,16 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
     return Scaffold(
         backgroundColor: Color(0xffFDF2D7),
         appBar: AppBar(
+          actions: [
+            TextButton(
+                onPressed: () {
+                  print(graph.toJson());
+                },
+                child: Text(
+                  'Lưu gia phả',
+                  style: TextStyle(color: Colors.brown),
+                ))
+          ],
           centerTitle: false,
           elevation: 0,
           iconTheme: IconThemeData(
@@ -47,8 +57,8 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                             builder, TreeEdgeRenderer(builder)),
                         paint: Paint()
                           ..color = Color(0xffAE0C01)
-                          ..strokeWidth = 3
-                          ..style = PaintingStyle.stroke,
+                          ..strokeWidth = 2
+                          ..style = PaintingStyle.fill,
                         builder: (Node node) {
                           // I can decide what widget should be shown here based on the id
                           var a = node.key?.value as int;
@@ -131,7 +141,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                         height: 10,
                       ),
                       Text(
-                        'Trần Văn A ${a}',
+                        a == 1 ? 'Thủy Tổ' : "Thành viên",
                         style: TextStyle(
                           color: secondaryColor,
                           fontSize: 15,
@@ -160,9 +170,63 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                       ))
                   : IconButton(
                       onPressed: () {
-                        setState(() {
-                          graph.removeNode(Node.Id(a));
-                        });
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) => new AlertDialog(
+                                  title: new Text('Xóa thành viên ?'),
+                                  content: new Text(
+                                      'Thành viên sẽ được xóa khỏi cây gia phả'),
+                                  actions: <Widget>[
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Container(
+                                                width: 120,
+                                                decoration: BoxDecoration(
+                                                    color: Color(0xffFDF2D7),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Center(
+                                                      child: Text('Bỏ qua')),
+                                                ))),
+                                        TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                graph.removeNode(
+                                                    graph.getNodeUsingId(a));
+                                                Navigator.pop(context);
+                                              });
+                                            },
+                                            child: Container(
+                                                width: 120,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.deepOrange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10)),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.all(
+                                                      10.0),
+                                                  child: Center(
+                                                      child: Text(
+                                                    'Đồng ý',
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                                ))),
+                                      ],
+                                    )
+                                  ],
+                                ));
                       },
                       icon: Icon(
                         Icons.delete_outline,
@@ -170,10 +234,10 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                       )),
               IconButton(
                   onPressed: () {
-                    final node12 = Node.Id(r.nextInt(100));
+                    final node3 = Node.Id(r.nextInt(900000000));
                     var edge = graph.getNodeUsingId(a);
                     print(edge);
-                    graph.addEdge(edge, node12);
+                    graph.addEdge(edge, node3);
                     setState(() {});
                   },
                   icon: Icon(
@@ -197,9 +261,9 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
     graph.addEdge(node1, node2);
 
     builder
-      ..siblingSeparation = (30)
-      ..levelSeparation = (30)
-      ..subtreeSeparation = (30)
+      ..siblingSeparation = (25)
+      ..levelSeparation = (25)
+      ..subtreeSeparation = (25)
       ..orientation = (BuchheimWalkerConfiguration.ORIENTATION_TOP_BOTTOM);
   }
 }
