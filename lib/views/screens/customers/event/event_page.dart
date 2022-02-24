@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/event/event_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_add_gallery.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class EventPage extends StatelessWidget {
-  const EventPage({Key? key}) : super(key: key);
+  final EventController controller = Get.put(EventController());
 
   @override
   Widget build(BuildContext context) {
@@ -96,12 +99,14 @@ class EventPage extends StatelessWidget {
                                           SizedBox(
                                             height: 8,
                                           ),
-                                          Text(
-                                            '10:45',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.redAccent,
-                                              fontSize: 17,
+                                          GetBuilder<EventController>(
+                                            builder: (_) => Text(
+                                              '${controller.hour.value} : ${controller.minute.value}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.redAccent,
+                                                fontSize: 17,
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
@@ -130,7 +135,7 @@ class EventPage extends StatelessWidget {
                                             height: 8,
                                           ),
                                           Text(
-                                            '1',
+                                            '${DateTime.now().day}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.redAccent,
@@ -163,7 +168,7 @@ class EventPage extends StatelessWidget {
                                             height: 8,
                                           ),
                                           Text(
-                                            '12',
+                                            '${DateTime.now().month}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.redAccent,
@@ -196,7 +201,7 @@ class EventPage extends StatelessWidget {
                                             height: 8,
                                           ),
                                           Text(
-                                            '2021',
+                                            '${DateTime.now().year}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.redAccent,

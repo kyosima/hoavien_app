@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/service/api_service.dart';
 
 import '../../constance.dart';
 
@@ -17,6 +18,7 @@ class LoginController extends GetxController {
   final passWord = TextEditingController();
   var isChecked = false.obs;
   var obscureText = true.obs;
+  var loginProcess = false.obs;
 
   @override
   void onInit() {
@@ -38,7 +40,7 @@ class LoginController extends GetxController {
     isChecked.value = !isChecked.value;
   }
 
-  void login() {
+  void loginafter() {
     if (phoneNumber.text.isEmpty || passWord.text.isEmpty) {
       Get.defaultDialog(
           content: Column(
@@ -96,16 +98,18 @@ class LoginController extends GetxController {
         colorText: secondaryColor,
         backgroundColor: Colors.white.withOpacity(0.7),
       );
-    }  else if (phoneNumber.text == '3' || passWord.text == '3'){
+    } else if (phoneNumber.text == '3' || passWord.text == '3') {
       Get.toNamed('/secondaccountdashboard');
       Get.snackbar(
-      "Đăng nhập thành công",
-      "Chúc mừng bạn đã đăng nhập thành công",
-      icon: Icon(Icons.check_circle, color: Colors.green),
-      snackPosition: SnackPosition.TOP,
-      colorText: secondaryColor,
-      backgroundColor: Colors.white.withOpacity(0.7),
+        "Đăng nhập thành công",
+        "Chúc mừng bạn đã đăng nhập thành công",
+        icon: Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
       );
+    } else {
+      print(phoneNumber.text);
     }
   }
 }

@@ -6,6 +6,7 @@ import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
+import 'package:hoavien_app/controllers/customers/event/event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/genealogy_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
@@ -229,6 +230,7 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/sukien',
             page: () => EventPage(),
+            binding: EventBinding(),
           ),
           GetPage(
             name: '/canhan',

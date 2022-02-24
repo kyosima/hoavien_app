@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
+import 'package:hoavien_app/service/api_service.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class LoginPage extends GetView<LoginController> {
-  const LoginPage({Key? key}) : super(key: key);
+  final _formKey = GlobalKey<FormState>();
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,53 +52,54 @@ class LoginPage extends GetView<LoginController> {
                   const SizedBox(
                     height: 70,
                   ),
-                  Column(
-                    children: [
-                      CustomTextField(
-                        maxLines: 1,
-                        controller: controller.phoneNumber,
-                        title: 'Số điện thoại',
-                        inputType: TextInputType.number,
+                  Obx(
+                    () => Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          CustomTextField(
+                            maxLines: 1,
+                            controller: controller.phoneNumber,
+                            title: 'Số điện thoại',
+                            inputType: TextInputType.number,
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          CustomTextField(
+                            maxLines: 1,
+                            controller: controller.passWord,
+                            title: 'Mật khẩu',
+                            icon: controller.obscureText.value == true
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            obscureText: controller.obscureText.value,
+                            inputType: TextInputType.text,
+                            onPressed: () {
+                              controller.checkpass();
+                            },
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                        ],
                       ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Obx(
-                        () => CustomTextField(
-                          maxLines: 1,
-                          controller: controller.passWord,
-                          title: 'Mật khẩu',
-                          icon: controller.obscureText.value == true
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          obscureText: controller.obscureText.value,
-                          inputType: TextInputType.text,
-                          onPressed: () {
-                            controller.checkpass();
-                          },
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
+                    ),
                   ),
                   Row(
                     children: [
-                      Obx(
-                        () => Expanded(
-                          child: CheckboxListTile(
-                            contentPadding: EdgeInsets.zero,
-                            controlAffinity: ListTileControlAffinity.leading,
-                            title: Text(
-                              "Nhớ mật khẩu",
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            value: controller.isChecked.value,
-                            onChanged: (value) {
-                              controller.check();
-                            },
+                      Expanded(
+                        child: CheckboxListTile(
+                          contentPadding: EdgeInsets.zero,
+                          controlAffinity: ListTileControlAffinity.leading,
+                          title: Text(
+                            "Nhớ mật khẩu",
+                            style: TextStyle(fontSize: 15),
                           ),
+                          value: controller.isChecked.value,
+                          onChanged: (value) {
+                            controller.check();
+                          },
                         ),
                       ),
                       TextButton(
@@ -116,10 +119,11 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   Center(
                       child: CustomButtonLoginPage(
-                          title: 'Đăng nhập',
-                          onPressed: () {
-                            controller.login();
-                          })),
+                    title: 'Đăng nhập',
+                    onPressed: () {
+                      controller.loginafter();
+                    },
+                  )),
                 ],
               ),
             ),

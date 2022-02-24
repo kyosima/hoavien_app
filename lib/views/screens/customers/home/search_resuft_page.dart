@@ -2,9 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
-
-import '../../../../constance.dart';
 
 class SearchResuftPage extends StatelessWidget {
   final SearchController controller = Get.put(SearchController());
