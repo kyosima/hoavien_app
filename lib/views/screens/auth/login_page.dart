@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
 import 'package:hoavien_app/service/api_service.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
@@ -118,11 +119,37 @@ class LoginPage extends GetView<LoginController> {
                     height: 50,
                   ),
                   Center(
-                      child: CustomButtonLoginPage(
-                    title: 'Đăng nhập',
-                    onPressed: () {
-                      controller.loginafter();
-                    },
+                      child: Obx(
+                    () => SizedBox(
+                      width: 250,
+                      height: 45,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(10.0),
+                            border:
+                                Border.all(color: primaryColor, width: 1.0)),
+                        child: TextButton(
+                          onPressed: () {
+                            controller.login(
+                                phone: controller.phoneNumber.text,
+                                password: controller.passWord.text);
+                          },
+                          child: controller.loginProcess.value == true
+                              ? SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator())
+                              : Text(
+                                  "Đăng nhập",
+                                  style: const TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                        ),
+                      ),
+                    ),
                   )),
                 ],
               ),

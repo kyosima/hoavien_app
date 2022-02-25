@@ -43,6 +43,7 @@ dependencies:
   intl: any
   dropdown_formfield: ^0.1.4
   http:
+  shared_preferences: ^2.0.13
   flutter:
     sdk: flutter
 
