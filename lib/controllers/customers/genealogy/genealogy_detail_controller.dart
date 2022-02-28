@@ -8,10 +8,4 @@ class GenealoryDetailBindings implements Bindings {
   }
 }
 
-class GenealoryDetailController extends GetxController {
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-}
+class GenealoryDetailController extends GetxController {}

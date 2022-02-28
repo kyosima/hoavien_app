@@ -76,17 +76,20 @@ import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dar
 import 'package:hoavien_app/views/screens/saler/statistical/total_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
-import 'package:hoavien_app/views/screens/saler/user_page.dart';
+import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
 
-void main() {
+void main() async {
   initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({
+    Key? key,
+  }) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -123,12 +126,12 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/newpassword',
-            page: () => NewPassword(),
+            page: () => const NewPassword(),
             binding: ResetPasswordBinding(),
           ),
           GetPage(
             name: '/home',
-            page: () => HomePage(),
+            page: () => const HomePage(),
             binding: HomeBinding(),
           ),
           GetPage(
@@ -138,11 +141,11 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/notification',
-            page: () => NotificationsPage(),
+            page: () => const NotificationsPage(),
           ),
           GetPage(
             name: '/notificationdetail',
-            page: () => NotificationDetailPage(),
+            page: () => const NotificationDetailPage(),
           ),
           GetPage(
             name: '/taisanso',
@@ -151,67 +154,67 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/taisansodetail',
-            page: () => TaisansoDetailPage(),
+            page: () => const TaisansoDetailPage(),
             binding: TaisansoDetailBindings(),
           ),
           GetPage(
             name: '/sodochidan',
-            page: () => DirectMapPage(),
+            page: () => const DirectMapPage(),
           ),
           GetPage(
             name: '/qrscan',
-            page: () => QrScanPage(),
+            page: () => const QrScanPage(),
           ),
           GetPage(
             name: '/checkout',
-            page: () => CheckoutPage(),
+            page: () => const CheckoutPage(),
           ),
           GetPage(
             name: '/checkoutdetail',
-            page: () => CheckoutDetail(),
+            page: () => const CheckoutDetail(),
           ),
           GetPage(
             name: '/secondaccount',
-            page: () => SecondAccount(),
+            page: () => const SecondAccount(),
             binding: SecondAccountBinding(),
           ),
           GetPage(
             name: '/addsecondaccount',
-            page: () => AddSecondAccountPage(),
+            page: () => const AddSecondAccountPage(),
             binding: AddSecondAccountBinding(),
           ),
           GetPage(
             name: '/picktaisanso',
-            page: () => PickTaisanso(),
+            page: () => const PickTaisanso(),
           ),
           GetPage(
             name: '/combohot',
-            page: () => ComboHotPage(),
+            page: () => const ComboHotPage(),
           ),
           GetPage(
             name: '/combohotdetail',
-            page: () => ComboHotDetailPage(),
+            page: () => const ComboHotDetailPage(),
           ),
           GetPage(
             name: '/productdetail',
-            page: () => ProductDetailPage(),
+            page: () => const ProductDetailPage(),
           ),
           GetPage(
             name: '/cart',
-            page: () => CartPage(),
+            page: () => const CartPage(),
             binding: CartBinding(),
           ),
           GetPage(
             name: '/dichvuantangcaitang',
-            page: () => DichvuAntangCaiTangPage(),
+            page: () => const DichvuAntangCaiTangPage(),
           ),
           GetPage(
             name: '/dichvuthietkexaydung',
-            page: () => DichvuThietkeXaydungPage(),
+            page: () => const DichvuThietkeXaydungPage(),
           ),
           GetPage(
             name: '/vatdungthocung',
-            page: () => ProductPage(),
+            page: () => const ProductPage(),
             binding: ProductsBinding(),
           ),
           GetPage(
@@ -220,7 +223,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/giapha',
-            page: () => GenealogyPage(),
+            page: () => const GenealogyPage(),
           ),
           GetPage(
             name: '/chitietgiapha',
@@ -238,16 +241,16 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/danhsachthanhvien',
-            page: () => ListUserPage(),
+            page: () => const ListUserPage(),
           ),
           GetPage(
             name: '/taogiapha',
-            page: () => AddGenealogyPage(),
+            page: () => const AddGenealogyPage(),
             binding: AddGenealogyBinding(),
           ),
           GetPage(
             name: '/taosukien',
-            page: () => CreateEventPage(),
+            page: () => const CreateEventPage(),
             binding: CreateEventBindings(),
           ),
           GetPage(
@@ -257,32 +260,32 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/lichsumuahang',
-            page: () => CartHistoryPage(),
+            page: () => const CartHistoryPage(),
           ),
           GetPage(
             name: '/donhangchoxacnhan',
-            page: () => CartHistoryDetailWaittingPage(),
+            page: () => const CartHistoryDetailWaittingPage(),
           ),
           GetPage(
             name: '/donhangdahoanthanh',
-            page: () => CartHistoryDetailDonePage(),
+            page: () => const CartHistoryDetailDonePage(),
           ),
           GetPage(
             name: '/danhgiasanpham',
-            page: () => RateProductPage(),
+            page: () => const RateProductPage(),
           ),
           GetPage(
             name: '/donhangdahuy',
-            page: () => CartHistoryDetailCancelPage(),
+            page: () => const CartHistoryDetailCancelPage(),
           ),
           GetPage(
             name: '/thaydoimatkhau',
-            page: () => ChangePasswordPage(),
+            page: () => const ChangePasswordPage(),
             binding: ChangePasswordUserBinding(),
           ),
           GetPage(
             name: '/gioithieu',
-            page: () => AboutPage(),
+            page: () => const AboutPage(),
           ),
           // Saler
           // Saler
@@ -302,7 +305,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/giaodich',
-            page: () => TransactionPage(),
+            page: () => const TransactionPage(),
             binding: TransactionBinding(),
           ),
           GetPage(
@@ -317,7 +320,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/thongbaosaler',
-            page: () => SalerNotificationsPage(),
+            page: () => const SalerNotificationsPage(),
           ),
           GetPage(
             name: '/chitietbatdongsan',
@@ -326,18 +329,18 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/chitietgiaodich',
-            page: () => TransactionDetailPage(),
+            page: () => const TransactionDetailPage(),
           ),
           GetPage(
             name: '/tongdoanhthu',
-            page: () => TotalDetailPage(),
+            page: () => const TotalDetailPage(),
           ),
           //secondaccountpage
           //secondaccountpage
           //secondaccountpage
           GetPage(
             name: '/secondaccountdashboard',
-            page: () => SecondAccountDashboardPage(),
+            page: () => const SecondAccountDashboardPage(),
             binding: SecondAccountDashboardBinding(),
           ),
         ]);

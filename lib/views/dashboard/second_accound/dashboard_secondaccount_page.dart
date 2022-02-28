@@ -8,7 +8,9 @@ import 'package:hoavien_app/views/screens/second_account/genealogy/second_accoun
 import 'package:hoavien_app/views/screens/second_account/home/second_account_home_page.dart';
 import 'package:hoavien_app/views/screens/second_account/memories/second_account_memories_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/second_account_user_page.dart';
+
 class SecondAccountDashboardPage extends StatelessWidget {
+  const SecondAccountDashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +20,11 @@ class SecondAccountDashboardPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              SecondAccountHomePage(),
+              const SecondAccountHomePage(),
               SecondAccountMemoriesPage(),
-              SecondAccountGenealogyPage(),
-              SecondAccountEventPage(),
-              SecondAccountUserPage(),
+              const SecondAccountGenealogyPage(),
+              const SecondAccountEventPage(),
+              const SecondAccountUserPage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
@@ -78,5 +80,5 @@ class SecondAccountDashboardPage extends StatelessWidget {
       icon: Icon(icon),
       label: label,
     );
-  } 
+  }
 }

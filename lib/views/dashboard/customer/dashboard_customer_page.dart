@@ -10,6 +10,8 @@ import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart'
 import 'package:hoavien_app/views/screens/customers/user/user_page.dart';
 
 class DashboardPage extends StatelessWidget {
+  final user = Get.arguments;
+  DashboardPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DashBoardController>(
@@ -18,11 +20,11 @@ class DashboardPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              HomePage(),
+              const HomePage(),
               MemoriesPage(),
-              GenealogyPage(),
+              const GenealogyPage(),
               EventPage(),
-              UserPage(),
+              UserPage(user: user),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

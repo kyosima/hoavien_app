@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/auth/login_controller.dart';
-import 'package:hoavien_app/service/api_service.dart';
-import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
+
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
@@ -35,7 +34,7 @@ class LoginPage extends GetView<LoginController> {
               padding: const EdgeInsets.all(17.0),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
                   Image.asset(
@@ -87,33 +86,35 @@ class LoginPage extends GetView<LoginController> {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: CheckboxListTile(
-                          contentPadding: EdgeInsets.zero,
-                          controlAffinity: ListTileControlAffinity.leading,
-                          title: Text(
-                            "Nhớ mật khẩu",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          value: controller.isChecked.value,
-                          onChanged: (value) {
-                            controller.check();
-                          },
-                        ),
-                      ),
-                      TextButton(
-                          onPressed: () {
-                            Get.toNamed('/forgotpassword');
-                          },
-                          child: const Text(
-                            'Quên mật khẩu ?',
-                            style: TextStyle(
-                              decoration: TextDecoration.underline,
+                  Obx(
+                    () => Row(
+                      children: [
+                        Expanded(
+                          child: CheckboxListTile(
+                            contentPadding: EdgeInsets.zero,
+                            controlAffinity: ListTileControlAffinity.leading,
+                            title: const Text(
+                              "Nhớ mật khẩu",
+                              style: TextStyle(fontSize: 15),
                             ),
-                          )),
-                    ],
+                            value: controller.isChecked.value,
+                            onChanged: (value) {
+                              controller.check();
+                            },
+                          ),
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              Get.toNamed('/forgotpassword');
+                            },
+                            child: const Text(
+                              'Quên mật khẩu ?',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                              ),
+                            )),
+                      ],
+                    ),
                   ),
                   const SizedBox(
                     height: 50,
@@ -131,18 +132,16 @@ class LoginPage extends GetView<LoginController> {
                                 Border.all(color: primaryColor, width: 1.0)),
                         child: TextButton(
                           onPressed: () {
-                            controller.login(
-                                phone: controller.phoneNumber.text,
-                                password: controller.passWord.text);
+                            controller.submit();
                           },
                           child: controller.loginProcess.value == true
-                              ? SizedBox(
+                              ? const SizedBox(
                                   height: 20,
                                   width: 20,
                                   child: CircularProgressIndicator())
-                              : Text(
+                              : const Text(
                                   "Đăng nhập",
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       color: secondaryColor,
                                       fontSize: 17,
                                       fontWeight: FontWeight.bold),

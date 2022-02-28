@@ -5,8 +5,11 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/home/saler_home_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
+import '../../../../models/auth/user_model.dart';
+
 class SalerHomePage extends GetView<SalerHomeController> {
-  const SalerHomePage({Key? key}) : super(key: key);
+  UserModel? user;
+  SalerHomePage({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 alignment: Alignment.center,
                 children: [
                   CircleAvatar(
-                    radius: 23,
+                    radius: 20,
                     backgroundColor: secondaryColor,
                   ),
                   Icon(
@@ -34,15 +37,17 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 ],
               ),
               SizedBox(
-                width: 10,
+                width: 5,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Nguyễn Chính Hưng',
+                    '${user?.data?.userInfo?.fullname}',
                     style: TextStyle(
+                      wordSpacing: 0,
+                      letterSpacing: 0,
                       color: secondaryColor,
                       fontSize: 15,
                     ),
@@ -77,7 +82,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
             Stack(
               alignment: Alignment.center,
@@ -93,7 +98,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
               ],
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
             InkWell(
               onTap: () {

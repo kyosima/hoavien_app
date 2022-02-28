@@ -82,12 +82,6 @@ class TaisansoController extends GetxController {
     foundTaisanso.value = allTaisanso;
   }
 
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
-
   void findTaisanso(String nameTaisanso) {
     List<Map<String, dynamic>> results = [];
     if (nameTaisanso.isEmpty) {

@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
+import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class InfoUserPage extends GetView<InfoUserController> {
+class InfoUserPage extends StatelessWidget {
+  final InfoUserController controller = Get.put(InfoUserController());
   var items = [
     'Nam',
     'Nữ',
   ];
+  UserModel? user;
+  InfoUserPage({this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +66,7 @@ class InfoUserPage extends GetView<InfoUserController> {
                   maxLines: 1,
                   title: 'Họ và tên',
                   inputType: TextInputType.text,
+                  hintText: '${user?.data?.userInfo?.fullname}',
                 ),
                 SizedBox(
                   height: 20,
@@ -71,6 +76,7 @@ class InfoUserPage extends GetView<InfoUserController> {
                   maxLines: 1,
                   title: 'Số điện thoại đăng ký tài khoản',
                   inputType: TextInputType.number,
+                  hintText: '${user?.data?.phone}',
                 ),
                 SizedBox(
                   height: 20,

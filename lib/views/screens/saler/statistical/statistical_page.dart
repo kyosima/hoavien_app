@@ -58,10 +58,11 @@ class StatisticalPage extends StatelessWidget {
                       showCursor: false,
                       keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
+                        hintText: 'Từ ngày',
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 5),
+                            vertical: 0, horizontal: 10),
                         border: const OutlineInputBorder(),
                         labelStyle: const TextStyle(
                           color: secondaryColor,
@@ -82,16 +83,10 @@ class StatisticalPage extends StatelessWidget {
                               const BorderSide(width: 1.5, color: colorText),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            controller.pickStartDate();
-                          },
-                          icon: Icon(
-                            Icons.calendar_today,
-                            size: 20,
-                          ),
-                        ),
                       ),
+                      onTap: () {
+                        controller.pickStartDate();
+                      },
                     ),
                   ),
                   SizedBox(
@@ -108,10 +103,11 @@ class StatisticalPage extends StatelessWidget {
                       readOnly: true,
                       keyboardType: TextInputType.datetime,
                       decoration: InputDecoration(
+                        hintText: 'Đến ngày',
                         filled: true,
                         fillColor: Colors.white,
                         contentPadding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 5),
+                            vertical: 0, horizontal: 10),
                         border: const OutlineInputBorder(),
                         labelStyle: const TextStyle(
                           color: secondaryColor,
@@ -132,16 +128,10 @@ class StatisticalPage extends StatelessWidget {
                               const BorderSide(width: 1.5, color: colorText),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            controller.pickEndDate();
-                          },
-                          icon: Icon(
-                            Icons.calendar_today,
-                            size: 20,
-                          ),
-                        ),
                       ),
+                      onTap: () {
+                        controller.pickEndDate();
+                      },
                     ),
                   ),
                 ],

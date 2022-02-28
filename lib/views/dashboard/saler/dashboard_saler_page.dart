@@ -7,9 +7,13 @@ import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controll
 import 'package:hoavien_app/views/screens/saler/home/home_page.dart';
 import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
-import 'package:hoavien_app/views/screens/saler/user_page.dart';
+import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
 
 class DashboardSalerPage extends StatelessWidget {
+  final user = Get.arguments;
+
+  DashboardSalerPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SalerDashboardController>(
@@ -18,10 +22,10 @@ class DashboardSalerPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              SalerHomePage(),
-              TransactionPage(),
+              SalerHomePage(user: user),
+              const TransactionPage(),
               StatisticalPage(),
-              SalerUserPage(),
+              SalerUserPage(user: user),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

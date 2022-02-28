@@ -11,24 +11,6 @@ class DashboardBindings implements Bindings {
 }
 
 class DashBoardController extends GetxController {
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
-
   var tabIndex = 0;
 
   void changeTabIndex(int index) {

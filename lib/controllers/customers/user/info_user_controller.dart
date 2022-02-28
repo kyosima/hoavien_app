@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +12,7 @@ class InfoUserBinding implements Bindings {
 class InfoUserController extends GetxController {
   final dateController = TextEditingController();
   final sexController = TextEditingController();
-  final sexMenuController = new TextEditingController();
+  final sexMenuController = TextEditingController();
 
   void setDate() async {
     var date = await showDatePicker(

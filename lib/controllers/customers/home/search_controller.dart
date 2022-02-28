@@ -15,18 +15,6 @@ class SearchController extends GetxController {
     {"title": "Vật dụng", "isCheck": false}
   ].obs;
 
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
   void isCheck(index) {
     phanLoai[index]['isCheck'] = !phanLoai[index]['isCheck'];
     refresh();

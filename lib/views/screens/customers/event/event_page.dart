@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -11,19 +9,21 @@ import 'package:table_calendar/table_calendar.dart';
 class EventPage extends StatelessWidget {
   final EventController controller = Get.put(EventController());
 
+  EventPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: true,
         floatingActionButton: FloatingActionButton(
-          child: CustomAddGalleryButton(),
+          child: const CustomAddGalleryButton(),
           onPressed: () {
             Get.toNamed('/taosukien');
           },
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: Color(0xffFDF2D7),
+            color: const Color(0xffFDF2D7),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +34,7 @@ class EventPage extends StatelessWidget {
                       children: [
                         Container(
                           height: 50,
-                          color: Color(0xffFFC950),
+                          color: const Color(0xffFFC950),
                         ),
                         Image.asset(
                           'assets/images/eventbackground.png',
@@ -44,7 +44,7 @@ class EventPage extends StatelessWidget {
                         ),
                         Container(
                           height: 400,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color(0xffFFC950),
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
@@ -57,201 +57,199 @@ class EventPage extends StatelessWidget {
                       top: 40,
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomTitleText(title: 'Sự kiện'),
-                              SizedBox(
-                                height: 20,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const CustomTitleText(title: 'Sự kiện'),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            const Text(
+                              'Âm lịch',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
-                              Text(
-                                'Âm lịch',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: secondaryColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: Color(0xffFDF2D7),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'Giờ',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: secondaryColor,
-                                              fontSize: 17,
-                                            ),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: const Color(0xffFDF2D7),
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        const Text(
+                                          'Giờ',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: secondaryColor,
+                                            fontSize: 17,
                                           ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          GetBuilder<EventController>(
-                                            builder: (_) => Text(
-                                              '${controller.hour.value} : ${controller.minute.value}',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.redAccent,
-                                                fontSize: 17,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                            'Kỷ hợi',
-                                            style: TextStyle(
-                                              color: secondaryColor,
-                                              fontSize: 15,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'Ngày',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: secondaryColor,
-                                              fontSize: 17,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                            '${DateTime.now().day}',
-                                            style: TextStyle(
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        GetBuilder<EventController>(
+                                          builder: (_) => Text(
+                                            '${controller.hour.value} : ${controller.minute.value}',
+                                            style: const TextStyle(
                                               fontWeight: FontWeight.w600,
                                               color: Colors.redAccent,
                                               fontSize: 17,
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: 8,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          'Kỷ hợi',
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 15,
                                           ),
-                                          Text(
-                                            'Bính thìn',
-                                            style: TextStyle(
-                                              color: secondaryColor,
-                                              fontSize: 15,
-                                            ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Ngày',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: secondaryColor,
+                                            fontSize: 17,
                                           ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'Tháng',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: secondaryColor,
-                                              fontSize: 17,
-                                            ),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          '${DateTime.now().day}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.redAccent,
+                                            fontSize: 17,
                                           ),
-                                          SizedBox(
-                                            height: 8,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          'Bính thìn',
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 15,
                                           ),
-                                          Text(
-                                            '${DateTime.now().month}',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.redAccent,
-                                              fontSize: 17,
-                                            ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Tháng',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: secondaryColor,
+                                            fontSize: 17,
                                           ),
-                                          SizedBox(
-                                            height: 8,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          '${DateTime.now().month}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.redAccent,
+                                            fontSize: 17,
                                           ),
-                                          Text(
-                                            'Tân sửu',
-                                            style: TextStyle(
-                                              color: secondaryColor,
-                                              fontSize: 15,
-                                            ),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          'Tân sửu',
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 15,
                                           ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            'Năm',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: secondaryColor,
-                                              fontSize: 17,
-                                            ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          'Năm',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: secondaryColor,
+                                            fontSize: 17,
                                           ),
-                                          SizedBox(
-                                            height: 8,
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          '${DateTime.now().year}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.redAccent,
+                                            fontSize: 17,
                                           ),
-                                          Text(
-                                            '${DateTime.now().year}',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.redAccent,
-                                              fontSize: 17,
-                                            ),
+                                        ),
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          'Nhâm dần',
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 15,
                                           ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                            'Nhâm dần',
-                                            style: TextStyle(
-                                              color: secondaryColor,
-                                              fontSize: 15,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                height: 15,
+                            ),
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Text(
+                              'Dương lịch',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: secondaryColor,
+                                fontWeight: FontWeight.w600,
                               ),
-                              Text(
-                                'Dương lịch',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: secondaryColor,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xffFDF2D7),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                              SizedBox(
-                                height: 10,
+                              child: TableCalendar(
+                                locale: 'vi_VN',
+                                firstDay: DateTime.utc(2010, 10, 16),
+                                lastDay: DateTime.utc(2030, 3, 14),
+                                focusedDay: DateTime.now(),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xffFDF2D7),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: TableCalendar(
-                                  locale: 'vi_VN',
-                                  firstDay: DateTime.utc(2010, 10, 16),
-                                  lastDay: DateTime.utc(2030, 3, 14),
-                                  focusedDay: DateTime.now(),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     )

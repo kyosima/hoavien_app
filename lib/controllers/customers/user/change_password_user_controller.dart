@@ -12,7 +12,7 @@ class ChangePasswordUserBinding implements Bindings {
 class ChangePasswordUserController extends GetxController {
   final passWordController = TextEditingController();
   final newPassWordController = TextEditingController();
-  final ConfirmNewPassWordController = TextEditingController();
+  final confirmNewPassWordController = TextEditingController();
   var obsPassWord = true.obs;
   var obsNewPassWord = true.obs;
   var obsConfirmNewPassWord = true.obs;

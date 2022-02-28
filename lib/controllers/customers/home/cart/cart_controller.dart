@@ -10,23 +10,6 @@ class CartBinding implements Bindings {
 
 class CartController extends GetxController {
   var unit = 0.obs;
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
 
   void plus() {
     unit = unit++;

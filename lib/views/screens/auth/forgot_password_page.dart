@@ -19,7 +19,7 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
               padding: const EdgeInsets.all(17.0),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                   ),
                   Image.asset(
@@ -55,7 +55,7 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
                         title: 'Số điện thoại',
                         inputType: TextInputType.number,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
                     ],
@@ -67,7 +67,7 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
                       controller.forgetpassword();
                     },
                   )),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Center(
@@ -75,7 +75,7 @@ class ForgotPassword extends GetView<ForgetPasswordController> {
                       onPressed: () {
                         Get.toNamed('/login');
                       },
-                      child: Text(
+                      child: const Text(
                         'Đăng nhập',
                         style: TextStyle(fontSize: 17),
                       ),

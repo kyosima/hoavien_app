@@ -16,7 +16,7 @@ class OtpPage extends StatelessWidget {
           child: Container(
             color: Colors.transparent,
             child: Padding(
-              padding: EdgeInsets.all(17.0),
+              padding: const EdgeInsets.all(17.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -46,12 +46,9 @@ class OtpPage extends StatelessWidget {
                     fieldWidth: 45,
                     fieldStyle: FieldStyle.underline,
                     outlineBorderRadius: 15,
-                    style: TextStyle(fontSize: 17),
-                    onChanged: (pin) {
-                      print("Changed: " + pin);
-                    },
+                    style: const TextStyle(fontSize: 17),
+                    onChanged: (pin) {},
                     onCompleted: (pin) {
-                      print("Completed: " + pin);
                       if (pin == '123456') {
                         Get.toNamed('/newpassword');
                       } else {

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,23 +18,6 @@ class AddGenealogyController extends GetxController {
   final nameGen1Controller = TextEditingController();
   final secondNameGen1Controller = TextEditingController();
   final deathLocationController = TextEditingController();
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    // TODO: implement onReady
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    // TODO: implement onClose
-    super.onClose();
-  }
 
   void setBirthday() async {
     DateTime? date = await showDatePicker(
