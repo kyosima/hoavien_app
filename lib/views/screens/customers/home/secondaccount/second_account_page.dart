@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
+import 'package:hoavien_app/models/auth/user_model.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_second_account_page.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
 
-class SecondAccount extends GetView<SecondAccountController> {
-  const SecondAccount({Key? key}) : super(key: key);
+class SecondAccount extends StatelessWidget {
+  SecondAccountController controller = Get.put(SecondAccountController());
+  UserModel? user;
+  SecondAccount({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         elevation: 1,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(
           color: secondaryColor,
         ),
         title: CustomTitleText(
-          title: 'Tài khoản phụ',
+          title: 'Tài khoản phụ ',
         ),
       ),
       body: Container(
@@ -45,7 +50,7 @@ class SecondAccount extends GetView<SecondAccountController> {
                       size: 40,
                     ),
                     onPressed: () {
-                      Get.toNamed('/addsecondaccount');
+                      Get.to(() => AddSecondAccountPage(user: user));
                     },
                   )
                 ],

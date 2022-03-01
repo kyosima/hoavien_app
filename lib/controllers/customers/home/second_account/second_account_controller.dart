@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hoavien_app/models/second_account/second_account_model.dart';
+import 'package:hoavien_app/service/customer/api_add_second_account.dart';
 
 class SecondAccountBinding implements Bindings {
   @override

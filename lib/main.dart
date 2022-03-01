@@ -17,6 +17,7 @@ import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
 import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
@@ -83,7 +84,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
 
 void main() async {
-  initializeDateFormatting().then((_) => runApp(MyApp()));
+  await initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -131,7 +132,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/home',
-            page: () => const HomePage(),
+            page: () => HomePage(),
             binding: HomeBinding(),
           ),
           GetPage(
@@ -175,12 +176,12 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/secondaccount',
-            page: () => const SecondAccount(),
+            page: () => SecondAccount(),
             binding: SecondAccountBinding(),
           ),
           GetPage(
             name: '/addsecondaccount',
-            page: () => const AddSecondAccountPage(),
+            page: () => AddSecondAccountPage(),
             binding: AddSecondAccountBinding(),
           ),
           GetPage(
@@ -220,6 +221,7 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/memories',
             page: () => MemoriesPage(),
+            binding: MemoriesBindings(),
           ),
           GetPage(
             name: '/giapha',

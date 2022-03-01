@@ -20,7 +20,7 @@ class DashboardPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              const HomePage(),
+              HomePage(user: user),
               MemoriesPage(),
               const GenealogyPage(),
               EventPage(),

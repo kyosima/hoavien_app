@@ -2,11 +2,13 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_add_gallery.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:photo_view/photo_view.dart';
 
 class MemoriesPage extends StatelessWidget {
+  MemoriesController controller = Get.put(MemoriesController());
   final ImageMemories = [
     'https://placeimg.com/640/480/any',
     'https://toigingiuvedep.vn/wp-content/uploads/2021/01/anh-anime-naruto-dep-ngau-nhat.jpg',
@@ -119,34 +121,72 @@ class MemoriesPage extends StatelessWidget {
                       Positioned(
                           bottom: 15,
                           right: 15,
-                          child: Stack(alignment: Alignment.center, children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(100),
-                                gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment(0.8,
-                                      0.0), // 10% of the width, so there are ten blinds.
-                                  colors: <Color>[
-                                    Color(0xffFF9900),
-                                    Color(0xffF5C037)
-                                  ], // red to yellow
-                                  // repeats the gradient over the canvas
+                          child: InkWell(
+                            onTap: () {
+                              controller.pickImageFromGalerry();
+                            },
+                            child:
+                                Stack(alignment: Alignment.center, children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment(0.8,
+                                        0.0), // 10% of the width, so there are ten blinds.
+                                    colors: <Color>[
+                                      Color(0xffFF9900),
+                                      Color(0xffF5C037)
+                                    ], // red to yellow
+                                    // repeats the gradient over the canvas
+                                  ),
                                 ),
+                                height: 70,
+                                width: 70,
                               ),
-                              height: 70,
-                              width: 70,
-                            ),
-                            Icon(
-                              Icons.add,
-                              size: 40,
-                              color: Colors.white,
-                            ),
-                          ]))
+                              Icon(
+                                Icons.add,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                            ]),
+                          ))
                     ]),
-                    Center(
-                      child: Icon(Icons.directions_transit),
-                    ),
+                    Stack(children: [
+                      Positioned(
+                          bottom: 15,
+                          right: 15,
+                          child: InkWell(
+                            onTap: () {
+                              controller.pickVideoFromGalerry();
+                            },
+                            child:
+                                Stack(alignment: Alignment.center, children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100),
+                                  gradient: const LinearGradient(
+                                    begin: Alignment.topLeft,
+                                    end: Alignment(0.8,
+                                        0.0), // 10% of the width, so there are ten blinds.
+                                    colors: <Color>[
+                                      Color(0xffFF9900),
+                                      Color(0xffF5C037)
+                                    ], // red to yellow
+                                    // repeats the gradient over the canvas
+                                  ),
+                                ),
+                                height: 70,
+                                width: 70,
+                              ),
+                              Icon(
+                                Icons.add,
+                                size: 40,
+                                color: Colors.white,
+                              ),
+                            ]),
+                          ))
+                    ]),
                     Stack(children: [
                       GridView.count(
                         // Create a grid with 2 columns. If you change the scrollDirection to

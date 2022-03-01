@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
+import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class AddSecondAccountPage extends GetView<AddSecondAccountController> {
-  const AddSecondAccountPage({Key? key}) : super(key: key);
+class AddSecondAccountPage extends StatelessWidget {
+  AddSecondAccountController controller = Get.put(AddSecondAccountController());
+  UserModel? user;
+  AddSecondAccountPage({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         elevation: 1,
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: secondaryColor),
         title: CustomTitleText(
-          title: 'Thêm tài khoản phụ',
+          title: 'Thêm tài khoản phụ ${user?.data?.id}',
         ),
       ),
       body: SingleChildScrollView(
@@ -110,7 +114,17 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                     },
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 20,
+                  ),
+                  Visibility(
+                    visible: true,
+                    child: TextFormField(
+                      controller: controller.addedby
+                        ..text = "${user?.data?.id}",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -152,7 +166,7 @@ class AddSecondAccountPage extends GetView<AddSecondAccountController> {
                   CustomButtonLoginPage(
                     title: 'Xong',
                     onPressed: () {
-                      controller.addSecondAccount();
+                      controller.submit();
                     },
                   ),
                 ],

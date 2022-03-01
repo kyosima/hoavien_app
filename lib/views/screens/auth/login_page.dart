@@ -53,37 +53,34 @@ class LoginPage extends GetView<LoginController> {
                     height: 70,
                   ),
                   Obx(
-                    () => Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          CustomTextField(
-                            maxLines: 1,
-                            controller: controller.phoneNumber,
-                            title: 'Số điện thoại',
-                            inputType: TextInputType.number,
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          CustomTextField(
-                            maxLines: 1,
-                            controller: controller.passWord,
-                            title: 'Mật khẩu',
-                            icon: controller.obscureText.value == true
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            obscureText: controller.obscureText.value,
-                            inputType: TextInputType.text,
-                            onPressed: () {
-                              controller.checkpass();
-                            },
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      ),
+                    () => Column(
+                      children: [
+                        CustomTextField(
+                          maxLines: 1,
+                          controller: controller.phoneNumber,
+                          title: 'Số điện thoại',
+                          inputType: TextInputType.number,
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        CustomTextField(
+                          maxLines: 1,
+                          controller: controller.passWord,
+                          title: 'Mật khẩu',
+                          icon: controller.obscureText.value == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          obscureText: controller.obscureText.value,
+                          inputType: TextInputType.text,
+                          onPressed: () {
+                            controller.checkpass();
+                          },
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ],
                     ),
                   ),
                   Obx(

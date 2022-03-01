@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
-import 'package:hoavien_app/service/api_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hoavien_app/service/auth/api_service.dart';
 
 import '../../constance.dart';
 
@@ -41,7 +40,6 @@ class LoginController extends GetxController {
   }
 
   Future<void> submit() async {
-    final prefs = await SharedPreferences.getInstance();
     loginProcess.value = true;
     if (passWord.text.isEmpty || phoneNumber.text.isEmpty) {
       loginProcess.value = false;

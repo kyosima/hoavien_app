@@ -3,6 +3,8 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
+import 'package:hoavien_app/models/auth/user_model.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_account_page.dart';
 import 'package:hoavien_app/views/widgets/custom_button_home_page.dart';
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
@@ -10,7 +12,8 @@ import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
 
 class HomePage extends GetView<HomeController> {
-  const HomePage({Key? key}) : super(key: key);
+  UserModel? user;
+  HomePage({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +169,7 @@ class HomePage extends GetView<HomeController> {
                       tittle: 'TK phụ',
                       icon: Icons.group,
                       onTap: () {
-                        Get.toNamed('/secondaccount');
+                        Get.to(() => SecondAccount(user: user));
                       },
                     ),
                     CustomButtonHomePage(
