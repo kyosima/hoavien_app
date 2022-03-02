@@ -1,9 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/models/second_account/second_account_model.dart';
-import 'package:hoavien_app/service/customer/api_add_second_account.dart';
-import 'package:intl/intl.dart';
+import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
+import 'package:hoavien_app/models/home/second_account/second_account_model.dart';
+import 'package:hoavien_app/service/customer/home/second_account/api_add_second_account.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_account_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddSecondAccountBinding implements Bindings {
   @override
@@ -22,6 +24,7 @@ class AddSecondAccountController extends GetxController {
   final passWord = TextEditingController();
   final confirmPassWord = TextEditingController();
   final addedby = TextEditingController();
+  final secondAccountController = SecondAccountController();
 
   void seePassword() {
     obscureTextPassword.value = !obscureTextPassword.value;
@@ -39,7 +42,7 @@ class AddSecondAccountController extends GetxController {
     String? password_confirmation,
     String? addedby,
   }) async {
-    var response = await ApiSecondAccount.addSecondAccount(
+    var response = await ApiAddSecondAccount.addSecondAccount(
       fullname: fullname,
       relationship: relationship,
       phone: phone,
@@ -53,99 +56,18 @@ class AddSecondAccountController extends GetxController {
       data: response?.data,
       status: response?.status,
     );
-
-    // void addSecondAccount() {
-    //   if (fullName.text.isEmpty ||
-    //       relationship.text.isEmpty ||
-    //       phoneNumber.text.isEmpty ||
-    //       passWord.text.isEmpty ||
-    //       confirmPassWord.text.isEmpty) {
-    //     Get.defaultDialog(
-    //         content: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Stack(
-    //           alignment: Alignment.center,
-    //           children: [
-    //             Container(
-    //               height: 60.0,
-    //               width: 60,
-    //               decoration: const BoxDecoration(
-    //                 color: Colors.red,
-    //                 shape: BoxShape.circle,
-    //               ),
-    //             ),
-    //             Image.asset(
-    //               'assets/images/error.gif',
-    //               width: 55,
-    //             ),
-    //           ],
-    //         ),
-    //         const SizedBox(
-    //           height: 10,
-    //         ),
-    //         const Center(
-    //           child: Text(
-    //             '''Vui lòng điền vào các trường bắt buộc!''',
-    //             textAlign: TextAlign.center,
-    //             style: TextStyle(
-    //               fontWeight: FontWeight.bold,
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ));
-    //   } else if (passWord.text != confirmPassWord.text) {
-    //     Get.defaultDialog(
-    //         content: Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       crossAxisAlignment: CrossAxisAlignment.center,
-    //       children: [
-    //         Stack(
-    //           alignment: Alignment.center,
-    //           children: [
-    //             Container(
-    //               height: 60.0,
-    //               width: 60,
-    //               decoration: const BoxDecoration(
-    //                 color: Colors.red,
-    //                 shape: BoxShape.circle,
-    //               ),
-    //             ),
-    //             Image.asset(
-    //               'assets/images/error.gif',
-    //               width: 55,
-    //             ),
-    //           ],
-    //         ),
-    //         const SizedBox(
-    //           height: 10,
-    //         ),
-    //         const Center(
-    //           child: Text(
-    //             '''Xác nhận mật khẩu không đúng!''',
-    //             textAlign: TextAlign.center,
-    //             style: TextStyle(
-    //               fontWeight: FontWeight.bold,
-    //             ),
-    //           ),
-    //         ),
-    //       ],
-    //     ));
-    //   }
-    // }
   }
 
   void submit() async {
-    print(int.parse(addedby.text));
+    final prefs = await SharedPreferences.getInstance();
+    final id = await prefs.getInt('id');
     SecondAccountModel? secondAccount = await addSecondAccount(
         fullname: fullName.text,
         relationship: relationship.text,
         phone: phoneNumber.text,
         password: passWord.text,
         password_confirmation: confirmPassWord.text,
-        addedby: addedby.text);
+        addedby: id.toString());
     if (secondAccount.data != null) {
       Get.snackbar(
         "Tạo tài khoản phụ thành công",
@@ -155,7 +77,93 @@ class AddSecondAccountController extends GetxController {
         colorText: secondaryColor,
         backgroundColor: Colors.white.withOpacity(0.7),
       );
-      Get.toNamed('/secondaccount');
+    } else {
+      print('cac');
+      Get.back();
     }
+    update();
+    refresh();
   }
 }
+
+// void addSecondAccount() {
+//   if (fullName.text.isEmpty ||
+//       relationship.text.isEmpty ||
+//       phoneNumber.text.isEmpty ||
+//       passWord.text.isEmpty ||
+//       confirmPassWord.text.isEmpty) {
+//     Get.defaultDialog(
+//         content: Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       crossAxisAlignment: CrossAxisAlignment.center,
+//       children: [
+//         Stack(
+//           alignment: Alignment.center,
+//           children: [
+//             Container(
+//               height: 60.0,
+//               width: 60,
+//               decoration: const BoxDecoration(
+//                 color: Colors.red,
+//                 shape: BoxShape.circle,
+//               ),
+//             ),
+//             Image.asset(
+//               'assets/images/error.gif',
+//               width: 55,
+//             ),
+//           ],
+//         ),
+//         const SizedBox(
+//           height: 10,
+//         ),
+//         const Center(
+//           child: Text(
+//             '''Vui lòng điền vào các trường bắt buộc!''',
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ),
+//       ],
+//     ));
+//   } else if (passWord.text != confirmPassWord.text) {
+//     Get.defaultDialog(
+//         content: Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       crossAxisAlignment: CrossAxisAlignment.center,
+//       children: [
+//         Stack(
+//           alignment: Alignment.center,
+//           children: [
+//             Container(
+//               height: 60.0,
+//               width: 60,
+//               decoration: const BoxDecoration(
+//                 color: Colors.red,
+//                 shape: BoxShape.circle,
+//               ),
+//             ),
+//             Image.asset(
+//               'assets/images/error.gif',
+//               width: 55,
+//             ),
+//           ],
+//         ),
+//         const SizedBox(
+//           height: 10,
+//         ),
+//         const Center(
+//           child: Text(
+//             '''Xác nhận mật khẩu không đúng!''',
+//             textAlign: TextAlign.center,
+//             style: TextStyle(
+//               fontWeight: FontWeight.bold,
+//             ),
+//           ),
+//         ),
+//       ],
+//     ));
+//   }
+// }

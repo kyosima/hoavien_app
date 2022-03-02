@@ -21,7 +21,7 @@ class AddSecondAccountPage extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: secondaryColor),
         title: CustomTitleText(
-          title: 'Thêm tài khoản phụ ${user?.data?.id}',
+          title: 'Thêm tài khoản phụ',
         ),
       ),
       body: SingleChildScrollView(
@@ -116,13 +116,6 @@ class AddSecondAccountPage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Visibility(
-                    visible: true,
-                    child: TextFormField(
-                      controller: controller.addedby
-                        ..text = "${user?.data?.id}",
-                    ),
-                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -164,7 +157,7 @@ class AddSecondAccountPage extends StatelessWidget {
                     height: 40,
                   ),
                   CustomButtonLoginPage(
-                    title: 'Xong',
+                    title: 'Thêm tài khoản',
                     onPressed: () {
                       controller.submit();
                     },

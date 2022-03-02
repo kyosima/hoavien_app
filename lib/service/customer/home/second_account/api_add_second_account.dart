@@ -1,9 +1,9 @@
-import 'package:hoavien_app/models/second_account/second_account_model.dart';
+import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/models/home/second_account/second_account_model.dart';
 import 'package:http/http.dart' as http;
 
-class ApiSecondAccount {
+class ApiAddSecondAccount {
   static var client = http.Client();
-  static var baseURL = "http://server21.mevivu.com/apphoavien";
   static Future<SecondAccountModel?> addSecondAccount({
     String? fullname,
     String? relationship,

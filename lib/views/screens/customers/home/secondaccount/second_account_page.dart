@@ -59,113 +59,116 @@ class SecondAccount extends StatelessWidget {
                 height: 10,
               ),
               GetBuilder<SecondAccountController>(builder: (_) {
-                return Expanded(
-                  child: ListView.builder(
-                      itemCount: controller.foundSecondAccount.value.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        CircleAvatar(
-                                          backgroundImage: AssetImage(
-                                              'assets/images/thanhvien.jpg'),
-                                          radius: 25,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              controller.foundSecondAccount
-                                                  .value[index]['phoneNumber'],
-                                              style: TextStyle(
-                                                color: secondaryColor,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 8,
-                                            ),
-                                            Text(
-                                              'Họ tên: ${controller.foundSecondAccount.value[index]['name']}',
-                                              style: TextStyle(
-                                                color: secondaryColor,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 8,
-                                            ),
-                                            Text(
-                                              'Quan hệ: ${controller.foundSecondAccount.value[index]['relationship']}',
-                                              style: TextStyle(
-                                                color: secondaryColor,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        InkWell(
-                                          child: Icon(
-                                            Icons.delete,
-                                            size: 20,
-                                            color: Colors.red,
+                if (controller.isLoading.value) {
+                  return Center(child: CircularProgressIndicator());
+                } else {
+                  return Expanded(
+                    child: ListView.builder(
+                        itemCount: controller.allSecondAccount.value?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                'assets/images/thanhvien.jpg'),
+                                            radius: 25,
                                           ),
-                                          onTap: () {
-                                            print('edit');
-                                          },
-                                        ),
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        InkWell(
-                                          child: Icon(
-                                            Icons.edit,
-                                            size: 20,
-                                            color: colorText,
+                                          SizedBox(
+                                            width: 10,
                                           ),
-                                          onTap: () {
-                                            print('edit');
-                                          },
-                                        ),
-                                      ],
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                '${controller.allSecondAccount.value![index].id} ${controller.allSecondAccount.value![index].phone} ',
+                                                style: TextStyle(
+                                                  color: secondaryColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 16,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Text(
+                                                'Họ tên: ${controller.allSecondAccount.value![index].userInfo?.fullname}',
+                                                style: TextStyle(
+                                                  color: secondaryColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              Text(
+                                                'Quan hệ: ${controller.allSecondAccount.value![index].userInfo?.relationship} ',
+                                                style: TextStyle(
+                                                  color: secondaryColor,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                    Container(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          InkWell(
+                                            child: Icon(
+                                              Icons.delete,
+                                              size: 20,
+                                              color: Colors.red,
+                                            ),
+                                            onTap: () {
+                                              print('edit');
+                                            },
+                                          ),
+                                          SizedBox(
+                                            width: 5,
+                                          ),
+                                          InkWell(
+                                            child: Icon(
+                                              Icons.edit,
+                                              size: 20,
+                                              color: colorText,
+                                            ),
+                                            onTap: () {
+                                              print('edit');
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
-                );
+                          );
+                        }),
+                  );
+                }
               }),
             ],
           ),

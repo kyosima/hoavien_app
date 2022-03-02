@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import 'package:hoavien_app/models/second_account/second_account_model.dart';
-import 'package:hoavien_app/service/customer/api_add_second_account.dart';
+import 'package:hoavien_app/models/home/second_account/list_second_account_model.dart';
+import 'package:hoavien_app/service/customer/home/second_account/api_add_second_account.dart';
+import 'package:hoavien_app/service/customer/home/second_account/api_second_account.dart';
 
 class SecondAccountBinding implements Bindings {
   @override
@@ -11,68 +12,46 @@ class SecondAccountBinding implements Bindings {
 }
 
 class SecondAccountController extends GetxController {
-  final List<Map<String, dynamic>> allSeconAccount = [
-    {
-      "phoneNumber": "0338927456",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-    {
-      "phoneNumber": "0905478292",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-    {
-      "phoneNumber": "0386527456",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-    {
-      "phoneNumber": "0398747456",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-    {
-      "phoneNumber": "03329247456",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-    {
-      "phoneNumber": "0329327456",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-    {
-      "phoneNumber": "03389975456",
-      "name": "Nguyễn Chính Hưng",
-      "relationship": "Con gái"
-    },
-  ];
-  Rx<List<Map<String, dynamic>>> foundSecondAccount =
-      Rx<List<Map<String, dynamic>>>([]);
+  final isLoading = true.obs;
+  final allSecondAccount = ListSecondAccountModel().data.obs;
 
   @override
   void onInit() {
     // TODO: implement onInit
+    listSecondAccount();
     super.onInit();
-    foundSecondAccount.value = allSeconAccount;
   }
 
-  void findSecondAccount(String secondAccount) {
-    List<Map<String, dynamic>> resuft = [];
+  void listSecondAccount() async {
+    final secondAccount = await ApiSecondAccount.listSecondAccount();
+    try {
+      isLoading.value = true;
+      if (secondAccount != null) {
+        allSecondAccount.value = secondAccount.data;
+      } else {
+        print('error');
+      }
+    } finally {
+      isLoading.value = false;
+    }
+    update();
+  }
 
-    if (secondAccount.isEmpty) {
-      resuft = allSeconAccount;
+  void findSecondAccount(String phone) async {
+    List<Data>? resuft = [];
+    final secondAccount = await ApiSecondAccount.listSecondAccount();
+    if (phone.isEmpty) {
+      resuft = secondAccount?.data;
       refresh();
     } else {
-      resuft = allSeconAccount
-          .where((element) => element['phoneNumber']
+      resuft = secondAccount?.data
+          ?.where((element) => element.phone
               .toString()
               .toLowerCase()
-              .contains(secondAccount.toLowerCase()))
+              .contains(phone.toLowerCase()))
           .toList();
     }
-    foundSecondAccount.value = resuft;
+    allSecondAccount.value = resuft;
     refresh();
   }
 }

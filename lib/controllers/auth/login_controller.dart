@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/service/auth/api_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constance.dart';
 
@@ -40,6 +41,8 @@ class LoginController extends GetxController {
   }
 
   Future<void> submit() async {
+    final prefs = await SharedPreferences.getInstance();
+
     loginProcess.value = true;
     if (passWord.text.isEmpty || phoneNumber.text.isEmpty) {
       loginProcess.value = false;
@@ -83,6 +86,7 @@ class LoginController extends GetxController {
       UserModel? user =
           await login(phone: phoneNumber.text, password: passWord.text);
       if (user?.data != null) {
+        await prefs.setInt('id', user?.data?.id ?? 0);
         loginProcess.value = false;
         if (user?.data?.role == 'customer') {
           Get.toNamed('/dashboard', arguments: user);
