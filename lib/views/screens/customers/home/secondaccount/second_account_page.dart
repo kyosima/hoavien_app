@@ -19,10 +19,10 @@ class SecondAccount extends StatelessWidget {
         centerTitle: false,
         elevation: 1,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Tài khoản phụ ',
         ),
       ),
@@ -44,7 +44,7 @@ class SecondAccount extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.add_circle,
                       color: secondaryColor,
                       size: 40,
@@ -85,12 +85,12 @@ class SecondAccount extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          CircleAvatar(
+                                          const CircleAvatar(
                                             backgroundImage: AssetImage(
                                                 'assets/images/thanhvien.jpg'),
                                             radius: 25,
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Column(
@@ -99,28 +99,30 @@ class SecondAccount extends StatelessWidget {
                                             children: [
                                               Text(
                                                 '${controller.allSecondAccount.value![index].id} ${controller.allSecondAccount.value![index].phone} ',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: secondaryColor,
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 16,
                                                 ),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Text(
                                                 'Họ tên: ${controller.allSecondAccount.value![index].userInfo?.fullname}',
-                                                style: TextStyle(
-                                                  color: secondaryColor,
-                                                  fontSize: 14,
-                                                ),
+                                                style: const TextStyle(
+                                                    color: secondaryColor,
+                                                    fontSize: 14,
+                                                    letterSpacing: 0),
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 height: 8,
                                               ),
                                               Text(
                                                 'Quan hệ: ${controller.allSecondAccount.value![index].userInfo?.relationship} ',
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: secondaryColor,
                                                   fontSize: 14,
                                                 ),
@@ -136,13 +138,67 @@ class SecondAccount extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           InkWell(
-                                            child: Icon(
+                                            child: const Icon(
                                               Icons.delete,
                                               size: 20,
                                               color: Colors.red,
                                             ),
                                             onTap: () {
-                                              print('edit');
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) =>
+                                                          AlertDialog(
+                                                            title: const Text(
+                                                                'Xóa tài khoản phụ?'),
+                                                            content: const Text(
+                                                                'Tài khoản phụ sẽ được xóa khỏi danh sách'),
+                                                            actions: <Widget>[
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                children: [
+                                                                  TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        Get.back();
+                                                                      },
+                                                                      child: Container(
+                                                                          width: 120,
+                                                                          decoration: BoxDecoration(color: Color(0xffFDF2D7), borderRadius: BorderRadius.circular(10)),
+                                                                          child: const Padding(
+                                                                            padding:
+                                                                                EdgeInsets.all(10.0),
+                                                                            child:
+                                                                                Center(child: Text('Bỏ qua')),
+                                                                          ))),
+                                                                  TextButton(
+                                                                      onPressed:
+                                                                          () {
+                                                                        controller.deleteSecondAccout(
+                                                                            id:
+                                                                                '${controller.allSecondAccount.value![index].id}',
+                                                                            addedby:
+                                                                                '${user?.data?.id}');
+                                                                        Get.back();
+                                                                      },
+                                                                      child: Container(
+                                                                          width: 120,
+                                                                          decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(10)),
+                                                                          child: const Padding(
+                                                                            padding:
+                                                                                EdgeInsets.all(10.0),
+                                                                            child: Center(
+                                                                                child: Text(
+                                                                              'Đồng ý',
+                                                                              style: TextStyle(color: Colors.white),
+                                                                            )),
+                                                                          ))),
+                                                                ],
+                                                              )
+                                                            ],
+                                                          ));
                                             },
                                           ),
                                           SizedBox(

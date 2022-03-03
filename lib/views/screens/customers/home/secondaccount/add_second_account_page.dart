@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class AddSecondAccountPage extends StatelessWidget {
-  AddSecondAccountController controller = Get.put(AddSecondAccountController());
+  SecondAccountController controller = Get.put(SecondAccountController());
   UserModel? user;
   AddSecondAccountPage({Key? key, this.user}) : super(key: key);
 
@@ -61,7 +61,7 @@ class AddSecondAccountPage extends StatelessWidget {
                     maxLines: 1,
                     title: 'Họ và tên',
                     inputType: TextInputType.text,
-                    controller: controller.fullName,
+                    controller: controller.fullNameController,
                   ),
                   SizedBox(
                     height: 20,
@@ -70,14 +70,14 @@ class AddSecondAccountPage extends StatelessWidget {
                     maxLines: 1,
                     title: 'Quan hệ với bạn',
                     inputType: TextInputType.text,
-                    controller: controller.relationship,
+                    controller: controller.relationshipController,
                   ),
                   SizedBox(
                     height: 20,
                   ),
                   CustomTextField(
                     maxLines: 1,
-                    controller: controller.phoneNumber,
+                    controller: controller.phoneController,
                     title: 'Số điện thoại đăng ký tài khoản',
                     inputType: TextInputType.number,
                   ),
@@ -86,7 +86,7 @@ class AddSecondAccountPage extends StatelessWidget {
                   ),
                   CustomTextField(
                     maxLines: 1,
-                    controller: controller.passWord,
+                    controller: controller.passwordController,
                     title: 'Mật khẩu',
                     inputType: TextInputType.text,
                     obscureText: !controller.obscureTextPassword.value,
@@ -102,7 +102,7 @@ class AddSecondAccountPage extends StatelessWidget {
                   ),
                   CustomTextField(
                     maxLines: 1,
-                    controller: controller.confirmPassWord,
+                    controller: controller.password_confirmationController,
                     title: 'Xác nhận Mật khẩu',
                     inputType: TextInputType.text,
                     obscureText: !controller.obscureTextConfirmPassword.value,
@@ -159,7 +159,14 @@ class AddSecondAccountPage extends StatelessWidget {
                   CustomButtonLoginPage(
                     title: 'Thêm tài khoản',
                     onPressed: () {
-                      controller.submit();
+                      controller.addAccount(
+                          fullname: controller.fullNameController.text,
+                          relationship: controller.relationshipController.text,
+                          phone: controller.phoneController.text,
+                          password: controller.passwordController.text,
+                          password_confirmation:
+                              controller.password_confirmationController.text,
+                          addedby: '${user?.data?.id}');
                     },
                   ),
                 ],

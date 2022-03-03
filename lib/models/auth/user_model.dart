@@ -18,13 +18,13 @@ class UserModel {
   UserModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['status'] = status;
-    data['message'] = message;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['status'] = this.status;
+    data['message'] = this.message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -37,7 +37,7 @@ class Data {
   String? phone;
   String? email;
   String? role;
-  String? avatar;
+  Null? avatar;
   UserInfo? userInfo;
 
   Data(
@@ -49,19 +49,20 @@ class Data {
     email = json['email'];
     role = json['role'];
     avatar = json['avatar'];
-    userInfo =
-        json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : null;
+    userInfo = json['user_info'] != null
+        ? new UserInfo.fromJson(json['user_info'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['phone'] = phone;
-    data['email'] = email;
-    data['role'] = role;
-    data['avatar'] = avatar;
-    if (userInfo != null) {
-      data['user_info'] = userInfo!.toJson();
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['phone'] = this.phone;
+    data['email'] = this.email;
+    data['role'] = this.role;
+    data['avatar'] = this.avatar;
+    if (this.userInfo != null) {
+      data['user_info'] = this.userInfo!.toJson();
     }
     return data;
   }
@@ -70,18 +71,24 @@ class Data {
 class UserInfo {
   int? userId;
   String? fullname;
+  String? birthday;
+  String? gender;
 
-  UserInfo({this.userId, this.fullname});
+  UserInfo({this.userId, this.fullname, this.birthday, this.gender});
 
   UserInfo.fromJson(Map<String, dynamic> json) {
     userId = json['user_id'];
     fullname = json['fullname'];
+    birthday = json['birthday'];
+    gender = json['gender'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['user_id'] = userId;
-    data['fullname'] = fullname;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['user_id'] = this.userId;
+    data['fullname'] = this.fullname;
+    data['birthday'] = this.birthday;
+    data['gender'] = this.gender;
     return data;
   }
 }

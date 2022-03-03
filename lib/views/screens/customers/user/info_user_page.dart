@@ -86,6 +86,7 @@ class InfoUserPage extends StatelessWidget {
                   maxLines: 1,
                   title: 'Ngày sinh',
                   inputType: TextInputType.datetime,
+                  hintText: '${user?.data?.userInfo?.birthday}',
                   icon: Icons.date_range,
                   onPressed: () {
                     controller.setDate();
@@ -106,6 +107,7 @@ class InfoUserPage extends StatelessWidget {
                       color: secondaryColor,
                       fontSize: 20,
                     ),
+                    hintText: '${user?.data?.userInfo?.gender}',
                     floatingLabelBehavior: FloatingLabelBehavior.always,
                     enabledBorder: OutlineInputBorder(
                       borderSide:

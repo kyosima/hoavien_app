@@ -10,7 +10,6 @@ import 'package:hoavien_app/controllers/customers/event/event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/genealogy_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
-import 'package:hoavien_app/controllers/customers/home/second_account/add_second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
@@ -182,7 +181,6 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/addsecondaccount',
             page: () => AddSecondAccountPage(),
-            binding: AddSecondAccountBinding(),
           ),
           GetPage(
             name: '/picktaisanso',
