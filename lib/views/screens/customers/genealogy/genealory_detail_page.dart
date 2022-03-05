@@ -88,19 +88,19 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                   ? IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.start,
+                        Icons.star,
                         color: Colors.transparent,
                       ))
                   : IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.start,
+                        Icons.star,
                         color: Colors.transparent,
                       )),
               IconButton(
                   onPressed: () {},
                   icon: Icon(
-                    Icons.start,
+                    Icons.star,
                     color: Colors.transparent,
                   )),
             ],
@@ -165,7 +165,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                   ? IconButton(
                       onPressed: () {},
                       icon: Icon(
-                        Icons.start,
+                        Icons.star,
                         color: Colors.transparent,
                       ))
                   : IconButton(

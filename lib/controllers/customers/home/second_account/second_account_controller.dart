@@ -16,6 +16,7 @@ class SecondAccountBinding implements Bindings {
 
 class SecondAccountController extends GetxController {
   final isLoading = true.obs;
+  final buttonLoading = false.obs;
   var allSecondAccount = ListSecondAccountModel().data.obs;
   final fullNameController = TextEditingController();
   final relationshipController = TextEditingController();
@@ -103,6 +104,7 @@ class SecondAccountController extends GetxController {
     String? password_confirmation,
     String? addedby,
   }) async {
+    buttonLoading.value = true;
     List<Data>? resuft = [];
     var response = await ApiAddSecondAccount.addSecondAccount(
       fullname: fullname,
@@ -112,24 +114,70 @@ class SecondAccountController extends GetxController {
       password_confirmation: password_confirmation,
       addedby: addedby,
     );
-    if (response?.data != null) {
-      final listAcc = await ApiSecondAccount.listSecondAccount();
-      resuft = listAcc?.data;
-      Get.snackbar(
-        "Tạo tài khoản phụ thành công",
-        "Tài khoản phụ đã được thêm vào danh sách",
-        icon: const Icon(Icons.check_circle, color: Colors.green),
-        snackPosition: SnackPosition.TOP,
-        colorText: secondaryColor,
-        backgroundColor: Colors.white.withOpacity(0.7),
-        duration: Duration(milliseconds: 700),
-      );
-      Future.delayed(Duration(milliseconds: 1700), () {
-        Get.back();
-      });
+    if (fullNameController.text.isEmpty ||
+        relationshipController.text.isEmpty ||
+        phoneController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        password_confirmationController.text.isEmpty) {
+      buttonLoading.value = false;
+      Get.defaultDialog(
+          content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 60.0,
+                width: 60,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Image.asset(
+                'assets/images/error.gif',
+                width: 55,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Center(
+            child: Text(
+              '''Các trường bắt buộc không được để trống!''',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ));
     } else {
-      print('cac');
+      buttonLoading.value = false;
+      if (response?.data != null) {
+        final listAcc = await ApiSecondAccount.listSecondAccount();
+        resuft = listAcc?.data;
+        Get.snackbar(
+          "Tạo tài khoản phụ thành công",
+          "Tài khoản phụ đã được thêm vào danh sách",
+          icon: const Icon(Icons.check_circle, color: Colors.green),
+          snackPosition: SnackPosition.TOP,
+          colorText: secondaryColor,
+          backgroundColor: Colors.white.withOpacity(0.7),
+          duration: Duration(milliseconds: 700),
+        );
+        Future.delayed(Duration(milliseconds: 1700), () {
+          Get.back();
+        });
+      } else {
+        print('cac');
+      }
     }
+
     allSecondAccount.value = resuft;
     update();
   }

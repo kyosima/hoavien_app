@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
 import 'package:hoavien_app/models/home/second_account/list_second_account_model.dart';
@@ -11,8 +9,11 @@ class ApiSecondAccount {
   static Future<ListSecondAccountModel?> listSecondAccount() async {
     final prefs = await SharedPreferences.getInstance();
     final id = await prefs.getInt('id');
-    var response = await client
-        .get(Uri.parse('$baseURL/api/list-customer-secondary?customer_id=$id'));
+    var response = await client.get(
+        Uri.parse('$baseURL/api/list-customer-secondary?customer_id=$id'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
     if (response.statusCode == 200) {
       return listSecondAccountModelFromJson(response.body);
     } else

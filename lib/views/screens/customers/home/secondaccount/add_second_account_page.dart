@@ -156,18 +156,40 @@ class AddSecondAccountPage extends StatelessWidget {
                   SizedBox(
                     height: 40,
                   ),
-                  CustomButtonLoginPage(
-                    title: 'Thêm tài khoản',
-                    onPressed: () {
-                      controller.addAccount(
-                          fullname: controller.fullNameController.text,
-                          relationship: controller.relationshipController.text,
-                          phone: controller.phoneController.text,
-                          password: controller.passwordController.text,
-                          password_confirmation:
-                              controller.password_confirmationController.text,
-                          addedby: '${user?.data?.id}');
-                    },
+                  SizedBox(
+                    width: 250,
+                    height: 45,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: primaryColor,
+                          borderRadius: BorderRadius.circular(10.0),
+                          border: Border.all(color: primaryColor, width: 1.0)),
+                      child: TextButton(
+                        onPressed: () {
+                          controller.addAccount(
+                              fullname: controller.fullNameController.text,
+                              relationship:
+                                  controller.relationshipController.text,
+                              phone: controller.phoneController.text,
+                              password: controller.passwordController.text,
+                              password_confirmation: controller
+                                  .password_confirmationController.text,
+                              addedby: '${user?.data?.id}');
+                        },
+                        child: controller.buttonLoading.value == true
+                            ? SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator())
+                            : Text(
+                                'Thêm tài khoản',
+                                style: const TextStyle(
+                                    color: secondaryColor,
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                      ),
+                    ),
                   ),
                 ],
               ),
