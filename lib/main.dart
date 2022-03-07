@@ -42,6 +42,7 @@ import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_secon
 import 'package:hoavien_app/views/screens/customers/home/cart/cart_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/edit_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/dichvu_antang_caitang_page.dart';
@@ -177,6 +178,10 @@ class MyApp extends StatelessWidget {
             name: '/secondaccount',
             page: () => SecondAccount(),
             binding: SecondAccountBinding(),
+          ),
+          GetPage(
+            name: '/editsecondaccount',
+            page: () => EditSecondAccountPage(),
           ),
           GetPage(
             name: '/addsecondaccount',

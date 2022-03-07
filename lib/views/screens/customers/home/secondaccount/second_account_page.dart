@@ -211,7 +211,10 @@ class SecondAccount extends StatelessWidget {
                                               color: colorText,
                                             ),
                                             onTap: () {
-                                              print('edit');
+                                              Get.toNamed('/editsecondaccount',
+                                                  arguments: controller
+                                                      .allSecondAccount
+                                                      .value![index]);
                                             },
                                           ),
                                         ],

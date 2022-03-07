@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
-import 'package:hoavien_app/service/auth/api_service.dart';
+import 'package:hoavien_app/service_api/auth/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constance.dart';

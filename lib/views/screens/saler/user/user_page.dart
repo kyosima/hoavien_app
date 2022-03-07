@@ -98,9 +98,7 @@ class SalerUserPage extends GetView<SalerUserController> {
                         icon: Icons.person,
                         label: 'Thông tin cá nhân',
                         onTap: () {
-                          Get.to(() => InfoUserPage(
-                                user: user,
-                              ));
+                          Get.to(() => InfoUserPage());
                         },
                       ),
                       SizedBox(

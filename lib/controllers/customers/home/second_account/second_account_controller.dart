@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 
 import 'package:hoavien_app/models/home/second_account/list_second_account_model.dart';
-import 'package:hoavien_app/service/customer/home/second_account/api_add_second_account.dart';
-import 'package:hoavien_app/service/customer/home/second_account/api_second_account.dart';
+import 'package:hoavien_app/service_api/customer/home/second_account/api_add_second_account.dart';
+import 'package:hoavien_app/service_api/customer/home/second_account/api_second_account.dart';
 
 class SecondAccountBinding implements Bindings {
   @override
@@ -17,6 +17,8 @@ class SecondAccountBinding implements Bindings {
 class SecondAccountController extends GetxController {
   final isLoading = true.obs;
   final buttonLoading = false.obs;
+  final editButtonLoading = false.obs;
+  //add secondAccount
   var allSecondAccount = ListSecondAccountModel().data.obs;
   final fullNameController = TextEditingController();
   final relationshipController = TextEditingController();
@@ -25,6 +27,14 @@ class SecondAccountController extends GetxController {
   final phoneController = TextEditingController();
   var obscureTextPassword = false.obs;
   var obscureTextConfirmPassword = false.obs;
+  //edit secondAccount
+  var obsEditPassword = false.obs;
+  var obsEditConfirmPassword = false.obs;
+  final editFullNameController = TextEditingController();
+  final editRelationshipController = TextEditingController();
+  final editPhoneController = TextEditingController();
+  final editPasswordController = TextEditingController();
+  final editConfirmPasswordController = TextEditingController();
 
   @override
   void onInit() {
@@ -39,6 +49,14 @@ class SecondAccountController extends GetxController {
 
   void seeConfirmPassword() {
     obscureTextConfirmPassword.value = !obscureTextConfirmPassword.value;
+  }
+
+  void seeEditPassword() {
+    obsEditPassword.value = !obsEditPassword.value;
+  }
+
+  void seeEditConfirmPassword() {
+    obsEditConfirmPassword.value = !obsEditConfirmPassword.value;
   }
 
   void listSecondAccount() async {
@@ -74,6 +92,7 @@ class SecondAccountController extends GetxController {
     update();
   }
 
+  // delete secondAccount
   void deleteSecondAccout({required String id, required String addedby}) async {
     List<Data>? resuft = [];
 
@@ -96,6 +115,7 @@ class SecondAccountController extends GetxController {
     update();
   }
 
+  // add secondAccount
   void addAccount({
     String? fullname,
     String? relationship,
@@ -156,6 +176,45 @@ class SecondAccountController extends GetxController {
           ),
         ],
       ));
+    } else if (passwordController.text !=
+        password_confirmationController.text) {
+      buttonLoading.value = false;
+      Get.defaultDialog(
+          content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 60.0,
+                width: 60,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Image.asset(
+                'assets/images/error.gif',
+                width: 55,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Center(
+            child: Text(
+              '''Mật khẩu xác nhận không đúng!''',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ));
     } else {
       buttonLoading.value = false;
       if (response?.data != null) {
@@ -170,12 +229,175 @@ class SecondAccountController extends GetxController {
           backgroundColor: Colors.white.withOpacity(0.7),
           duration: Duration(milliseconds: 700),
         );
+
         Future.delayed(Duration(milliseconds: 1700), () {
           Get.back();
+          fullNameController.clear();
+          relationshipController.clear();
+          phoneController.clear();
+          passwordController.clear();
+          password_confirmationController.clear();
         });
       } else {
-        print('cac');
+        Get.defaultDialog(
+            content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: 60.0,
+                  width: 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/error.gif',
+                  width: 55,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(
+              child: Text(
+                'Số điện thoại đăng ký đã tồn tại',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ));
+        final listAcc = await ApiSecondAccount.listSecondAccount();
+        resuft = listAcc?.data;
+        update();
       }
+    }
+    allSecondAccount.value = resuft;
+    update();
+  }
+
+  // edit secondAccount
+  void editSecondAccount(
+      {String? id,
+      String? addedby,
+      String? phone,
+      String? fullname,
+      String? relationship,
+      String? password,
+      String? confirmpassword}) async {
+    List<Data>? resuft = [];
+    await ApiSecondAccount.editSecondAccount(
+      id: id,
+      addedby: addedby,
+      fullName: fullname,
+      relationship: relationship,
+      password: password,
+      confirmPassword: confirmpassword,
+      phone: phone,
+    );
+    if (editPhoneController.text.isEmpty ||
+        editConfirmPasswordController.text.isEmpty ||
+        editFullNameController.text.isEmpty ||
+        editRelationshipController.text.isEmpty) {
+      Get.defaultDialog(
+          content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 60.0,
+                width: 60,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Image.asset(
+                'assets/images/error.gif',
+                width: 55,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Center(
+            child: Text(
+              'Vui lòng điền các trường bắt buộc!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ));
+    } else if (editPasswordController.text !=
+        editConfirmPasswordController.text) {
+      Get.defaultDialog(
+          content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: 60.0,
+                width: 60,
+                decoration: const BoxDecoration(
+                  color: Colors.red,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Image.asset(
+                'assets/images/error.gif',
+                width: 55,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Center(
+            child: Text(
+              'Xác nhận mật khẩu không đúng!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ));
+    } else {
+      var response = await ApiSecondAccount.listSecondAccount();
+      resuft = response?.data;
+      Get.snackbar(
+        "Chỉnh sửa tài khoản phụ thành công",
+        "Thông tin tài khoản phụ đã được cập nhật",
+        icon: const Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
+        duration: Duration(milliseconds: 700),
+      );
+      Future.delayed(Duration(milliseconds: 1700), () {
+        Get.back();
+        editPasswordController.clear();
+        editConfirmPasswordController.clear();
+      });
     }
 
     allSecondAccount.value = resuft;

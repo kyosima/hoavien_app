@@ -11,17 +11,15 @@ class MemoriesPage extends StatelessWidget {
   MemoriesController controller = Get.put(MemoriesController());
   final ImageMemories = [
     'https://placeimg.com/640/480/any',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/01/anh-anime-naruto-dep-ngau-nhat.jpg',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/06/hinh-anh-naruto-chat-ngau-dep-820x600.jpg',
-    'https://thuthuatnhanh.com/wp-content/uploads/2020/03/hinh-anh-chibi-naruto.png',
-    'https://upload.wikimedia.org/wikipedia/vi/5/5e/Itachi_Akatsuki.png',
-    'http://kenhkhampha.info/wp-content/uploads/2021/07/Capture.PNG7_-7.png',
     'https://placeimg.com/640/480/any',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/01/anh-anime-naruto-dep-ngau-nhat.jpg',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/06/hinh-anh-naruto-chat-ngau-dep-820x600.jpg',
-    'https://thuthuatnhanh.com/wp-content/uploads/2020/03/hinh-anh-chibi-naruto.png',
-    'https://upload.wikimedia.org/wikipedia/vi/5/5e/Itachi_Akatsuki.png',
-    'http://kenhkhampha.info/wp-content/uploads/2021/07/Capture.PNG7_-7.png',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
   ];
 
   @override

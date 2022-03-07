@@ -8,7 +8,7 @@ class ApiSecondAccount {
   static final client = http.Client();
   static Future<ListSecondAccountModel?> listSecondAccount() async {
     final prefs = await SharedPreferences.getInstance();
-    final id = await prefs.getInt('id');
+    final id = prefs.getInt('id');
     var response = await client.get(
         Uri.parse('$baseURL/api/list-customer-secondary?customer_id=$id'),
         headers: {
@@ -26,6 +26,30 @@ class ApiSecondAccount {
         .delete(Uri.parse('$baseURL/api/delete-customer-secondary'), body: {
       'id': id,
       'addedby': addedby,
+    });
+    if (response.statusCode == 200) {
+      return statusModelFromJson(response.body);
+    } else
+      return null;
+  }
+
+  static Future<StatusModel?> editSecondAccount(
+      {String? id,
+      String? addedby,
+      String? fullName,
+      String? relationship,
+      String? phone,
+      String? password,
+      String? confirmPassword}) async {
+    var response = await client
+        .put(Uri.parse('$baseURL/api/update-customer-secondary'), body: {
+      'id': id,
+      'addedby': addedby,
+      'fullname': fullName,
+      'relationship': relationship,
+      'phone': phone,
+      'password': password,
+      'password_confirmation': confirmPassword,
     });
     if (response.statusCode == 200) {
       return statusModelFromJson(response.body);
