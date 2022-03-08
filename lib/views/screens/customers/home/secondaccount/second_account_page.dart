@@ -8,8 +8,8 @@ import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
 
 class SecondAccount extends StatelessWidget {
-  SecondAccountController controller = Get.put(SecondAccountController());
-  UserModel? user;
+  final SecondAccountController controller = Get.put(SecondAccountController());
+  final UserModel? user;
   SecondAccount({Key? key, this.user}) : super(key: key);
 
   @override
@@ -55,12 +55,12 @@ class SecondAccount extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GetBuilder<SecondAccountController>(builder: (_) {
                 if (controller.isLoading.value) {
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 } else {
                   return Expanded(
                     child: ListView.builder(
@@ -80,145 +80,142 @@ class SecondAccount extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const CircleAvatar(
-                                            backgroundImage: AssetImage(
-                                                'assets/images/thanhvien.jpg'),
-                                            radius: 25,
-                                          ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                '${controller.allSecondAccount.value![index].id} ${controller.allSecondAccount.value![index].phone} ',
-                                                style: const TextStyle(
-                                                  color: secondaryColor,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 16,
-                                                ),
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const CircleAvatar(
+                                          backgroundImage: AssetImage(
+                                              'assets/images/thanhvien.jpg'),
+                                          radius: 25,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '${controller.allSecondAccount.value![index].phone} ',
+                                              style: const TextStyle(
+                                                color: secondaryColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16,
                                               ),
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
-                                              Text(
-                                                'Họ tên: ${controller.allSecondAccount.value![index].userInfo?.fullname}',
-                                                style: const TextStyle(
-                                                    color: secondaryColor,
-                                                    fontSize: 14,
-                                                    letterSpacing: 0),
-                                                overflow: TextOverflow.ellipsis,
-                                                maxLines: 1,
-                                              ),
-                                              const SizedBox(
-                                                height: 8,
-                                              ),
-                                              Text(
-                                                'Quan hệ: ${controller.allSecondAccount.value![index].userInfo?.relationship} ',
-                                                style: const TextStyle(
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              'Họ tên: ${controller.allSecondAccount.value![index].userInfo?.fullname}',
+                                              style: const TextStyle(
                                                   color: secondaryColor,
                                                   fontSize: 14,
-                                                ),
+                                                  letterSpacing: 0),
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 1,
+                                            ),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              'Quan hệ: ${controller.allSecondAccount.value![index].userInfo?.relationship} ',
+                                              style: const TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 14,
                                               ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
-                                    Container(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          InkWell(
-                                            child: const Icon(
-                                              Icons.delete,
-                                              size: 20,
-                                              color: Colors.red,
-                                            ),
-                                            onTap: () {
-                                              showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) =>
-                                                          AlertDialog(
-                                                            title: const Text(
-                                                                'Xóa tài khoản phụ?'),
-                                                            content: const Text(
-                                                                'Tài khoản phụ sẽ được xóa khỏi danh sách'),
-                                                            actions: <Widget>[
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .spaceBetween,
-                                                                children: [
-                                                                  TextButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        Get.back();
-                                                                      },
-                                                                      child: Container(
-                                                                          width: 120,
-                                                                          decoration: BoxDecoration(color: Color(0xffFDF2D7), borderRadius: BorderRadius.circular(10)),
-                                                                          child: const Padding(
-                                                                            padding:
-                                                                                EdgeInsets.all(10.0),
-                                                                            child:
-                                                                                Center(child: Text('Bỏ qua')),
-                                                                          ))),
-                                                                  TextButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        controller.deleteSecondAccout(
-                                                                            id:
-                                                                                '${controller.allSecondAccount.value![index].id}',
-                                                                            addedby:
-                                                                                '${user?.data?.id}');
-                                                                        Get.back();
-                                                                      },
-                                                                      child: Container(
-                                                                          width: 120,
-                                                                          decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(10)),
-                                                                          child: const Padding(
-                                                                            padding:
-                                                                                EdgeInsets.all(10.0),
-                                                                            child: Center(
-                                                                                child: Text(
-                                                                              'Đồng ý',
-                                                                              style: TextStyle(color: Colors.white),
-                                                                            )),
-                                                                          ))),
-                                                                ],
-                                                              )
-                                                            ],
-                                                          ));
-                                            },
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        InkWell(
+                                          child: const Icon(
+                                            Icons.delete,
+                                            size: 20,
+                                            color: Colors.red,
                                           ),
-                                          SizedBox(
-                                            width: 5,
+                                          onTap: () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        AlertDialog(
+                                                          title: const Text(
+                                                              'Xóa tài khoản phụ?'),
+                                                          content: const Text(
+                                                              'Tài khoản phụ sẽ được xóa khỏi danh sách'),
+                                                          actions: <Widget>[
+                                                            Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                TextButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Get.back();
+                                                                    },
+                                                                    child: Container(
+                                                                        width: 120,
+                                                                        decoration: BoxDecoration(color: const Color(0xffFDF2D7), borderRadius: BorderRadius.circular(10)),
+                                                                        child: const Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(10.0),
+                                                                          child:
+                                                                              Center(child: Text('Bỏ qua')),
+                                                                        ))),
+                                                                TextButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      controller.deleteSecondAccout(
+                                                                          id:
+                                                                              '${controller.allSecondAccount.value![index].id}',
+                                                                          addedby:
+                                                                              '${user?.data?.id}');
+                                                                      Get.back();
+                                                                    },
+                                                                    child: Container(
+                                                                        width: 120,
+                                                                        decoration: BoxDecoration(color: Colors.deepOrange, borderRadius: BorderRadius.circular(10)),
+                                                                        child: const Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(10.0),
+                                                                          child: Center(
+                                                                              child: Text(
+                                                                            'Đồng ý',
+                                                                            style:
+                                                                                TextStyle(color: Colors.white),
+                                                                          )),
+                                                                        ))),
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ));
+                                          },
+                                        ),
+                                        const SizedBox(
+                                          width: 5,
+                                        ),
+                                        InkWell(
+                                          child: const Icon(
+                                            Icons.edit,
+                                            size: 20,
+                                            color: colorText,
                                           ),
-                                          InkWell(
-                                            child: Icon(
-                                              Icons.edit,
-                                              size: 20,
-                                              color: colorText,
-                                            ),
-                                            onTap: () {
-                                              Get.toNamed('/editsecondaccount',
-                                                  arguments: controller
-                                                      .allSecondAccount
-                                                      .value![index]);
-                                            },
-                                          ),
-                                        ],
-                                      ),
+                                          onTap: () {
+                                            Get.toNamed('/editsecondaccount',
+                                                arguments: controller
+                                                    .allSecondAccount
+                                                    .value![index]);
+                                          },
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
