@@ -24,7 +24,7 @@ class DashboardPage extends StatelessWidget {
               MemoriesPage(),
               const GenealogyPage(),
               EventPage(),
-              UserPage(user: user),
+              UserPage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

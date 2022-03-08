@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
+import 'package:hoavien_app/controllers/saler/user/change_password_saler_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ChangePasswordPage extends StatelessWidget {
-  final ChangePasswordUserController controller =
-      Get.put(ChangePasswordUserController());
-  ChangePasswordPage({Key? key}) : super(key: key);
+class ChangePasswordSalerPage extends StatelessWidget {
+  final controller = Get.put(ChangePasswordSalerController());
+  ChangePasswordSalerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -102,22 +101,13 @@ class ChangePasswordPage extends StatelessWidget {
                             confirmNewPassword:
                                 controller.confirmNewPassWordController.text);
                       },
-                      // onPressed: () {
-                      //   Get.snackbar(
-                      //     "Đăng nhập thành công",
-                      //     "Chúc mừng bạn đã đăng nhập thành công",
-                      //     icon: Icon(Icons.person, color: primaryColor),
-                      //     snackPosition: SnackPosition.TOP,
-                      //   );
-                      // },
                       child: controller.isLoading.value == true
                           ? const SizedBox(
                               height: 20,
                               width: 20,
-                              child: CircularProgressIndicator(),
-                            )
+                              child: CircularProgressIndicator())
                           : const Text(
-                              'Đổi mật khẩu',
+                              'Đổi mật khẩu ',
                               style: TextStyle(
                                   color: secondaryColor,
                                   fontSize: 17,

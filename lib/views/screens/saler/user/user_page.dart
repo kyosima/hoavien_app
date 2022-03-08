@@ -2,26 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
-import 'package:hoavien_app/models/auth/user_model.dart';
-import 'package:hoavien_app/views/screens/customers/user/info_user_page.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class SalerUserPage extends GetView<SalerUserController> {
-  UserModel? user;
-  SalerUserPage({Key? key, this.user}) : super(key: key);
+class SalerUserPage extends StatelessWidget {
+  final SalerUserController controller = Get.put(SalerUserController());
+  SalerUserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
         centerTitle: false,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Thông tin cá nhân',
         ),
       ),
@@ -30,7 +28,7 @@ class SalerUserPage extends GetView<SalerUserController> {
           color: Colors.grey[200],
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
@@ -44,48 +42,52 @@ class SalerUserPage extends GetView<SalerUserController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/images/thanhvien.jpg'),
-                              radius: 42,
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${user?.data?.userInfo?.fullname}',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/images/thanhvien.jpg'),
+                            radius: 42,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(() {
+                                if (controller.loadingUser.value) {
+                                  return Container();
+                                } else {
+                                  return Text(
+                                    '${controller.infoUser.value?.userInfo?.fullname}',
+                                    style: const TextStyle(
+                                      color: secondaryColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  );
+                                }
+                              }),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                'Saler',
+                                style: TextStyle(
+                                  color: secondaryColor,
+                                  fontSize: 16,
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Saler',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
@@ -98,10 +100,10 @@ class SalerUserPage extends GetView<SalerUserController> {
                         icon: Icons.person,
                         label: 'Thông tin cá nhân',
                         onTap: () {
-                          Get.to(() => InfoUserPage());
+                          Get.toNamed('/infousersaler');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -109,21 +111,21 @@ class SalerUserPage extends GetView<SalerUserController> {
                         label: 'Báo cáo sai thông tin',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
                         icon: Icons.lock,
                         label: 'Thay đổi mật khẩu',
                         onTap: () {
-                          Get.toNamed('/thaydoimatkhau');
+                          Get.toNamed('/changepasswordsaler');
                         },
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
@@ -139,7 +141,7 @@ class SalerUserPage extends GetView<SalerUserController> {
                           Get.toNamed('/gioithieu');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -147,7 +149,7 @@ class SalerUserPage extends GetView<SalerUserController> {
                         label: 'Chính sách và điều khoản',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -155,7 +157,7 @@ class SalerUserPage extends GetView<SalerUserController> {
                         label: 'Chia sẻ app',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -189,7 +191,7 @@ _customButtonUser(
             Container(
               height: 40,
               width: 40,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: Color(0xff865841),
               ),
@@ -200,12 +202,12 @@ _customButtonUser(
             )
           ],
         ),
-        SizedBox(
+        const SizedBox(
           width: 15,
         ),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: secondaryColor,
             fontSize: 17,
             fontWeight: FontWeight.w400,

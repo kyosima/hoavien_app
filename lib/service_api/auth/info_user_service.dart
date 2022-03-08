@@ -41,4 +41,23 @@ class InfoUserService {
       return null;
     }
   }
+
+  static Future<StatusModel?> changePassword(
+      {String? id,
+      String? password,
+      String? newPassword,
+      String? confirmNewpassword}) async {
+    var response =
+        await client.put(Uri.parse('$baseURL/api/update-password-user'), body: {
+      'id': id,
+      'password': password,
+      'new_password_confirmation': confirmNewpassword,
+      'new_password': newPassword,
+    });
+    if (response.statusCode == 200) {
+      return statusModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
 }

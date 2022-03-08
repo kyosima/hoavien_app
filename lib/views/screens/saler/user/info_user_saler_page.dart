@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/user/user_controller.dart';
+import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class InfoUserPage extends StatelessWidget {
-  final UserController controller = Get.put(UserController());
+class InfoSalerPage extends StatelessWidget {
   final items = [
     'Nam',
     'Nữ',
   ];
-
-  InfoUserPage({Key? key}) : super(key: key);
+  final SalerUserController controller = Get.put(SalerUserController());
+  InfoSalerPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -9,17 +9,13 @@ import 'package:photo_view/photo_view.dart';
 class SecondAccountMemoriesPage extends StatelessWidget {
   final ImageMemories = [
     'https://placeimg.com/640/480/any',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/01/anh-anime-naruto-dep-ngau-nhat.jpg',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/06/hinh-anh-naruto-chat-ngau-dep-820x600.jpg',
-    'https://thuthuatnhanh.com/wp-content/uploads/2020/03/hinh-anh-chibi-naruto.png',
-    'https://upload.wikimedia.org/wikipedia/vi/5/5e/Itachi_Akatsuki.png',
-    'http://kenhkhampha.info/wp-content/uploads/2021/07/Capture.PNG7_-7.png',
     'https://placeimg.com/640/480/any',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/01/anh-anime-naruto-dep-ngau-nhat.jpg',
-    'https://toigingiuvedep.vn/wp-content/uploads/2021/06/hinh-anh-naruto-chat-ngau-dep-820x600.jpg',
-    'https://thuthuatnhanh.com/wp-content/uploads/2020/03/hinh-anh-chibi-naruto.png',
-    'https://upload.wikimedia.org/wikipedia/vi/5/5e/Itachi_Akatsuki.png',
-    'http://kenhkhampha.info/wp-content/uploads/2021/07/Capture.PNG7_-7.png',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
+    'https://placeimg.com/640/480/any',
   ];
 
   @override
@@ -95,7 +91,7 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                   padding: const EdgeInsets.all(30.0),
                                   child: PhotoView(
                                     imageProvider:
-                                    NetworkImage(ImageMemories[index]),
+                                        NetworkImage(ImageMemories[index]),
                                   ),
                                 ),
                               );
@@ -237,7 +233,7 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                       ),
                                       Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           TextButton(
                                               onPressed: () {
@@ -248,18 +244,18 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                                 width: 130,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        10),
+                                                        BorderRadius.circular(
+                                                            10),
                                                     color: Colors.white,
                                                     border: Border.all(
                                                         color: secondaryColor)),
                                                 child: Center(
                                                     child: Text(
-                                                      'Hủy',
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                      ),
-                                                    )),
+                                                  'Hủy',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                )),
                                               )),
                                           TextButton(
                                               onPressed: () {},
@@ -268,16 +264,16 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                                 width: 130,
                                                 decoration: BoxDecoration(
                                                   borderRadius:
-                                                  BorderRadius.circular(10),
+                                                      BorderRadius.circular(10),
                                                   color: primaryColor,
                                                 ),
                                                 child: Center(
                                                     child: Text(
-                                                      'Ok',
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                      ),
-                                                    )),
+                                                  'Ok',
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                  ),
+                                                )),
                                               )),
                                         ],
                                       )

@@ -24,7 +24,7 @@ class SecondAccountDashboardPage extends StatelessWidget {
               SecondAccountMemoriesPage(),
               const SecondAccountGenealogyPage(),
               const SecondAccountEventPage(),
-              const SecondAccountUserPage(),
+              SecondAccountUserPage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

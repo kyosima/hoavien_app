@@ -25,7 +25,7 @@ class DashboardSalerPage extends StatelessWidget {
               SalerHomePage(user: user),
               const TransactionPage(),
               StatisticalPage(),
-              SalerUserPage(user: user),
+              SalerUserPage(),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(

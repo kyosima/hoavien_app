@@ -18,7 +18,6 @@ import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_control
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/change_password_user_controller.dart';
-import 'package:hoavien_app/controllers/customers/user/info_user_controller.dart';
 import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
 import 'package:hoavien_app/controllers/saler/home/bds_detail_controller.dart';
 import 'package:hoavien_app/controllers/saler/home/saler_home_controller.dart';
@@ -77,18 +76,21 @@ import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dar
 import 'package:hoavien_app/views/screens/saler/statistical/total_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_detail_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
+import 'package:hoavien_app/views/screens/saler/user/change_password_saler_page.dart';
+import 'package:hoavien_app/views/screens/saler/user/info_user_saler_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
+import 'package:hoavien_app/views/screens/second_account/user/change_second_account_password_page.dart';
+import 'package:hoavien_app/views/screens/second_account/user/info_second_account_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
 
 void main() async {
-  await initializeDateFormatting().then((_) => runApp(MyApp()));
+  await initializeDateFormatting().then((_) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({
+  const MyApp({
     Key? key,
   }) : super(key: key);
 
@@ -261,7 +263,6 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/thongtincanhan',
             page: () => InfoUserPage(),
-            binding: InfoUserBinding(),
           ),
           GetPage(
             name: '/lichsumuahang',
@@ -285,7 +286,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/thaydoimatkhau',
-            page: () => const ChangePasswordPage(),
+            page: () => ChangePasswordPage(),
             binding: ChangePasswordUserBinding(),
           ),
           GetPage(
@@ -324,6 +325,14 @@ class MyApp extends StatelessWidget {
             binding: SalerUserBinding(),
           ),
           GetPage(
+            name: '/infousersaler',
+            page: () => InfoSalerPage(),
+          ),
+          GetPage(
+            name: '/changepasswordsaler',
+            page: () => ChangePasswordSalerPage(),
+          ),
+          GetPage(
             name: '/thongbaosaler',
             page: () => const SalerNotificationsPage(),
           ),
@@ -347,6 +356,14 @@ class MyApp extends StatelessWidget {
             name: '/secondaccountdashboard',
             page: () => const SecondAccountDashboardPage(),
             binding: SecondAccountDashboardBinding(),
+          ),
+          GetPage(
+            name: '/infosecondaccount',
+            page: () => InfoSecondAccount(),
+          ),
+          GetPage(
+            name: '/changesecondaccountpassword',
+            page: () => ChangeSecondAccoutPassword(),
           ),
         ]);
   }

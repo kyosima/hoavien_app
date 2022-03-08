@@ -3,15 +3,15 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/service_api/auth/info_user_service.dart';
 
-class ChangePasswordUserBinding implements Bindings {
+class ChangeSecondAccountPasswordBinding implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut(() => ChangePasswordUserController());
+    Get.lazyPut(() => ChangeSecondAccountPasswordController());
   }
 }
 
-class ChangePasswordUserController extends GetxController {
+class ChangeSecondAccountPasswordController extends GetxController {
   final isLoading = false.obs;
   final passWordController = TextEditingController();
   final newPassWordController = TextEditingController();

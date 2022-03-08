@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/controllers/customers/user/user_controller.dart';
-import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/views/screens/customers/user/info_user_page.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 import '../../../../constance.dart';
 
 class UserPage extends StatelessWidget {
-  UserModel? user;
   final UserController controller = Get.put(UserController());
 
-  UserPage({Key? key, this.user}) : super(key: key);
+  UserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class UserPage extends StatelessWidget {
         elevation: 0,
         automaticallyImplyLeading: false,
         centerTitle: false,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Thông tin cá nhân',
         ),
       ),
@@ -30,7 +28,7 @@ class UserPage extends StatelessWidget {
           color: Colors.grey[200],
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
@@ -44,48 +42,52 @@ class UserPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/images/thanhvien.jpg'),
-                              radius: 42,
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${user?.data?.userInfo?.fullname}',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/images/thanhvien.jpg'),
+                            radius: 42,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(() {
+                                if (controller.loadingUser.value) {
+                                  return Container();
+                                } else {
+                                  return Text(
+                                    '${controller.infoUser.value?.userInfo?.fullname}',
+                                    style: const TextStyle(
+                                      color: secondaryColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  );
+                                }
+                              }),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                'Tài khoản chính',
+                                style: TextStyle(
+                                  color: secondaryColor,
+                                  fontSize: 16,
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Tài khoản chính',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
@@ -101,7 +103,7 @@ class UserPage extends StatelessWidget {
                           Get.to(() => InfoUserPage());
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -111,7 +113,7 @@ class UserPage extends StatelessWidget {
                           Get.toNamed('/lichsumuahang');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -119,7 +121,7 @@ class UserPage extends StatelessWidget {
                         label: 'Báo cáo sai thông tin',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -133,7 +135,7 @@ class UserPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
@@ -149,7 +151,7 @@ class UserPage extends StatelessWidget {
                           Get.toNamed('/gioithieu');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -157,7 +159,7 @@ class UserPage extends StatelessWidget {
                         label: 'Chính sách và điều khoản',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -165,7 +167,7 @@ class UserPage extends StatelessWidget {
                         label: 'Chia sẻ app',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -198,7 +200,7 @@ class UserPage extends StatelessWidget {
               Container(
                 height: 40,
                 width: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xff865841),
                 ),
@@ -209,12 +211,12 @@ class UserPage extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: secondaryColor,
               fontSize: 17,
               fontWeight: FontWeight.w400,

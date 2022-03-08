@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/second_account/user/secondaccount_user_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
+
 class SecondAccountUserPage extends StatelessWidget {
-  const SecondAccountUserPage({Key? key}) : super(key: key);
+  final SecondAccountUserController controller =
+      Get.put(SecondAccountUserController());
+  SecondAccountUserPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +15,9 @@ class SecondAccountUserPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        centerTitle: false,
         automaticallyImplyLeading: false,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Thông tin cá nhân',
         ),
       ),
@@ -21,7 +26,7 @@ class SecondAccountUserPage extends StatelessWidget {
           color: Colors.grey[200],
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Container(
@@ -35,48 +40,52 @@ class SecondAccountUserPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundImage:
-                              AssetImage('assets/images/thanhvien.jpg'),
-                              radius: 42,
-                            ),
-                            SizedBox(
-                              width: 15,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Nguyễn Chính Hưng',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                  ),
+                      Row(
+                        children: [
+                          const CircleAvatar(
+                            backgroundImage:
+                                AssetImage('assets/images/thanhvien.jpg'),
+                            radius: 42,
+                          ),
+                          const SizedBox(
+                            width: 15,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(() {
+                                if (controller.isLoading.value) {
+                                  return Container();
+                                } else {
+                                  return Text(
+                                    '${controller.infoUser.value?.userInfo?.fullname}',
+                                    style: const TextStyle(
+                                      color: secondaryColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                    ),
+                                  );
+                                }
+                              }),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                'Tài khoản phụ',
+                                style: TextStyle(
+                                  color: secondaryColor,
+                                  fontSize: 16,
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Tài khoản chính',
-                                  style: TextStyle(
-                                    color: secondaryColor,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
@@ -89,10 +98,10 @@ class SecondAccountUserPage extends StatelessWidget {
                         icon: Icons.person,
                         label: 'Thông tin cá nhân',
                         onTap: () {
-                          Get.toNamed('/thongtincanhan');
+                          Get.toNamed('/infosecondaccount');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -102,7 +111,7 @@ class SecondAccountUserPage extends StatelessWidget {
                           Get.toNamed('/lichsumuahang');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -110,21 +119,21 @@ class SecondAccountUserPage extends StatelessWidget {
                         label: 'Báo cáo sai thông tin',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
                         icon: Icons.lock,
                         label: 'Thay đổi mật khẩu',
                         onTap: () {
-                          Get.toNamed('/thaydoimatkhau');
+                          Get.toNamed('/changesecondaccountpassword');
                         },
                       ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 8,
               ),
               Container(
@@ -140,7 +149,7 @@ class SecondAccountUserPage extends StatelessWidget {
                           Get.toNamed('/gioithieu');
                         },
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -148,7 +157,7 @@ class SecondAccountUserPage extends StatelessWidget {
                         label: 'Chính sách và điều khoản',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
@@ -156,13 +165,15 @@ class SecondAccountUserPage extends StatelessWidget {
                         label: 'Chia sẻ app',
                         onTap: () {},
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       _customButtonUser(
                         icon: Icons.logout,
                         label: 'Đăng xuất',
-                        onTap: () {},
+                        onTap: () {
+                          Get.offAllNamed('/login');
+                        },
                       ),
                     ],
                   ),
@@ -187,7 +198,7 @@ class SecondAccountUserPage extends StatelessWidget {
               Container(
                 height: 40,
                 width: 40,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xff865841),
                 ),
@@ -198,12 +209,12 @@ class SecondAccountUserPage extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           ),
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: secondaryColor,
               fontSize: 17,
               fontWeight: FontWeight.w400,
