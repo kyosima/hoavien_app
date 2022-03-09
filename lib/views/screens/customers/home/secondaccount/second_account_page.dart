@@ -4,8 +4,10 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_second_account_page.dart';
+import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
+import 'package:shimmer/shimmer.dart';
 
 class SecondAccount extends StatelessWidget {
   final SecondAccountController controller = Get.put(SecondAccountController());
@@ -60,7 +62,66 @@ class SecondAccount extends StatelessWidget {
               ),
               GetBuilder<SecondAccountController>(builder: (_) {
                 if (controller.isLoading.value) {
-                  return const Center(child: CircularProgressIndicator());
+                  return Expanded(
+                    child: ListView.builder(
+                        itemCount: 7,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Shimmer.fromColors(
+                                  baseColor: Colors.black.withOpacity(0.1),
+                                  highlightColor: Colors.white.withOpacity(0.5),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const CircleAvatar(
+                                            radius: 25,
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: const [
+                                              ShimmerBox(
+                                                  height: 17, width: 160),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              ShimmerBox(
+                                                  height: 16, width: 170),
+                                              SizedBox(
+                                                height: 8,
+                                              ),
+                                              ShimmerBox(
+                                                  height: 15, width: 140),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                  );
                 } else {
                   return Expanded(
                     child: ListView.builder(

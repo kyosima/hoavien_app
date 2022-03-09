@@ -1,9 +1,9 @@
+import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
   static var client = http.Client();
-  static var baseURL = "http://server21.mevivu.com/apphoavien";
 
   static Future<UserModel?> login(
       {String? phoneNumber, String? passWord}) async {

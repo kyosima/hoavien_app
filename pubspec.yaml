@@ -45,6 +45,7 @@ dependencies:
   dropdown_formfield: ^0.1.4
   http:
   shared_preferences: ^2.0.13
+  shimmer: ^2.0.0
   flutter:
     sdk: flutter
 
