@@ -90,8 +90,8 @@ class HomePage extends GetView<HomeController> {
               Obx(() {
                 if (controller.isLoadingBanner.value) {
                   return Shimmer.fromColors(
-                    baseColor: Colors.black.withOpacity(0.02),
-                    highlightColor: Colors.white.withOpacity(0.5),
+                    baseColor: baseShimmer,
+                    highlightColor: highLightShimmer,
                     child: Container(
                       height: 200,
                       width: double.infinity,

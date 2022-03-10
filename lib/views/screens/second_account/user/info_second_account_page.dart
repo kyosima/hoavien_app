@@ -43,8 +43,13 @@ class InfoSecondAccount extends StatelessWidget {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      const Center(
+                      Center(
                         child: CircleAvatar(
+                          backgroundImage: NetworkImage(controller
+                                      .infoUser.value?.avatar ==
+                                  null
+                              ? defaultUser
+                              : "$baseURL${controller.infoUser.value?.avatar}"),
                           radius: 45,
                         ),
                       ),

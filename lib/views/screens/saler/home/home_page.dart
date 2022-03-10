@@ -3,19 +3,21 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/home/saler_home_controller.dart';
+import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../models/auth/user_model.dart';
 
 class SalerHomePage extends GetView<SalerHomeController> {
-  UserModel? user;
-  SalerHomePage({Key? key, this.user}) : super(key: key);
+  final UserModel? user;
+  const SalerHomePage({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(65.0),
+        preferredSize: const Size.fromHeight(65.0),
         child: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: primaryColor,
@@ -25,7 +27,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
             children: [
               Stack(
                 alignment: Alignment.center,
-                children: [
+                children: const [
                   CircleAvatar(
                     radius: 20,
                     backgroundColor: secondaryColor,
@@ -36,7 +38,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Column(
@@ -45,17 +47,17 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 children: [
                   Text(
                     '${user?.data?.userInfo?.fullname}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       wordSpacing: 0,
                       letterSpacing: 0,
                       color: secondaryColor,
                       fontSize: 15,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     'Nhân viên bán hàng',
                     style: TextStyle(
                       color: secondaryColor,
@@ -70,7 +72,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
           actions: [
             Stack(
               alignment: Alignment.center,
-              children: [
+              children: const [
                 CircleAvatar(
                   radius: 17,
                   backgroundColor: secondaryColor,
@@ -81,12 +83,12 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Stack(
               alignment: Alignment.center,
-              children: [
+              children: const [
                 CircleAvatar(
                   radius: 17,
                   backgroundColor: secondaryColor,
@@ -97,7 +99,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             InkWell(
@@ -106,7 +108,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
               },
               child: Stack(
                 alignment: Alignment.center,
-                children: [
+                children: const [
                   CircleAvatar(
                     radius: 17,
                     backgroundColor: secondaryColor,
@@ -118,7 +120,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 10,
             )
           ],
@@ -133,69 +135,69 @@ class SalerHomePage extends GetView<SalerHomeController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    child: ImageSlideshow(
-                      /// Width of the [ImageSlideshow].
-                      width: double.infinity,
+                  Obx(() {
+                    if (controller.isLoadingBanner.value) {
+                      return Shimmer.fromColors(
+                          baseColor: baseShimmer,
+                          highlightColor: highLightShimmer,
+                          child: const ShimmerBox(
+                              height: 200, width: double.infinity));
+                    } else {
+                      return ImageSlideshow(
+                        /// Width of the [ImageSlideshow].
+                        width: double.infinity,
 
-                      /// Height of the [ImageSlideshow].
+                        /// Height of the [ImageSlideshow].
 
-                      /// The page to show when first creating the [ImageSlideshow].
-                      initialPage: 0,
+                        /// The page to show when first creating the [ImageSlideshow].
+                        initialPage: 0,
 
-                      /// The color to paint the indicator.
-                      indicatorColor: secondaryColor,
+                        /// The color to paint the indicator.
+                        indicatorColor: secondaryColor,
 
-                      /// The color to paint behind th indicator.
-                      indicatorBackgroundColor: Colors.grey,
+                        /// The color to paint behind th indicator.
+                        indicatorBackgroundColor: Colors.grey,
 
-                      /// The widgets to display in the [ImageSlideshow].
-                      /// Add the sample image file into the images folder
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(
-                            'assets/images/banner.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(
-                            'assets/images/banner.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.asset(
-                            'assets/images/banner.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
+                        /// The widgets to display in the [ImageSlideshow].
+                        /// Add the sample image file into the images folder
+                        children: [
+                          for (var i = 0;
+                              i <
+                                  num.parse(controller.allBanner.value!.length
+                                      .toString());
+                              i++) ...[
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image.network(
+                                '$baseURL${controller.allBanner.value![i].image}',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ]
+                        ],
 
-                      /// Called whenever the page in the center of the viewport changes.
+                        /// Called whenever the page in the center of the viewport changes.
 
-                      /// Auto scroll interval.
-                      /// Do not auto scroll with null or 0.
-                      autoPlayInterval: 7000,
+                        /// Auto scroll interval.
+                        /// Do not auto scroll with null or 0.
+                        autoPlayInterval: 7000,
 
-                      /// Loops back to first slide.
-                      isLoop: true,
-                    ),
-                  ),
-                  SizedBox(
+                        /// Loops back to first slide.
+                        isLoop: true,
+                      );
+                    }
+                  }),
+                  const SizedBox(
                     height: 15,
                   ),
-                  CustomTitleText(title: 'Đang mở bán'),
+                  const CustomTitleText(title: 'Đang mở bán'),
                 ],
               ),
             ),
             Obx(
               () => ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: controller.productCount.value,
                   itemBuilder: (BuildContext context, index) {
                     return InkWell(
@@ -228,7 +230,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                                   fit: BoxFit.cover,
                                   height: 80,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Expanded(
@@ -236,7 +238,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
+                                    children: const [
                                       Text(
                                         'Phú Quý 1',
                                         style: TextStyle(
@@ -263,7 +265,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                     );
                   }),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Center(
@@ -274,8 +276,8 @@ class SalerHomePage extends GetView<SalerHomeController> {
                         border: Border.all(color: secondaryColor),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Center(child: Text('Xem thêm')),
                     )),
                 onPressed: () {
@@ -283,8 +285,8 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
+            const Padding(
+              padding: EdgeInsets.all(15.0),
               child: CustomTitleText(title: 'Bất động sản chuyển nhượng'),
             ),
             Obx(
@@ -293,7 +295,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 child: GridView.count(
                   childAspectRatio: (0.60),
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   children: List.generate(controller.bdsCount.value, (index) {
                     return InkWell(
@@ -310,10 +312,10 @@ class SalerHomePage extends GetView<SalerHomeController> {
                                   'assets/images/bds.png',
                                   fit: BoxFit.cover,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'Lô 1 _ Khu Khang Minh',
                                   style: TextStyle(
                                     color: secondaryColor,
@@ -321,20 +323,20 @@ class SalerHomePage extends GetView<SalerHomeController> {
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'đ 500.000',
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'Lô đất nằm tại vị trí H1.1 khu Khang Minh kjshdjkkjhkjsakdhjkahdkah',
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
@@ -362,7 +364,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Center(
@@ -373,8 +375,8 @@ class SalerHomePage extends GetView<SalerHomeController> {
                         border: Border.all(color: secondaryColor),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Center(child: Text('Xem thêm')),
                     )),
                 onPressed: () {

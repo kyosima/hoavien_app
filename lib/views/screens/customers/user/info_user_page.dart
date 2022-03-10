@@ -33,7 +33,7 @@ class InfoUserPage extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Obx(() {
             if (controller.isLoading.value) {
-              return const Center(child: CircularProgressIndicator());
+              return Container();
             } else {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,9 +44,14 @@ class InfoUserPage extends StatelessWidget {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      const Center(
+                      Center(
                         child: CircleAvatar(
                           radius: 45,
+                          backgroundImage: NetworkImage(controller
+                                      .infoUser.value?.avatar ==
+                                  null
+                              ? "https://www.genefx.com/static/media/user-default.22b0811e.jpg"
+                              : "$baseURL${controller.infoUser.value?.avatar}"),
                         ),
                       ),
                       Center(

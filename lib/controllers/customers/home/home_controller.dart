@@ -32,7 +32,6 @@ class HomeController extends GetxController {
       isLoadingBanner.value = true;
       var response = await ApiBanner.getBanner();
       allBanner.value = response?.data;
-      print(response?.message);
       update();
     } finally {
       isLoadingBanner.value = false;

@@ -42,9 +42,12 @@ class SecondAccountUserPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          const CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/thanhvien.jpg'),
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(controller
+                                        .infoUser.value?.avatar ==
+                                    null
+                                ? defaultUser
+                                : "$baseURL${controller.infoUser.value?.avatar}"),
                             radius: 42,
                           ),
                           const SizedBox(

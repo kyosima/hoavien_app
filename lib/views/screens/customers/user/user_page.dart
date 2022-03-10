@@ -38,53 +38,56 @@ class UserPage extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                  child: Obx(() {
+                    if (controller.loadingUser.value) {
+                      return Container();
+                    } else {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/images/thanhvien.jpg'),
-                            radius: 42,
-                          ),
-                          const SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          Row(
                             children: [
-                              Obx(() {
-                                if (controller.loadingUser.value) {
-                                  return Container();
-                                } else {
-                                  return Text(
+                              CircleAvatar(
+                                backgroundImage: NetworkImage(controller
+                                            .infoUser.value?.avatar ==
+                                        null
+                                    ? defaultUser
+                                    : '$baseURL${controller.infoUser.value?.avatar}'),
+                                radius: 42,
+                              ),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
                                     '${controller.infoUser.value?.userInfo?.fullname}',
                                     style: const TextStyle(
                                       color: secondaryColor,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18,
                                     ),
-                                  );
-                                }
-                              }),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text(
-                                'Tài khoản chính',
-                                style: TextStyle(
-                                  color: secondaryColor,
-                                  fontSize: 16,
-                                ),
-                              ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  const Text(
+                                    'Tài khoản chính',
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
-                          )
+                          ),
                         ],
-                      ),
-                    ],
-                  ),
+                      );
+                    }
+                  }),
                 ),
               ),
               const SizedBox(
