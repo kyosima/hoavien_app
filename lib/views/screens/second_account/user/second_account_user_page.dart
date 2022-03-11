@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/controllers/second_account/user/secondaccount_user_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
@@ -175,7 +176,7 @@ class SecondAccountUserPage extends StatelessWidget {
                         icon: Icons.logout,
                         label: 'Đăng xuất',
                         onTap: () {
-                          Get.offAllNamed('/login');
+                          Get.put(AuthController()).logOut();
                         },
                       ),
                     ],

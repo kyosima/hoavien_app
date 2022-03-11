@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/auth/control_view_controller.dart';
 import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
-import 'package:hoavien_app/controllers/auth/login_controller.dart';
+import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
@@ -28,6 +29,7 @@ import 'package:hoavien_app/controllers/second_account/dashboard/secondaccount_d
 import 'package:hoavien_app/views/dashboard/customer/dashboard_customer_page.dart';
 import 'package:hoavien_app/views/dashboard/saler/dashboard_saler_page.dart';
 import 'package:hoavien_app/views/dashboard/second_accound/dashboard_secondaccount_page.dart';
+import 'package:hoavien_app/views/screens/auth/control_view_page.dart';
 import 'package:hoavien_app/views/screens/auth/forgot_password_page.dart';
 import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:hoavien_app/views/screens/auth/new_password.dart';
@@ -104,14 +106,14 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.brown,
           primaryColor: primaryColor,
         ),
-        home: LoginPage(),
-        initialBinding: LoginBinding(),
+        home: ControlView(),
+        initialBinding: ControlViewBinding(),
         getPages: [
           //Customer
           GetPage(
             name: '/login',
             page: () => LoginPage(),
-            binding: LoginBinding(),
+            binding: AuthBinding(),
           ),
           GetPage(
             name: '/dashboard',
@@ -354,7 +356,7 @@ class MyApp extends StatelessWidget {
           //secondaccountpage
           GetPage(
             name: '/secondaccountdashboard',
-            page: () => const SecondAccountDashboardPage(),
+            page: () => SecondAccountDashboardPage(),
             binding: SecondAccountDashboardBinding(),
           ),
           GetPage(

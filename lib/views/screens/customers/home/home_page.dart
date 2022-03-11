@@ -12,9 +12,9 @@ import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
 import 'package:shimmer/shimmer.dart';
 
-class HomePage extends GetView<HomeController> {
-  final UserModel? user;
-  const HomePage({Key? key, this.user}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final controller = Get.put(HomeController());
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +176,7 @@ class HomePage extends GetView<HomeController> {
                     tittle: 'TK phụ',
                     icon: Icons.group,
                     onTap: () {
-                      Get.to(() => SecondAccount(user: user));
+                      Get.to(() => SecondAccount());
                     },
                   ),
                   CustomButtonHomePage(

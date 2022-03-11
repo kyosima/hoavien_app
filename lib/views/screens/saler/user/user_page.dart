@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SalerUserPage extends StatelessWidget {
   final SalerUserController controller = Get.put(SalerUserController());
@@ -166,7 +167,10 @@ class SalerUserPage extends StatelessWidget {
                       _customButtonUser(
                         icon: Icons.logout,
                         label: 'Đăng xuất',
-                        onTap: () {
+                        onTap: () async {
+                          final prefs = await SharedPreferences.getInstance();
+                          prefs.remove('id');
+                          prefs.remove('userRole');
                           Get.offAllNamed('/login');
                         },
                       ),

@@ -12,7 +12,8 @@ import 'package:hoavien_app/views/widgets/customsearch.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
-  const SecondAccountHomePage({Key? key}) : super(key: key);
+  final controller = Get.put(SecondAccountHomeController());
+  SecondAccountHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -418,7 +419,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
               Obx(
                 () => GridView.count(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   childAspectRatio: (0.64),
 
                   // Create a grid with 2 columns. If you change the scrollDirection to

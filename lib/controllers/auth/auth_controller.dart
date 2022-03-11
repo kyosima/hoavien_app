@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/controllers/customers/user/user_controller.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/service_api/auth/api_service.dart';
+import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constance.dart';
 
-class LoginBinding implements Bindings {
+class AuthBinding implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut(() => LoginController());
+    Get.lazyPut(() => AuthController());
   }
 }
 
-class LoginController extends GetxController {
+class AuthController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
   final phoneNumber = TextEditingController();
   final passWord = TextEditingController();
@@ -89,6 +91,7 @@ class LoginController extends GetxController {
         await prefs.setInt('id', user?.data?.id ?? 0);
         loginProcess.value = false;
         if (user?.data?.role == 'customer') {
+          await prefs.setString('userRole', user?.data?.role ?? "");
           Get.toNamed('/dashboard', arguments: user);
           Get.snackbar(
             "Đăng nhập thành công",
@@ -99,6 +102,7 @@ class LoginController extends GetxController {
             backgroundColor: Colors.white.withOpacity(0.7),
           );
         } else if (user?.data?.role == 'sale') {
+          await prefs.setString('userRole', user?.data?.role ?? "");
           Get.toNamed('/salerdashboard', arguments: user);
           Get.snackbar(
             "Đăng nhập thành công",
@@ -109,6 +113,7 @@ class LoginController extends GetxController {
             backgroundColor: Colors.white.withOpacity(0.7),
           );
         } else if (user?.data?.role == 'customer-secondary') {
+          await prefs.setString('userRole', user?.data?.role ?? "");
           Get.toNamed('/secondaccountdashboard');
           Get.snackbar(
             "Đăng nhập thành công",
@@ -159,5 +164,15 @@ class LoginController extends GetxController {
         ));
       }
     }
+  }
+
+  Future<void> logOut() async {
+    final preps = await SharedPreferences.getInstance();
+    await preps.remove('id');
+    await preps.remove('userRole');
+    Get.offAllNamed('/login');
+    Get.delete<UserController>();
+    phoneNumber.clear();
+    passWord.clear();
   }
 }

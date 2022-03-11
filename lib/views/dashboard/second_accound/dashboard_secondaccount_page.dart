@@ -10,7 +10,8 @@ import 'package:hoavien_app/views/screens/second_account/memories/second_account
 import 'package:hoavien_app/views/screens/second_account/user/second_account_user_page.dart';
 
 class SecondAccountDashboardPage extends StatelessWidget {
-  const SecondAccountDashboardPage({Key? key}) : super(key: key);
+  final controller = Get.put(SecondAccountDashboardController());
+  SecondAccountDashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class SecondAccountDashboardPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              const SecondAccountHomePage(),
+              SecondAccountHomePage(),
               SecondAccountMemoriesPage(),
               const SecondAccountGenealogyPage(),
               const SecondAccountEventPage(),

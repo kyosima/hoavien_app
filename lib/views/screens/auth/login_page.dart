@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/auth/login_controller.dart';
-
+import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class LoginPage extends GetView<LoginController> {
-  final _formKey = GlobalKey<FormState>();
+class LoginPage extends StatelessWidget {
+  final controller = Get.put(AuthController());
   LoginPage({Key? key}) : super(key: key);
 
   @override
@@ -83,35 +82,20 @@ class LoginPage extends GetView<LoginController> {
                       ],
                     ),
                   ),
-                  Obx(
-                    () => Row(
-                      children: [
-                        Expanded(
-                          child: CheckboxListTile(
-                            contentPadding: EdgeInsets.zero,
-                            controlAffinity: ListTileControlAffinity.leading,
-                            title: const Text(
-                              "Nhớ mật khẩu",
-                              style: TextStyle(fontSize: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            Get.toNamed('/forgotpassword');
+                          },
+                          child: const Text(
+                            'Quên mật khẩu ?',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
                             ),
-                            value: controller.isChecked.value,
-                            onChanged: (value) {
-                              controller.check();
-                            },
-                          ),
-                        ),
-                        TextButton(
-                            onPressed: () {
-                              Get.toNamed('/forgotpassword');
-                            },
-                            child: const Text(
-                              'Quên mật khẩu ?',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                              ),
-                            )),
-                      ],
-                    ),
+                          )),
+                    ],
                   ),
                   const SizedBox(
                     height: 50,

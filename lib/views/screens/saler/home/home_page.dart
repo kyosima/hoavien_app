@@ -10,8 +10,10 @@ import 'package:shimmer/shimmer.dart';
 import '../../../../models/auth/user_model.dart';
 
 class SalerHomePage extends GetView<SalerHomeController> {
+  @override
+  final controller = Get.put(SalerHomeController());
   final UserModel? user;
-  const SalerHomePage({Key? key, this.user}) : super(key: key);
+  SalerHomePage({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '${user?.data?.userInfo?.fullname}',
+                    '${user?.data?.userInfo?.fullname ?? "Saler"}',
                     style: const TextStyle(
                       wordSpacing: 0,
                       letterSpacing: 0,

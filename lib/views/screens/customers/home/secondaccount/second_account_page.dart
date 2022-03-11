@@ -7,6 +7,7 @@ import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_secon
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccount extends StatelessWidget {
@@ -52,7 +53,7 @@ class SecondAccount extends StatelessWidget {
                       size: 40,
                     ),
                     onPressed: () {
-                      Get.to(() => AddSecondAccountPage(user: user));
+                      Get.to(() => AddSecondAccountPage());
                     },
                   )
                 ],
@@ -145,9 +146,14 @@ class SecondAccount extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const CircleAvatar(
-                                          backgroundImage: AssetImage(
-                                              'assets/images/thanhvien.jpg'),
+                                        CircleAvatar(
+                                          backgroundImage: NetworkImage(controller
+                                                      .allSecondAccount
+                                                      .value![index]
+                                                      .avatar ==
+                                                  null
+                                              ? defaultUser
+                                              : "$baseURL${controller.allSecondAccount.value![index].avatar}"),
                                           radius: 25,
                                         ),
                                         const SizedBox(
@@ -233,12 +239,16 @@ class SecondAccount extends StatelessWidget {
                                                                         ))),
                                                                 TextButton(
                                                                     onPressed:
-                                                                        () {
+                                                                        () async {
+                                                                      final prefs =
+                                                                          await SharedPreferences
+                                                                              .getInstance();
                                                                       controller.deleteSecondAccout(
                                                                           id:
                                                                               '${controller.allSecondAccount.value![index].id}',
-                                                                          addedby:
-                                                                              '${user?.data?.id}');
+                                                                          addedby: prefs
+                                                                              .getInt('id')
+                                                                              .toString());
                                                                       Get.back();
                                                                     },
                                                                     child: Container(

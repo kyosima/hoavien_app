@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/controllers/customers/user/user_controller.dart';
 import 'package:hoavien_app/views/screens/customers/user/info_user_page.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
@@ -8,7 +9,7 @@ import '../../../../constance.dart';
 
 class UserPage extends StatelessWidget {
   final UserController controller = Get.put(UserController());
-
+  final AuthController authController = Get.put(AuthController());
   UserPage({Key? key}) : super(key: key);
 
   @override
@@ -177,7 +178,7 @@ class UserPage extends StatelessWidget {
                         icon: Icons.logout,
                         label: 'Đăng xuất',
                         onTap: () {
-                          Get.offAllNamed('/login');
+                          authController.logOut();
                         },
                       ),
                     ],

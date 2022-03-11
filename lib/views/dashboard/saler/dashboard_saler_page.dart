@@ -11,7 +11,7 @@ import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
 
 class DashboardSalerPage extends StatelessWidget {
   final user = Get.arguments;
-
+  final controller = Get.put(SalerDashboardController());
   DashboardSalerPage({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +22,9 @@ class DashboardSalerPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              SalerHomePage(user: user),
+              SalerHomePage(
+                user: user,
+              ),
               const TransactionPage(),
               StatisticalPage(),
               SalerUserPage(),
@@ -58,7 +60,7 @@ class DashboardSalerPage extends StatelessWidget {
                 label: 'Thống kê',
               ),
               _bottomNavigationBarItem(
-                icon: controller.tabIndex == 4
+                icon: controller.tabIndex == 3
                     ? CupertinoIcons.person_fill
                     : CupertinoIcons.person,
                 label: 'Cá nhân',
