@@ -6,6 +6,8 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class GenealoryDetailPage extends StatefulWidget {
+  const GenealoryDetailPage({Key? key}) : super(key: key);
+
   @override
   _TreeViewPageState createState() => _TreeViewPageState();
 }
@@ -14,25 +16,25 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffFDF2D7),
+        backgroundColor: const Color(0xffFDF2D7),
         appBar: AppBar(
           actions: [
             TextButton(
                 onPressed: () {
                   print(graph.toJson());
                 },
-                child: Text(
+                child: const Text(
                   'Lưu gia phả',
                   style: TextStyle(color: Colors.brown),
                 ))
           ],
           centerTitle: false,
           elevation: 0,
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: secondaryColor,
           ),
           backgroundColor: primaryColor,
-          title: CustomTitleText(
+          title: const CustomTitleText(
             title: 'Họ Trần',
           ),
         ),
@@ -42,13 +44,13 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
             child: Column(
               mainAxisSize: MainAxisSize.max,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Expanded(
                   child: InteractiveViewer(
                       constrained: false,
-                      boundaryMargin: EdgeInsets.all(100),
+                      boundaryMargin: const EdgeInsets.all(100),
                       minScale: 0.01,
                       maxScale: 2.6,
                       child: GraphView(
@@ -56,7 +58,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                         algorithm: BuchheimWalkerAlgorithm(
                             builder, TreeEdgeRenderer(builder)),
                         paint: Paint()
-                          ..color = Color(0xffAE0C01)
+                          ..color = const Color(0xffAE0C01)
                           ..strokeWidth = 2
                           ..style = PaintingStyle.fill,
                         builder: (Node node) {
@@ -87,19 +89,19 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
               a == 1
                   ? IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.star,
                         color: Colors.transparent,
                       ))
                   : IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.star,
                         color: Colors.transparent,
                       )),
               IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.star,
                     color: Colors.transparent,
                   )),
@@ -123,36 +125,36 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
               ),
               Container(
                   height: 180,
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(color: Colors.transparent, spreadRadius: 1),
                     ],
                   ),
                   child: Column(
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage:
                             AssetImage('assets/images/thanhvien.jpg'),
                         radius: 32,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
                         a == 1 ? 'Thủy Tổ' : "Thành viên",
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: secondaryColor,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      Text('24/12/1954'),
-                      SizedBox(
+                      const Text('24/12/1954'),
+                      const SizedBox(
                         height: 15,
                       ),
                     ],
@@ -164,7 +166,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
               a == 1
                   ? IconButton(
                       onPressed: () {},
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.star,
                         color: Colors.transparent,
                       ))
@@ -172,9 +174,9 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                       onPressed: () {
                         showDialog(
                             context: context,
-                            builder: (BuildContext context) => new AlertDialog(
-                                  title: new Text('Xóa thành viên ?'),
-                                  content: new Text(
+                            builder: (BuildContext context) => AlertDialog(
+                                  title: const Text('Xóa thành viên ?'),
+                                  content: const Text(
                                       'Thành viên sẽ được xóa khỏi cây gia phả'),
                                   actions: <Widget>[
                                     Row(
@@ -188,13 +190,13 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                                             child: Container(
                                                 width: 120,
                                                 decoration: BoxDecoration(
-                                                    color: Color(0xffFDF2D7),
+                                                    color:
+                                                        const Color(0xffFDF2D7),
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(10.0),
                                                   child: Center(
                                                       child: Text('Bỏ qua')),
                                                 ))),
@@ -213,9 +215,8 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             10)),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(
-                                                      10.0),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(10.0),
                                                   child: Center(
                                                       child: Text(
                                                     'Đồng ý',
@@ -228,7 +229,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                                   ],
                                 ));
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.delete_outline,
                         color: secondaryColor,
                       )),
@@ -240,7 +241,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                     graph.addEdge(edge, node3);
                     setState(() {});
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.add_circle_outline,
                     color: secondaryColor,
                   )),

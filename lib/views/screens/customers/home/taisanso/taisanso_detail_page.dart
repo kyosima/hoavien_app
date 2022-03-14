@@ -11,6 +11,7 @@ class TaisansoDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
           elevation: 1,
           backgroundColor: Colors.white,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/controllers/customers/user/user_controller.dart';
 import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/service_api/auth/api_service.dart';
-import 'package:hoavien_app/views/screens/auth/login_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constance.dart';
@@ -11,7 +9,6 @@ import '../../constance.dart';
 class AuthBinding implements Bindings {
   @override
   void dependencies() {
-    // TODO: implement dependencies
     Get.lazyPut(() => AuthController());
   }
 }
@@ -171,7 +168,7 @@ class AuthController extends GetxController {
     await preps.remove('id');
     await preps.remove('userRole');
     Get.offAllNamed('/login');
-    Get.delete<UserController>();
+    Get.deleteAll();
     phoneNumber.clear();
     passWord.clear();
   }

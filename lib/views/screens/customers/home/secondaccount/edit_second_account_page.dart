@@ -171,7 +171,7 @@ class EditSecondAccountPage extends StatelessWidget {
                       child: TextButton(
                         onPressed: () async {
                           final prefs = await SharedPreferences.getInstance();
-                          final idAdded = await prefs.getInt('id');
+                          final idAdded = prefs.getInt('id');
                           controller.editSecondAccount(
                             id: userInfo.id.toString(),
                             fullname: controller.editFullNameController.text,
@@ -184,14 +184,14 @@ class EditSecondAccountPage extends StatelessWidget {
                             addedby: idAdded.toString(),
                           );
                         },
-                        child: controller.buttonLoading.value == true
-                            ? SizedBox(
+                        child: controller.isLoadingButton.value == true
+                            ? const SizedBox(
                                 height: 20,
                                 width: 20,
                                 child: CircularProgressIndicator())
-                            : Text(
+                            : const Text(
                                 'Lưu lại',
-                                style: const TextStyle(
+                                style: TextStyle(
                                     color: secondaryColor,
                                     fontSize: 17,
                                     fontWeight: FontWeight.bold),

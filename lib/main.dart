@@ -10,6 +10,7 @@ import 'package:hoavien_app/controllers/customers/event/create_event_controller.
 import 'package:hoavien_app/controllers/customers/event/event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/genealogy_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/product/product_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
@@ -205,7 +206,8 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/productdetail',
-            page: () => const ProductDetailPage(),
+            page: () => ProductDetailPage(),
+            binding: ProductDetailBinding(),
           ),
           GetPage(
             name: '/cart',

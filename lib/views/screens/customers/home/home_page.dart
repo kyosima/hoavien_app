@@ -8,6 +8,7 @@ import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_ac
 import 'package:hoavien_app/views/widgets/custom_button_home_page.dart';
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
+import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
 import 'package:shimmer/shimmer.dart';
@@ -350,50 +351,117 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Obx(
-                () => GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  childAspectRatio: (0.64),
+              Obx(() {
+                if (controller.isLoadingProduct.value) {
+                  return GridView.count(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: (0.64),
 
-                  // Create a grid with 2 columns. If you change the scrollDirection to
-                  // horizontal, this produces 2 rows.
-                  crossAxisCount: 2,
-                  // Generate 100 widgets that display their index in the List.
-                  children:
-                      List.generate(controller.productCount.value, (index) {
-                    return Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 10,
-                                offset: const Offset(
-                                    0, 0), // changes position of shadow
+                    // Create a grid with 2 columns. If you change the scrollDirection to
+                    // horizontal, this produces 2 rows.
+                    crossAxisCount: 2,
+                    // Generate 100 widgets that display their index in the List.
+                    children: List.generate(4, (index) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    ShimmerBox(
+                                        height: 140, width: double.infinity),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    ShimmerBox(height: 20, width: 140),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    ShimmerBox(height: 20, width: 120),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    ShimmerBox(height: 20, width: 100),
+                                  ],
+                                ),
                               ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CustomProducts(
-                                onTap: () => Get.toNamed('/productdetail'),
-                                image: 'assets/images/product.png',
-                                title: 'Đĩa hoa quả chất liệu đồng 3 chân',
-                                size: 'D170 X H20',
-                                price: 'đ 125.000'),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
+                      );
+                    }),
+                  );
+                } else {
+                  return GridView.count(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: (0.64),
+
+                    // Create a grid with 2 columns. If you change the scrollDirection to
+                    // horizontal, this produces 2 rows.
+                    crossAxisCount: 2,
+                    // Generate 100 widgets that display their index in the List.
+                    children: List.generate(controller.allProduct.value!.length,
+                        (index) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomProducts(
+                                  onTap: () => Get.toNamed('/productdetail',
+                                      arguments: controller
+                                          .allProduct.value![index].id),
+                                  image:
+                                      '$baseURL${controller.allProduct.value![index].avatar}',
+                                  title:
+                                      '${controller.allProduct.value![index].name}',
+                                  size:
+                                      '${controller.allProduct.value![index].size}',
+                                  price:
+                                      'đ ${controller.allProduct.value![index].price}'),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
+                }
+              }),
               Center(
                 child: SizedBox(
                   width: 200,

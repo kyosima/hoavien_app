@@ -24,7 +24,12 @@ class CustomProducts extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(image),
+          Image.network(
+            image,
+            fit: BoxFit.cover,
+            height: 140,
+            width: double.infinity,
+          ),
           const SizedBox(
             height: 10,
           ),

@@ -28,6 +28,7 @@ class SecondAccountController extends GetxController {
   var obscureTextPassword = false.obs;
   var obscureTextConfirmPassword = false.obs;
   //edit secondAccount
+  final isLoadingButton = false.obs;
   var obsEditPassword = false.obs;
   var obsEditConfirmPassword = false.obs;
   final editFullNameController = TextEditingController();
@@ -293,6 +294,7 @@ class SecondAccountController extends GetxController {
       String? relationship,
       String? password,
       String? confirmpassword}) async {
+    isLoadingButton.value = true;
     List<Data>? resuft = [];
     await ApiSecondAccount.editSecondAccount(
       id: id,
@@ -307,6 +309,7 @@ class SecondAccountController extends GetxController {
         editConfirmPasswordController.text.isEmpty ||
         editFullNameController.text.isEmpty ||
         editRelationshipController.text.isEmpty) {
+      isLoadingButton.value = false;
       Get.defaultDialog(
           content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -345,6 +348,7 @@ class SecondAccountController extends GetxController {
       ));
     } else if (editPasswordController.text !=
         editConfirmPasswordController.text) {
+      isLoadingButton.value = false;
       Get.defaultDialog(
           content: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -382,6 +386,7 @@ class SecondAccountController extends GetxController {
         ],
       ));
     } else {
+      isLoadingButton.value = false;
       var response = await ApiSecondAccount.listSecondAccount();
       resuft = response?.data;
       Get.snackbar(

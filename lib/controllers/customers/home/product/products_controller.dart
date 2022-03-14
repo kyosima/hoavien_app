@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:hoavien_app/models/home/product/product_model.dart';
+import 'package:hoavien_app/service_api/customer/home/product/product_service.dart';
 
 class ProductsBinding implements Bindings {
   @override
@@ -31,79 +33,43 @@ class ProductsController extends GetxController {
       'isCheck': false,
     },
   ].obs;
-
-  List<Map<String, dynamic>> allProduct = [
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Bàn thờ cúng tổ tiên sang trọng",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-    {
-      "name": "Đĩa hoa quả chất liệu đồng 3 chân",
-      "kt": "D170 X H20",
-      "price": "đ 125.000",
-    },
-  ];
-
-  Rx<List<Map<String, dynamic>>> foundProduct =
-      Rx<List<Map<String, dynamic>>>([]);
-
+  final allProduct = ProductModel().data.obs;
+  final isLoadingProduct = false.obs;
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
-    foundProduct.value = allProduct;
+    getProduct();
   }
 
-  void findProduct(String product) {
-    List<Map<String, dynamic>> resuft = [];
+  void getProduct() async {
+    try {
+      isLoadingProduct.value = true;
+      var response = await ProductService.getProduct();
+      allProduct.value = response?.data;
+      update();
+    } finally {
+      isLoadingProduct.value = false;
+      update();
+    }
+  }
+
+  void findProduct(String product) async {
+    List<Data>? resuft = [];
+    var response = await ProductService.getProduct();
+
     if (product.isEmpty) {
-      resuft = allProduct;
+      resuft = response?.data;
       refresh();
     } else {
-      resuft = allProduct
-          .where((element) => element['name']
+      resuft = response?.data
+          ?.where((element) => element.name
               .toString()
               .toLowerCase()
               .contains(product.toLowerCase()))
           .toList();
     }
-    foundProduct.value = resuft;
+    allProduct.value = resuft;
     refresh();
   }
 
