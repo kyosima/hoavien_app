@@ -25,8 +25,7 @@ class ProductDetailPage extends StatelessWidget {
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
-            Get.toNamed('/dashboard');
-            Get.delete<ProductDetailController>();
+            Get.back();
           },
           child: Stack(
             alignment: Alignment.center,

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/banner_model.dart';
+import 'package:hoavien_app/models/home/product/product_model.dart';
 import 'package:hoavien_app/service_api/auth/api_banner.dart';
+import 'package:hoavien_app/service_api/customer/home/product/product_service.dart';
 
 class SecondAccountHomeBinding implements Bindings {
   @override
@@ -13,7 +15,9 @@ class SecondAccountHomeBinding implements Bindings {
 class SecondAccountHomeController extends GetxController {
   var productCount = 6.obs;
   final isLoadingBanner = false.obs;
+  final isLoadingProduct = false.obs;
   final allBanner = BannerModel().data.obs;
+  final allProduct = ProductModel().data.obs;
 
   void readmore() {
     productCount = productCount + 4;
@@ -25,6 +29,7 @@ class SecondAccountHomeController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     getBanner();
+    getProduct();
   }
 
   void getBanner() async {
@@ -35,6 +40,16 @@ class SecondAccountHomeController extends GetxController {
       update();
     } finally {
       isLoadingBanner.value = false;
+    }
+  }
+
+  void getProduct() async {
+    try {
+      isLoadingProduct.value = true;
+      var response = await ProductService.getProduct();
+      allProduct.value = response?.data;
+    } finally {
+      isLoadingProduct.value = false;
     }
   }
 }

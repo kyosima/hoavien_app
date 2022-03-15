@@ -9,9 +9,11 @@ import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
+  @override
   final controller = Get.put(SecondAccountHomeController());
   SecondAccountHomePage({Key? key}) : super(key: key);
 
@@ -416,50 +418,61 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
               SizedBox(
                 height: 20,
               ),
-              Obx(
-                () => GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  childAspectRatio: (0.64),
+              Obx(() {
+                if (controller.isLoadingProduct.value) {
+                  return Container();
+                } else {
+                  return GridView.count(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: (0.64),
 
-                  // Create a grid with 2 columns. If you change the scrollDirection to
-                  // horizontal, this produces 2 rows.
-                  crossAxisCount: 2,
-                  // Generate 100 widgets that display their index in the List.
-                  children:
-                      List.generate(controller.productCount.value, (index) {
-                    return Center(
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 10,
-                                offset: const Offset(
-                                    0, 0), // changes position of shadow
-                              ),
-                            ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CustomProducts(
-                                onTap: () => Get.toNamed('/productdetail'),
-                                image: 'assets/images/product.png',
-                                title: 'Đĩa hoa quả chất liệu đồng 3 chân',
-                                size: 'D170 X H20',
-                                price: 'đ 125.000'),
+                    // Create a grid with 2 columns. If you change the scrollDirection to
+                    // horizontal, this produces 2 rows.
+                    crossAxisCount: 2,
+                    // Generate 100 widgets that display their index in the List.
+                    children: List.generate(controller.allProduct.value!.length,
+                        (index) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CustomProducts(
+                                  onTap: () => Get.toNamed('/productdetail',
+                                      arguments: controller
+                                          .allProduct.value![index].id),
+                                  image:
+                                      '$baseURL${controller.allProduct.value![index].avatar}',
+                                  title:
+                                      '${controller.allProduct.value![index].name}',
+                                  size:
+                                      '${controller.allProduct.value![index].size}',
+                                  price: NumberFormat.currency(locale: 'vi')
+                                      .format(controller
+                                          .allProduct.value![index].price)),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
+                      );
+                    }),
+                  );
+                }
+              }),
               Center(
                 child: SizedBox(
                   width: 200,

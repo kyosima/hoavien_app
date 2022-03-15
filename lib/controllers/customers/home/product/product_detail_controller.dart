@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
@@ -62,7 +61,7 @@ class ProductDetailController extends GetxController {
       snackPosition: SnackPosition.TOP,
       colorText: secondaryColor,
       backgroundColor: Colors.white.withOpacity(0.7),
-      duration: Duration(milliseconds: 700),
+      duration: const Duration(milliseconds: 700),
     );
   }
 }

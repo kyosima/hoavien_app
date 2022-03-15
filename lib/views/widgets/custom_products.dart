@@ -9,6 +9,7 @@ class CustomProducts extends StatelessWidget {
   final String size;
   final String price;
 
+  // ignore: use_key_in_widget_constructors
   const CustomProducts({
     required this.image,
     this.onTap,
