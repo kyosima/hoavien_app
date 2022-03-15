@@ -37,9 +37,13 @@ class CustomProducts extends StatelessWidget {
             child: RichText(
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
-              strutStyle: const StrutStyle(fontSize: 16.0),
+              strutStyle: const StrutStyle(
+                fontSize: 16.0,
+              ),
               text: TextSpan(
-                  style: const TextStyle(color: secondaryColor), text: title),
+                  style: const TextStyle(
+                      color: secondaryColor, fontWeight: FontWeight.w600),
+                  text: title),
             ),
           ),
           const SizedBox(
@@ -61,25 +65,13 @@ class CustomProducts extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                price,
-                style: const TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                ),
-              ),
-              const Text(
-                '(Đã bán 120)',
-                style: TextStyle(
-                  color: secondaryColor,
-                  fontSize: 12,
-                ),
-              ),
-            ],
+          Text(
+            price,
+            style: const TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.w500,
+              fontSize: 14,
+            ),
           )
         ],
       ),

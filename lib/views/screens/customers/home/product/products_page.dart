@@ -4,7 +4,9 @@ import 'package:hoavien_app/controllers/customers/home/product/products_controll
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
+import 'dart:ui' as ui;
 
 import '../../../../../constance.dart';
 
@@ -54,99 +56,97 @@ class ProductPage extends GetView<ProductsController> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              'Phân loại',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text(
+                            'Phân loại',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          GetBuilder<ProductsController>(builder: (_) {
-                            return ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: EdgeInsets.zero,
-                                shrinkWrap: true,
-                                itemCount: controller.filterCategory.length,
-                                itemBuilder: (_, index) {
-                                  return CheckboxListTile(
-                                      contentPadding: EdgeInsets.zero,
-                                      controlAffinity:
-                                          ListTileControlAffinity.leading,
-                                      title: Text(
-                                        controller.filterCategory[index]
-                                            ['category'],
-                                      ),
-                                      value: controller.filterCategory[index]
-                                          ['isCheck'],
-                                      onChanged: (value) {
-                                        controller.filterProduct(index);
-                                      });
-                                });
-                          }),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              'Khoảng giá',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GetBuilder<ProductsController>(builder: (_) {
+                          return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: controller.filterCategory.length,
+                              itemBuilder: (_, index) {
+                                return CheckboxListTile(
+                                    contentPadding: EdgeInsets.zero,
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    title: Text(
+                                      controller.filterCategory[index]
+                                          ['category'],
+                                    ),
+                                    value: controller.filterCategory[index]
+                                        ['isCheck'],
+                                    onChanged: (value) {
+                                      controller.filterProduct(index);
+                                    });
+                              });
+                        }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text(
+                            'Khoảng giá',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Expanded(
-                                  child: TextField(
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  hintText: 'Giá tối thiểu',
-                                ),
-                              )),
-                              SizedBox(
-                                width: 20,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Expanded(
+                                child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                hintText: 'Giá tối thiểu',
                               ),
-                              Text(
-                                '-',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                ),
+                            )),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              '-',
+                              style: TextStyle(
+                                fontSize: 30,
                               ),
-                              SizedBox(
-                                width: 20,
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                hintText: 'Giá tối đa',
                               ),
-                              Expanded(
-                                  child: TextField(
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  hintText: 'Giá tối đa',
-                                ),
-                              )),
-                            ],
-                          ),
-                        ],
-                      ),
+                            )),
+                          ],
+                        ),
+                      ],
                     ),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
               Row(
@@ -154,15 +154,15 @@ class ProductPage extends GetView<ProductsController> {
                 children: [
                   OutlinedButton(
                     onPressed: () {},
-                    child: Text('Mặc định'),
+                    child: const Text('Mặc định'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   FlatButton(
                     color: primaryColor,
                     onPressed: () {},
-                    child: Text('Áp dụng'),
+                    child: const Text('Áp dụng'),
                   ),
                 ],
               ),
@@ -172,7 +172,7 @@ class ProductPage extends GetView<ProductsController> {
         appBar: AppBar(
           backgroundColor: primaryColor,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.keyboard_arrow_left,
               size: 38,
             ),
@@ -186,11 +186,10 @@ class ProductPage extends GetView<ProductsController> {
                   color: Colors.white,
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Directionality(
-                  textDirection: TextDirection.ltr,
+                  textDirection: ui.TextDirection.ltr,
                   child: CustomSearch(
                     onChanged: (value) {
                       controller.findProduct(value);
-                      print(value);
                     },
                   ))),
           actions: [
@@ -210,7 +209,7 @@ class ProductPage extends GetView<ProductsController> {
                   ),
                   Center(
                       child: IconButton(
-                    icon: Icon(Icons.filter_alt),
+                    icon: const Icon(Icons.filter_alt),
                     onPressed: () {
                       Scaffold.of(context).openEndDrawer();
                     },
@@ -488,15 +487,18 @@ class ProductPage extends GetView<ProductsController> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CustomProducts(
-                                onTap: () => Get.toNamed('/productdetail'),
+                                onTap: () => Get.toNamed('/productdetail',
+                                    arguments:
+                                        controller.allProduct.value![index].id),
                                 image:
                                     '$baseURL${controller.allProduct.value![index].avatar}',
                                 title:
                                     '${controller.allProduct.value![index].name}',
                                 size:
                                     '${controller.allProduct.value![index].size}',
-                                price:
-                                    '${controller.allProduct.value![index].price}',
+                                price: NumberFormat.currency(locale: 'vi')
+                                    .format(controller
+                                        .allProduct.value![index].price),
                               ),
                             ),
                           ),

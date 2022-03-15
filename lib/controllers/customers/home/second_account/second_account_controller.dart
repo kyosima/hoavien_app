@@ -109,7 +109,7 @@ class SecondAccountController extends GetxController {
         snackPosition: SnackPosition.TOP,
         colorText: secondaryColor,
         backgroundColor: Colors.white.withOpacity(0.7),
-        duration: Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 1000),
       );
     }
     allSecondAccount.value = resuft;
@@ -228,10 +228,10 @@ class SecondAccountController extends GetxController {
           snackPosition: SnackPosition.TOP,
           colorText: secondaryColor,
           backgroundColor: Colors.white.withOpacity(0.7),
-          duration: Duration(milliseconds: 700),
+          duration: const Duration(milliseconds: 700),
         );
 
-        Future.delayed(Duration(milliseconds: 1700), () {
+        Future.delayed(const Duration(milliseconds: 1700), () {
           Get.back();
           fullNameController.clear();
           relationshipController.clear();
@@ -396,9 +396,9 @@ class SecondAccountController extends GetxController {
         snackPosition: SnackPosition.TOP,
         colorText: secondaryColor,
         backgroundColor: Colors.white.withOpacity(0.7),
-        duration: Duration(milliseconds: 700),
+        duration: const Duration(milliseconds: 700),
       );
-      Future.delayed(Duration(milliseconds: 1700), () {
+      Future.delayed(const Duration(milliseconds: 1700), () {
         Get.back();
         editPasswordController.clear();
         editConfirmPasswordController.clear();

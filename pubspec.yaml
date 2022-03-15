@@ -46,6 +46,7 @@ dependencies:
   http:
   shared_preferences: ^2.0.13
   shimmer: ^2.0.0
+  flutter_html: ^2.2.1
   flutter:
     sdk: flutter
 

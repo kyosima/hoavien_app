@@ -11,6 +11,7 @@ import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
+import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
 class HomePage extends StatelessWidget {
@@ -453,7 +454,7 @@ class HomePage extends StatelessWidget {
                                   size:
                                       '${controller.allProduct.value![index].size}',
                                   price:
-                                      'đ ${controller.allProduct.value![index].price}'),
+                                      '${NumberFormat.currency(locale: 'vi').format(controller.allProduct.value![index].price)}'),
                             ),
                           ),
                         ),

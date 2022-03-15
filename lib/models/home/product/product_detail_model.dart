@@ -39,6 +39,7 @@ class Data {
   String? detail;
   List<ProductGallery>? productGallery;
   List<ProductAttributes>? productAttributes;
+  List<ProductReview>? productReview;
 
   Data(
       {this.id,
@@ -48,7 +49,8 @@ class Data {
       this.avatar,
       this.detail,
       this.productGallery,
-      this.productAttributes});
+      this.productAttributes,
+      this.productReview});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -69,6 +71,12 @@ class Data {
         productAttributes!.add(ProductAttributes.fromJson(v));
       });
     }
+    if (json['product_review'] != null) {
+      productReview = <ProductReview>[];
+      json['product_review'].forEach((v) {
+        productReview!.add(ProductReview.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -85,6 +93,9 @@ class Data {
     if (productAttributes != null) {
       data['product_attributes'] =
           productAttributes!.map((v) => v.toJson()).toList();
+    }
+    if (productReview != null) {
+      data['product_review'] = productReview!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -160,11 +171,36 @@ class ProductAttributeVariation {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['id'] = id;
     data['product_attribute_id'] = productAttributeId;
     data['name'] = name;
     data['price'] = price;
+    return data;
+  }
+}
+
+class ProductReview {
+  int? id;
+  int? productId;
+  String? fullname;
+  int? rating;
+
+  ProductReview({this.id, this.productId, this.fullname, this.rating});
+
+  ProductReview.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    productId = json['product_id'];
+    fullname = json['fullname'];
+    rating = json['rating'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['product_id'] = productId;
+    data['fullname'] = fullname;
+    data['rating'] = rating;
     return data;
   }
 }
