@@ -2,15 +2,15 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/models/home/product/product_model.dart';
 import 'package:hoavien_app/service_api/customer/home/product/product_service.dart';
 
-class ProductsBinding implements Bindings {
+class SecondAccountProductsBinding implements Bindings {
   @override
   void dependencies() {
     // TODO: implement dependencies
-    Get.lazyPut(() => ProductsController());
+    Get.lazyPut(() => SecondAccountProductController());
   }
 }
 
-class ProductsController extends GetxController {
+class SecondAccountProductController extends GetxController {
   final filterCategory = <Map>[
     {
       'category': 'Tất cả',
@@ -26,6 +26,10 @@ class ProductsController extends GetxController {
     },
     {
       'category': 'Danh mục 3',
+      'isCheck': false,
+    },
+    {
+      'category': 'Danh mục 4',
       'isCheck': false,
     },
   ].obs;
@@ -71,20 +75,6 @@ class ProductsController extends GetxController {
 
   void filterProduct(int index) {
     filterCategory[index]['isCheck'] = !filterCategory[index]['isCheck'];
-    refresh();
-  }
-
-  void increasePriceProduct() async {
-    var response = await ProductService.increasePrice();
-    allProduct.value = response?.data;
-    print(response?.message);
-    refresh();
-  }
-
-  void decreasePriceProduct() async {
-    var response = await ProductService.decreasePrice();
-    allProduct.value = response?.data;
-    print(response?.message);
     refresh();
   }
 }

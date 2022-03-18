@@ -9,10 +9,10 @@ import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dar
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
 
-class DashboardSalerPage extends StatelessWidget {
+class SalerDashboardPage extends StatelessWidget {
   final user = Get.arguments;
   final controller = Get.put(SalerDashboardController());
-  DashboardSalerPage({Key? key}) : super(key: key);
+  SalerDashboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

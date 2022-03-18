@@ -50,12 +50,14 @@ class UserPage extends StatelessWidget {
                           Row(
                             children: [
                               CircleAvatar(
-                                backgroundImage: NetworkImage(controller
+                                radius: 42,
+                                backgroundImage: controller
                                             .infoUser.value?.avatar ==
                                         null
-                                    ? defaultUser
-                                    : '$baseURL${controller.infoUser.value?.avatar}'),
-                                radius: 42,
+                                    ? const AssetImage(defaultUser)
+                                    : NetworkImage(
+                                            '$baseURL${controller.infoUser.value?.avatar}')
+                                        as ImageProvider,
                               ),
                               const SizedBox(
                                 width: 15,

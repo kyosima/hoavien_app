@@ -3,9 +3,9 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
-import 'package:hoavien_app/models/auth/user_model.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_account_page.dart';
 import 'package:hoavien_app/views/widgets/custom_button_home_page.dart';
+import 'package:hoavien_app/views/widgets/custom_combo_hot.dart';
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
@@ -218,27 +218,108 @@ class HomePage extends StatelessWidget {
                       ))
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                height: 289,
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (_, index) {
-                    return CustomService(
-                        onTap: () {
-                          print('COMBO HOT');
-                        },
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An');
-                  },
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
+              Obx(() {
+                if (controller.isLoadingCombo.value) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 3, right: 10, top: 10, bottom: 10),
+                          child: Container(
+                            width: 243.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(
+                                        height: 135, width: double.infinity),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 150),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 30, width: 80),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ShimmerBox(height: 30, width: 50),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 90),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 295,
+                    child: ListView.builder(
+                      itemCount: controller.allCombo.value!.length,
+                      itemBuilder: (_, index) {
+                        return CustomComboHot(
+                            onTap: () {
+                              Get.toNamed('/combohotdetail',
+                                  arguments:
+                                      controller.allCombo.value![index].id);
+                            },
+                            image:
+                                '$baseURL${controller.allCombo.value![index].avatar}',
+                            title: controller.allCombo.value![index].name
+                                .toString(),
+                            price: NumberFormat.currency(locale: 'vi').format(
+                                controller.allCombo.value![index].price),
+                            priceSale: controller.allCombo.value![index]
+                                        .pricePromotion ==
+                                    null
+                                ? ""
+                                : NumberFormat.currency(locale: 'vi').format(
+                                    controller
+                                        .allCombo.value![index].pricePromotion),
+                            info: controller.allCombo.value![index].shortDetail
+                                .toString());
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                }
+              }),
               const SizedBox(
                 height: 20,
               ),
@@ -252,7 +333,7 @@ class HomePage extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/dichvuantangcaitang');
+                        Get.toNamed('/serviceburial');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -263,27 +344,114 @@ class HomePage extends StatelessWidget {
                       ))
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                height: 289,
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (_, index) {
-                    return CustomService(
-                        onTap: () {
-                          print('COMBO HOT');
-                        },
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An');
-                  },
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
+              Obx(() {
+                if (controller.isLoadingServiceBurial.value) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 3, right: 10, top: 10, bottom: 10),
+                          child: Container(
+                            width: 243.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(
+                                        height: 135, width: double.infinity),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 150),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 30, width: 80),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ShimmerBox(height: 30, width: 50),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 90),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: controller
+                          .allServiceBurial.value![0].services?.length,
+                      itemBuilder: (_, index) {
+                        return CustomService(
+                            onTap: () {
+                              Get.toNamed('/combohotdetail');
+                            },
+                            image:
+                                '$baseURL${controller.allServiceBurial.value![0].services![index].avatar}',
+                            title: controller.allServiceBurial.value![0]
+                                .services![index].name
+                                .toString(),
+                            price: NumberFormat.currency(locale: 'vi').format(controller
+                                .allServiceBurial
+                                .value![0]
+                                .services![index]
+                                .price),
+                            priceSale: controller.allServiceBurial.value![0]
+                                        .services![index].pricePromotion ==
+                                    null
+                                ? ""
+                                : NumberFormat.currency(locale: 'vi').format(controller
+                                    .allServiceBurial
+                                    .value![0]
+                                    .services![index]
+                                    .pricePromotion),
+                            info: controller.allServiceBurial.value![0]
+                                .services![index].shortDetail
+                                .toString());
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                }
+              }),
               const SizedBox(
                 height: 20,
               ),
@@ -308,27 +476,111 @@ class HomePage extends StatelessWidget {
                       ))
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                height: 289,
-                child: ListView.builder(
-                  itemCount: 5,
-                  itemBuilder: (_, index) {
-                    return CustomService(
-                        onTap: () {
-                          print('COMBO HOT');
-                        },
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An');
-                  },
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                ),
-              ),
+              Obx(() {
+                if (controller.isLoadingServiceDesign.value) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 3, right: 10, top: 10, bottom: 10),
+                          child: Container(
+                            width: 243.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(
+                                        height: 135, width: double.infinity),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 150),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 30, width: 80),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ShimmerBox(height: 30, width: 50),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 90),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: controller
+                          .allServiceDesign.value![0].services?.length,
+                      itemBuilder: (_, index) {
+                        return CustomService(
+                          onTap: () {
+                            print('COMBO HOT');
+                          },
+                          image:
+                              '$baseURL${controller.allServiceDesign.value![0].services![index].avatar}',
+                          title: controller
+                              .allServiceDesign.value![0].services![index].name
+                              .toString(),
+                          price: NumberFormat.currency(locale: 'vi').format(
+                              controller.allServiceDesign.value![0]
+                                  .services![index].price),
+                          priceSale: controller.allServiceDesign.value![0]
+                                      .services![index].pricePromotion ==
+                                  null
+                              ? ""
+                              : NumberFormat.currency(locale: 'vi').format(
+                                  controller.allServiceDesign.value![0]
+                                      .services![index].pricePromotion),
+                          info: controller.allServiceDesign.value![0]
+                              .services![index].shortDetail
+                              .toString(),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
+                }
+              }),
               const SizedBox(
                 height: 20,
               ),
@@ -338,7 +590,7 @@ class HomePage extends StatelessWidget {
                   const CustomTitleText(title: 'Vật dụng thờ cúng'),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/vatdungthocung');
+                        Get.toNamed('/product');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -453,8 +705,9 @@ class HomePage extends StatelessWidget {
                                       '${controller.allProduct.value![index].name}',
                                   size:
                                       '${controller.allProduct.value![index].size}',
-                                  price:
-                                      '${NumberFormat.currency(locale: 'vi').format(controller.allProduct.value![index].price)}'),
+                                  price: NumberFormat.currency(locale: 'vi')
+                                      .format(controller
+                                          .allProduct.value![index].price)),
                             ),
                           ),
                         ),

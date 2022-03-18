@@ -404,7 +404,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                   CustomTitleText(title: 'Vật dụng thờ cúng'),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/vatdungthocung');
+                        Get.toNamed('/secondaccountproduct');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -453,7 +453,8 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: CustomProducts(
-                                  onTap: () => Get.toNamed('/productdetail',
+                                  onTap: () => Get.toNamed(
+                                      '/secondaccountproductdetail',
                                       arguments: controller
                                           .allProduct.value![index].id),
                                   image:

@@ -44,19 +44,34 @@ class InfoUserPage extends StatelessWidget {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      Center(
-                        child: CircleAvatar(
-                          radius: 45,
-                          backgroundImage: NetworkImage(controller
-                                      .infoUser.value?.avatar ==
-                                  null
-                              ? "https://www.genefx.com/static/media/user-default.22b0811e.jpg"
-                              : "$baseURL${controller.infoUser.value?.avatar}"),
-                        ),
-                      ),
+                      controller.infoUser.value?.avatar == null
+                          ? Center(
+                              child: CircleAvatar(
+                                radius: 45,
+                                backgroundImage:
+                                    AssetImage(controller.imageChange.value),
+                              ),
+                            )
+                          : controller.imageChange.value == defaultUser
+                              ? Center(
+                                  child: CircleAvatar(
+                                    radius: 45,
+                                    backgroundImage: NetworkImage(
+                                        '$baseURL${controller.infoUser.value?.avatar}'),
+                                  ),
+                                )
+                              : Center(
+                                  child: CircleAvatar(
+                                    radius: 45,
+                                    backgroundImage: AssetImage(
+                                        controller.imageChange.value),
+                                  ),
+                                ),
                       Center(
                           child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.pickImageFromGalerry();
+                        },
                         icon: const Icon(
                           Icons.camera_alt,
                           size: 30,

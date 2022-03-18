@@ -5,13 +5,13 @@ import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class InfoSalerPage extends StatelessWidget {
+class SalerInfoPage extends StatelessWidget {
   final items = [
     'Nam',
     'Nữ',
   ];
   final SalerUserController controller = Get.put(SalerUserController());
-  InfoSalerPage({Key? key}) : super(key: key);
+  SalerInfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

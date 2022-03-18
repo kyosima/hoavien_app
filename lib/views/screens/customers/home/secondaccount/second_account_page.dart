@@ -147,13 +147,15 @@ class SecondAccount extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         CircleAvatar(
-                                          backgroundImage: NetworkImage(controller
+                                          backgroundImage: controller
                                                       .allSecondAccount
                                                       .value![index]
                                                       .avatar ==
                                                   null
-                                              ? defaultUser
-                                              : "$baseURL${controller.allSecondAccount.value![index].avatar}"),
+                                              ? const AssetImage(defaultUser)
+                                              : NetworkImage(
+                                                      "$baseURL${controller.allSecondAccount.value![index].avatar}")
+                                                  as ImageProvider,
                                           radius: 25,
                                         ),
                                         const SizedBox(

@@ -57,4 +57,26 @@ class ProductService {
       return null;
     }
   }
+
+  static Future<ProductModel?> increasePrice() async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/list-product?sort_price=ASC'),
+        headers: {'X-TOKEN-ACCESS': tokenAccess});
+    if (response.statusCode == 200) {
+      return productModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<ProductModel?> decreasePrice() async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/list-product?sort_price=DESC'),
+        headers: {'X-TOKEN-ACCESS': tokenAccess});
+    if (response.statusCode == 200) {
+      return productModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
 }

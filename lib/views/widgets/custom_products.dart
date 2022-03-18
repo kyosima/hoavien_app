@@ -5,9 +5,9 @@ import '../../constance.dart';
 class CustomProducts extends StatelessWidget {
   final String image;
   final Function()? onTap;
-  final String title;
-  final String size;
-  final String price;
+  final String? title;
+  final String? size;
+  final String? price;
 
   // ignore: use_key_in_widget_constructors
   const CustomProducts({
@@ -54,7 +54,7 @@ class CustomProducts extends StatelessWidget {
             children: [
               const Text('KT:'),
               Text(
-                size,
+                size!,
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
                   color: secondaryColor,
@@ -67,7 +67,7 @@ class CustomProducts extends StatelessWidget {
             height: 10,
           ),
           Text(
-            price,
+            price!,
             style: const TextStyle(
               color: Colors.red,
               fontWeight: FontWeight.w500,

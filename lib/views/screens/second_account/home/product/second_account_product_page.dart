@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
+import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_products.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/customsearch.dart';
@@ -8,167 +9,167 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'dart:ui' as ui;
 
-import '../../../../../constance.dart';
-
-class ProductPage extends GetView<ProductsController> {
-  const ProductPage({Key? key}) : super(key: key);
+class SecondAccountProductPage extends StatelessWidget {
+  final controller = Get.put(SecondAccountProductController());
+  SecondAccountProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // endDrawer: Drawer(
-        //   child: Column(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       Column(
-        //         children: [
-        //           Stack(
-        //             alignment: Alignment.center,
-        //             children: [
-        //               Container(
-        //                 height: 100,
-        //                 decoration: const BoxDecoration(
-        //                   gradient: LinearGradient(
-        //                     begin: Alignment.topLeft,
-        //                     end: Alignment(0.8,
-        //                         0.0), // 10% of the width, so there are ten blinds.
-        //                     colors: <Color>[
-        //                       Color(0xffFF9900),
-        //                       Color(0xffF5C037)
-        //                     ], // red to yellow
-        //                     // repeats the gradient over the canvas
-        //                   ),
-        //                 ),
-        //               ),
-        //               const Positioned(
-        //                 bottom: 15,
-        //                 left: 30,
-        //                 child: Text(
-        //                   'Bộ lọc tìm kiếm',
-        //                   style: TextStyle(
-        //                     color: Colors.white,
-        //                     fontSize: 20,
-        //                     fontWeight: FontWeight.bold,
-        //                   ),
-        //                 ),
-        //               ),
-        //             ],
-        //           ),
-        //           Padding(
-        //             padding: const EdgeInsets.all(20.0),
-        //             child: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 const Padding(
-        //                   padding: EdgeInsets.only(left: 15),
-        //                   child: Text(
-        //                     'Phân loại',
-        //                     style: TextStyle(
-        //                       fontSize: 18,
-        //                       fontWeight: FontWeight.w500,
-        //                     ),
-        //                   ),
-        //                 ),
-        //                 const SizedBox(
-        //                   height: 10,
-        //                 ),
-        //                 GetBuilder<ProductsController>(builder: (_) {
-        //                   return ListView.builder(
-        //                       physics: const NeverScrollableScrollPhysics(),
-        //                       padding: EdgeInsets.zero,
-        //                       shrinkWrap: true,
-        //                       itemCount: controller.filterCategory.length,
-        //                       itemBuilder: (_, index) {
-        //                         return CheckboxListTile(
-        //                             contentPadding: EdgeInsets.zero,
-        //                             controlAffinity:
-        //                                 ListTileControlAffinity.leading,
-        //                             title: Text(
-        //                               controller.filterCategory[index]
-        //                                   ['category'],
-        //                             ),
-        //                             value: controller.filterCategory[index]
-        //                                 ['isCheck'],
-        //                             onChanged: (value) {
-        //                               controller.filterProduct(index);
-        //                             });
-        //                       });
-        //                 }),
-        //                 const SizedBox(
-        //                   height: 20,
-        //                 ),
-        //                 const Padding(
-        //                   padding: EdgeInsets.only(left: 15),
-        //                   child: Text(
-        //                     'Khoảng giá',
-        //                     style: TextStyle(
-        //                       fontSize: 18,
-        //                       fontWeight: FontWeight.w500,
-        //                     ),
-        //                   ),
-        //                 ),
-        //                 const SizedBox(
-        //                   height: 20,
-        //                 ),
-        //                 Row(
-        //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //                   children: const [
-        //                     Expanded(
-        //                         child: TextField(
-        //                       keyboardType: TextInputType.number,
-        //                       decoration: InputDecoration(
-        //                         hintText: 'Giá tối thiểu',
-        //                       ),
-        //                     )),
-        //                     SizedBox(
-        //                       width: 20,
-        //                     ),
-        //                     Text(
-        //                       '-',
-        //                       style: TextStyle(
-        //                         fontSize: 30,
-        //                       ),
-        //                     ),
-        //                     SizedBox(
-        //                       width: 20,
-        //                     ),
-        //                     Expanded(
-        //                         child: TextField(
-        //                       keyboardType: TextInputType.number,
-        //                       decoration: InputDecoration(
-        //                         hintText: 'Giá tối đa',
-        //                       ),
-        //                     )),
-        //                   ],
-        //                 ),
-        //               ],
-        //             ),
-        //           )
-        //         ],
-        //       ),
-        //       const SizedBox(
-        //         height: 70,
-        //       ),
-        //       Row(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         children: [
-        //           OutlinedButton(
-        //             onPressed: () {},
-        //             child: const Text('Mặc định'),
-        //           ),
-        //           const SizedBox(
-        //             width: 20,
-        //           ),
-        //           FlatButton(
-        //             color: primaryColor,
-        //             onPressed: () {},
-        //             child: const Text('Áp dụng'),
-        //           ),
-        //         ],
-        //       ),
-        //     ],
-        //   ),
-        // ),
+        endDrawer: Drawer(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: 100,
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment(0.8,
+                                0.0), // 10% of the width, so there are ten blinds.
+                            colors: <Color>[
+                              Color(0xffFF9900),
+                              Color(0xffF5C037)
+                            ], // red to yellow
+                            // repeats the gradient over the canvas
+                          ),
+                        ),
+                      ),
+                      const Positioned(
+                        bottom: 15,
+                        left: 30,
+                        child: Text(
+                          'Bộ lọc tìm kiếm',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text(
+                            'Phân loại',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GetBuilder<SecondAccountProductController>(
+                            builder: (_) {
+                          return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              itemCount: controller.filterCategory.length,
+                              itemBuilder: (_, index) {
+                                return CheckboxListTile(
+                                    contentPadding: EdgeInsets.zero,
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    title: Text(
+                                      controller.filterCategory[index]
+                                          ['category'],
+                                    ),
+                                    value: controller.filterCategory[index]
+                                        ['isCheck'],
+                                    onChanged: (value) {
+                                      controller.filterProduct(index);
+                                    });
+                              });
+                        }),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text(
+                            'Khoảng giá',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Expanded(
+                                child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                hintText: 'Giá tối thiểu',
+                              ),
+                            )),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Text(
+                              '-',
+                              style: TextStyle(
+                                fontSize: 30,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Expanded(
+                                child: TextField(
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                hintText: 'Giá tối đa',
+                              ),
+                            )),
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 70,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text('Mặc định'),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  FlatButton(
+                    color: primaryColor,
+                    onPressed: () {},
+                    child: const Text('Áp dụng'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: primaryColor,
           leading: IconButton(
@@ -192,37 +193,37 @@ class ProductPage extends GetView<ProductsController> {
                       controller.findProduct(value);
                     },
                   ))),
-          // actions: [
-          //   Builder(builder: (context) {
-          //     return Stack(
-          //       alignment: Alignment.center,
-          //       children: [
-          //         Center(
-          //           child: Container(
-          //             height: 40,
-          //             width: 40,
-          //             decoration: const BoxDecoration(
-          //               color: Colors.brown,
-          //               shape: BoxShape.circle,
-          //             ),
-          //           ),
-          //         ),
-          //         Center(
-          //             child: IconButton(
-          //           icon: const Icon(Icons.filter_alt),
-          //           onPressed: () {
-          //             Scaffold.of(context).openEndDrawer();
-          //           },
-          //         ))
-          //       ],
-          //     );
-          //   }),
-          //   const SizedBox(
-          //     width: 5,
-          //   ),
-          // ],
+          actions: [
+            Builder(builder: (context) {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.brown,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                  Center(
+                      child: IconButton(
+                    icon: const Icon(Icons.filter_alt),
+                    onPressed: () {
+                      Scaffold.of(context).openEndDrawer();
+                    },
+                  ))
+                ],
+              );
+            }),
+            const SizedBox(
+              width: 5,
+            ),
+          ],
         ),
-        body: GetBuilder<ProductsController>(builder: (_) {
+        body: GetBuilder<SecondAccountProductController>(builder: (_) {
           if (controller.isLoadingProduct.value) {
             return SingleChildScrollView(
                 child: Column(
@@ -398,10 +399,7 @@ class ProductPage extends GetView<ProductsController> {
                                             fontWeight: FontWeight.w600,
                                           ))),
                                   TextButton(
-                                    onPressed: () {
-                                      controller.increasePriceProduct();
-                                      Get.back();
-                                    },
+                                    onPressed: () {},
                                     child: Row(children: const [
                                       Text(
                                         'Giá tăng dần',
@@ -417,10 +415,7 @@ class ProductPage extends GetView<ProductsController> {
                                     ]),
                                   ),
                                   TextButton(
-                                    onPressed: () {
-                                      controller.decreasePriceProduct();
-                                      Get.back();
-                                    },
+                                    onPressed: () {},
                                     child: Row(children: const [
                                       Text(
                                         'Giá giảm dần',

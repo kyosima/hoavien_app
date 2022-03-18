@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/info_user_model.dart';
 import 'package:hoavien_app/service_api/auth/info_user_service.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserBinding implements Bindings {
   @override
@@ -22,6 +23,7 @@ class UserController extends GetxController {
   final sexMenuController = TextEditingController();
   final isLoading = false.obs;
   final loadingButton = false.obs;
+  final imageChange = defaultUser.obs;
   @override
   void onInit() {
     // TODO: implement onInit
@@ -39,6 +41,15 @@ class UserController extends GetxController {
       loadingUser.value = false;
     }
     update();
+  }
+
+  final ImagePicker _picker = ImagePicker();
+
+  void pickImageFromGalerry() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    String? fileName = image?.path.split('/').last;
+    imageChange.value = image!.path;
+    print(image.path);
   }
 
   void setDate() async {

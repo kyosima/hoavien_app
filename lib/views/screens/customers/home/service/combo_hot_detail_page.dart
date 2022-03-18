@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/home/service/combo_detail_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_share_button.dart';
+import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
+import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ComboHotDetailPage extends StatelessWidget {
-  const ComboHotDetailPage({Key? key}) : super(key: key);
+  final controller = Get.put(ComboDetailController());
+  ComboHotDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: CustomBottomBar(),
+      bottomNavigationBar: const CustomBottomBar(),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
+            Get.back();
             Get.back();
           },
           child: Stack(
@@ -49,24 +56,237 @@ class ComboHotDetailPage extends StatelessWidget {
               Share.share('123');
             },
           ),
-          SizedBox(
+          const SizedBox(
             width: 15,
           )
         ],
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
+      body: SingleChildScrollView(child: Obx(() {
+        if (controller.isLoadingCombo.value) {
+          return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
                 children: [
-                  Container(
+                  Shimmer.fromColors(
+                      baseColor: baseShimmer,
+                      highlightColor: highLightShimmer,
+                      child: const ShimmerBox(
+                          height: 380, width: double.infinity)),
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 30,
+                    child: Center(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 3,
+                              offset: const Offset(
+                                  1, 1), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        height: 140,
+                        width: 350,
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Shimmer.fromColors(
+                            baseColor: baseShimmer,
+                            highlightColor: highLightShimmer,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const ShimmerBox(height: 20, width: 150),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    ShimmerBox(height: 20, width: 80),
+                                    ShimmerBox(height: 20, width: 70),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const ShimmerBox(height: 20, width: 130),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Thông tin chi tiết',
+                      style: TextStyle(
+                        color: secondaryColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const ShimmerBox(height: 50, width: 150),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const Text(
+                      'Dịch vụ khác',
+                      style: TextStyle(
+                        color: secondaryColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Obx(() {
+                      if (controller.isLoadingRelatedCombo.value) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          height: 289,
+                          child: ListView.builder(
+                            itemCount: 2,
+                            itemBuilder: (_, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 3, right: 10, top: 10, bottom: 10),
+                                child: Container(
+                                  width: 243.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 1,
+                                        blurRadius: 10,
+                                        offset: const Offset(
+                                            0, 0), // changes position of shadow
+                                      ),
+                                    ],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Shimmer.fromColors(
+                                      baseColor: baseShimmer,
+                                      highlightColor: highLightShimmer,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const ShimmerBox(
+                                              height: 138,
+                                              width: double.infinity),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          const ShimmerBox(
+                                              height: 20, width: 120),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: const [
+                                              ShimmerBox(height: 20, width: 70),
+                                              SizedBox(
+                                                width: 10,
+                                              ),
+                                              ShimmerBox(height: 20, width: 50),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          const ShimmerBox(
+                                              height: 40, width: 150),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                            // This next line does the trick.
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        );
+                      } else {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          height: 289,
+                          child: ListView.builder(
+                            itemCount: controller.relatedCombo.value!.length,
+                            itemBuilder: (_, index) {
+                              return CustomService(
+                                  onTap: () {
+                                    Get.delete<ComboDetailController>();
+                                    Get.to(() => ComboHotDetailPage(),
+                                        arguments: controller
+                                            .relatedCombo.value![index].id);
+                                    Get.toNamed('/combohotdetail',
+                                        arguments: controller
+                                            .relatedCombo.value![index].id);
+                                  },
+                                  image:
+                                      '$baseURL${controller.relatedCombo.value![index].avatar}',
+                                  title: controller
+                                      .relatedCombo.value![index].name
+                                      .toString(),
+                                  price: NumberFormat.currency(locale: 'vi')
+                                      .format(controller
+                                          .relatedCombo.value![index].price),
+                                  priceSale: controller.relatedCombo
+                                              .value![index].pricePromotion ==
+                                          null
+                                      ? ""
+                                      : NumberFormat.currency(locale: 'vi')
+                                          .format(controller.relatedCombo
+                                              .value![index].pricePromotion),
+                                  info: controller
+                                      .relatedCombo.value![index].shortDetail
+                                      .toString());
+                            },
+                            // This next line does the trick.
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        );
+                      }
+                    })
+                  ],
+                ),
+              ),
+            ],
+          );
+        } else {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  SizedBox(
                     height: 380,
                     child: Column(
                       children: [
-                        Image.asset(
-                          'assets/images/combodetail.png',
+                        Image.network(
+                          '$baseURL${controller.comboDetail.value?.avatar}',
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
@@ -102,12 +322,13 @@ class ComboHotDetailPage extends StatelessWidget {
                               Row(
                                 children: [
                                   Image.asset('assets/images/hot.png'),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 5,
                                   ),
                                   Text(
-                                    'Combo cải táng 1',
-                                    style: TextStyle(
+                                    controller.comboDetail.value!.name
+                                        .toString(),
+                                    style: const TextStyle(
                                       fontSize: 15,
                                       fontWeight: FontWeight.w600,
                                       color: secondaryColor,
@@ -115,43 +336,76 @@ class ComboHotDetailPage extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  RatingBar.builder(
-                                    initialRating: 4.5,
-                                    minRating: 1,
-                                    direction: Axis.horizontal,
-                                    allowHalfRating: true,
-                                    itemCount: 5,
-                                    itemSize: 23,
-                                    itemPadding:
-                                        EdgeInsets.symmetric(horizontal: 0.0),
-                                    itemBuilder: (context, _) => Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                    ),
-                                    onRatingUpdate: (rating) {
-                                      print(rating);
-                                    },
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    children: [
+                                      RatingBar.builder(
+                                        initialRating: controller.rate.value,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: true,
+                                        itemCount: 5,
+                                        itemSize: 23,
+                                        itemPadding: const EdgeInsets.symmetric(
+                                            horizontal: 0.0),
+                                        itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {
+                                          print(rating);
+                                        },
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                          '${controller.rate.value}/ ${controller.comboDetail.value?.comboReview?.length}')
+                                    ],
                                   ),
                                   Text('Đã bán : 1.5k')
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
-                              Text(
-                                '500.000đ',
-                                style: TextStyle(
-                                  color: Colors.red,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    NumberFormat.currency(locale: 'vi').format(
+                                        controller.comboDetail.value?.price),
+                                    style: const TextStyle(
+                                      color: Colors.red,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    controller.comboDetail.value
+                                                ?.pricePromotion ==
+                                            null
+                                        ? ""
+                                        : NumberFormat.currency(locale: 'vi')
+                                            .format(controller.comboDetail.value
+                                                ?.pricePromotion),
+                                    style: const TextStyle(
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               )
                             ],
                           ),
@@ -166,7 +420,7 @@ class ComboHotDetailPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Thông tin chi tiết',
                       style: TextStyle(
                         color: secondaryColor,
@@ -174,25 +428,14 @@ class ComboHotDetailPage extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                        '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Netus arcu, quis mi magna dui molestie scelerisque nam euismod. Consequat nullam gravida pellentesque quis faucibus. Nunc non gravida eget ultrices. Cras nunc euismod at urna ligula.'''),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                        '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Netus arcu, quis mi magna dui molestie scelerisque nam euismod. Consequat nullam gravida pellentesque quis faucibus. Nunc non gravida eget ultrices. Cras nunc euismod at urna ligula.'''),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                        '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Netus arcu, quis mi magna dui molestie scelerisque nam euismod. Consequat nullam gravida pellentesque quis faucibus. Nunc non gravida eget ultrices. Cras nunc euismod at urna ligula.'''),
-                    SizedBox(
+                    Html(data: '${controller.comboDetail.value?.detail}'),
+                    const SizedBox(
                       height: 20,
                     ),
-                    Text(
+                    const Text(
                       'Dịch vụ khác',
                       style: TextStyle(
                         color: secondaryColor,
@@ -200,61 +443,58 @@ class ComboHotDetailPage extends StatelessWidget {
                         fontSize: 16,
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      height: 289,
-                      child: ListView(
-                        // This next line does the trick.
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          CustomService(
-                              onTap: () {
-                                print('COMBO HOT');
-                              },
-                              image: 'assets/images/dichvu.png',
-                              title: 'Combo gói dịch vụ HOT',
-                              price: 'đ 500.000',
-                              priceSale: 'đ 500.000',
-                              info:
-                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                          CustomService(
-                              image: 'assets/images/dichvu.png',
-                              title: 'Combo gói dịch vụ HOT',
-                              price: 'đ 500.000',
-                              priceSale: 'đ 500.000',
-                              info:
-                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                          CustomService(
-                              image: 'assets/images/dichvu.png',
-                              title: 'Combo gói dịch vụ HOT',
-                              price: 'đ 500.000',
-                              priceSale: 'đ 500.000',
-                              info:
-                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                          CustomService(
-                              image: 'assets/images/dichvu.png',
-                              title: 'Combo gói dịch vụ HOT',
-                              price: 'đ 500.000',
-                              priceSale: 'đ 500.000',
-                              info:
-                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                          CustomService(
-                              image: 'assets/images/dichvu.png',
-                              title: 'Combo gói dịch vụ HOT',
-                              price: 'đ 500.000',
-                              priceSale: 'đ 500.000',
-                              info:
-                                  'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                        ],
-                      ),
-                    ),
+                    Obx(() {
+                      if (controller.isLoadingRelatedCombo.value) {
+                        return CircularProgressIndicator();
+                      } else {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(vertical: 10.0),
+                          height: 289,
+                          child: ListView.builder(
+                            itemCount: controller.relatedCombo.value!.length,
+                            itemBuilder: (_, index) {
+                              return CustomService(
+                                  onTap: () {
+                                    Get.delete<ComboDetailController>();
+                                    Get.to(() => ComboHotDetailPage(),
+                                        arguments: controller
+                                            .relatedCombo.value![index].id);
+                                    Get.toNamed('/combohotdetail',
+                                        arguments: controller
+                                            .relatedCombo.value![index].id);
+                                  },
+                                  image:
+                                      '$baseURL${controller.relatedCombo.value![index].avatar}',
+                                  title: controller
+                                      .relatedCombo.value![index].name
+                                      .toString(),
+                                  price: NumberFormat.currency(locale: 'vi')
+                                      .format(controller
+                                          .relatedCombo.value![index].price),
+                                  priceSale: controller.relatedCombo
+                                              .value![index].pricePromotion ==
+                                          null
+                                      ? ""
+                                      : NumberFormat.currency(locale: 'vi')
+                                          .format(controller.relatedCombo
+                                              .value![index].pricePromotion),
+                                  info: controller
+                                      .relatedCombo.value![index].shortDetail
+                                      .toString());
+                            },
+                            // This next line does the trick.
+                            scrollDirection: Axis.horizontal,
+                          ),
+                        );
+                      }
+                    })
                   ],
                 ),
               ),
             ],
-          ),
-        ),
-      ),
+          );
+        }
+      })),
     );
   }
 }

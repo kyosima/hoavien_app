@@ -17,7 +17,7 @@ class ControlView extends StatelessWidget {
       if (controller.userRole.value == "customer") {
         return DashboardPage();
       } else if (controller.userRole.value == "sale") {
-        return DashboardSalerPage();
+        return SalerDashboardPage();
       } else if (controller.userRole.value == "customer-secondary") {
         return SecondAccountDashboardPage();
       } else {

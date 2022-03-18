@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/banner_model.dart';
+import 'package:hoavien_app/models/home/service/combo_model.dart';
 import 'package:hoavien_app/models/home/product/product_model.dart';
+import 'package:hoavien_app/models/home/service/service_model.dart';
 import 'package:hoavien_app/service_api/auth/api_banner.dart';
+import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';
 import 'package:hoavien_app/service_api/customer/home/product/product_service.dart';
 
 class HomeBinding implements Bindings {
@@ -14,10 +17,20 @@ class HomeBinding implements Bindings {
 
 class HomeController extends GetxController {
   var productCount = 6.obs;
+  //Banner
   final allBanner = BannerModel().data.obs;
   final isLoadingBanner = false.obs;
+  //Product
   final isLoadingProduct = false.obs;
   final allProduct = ProductModel().data.obs;
+  //Combo
+  final isLoadingCombo = false.obs;
+  final allCombo = ComboModel().data.obs;
+  //Service
+  final isLoadingServiceBurial = false.obs;
+  final allServiceBurial = ServiceModel().data.obs;
+  final isLoadingServiceDesign = false.obs;
+  final allServiceDesign = ServiceModel().data.obs;
 
   @override
   void onInit() {
@@ -25,6 +38,9 @@ class HomeController extends GetxController {
     super.onInit();
     getBanner();
     getProducts();
+    getCombo();
+    getServiceBurial();
+    getServiceDesign();
   }
 
   void readMore() {
@@ -50,6 +66,36 @@ class HomeController extends GetxController {
       allProduct.value = response?.data;
     } finally {
       isLoadingProduct.value = false;
+    }
+  }
+
+  void getCombo() async {
+    try {
+      isLoadingCombo.value = true;
+      var response = await ComboService.getCombo();
+      allCombo.value = response?.data;
+    } finally {
+      isLoadingCombo.value = false;
+    }
+  }
+
+  void getServiceBurial() async {
+    try {
+      isLoadingServiceBurial.value = true;
+      var response = await Service.getService(id: '2');
+      allServiceBurial.value = response?.data;
+    } finally {
+      isLoadingServiceBurial.value = false;
+    }
+  }
+
+  void getServiceDesign() async {
+    try {
+      isLoadingServiceDesign.value = true;
+      var response = await Service.getService(id: '1');
+      allServiceDesign.value = response?.data;
+    } finally {
+      isLoadingServiceDesign.value = false;
     }
   }
 }

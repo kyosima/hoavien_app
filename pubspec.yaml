@@ -39,7 +39,10 @@ dependencies:
   buttons_tabbar: any
   flutter_rating_bar: any
   share_plus: any
-  photo_view: any
+  photo_view:
+    git:
+      url: https://github.com/bluefireteam/photo_view
+      ref: master
   table_calendar: any
   intl: any
   dropdown_formfield: ^0.1.4
@@ -99,6 +102,7 @@ flutter:
     - assets/images/combodetail.png
     - assets/images/mienkyuc.png
     - assets/images/eventbackground.png
+    - assets/images/default_user_image.png
     - assets/images/hot.png
     - assets/images/loi.gif
 

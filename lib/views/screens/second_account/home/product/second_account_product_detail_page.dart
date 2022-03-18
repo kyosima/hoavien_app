@@ -3,19 +3,19 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/controllers/customers/home/product/product_detail_controller.dart';
+import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_detail_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_share_button.dart';
-import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../../../constance.dart';
 
-class ProductDetailPage extends StatelessWidget {
-  final controller = Get.put(ProductDetailController());
+import '../../../../widgets/custom_shimmer.dart';
 
-  ProductDetailPage({Key? key}) : super(key: key);
+class SecondAccountProductDetailPage extends StatelessWidget {
+  final controller = Get.put(SecondAccountProductDetailController());
+  SecondAccountProductDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -513,11 +513,12 @@ class ProductDetailPage extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return InkWell(
                                 onTap: () {
-                                  Get.delete<ProductDetailController>();
-                                  Get.to(() => ProductDetailPage(),
+                                  Get.delete<
+                                      SecondAccountProductDetailController>();
+                                  Get.to(() => SecondAccountProductDetailPage(),
                                       arguments: controller
                                           .relatedProduct.value![index].id);
-                                  Get.toNamed(('/productdetail'),
+                                  Get.toNamed(('/secondaccountproductdetail'),
                                       arguments: controller
                                           .relatedProduct.value![index].id);
                                 },

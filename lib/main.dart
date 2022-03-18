@@ -27,6 +27,8 @@ import 'package:hoavien_app/controllers/saler/statistical/statistical_controller
 import 'package:hoavien_app/controllers/saler/transaction/transaction_controller.dart';
 import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
+import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_controller.dart';
+import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_detail_controller.dart';
 import 'package:hoavien_app/views/dashboard/customer/dashboard_customer_page.dart';
 import 'package:hoavien_app/views/dashboard/saler/dashboard_saler_page.dart';
 import 'package:hoavien_app/views/dashboard/second_accound/dashboard_secondaccount_page.dart';
@@ -47,7 +49,7 @@ import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_page.
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/edit_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/dichvu_antang_caitang_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_burial_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/dichvu_thietke_xaydung_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/home_page.dart';
@@ -61,6 +63,7 @@ import 'package:hoavien_app/views/screens/customers/home/qr/qr_scan_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso/taisanso_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso/taisanso_page.dart';
+import 'package:hoavien_app/views/screens/customers/memories/image_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/list_user_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart';
 import 'package:hoavien_app/views/screens/customers/user/about_page.dart';
@@ -82,6 +85,8 @@ import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dar
 import 'package:hoavien_app/views/screens/saler/user/change_password_saler_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/info_user_saler_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/product/second_account_product_detail_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/product/second_account_product_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/change_second_account_password_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/info_second_account_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -198,11 +203,11 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/combohot',
-            page: () => const ComboHotPage(),
+            page: () => ComboHotPage(),
           ),
           GetPage(
             name: '/combohotdetail',
-            page: () => const ComboHotDetailPage(),
+            page: () => ComboHotDetailPage(),
           ),
           GetPage(
             name: '/productdetail',
@@ -215,22 +220,26 @@ class MyApp extends StatelessWidget {
             binding: CartBinding(),
           ),
           GetPage(
-            name: '/dichvuantangcaitang',
-            page: () => const DichvuAntangCaiTangPage(),
+            name: '/serviceburial',
+            page: () => ServiceBurial(),
           ),
           GetPage(
             name: '/dichvuthietkexaydung',
             page: () => const DichvuThietkeXaydungPage(),
           ),
           GetPage(
-            name: '/vatdungthocung',
-            page: () => const ProductPage(),
+            name: '/product',
+            page: () => ProductPage(),
             binding: ProductsBinding(),
           ),
           GetPage(
             name: '/memories',
             page: () => MemoriesPage(),
             binding: MemoriesBindings(),
+          ),
+          GetPage(
+            name: '/imagedetail',
+            page: () => ImageDetailPage(),
           ),
           GetPage(
             name: '/giapha',
@@ -310,7 +319,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/salerdashboard',
-            page: () => DashboardSalerPage(),
+            page: () => SalerDashboardPage(),
             binding: SalerDashboardBinding(),
           ),
           GetPage(
@@ -330,11 +339,11 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/infousersaler',
-            page: () => InfoSalerPage(),
+            page: () => SalerInfoPage(),
           ),
           GetPage(
             name: '/changepasswordsaler',
-            page: () => ChangePasswordSalerPage(),
+            page: () => SalerChangePasswordPage(),
           ),
           GetPage(
             name: '/thongbaosaler',
@@ -368,6 +377,16 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/changesecondaccountpassword',
             page: () => ChangeSecondAccoutPassword(),
+          ),
+          GetPage(
+            name: '/secondaccountproduct',
+            page: () => SecondAccountProductPage(),
+            binding: SecondAccountProductsBinding(),
+          ),
+          GetPage(
+            name: '/secondaccountproductdetail',
+            page: () => SecondAccountProductDetailPage(),
+            binding: SecondAccountProductDetailBinding(),
           ),
         ]);
   }

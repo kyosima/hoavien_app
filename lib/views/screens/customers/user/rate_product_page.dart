@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class RateProductPage extends StatelessWidget {
@@ -14,10 +13,10 @@ class RateProductPage extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
         elevation: 1,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Đánh giá sản phẩm',
         ),
       ),
@@ -27,7 +26,7 @@ class RateProductPage extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               ListView.builder(
@@ -48,7 +47,7 @@ class RateProductPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
@@ -59,7 +58,7 @@ class RateProductPage extends StatelessWidget {
                                     width: 100,
                                     fit: BoxFit.cover,
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 10,
                                   ),
                                   Column(
@@ -68,23 +67,23 @@ class RateProductPage extends StatelessWidget {
                                     children: [
                                       Text(
                                         'Đĩa trái cây $index',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 16,
                                           color: secondaryColor,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 15,
                                       ),
-                                      Text(
+                                      const Text(
                                         'Phân loại : Đế đen Ấn Độ ',
                                         style: TextStyle(
                                           fontSize: 16,
                                           color: secondaryColor,
                                         ),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 15,
                                       ),
                                       Row(
@@ -92,7 +91,7 @@ class RateProductPage extends StatelessWidget {
                                             MainAxisAlignment.spaceBetween,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.end,
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Đơn giá : 200.000 đ',
                                             style: TextStyle(
@@ -105,25 +104,25 @@ class RateProductPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 10,
                                       ),
                                     ],
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               RatingBar.builder(
-                                initialRating: 3.5,
+                                initialRating: 0,
                                 minRating: 1,
                                 direction: Axis.horizontal,
                                 allowHalfRating: true,
                                 itemCount: 5,
                                 itemPadding:
-                                    EdgeInsets.symmetric(horizontal: 4.0),
-                                itemBuilder: (context, _) => Icon(
+                                    const EdgeInsets.symmetric(horizontal: 4.0),
+                                itemBuilder: (context, _) => const Icon(
                                   Icons.star,
                                   color: Colors.amber,
                                 ),
@@ -131,7 +130,7 @@ class RateProductPage extends StatelessWidget {
                                   print(rating);
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
                               Text('Lựa chọn số sao tương ứng'),
@@ -151,8 +150,8 @@ class RateProductPage extends StatelessWidget {
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Đánh giá',
                         style: TextStyle(

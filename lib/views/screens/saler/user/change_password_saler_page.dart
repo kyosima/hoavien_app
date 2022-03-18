@@ -6,9 +6,9 @@ import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ChangePasswordSalerPage extends StatelessWidget {
+class SalerChangePasswordPage extends StatelessWidget {
   final controller = Get.put(ChangePasswordSalerController());
-  ChangePasswordSalerPage({Key? key}) : super(key: key);
+  SalerChangePasswordPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
