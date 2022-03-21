@@ -97,7 +97,6 @@ class CustomService extends StatelessWidget {
                   height: 5,
                 ),
                 Flexible(
-                  flex: 2,
                   child: RichText(
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,

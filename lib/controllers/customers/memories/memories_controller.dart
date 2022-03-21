@@ -14,11 +14,19 @@ class MemoriesController extends GetxController {
 
   void pickImageFromGalerry() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    print(image?.path);
+    if (image != null) {
+      print(image.path);
+    } else {
+      print('User not pick image');
+    }
   }
 
   void pickVideoFromGalerry() async {
     final XFile? video = await _picker.pickVideo(source: ImageSource.gallery);
-    print(video?.path);
+    if (video != null) {
+      print(video.path);
+    } else {
+      print('user not pick video');
+    }
   }
 }

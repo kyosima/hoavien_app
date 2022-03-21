@@ -1,6 +1,8 @@
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/home/service/combo_detail_model.dart';
 import 'package:hoavien_app/models/home/service/combo_model.dart';
+import 'package:hoavien_app/models/home/service/related_service_model.dart';
+import 'package:hoavien_app/models/home/service/service_detail_model.dart';
 import 'package:hoavien_app/models/home/service/service_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -52,6 +54,30 @@ class Service {
         });
     if (response.statusCode == 200) {
       return serviceModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<ServiceDetailModel?> getDetailService({String? id}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/show-service?service_id=$id'),
+        headers: {'X-TOKEN-ACCESS': tokenAccess});
+    if (response.statusCode == 200) {
+      return serviceDetailModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<RelatedServiceModel?> getRelatedService({String? id}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/related-service?service_id=$id'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
+    if (response.statusCode == 200) {
+      return relatedServiceModelFromJson(response.body);
     } else {
       return null;
     }

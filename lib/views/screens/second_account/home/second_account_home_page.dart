@@ -203,62 +203,48 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                       ))
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                height: 289,
-                child: ListView(
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    CustomService(
-                        onTap: () {
-                          print('COMBO HOT');
-                        },
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    const CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                  ],
-                ),
-              ),
-              SizedBox(
+              Obx(() {
+                if (controller.isLoadingCombo.value) {
+                  return Container();
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 289,
+                    child: ListView.builder(
+                      itemCount: controller.allCombo.value!.length,
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (_, index) {
+                        return CustomService(
+                            onTap: () {},
+                            image:
+                                '$baseURL${controller.allCombo.value![index].avatar}',
+                            title: controller.allCombo.value![index].name
+                                .toString(),
+                            price: NumberFormat.currency(locale: 'vi').format(
+                                controller.allCombo.value![index].price),
+                            priceSale: controller.allCombo.value![index]
+                                        .pricePromotion ==
+                                    null
+                                ? ""
+                                : NumberFormat.currency(locale: 'vi').format(
+                                    controller
+                                        .allCombo.value![index].pricePromotion),
+                            info: controller.allCombo.value![index].shortDetail
+                                .toString());
+                      },
+                    ),
+                  );
+                }
+              }),
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       CustomTitleText(title: 'Dịch vụ an táng, cải táng'),
                     ],
                   ),
@@ -275,62 +261,56 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                       ))
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                height: 289,
-                child: ListView(
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    CustomService(
-                        onTap: () {
-                          print('COMBO HOT');
-                        },
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                  ],
-                ),
-              ),
-              SizedBox(
+              Obx(() {
+                if (controller.isLoadingServiceBurial.value) {
+                  return Container();
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 289,
+                    child: ListView.builder(
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                      itemCount:
+                          controller.serviceBurial.value![0].services!.length,
+                      itemBuilder: (_, index) {
+                        return CustomService(
+                            onTap: () {},
+                            image:
+                                '$baseURL${controller.serviceBurial.value![0].services![index].avatar}',
+                            title: controller
+                                .serviceBurial.value![0].services![index].name
+                                .toString(),
+                            price: NumberFormat.currency(locale: 'vi').format(controller
+                                .serviceBurial
+                                .value![0]
+                                .services![index]
+                                .price),
+                            priceSale: controller.serviceBurial.value![0]
+                                        .services![index].pricePromotion ==
+                                    null
+                                ? ""
+                                : NumberFormat.currency(locale: 'vi').format(controller
+                                    .serviceBurial
+                                    .value![0]
+                                    .services![index]
+                                    .pricePromotion),
+                            info: controller.serviceBurial.value![0]
+                                .services![index].shortDetail
+                                .toString());
+                      },
+                    ),
+                  );
+                }
+              }),
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       CustomTitleText(title: 'Dịch vụ thiết kế và xây dựng'),
                     ],
                   ),
@@ -347,54 +327,48 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                       ))
                 ],
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(vertical: 10.0),
-                height: 289,
-                child: ListView(
-                  // This next line does the trick.
-                  scrollDirection: Axis.horizontal,
-                  children: <Widget>[
-                    CustomService(
-                        onTap: () {
-                          print('COMBO HOT');
-                        },
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                    CustomService(
-                        image: 'assets/images/dichvu.png',
-                        title: 'Combo gói dịch vụ HOT',
-                        price: 'đ 500.000',
-                        priceSale: 'đ 500.000',
-                        info:
-                            'Dịch vụ chất lượng được ung cấp bởi Hoa Viên Bình An'),
-                  ],
-                ),
-              ),
+              Obx(() {
+                if (controller.isLoadingServiceDesign.value) {
+                  return Container();
+                } else {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 289,
+                    child: ListView.builder(
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                      itemCount:
+                          controller.serviceDesign.value![0].services!.length,
+                      itemBuilder: (_, index) {
+                        return CustomService(
+                            onTap: () {},
+                            image:
+                                '$baseURL${controller.serviceDesign.value![0].services![index].avatar}',
+                            title: controller
+                                .serviceDesign.value![0].services![index].name
+                                .toString(),
+                            price: NumberFormat.currency(locale: 'vi').format(controller
+                                .serviceDesign
+                                .value![0]
+                                .services![index]
+                                .price),
+                            priceSale: controller.serviceDesign.value![0]
+                                        .services![index].pricePromotion ==
+                                    null
+                                ? ""
+                                : NumberFormat.currency(locale: 'vi').format(controller
+                                    .serviceDesign
+                                    .value![0]
+                                    .services![index]
+                                    .pricePromotion),
+                            info: controller.serviceDesign.value![0]
+                                .services![index].shortDetail
+                                .toString());
+                      },
+                    ),
+                  );
+                }
+              }),
               SizedBox(
                 height: 20,
               ),

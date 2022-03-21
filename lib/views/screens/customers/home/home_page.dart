@@ -421,7 +421,9 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (_, index) {
                         return CustomService(
                             onTap: () {
-                              Get.toNamed('/combohotdetail');
+                              Get.toNamed('/serviceburialdetail',
+                                  arguments: controller.allServiceBurial
+                                      .value![0].services![index].id);
                             },
                             image:
                                 '$baseURL${controller.allServiceBurial.value![0].services![index].avatar}',
@@ -465,7 +467,7 @@ class HomePage extends StatelessWidget {
                   ),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/dichvuthietkexaydung');
+                        Get.toNamed('/servicedesign');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -553,7 +555,9 @@ class HomePage extends StatelessWidget {
                       itemBuilder: (_, index) {
                         return CustomService(
                           onTap: () {
-                            print('COMBO HOT');
+                            Get.toNamed('/servicedesigndetail',
+                                arguments: controller.allServiceDesign.value![0]
+                                    .services![index].id);
                           },
                           image:
                               '$baseURL${controller.allServiceDesign.value![0].services![index].avatar}',

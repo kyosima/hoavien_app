@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:hoavien_app/controllers/customers/home/service/service_burial_controller.dart';
+import 'package:get/get.dart';
+import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/home/service/service_design_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../../../constance.dart';
-import 'package:get/get.dart';
 
-class ServiceBurial extends StatelessWidget {
-  final controller = Get.put(ServiceBurialController());
-  ServiceBurial({Key? key}) : super(key: key);
+class ServiceDesignPage extends StatelessWidget {
+  final controller = Get.put(ServiceDesignController());
+  ServiceDesignPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ServiceBurial extends StatelessWidget {
             color: secondaryColor,
           ),
           title: const CustomTitleText(
-            title: 'Dịch vụ an táng, cải táng',
+            title: 'Dịch vụ thiết kế và xây dựng',
           ),
         ),
         body: Obx(() {
@@ -97,7 +97,7 @@ class ServiceBurial extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed('/serviceburialdetail',
+                      Get.toNamed('/servicedesigndetail',
                           arguments: controller
                               .allService.value![0].services![index].id);
                     },

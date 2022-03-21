@@ -2,6 +2,7 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/info_user_model.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class InfoUserService {

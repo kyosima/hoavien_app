@@ -16,6 +16,8 @@ import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/service/service_burial_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/service/service_design_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
@@ -49,8 +51,11 @@ import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_page.
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/edit_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_burial_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/service_burial_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/service/dichvu_thietke_xaydung_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_design_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_design_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/notification/notification_detail_page.dart';
@@ -222,6 +227,20 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/serviceburial',
             page: () => ServiceBurial(),
+          ),
+          GetPage(
+            name: '/servicedesign',
+            page: () => ServiceDesignPage(),
+          ),
+          GetPage(
+            name: '/serviceburialdetail',
+            page: () => ServiceBurialDetailPage(),
+            binding: ServiceBurialDetailBinding(),
+          ),
+          GetPage(
+            name: '/servicedesigndetail',
+            page: () => ServiceDesignDetailPage(),
+            binding: ServiceDesignDetailBinding(),
           ),
           GetPage(
             name: '/dichvuthietkexaydung',

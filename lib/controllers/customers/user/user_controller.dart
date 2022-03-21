@@ -47,9 +47,12 @@ class UserController extends GetxController {
 
   void pickImageFromGalerry() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-    String? fileName = image?.path.split('/').last;
-    imageChange.value = image!.path;
-    print(image.path);
+    if (image != null) {
+      imageChange.value = image.path;
+      print(image.path);
+    } else {
+      print('User not pick image');
+    }
   }
 
   void setDate() async {
@@ -61,8 +64,12 @@ class UserController extends GetxController {
     dateController.text = date.toString().substring(0, 10);
   }
 
-  void updateInfo(
-      {String? id, String? fullname, String? gender, String? birthday}) async {
+  void updateInfo({
+    String? id,
+    String? fullname,
+    String? gender,
+    String? birthday,
+  }) async {
     loadingButton.value = true;
     await InfoUserService.updateInfoUser(
       id: id,
