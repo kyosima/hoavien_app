@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -5,6 +7,7 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/home/second_account/list_second_account_model.dart';
 import 'package:hoavien_app/service_api/customer/home/second_account/api_add_second_account.dart';
 import 'package:hoavien_app/service_api/customer/home/second_account/api_second_account.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SecondAccountBinding implements Bindings {
   @override
@@ -18,6 +21,8 @@ class SecondAccountController extends GetxController {
   final isLoading = true.obs;
   final buttonLoading = false.obs;
   final editButtonLoading = false.obs;
+  final ImagePicker _picker = ImagePicker();
+  final avatar = "".obs;
   //add secondAccount
   var allSecondAccount = ListSecondAccountModel().data.obs;
   final fullNameController = TextEditingController();
@@ -42,6 +47,15 @@ class SecondAccountController extends GetxController {
     // TODO: implement onInit
     listSecondAccount();
     super.onInit();
+  }
+
+  void pickAvatar() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      avatar.value = image.path;
+    } else {
+      print('Error');
+    }
   }
 
   void seePassword() {
@@ -89,7 +103,6 @@ class SecondAccountController extends GetxController {
           .toList();
     }
     allSecondAccount.value = resuft;
-    print(allSecondAccount.value?.length);
     update();
   }
 
@@ -109,7 +122,7 @@ class SecondAccountController extends GetxController {
         snackPosition: SnackPosition.TOP,
         colorText: secondaryColor,
         backgroundColor: Colors.white.withOpacity(0.7),
-        duration: const Duration(milliseconds: 1000),
+        duration: const Duration(milliseconds: 600),
       );
     }
     allSecondAccount.value = resuft;
@@ -124,122 +137,26 @@ class SecondAccountController extends GetxController {
     String? password,
     String? password_confirmation,
     String? addedby,
+    File? avatar,
   }) async {
-    buttonLoading.value = true;
-    List<Data>? resuft = [];
-    var response = await ApiAddSecondAccount.addSecondAccount(
-      fullname: fullname,
-      relationship: relationship,
-      phone: phone,
-      password: password,
-      password_confirmation: password_confirmation,
-      addedby: addedby,
-    );
-    if (fullNameController.text.isEmpty ||
-        relationshipController.text.isEmpty ||
-        phoneController.text.isEmpty ||
-        passwordController.text.isEmpty ||
-        password_confirmationController.text.isEmpty) {
-      buttonLoading.value = false;
-      Get.defaultDialog(
-          content: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: 60.0,
-                width: 60,
-                decoration: const BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              Image.asset(
-                'assets/images/error.gif',
-                width: 55,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Center(
-            child: Text(
-              '''Các trường bắt buộc không được để trống!''',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ));
-    } else if (passwordController.text !=
-        password_confirmationController.text) {
-      buttonLoading.value = false;
-      Get.defaultDialog(
-          content: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: 60.0,
-                width: 60,
-                decoration: const BoxDecoration(
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-              ),
-              Image.asset(
-                'assets/images/error.gif',
-                width: 55,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Center(
-            child: Text(
-              '''Mật khẩu xác nhận không đúng!''',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ));
-    } else {
-      buttonLoading.value = false;
-      if (response?.data != null) {
-        final listAcc = await ApiSecondAccount.listSecondAccount();
-        resuft = listAcc?.data;
-        Get.snackbar(
-          "Tạo tài khoản phụ thành công",
-          "Tài khoản phụ đã được thêm vào danh sách",
-          icon: const Icon(Icons.check_circle, color: Colors.green),
-          snackPosition: SnackPosition.TOP,
-          colorText: secondaryColor,
-          backgroundColor: Colors.white.withOpacity(0.7),
-          duration: const Duration(milliseconds: 700),
-        );
-
-        Future.delayed(const Duration(milliseconds: 1700), () {
-          Get.back();
-          fullNameController.clear();
-          relationshipController.clear();
-          phoneController.clear();
-          passwordController.clear();
-          password_confirmationController.clear();
-        });
-      } else {
+    if (avatar != null) {
+      buttonLoading.value = true;
+      List<Data>? resuft = [];
+      var response = await ApiAddSecondAccount.addSecondAccount(
+        fullname: fullname,
+        relationship: relationship,
+        phone: phone,
+        password: password,
+        password_confirmation: password_confirmation,
+        addedby: addedby,
+        avatar: avatar,
+      );
+      if (fullNameController.text.isEmpty ||
+          relationshipController.text.isEmpty ||
+          phoneController.text.isEmpty ||
+          passwordController.text.isEmpty ||
+          password_confirmationController.text.isEmpty) {
+        buttonLoading.value = false;
         Get.defaultDialog(
             content: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -267,7 +184,7 @@ class SecondAccountController extends GetxController {
             ),
             const Center(
               child: Text(
-                'Số điện thoại đăng ký đã tồn tại',
+                '''Các trường bắt buộc không được để trống!''',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -276,13 +193,272 @@ class SecondAccountController extends GetxController {
             ),
           ],
         ));
-        final listAcc = await ApiSecondAccount.listSecondAccount();
-        resuft = listAcc?.data;
-        update();
+      } else if (passwordController.text !=
+          password_confirmationController.text) {
+        buttonLoading.value = false;
+        Get.defaultDialog(
+            content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: 60.0,
+                  width: 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/error.gif',
+                  width: 55,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(
+              child: Text(
+                '''Mật khẩu xác nhận không đúng!''',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ));
+      } else {
+        buttonLoading.value = false;
+        if (response == 200) {
+          final listAcc = await ApiSecondAccount.listSecondAccount();
+          resuft = listAcc?.data;
+          Get.snackbar(
+            "Tạo tài khoản phụ thành công",
+            "Tài khoản phụ đã được thêm vào danh sách",
+            icon: const Icon(Icons.check_circle, color: Colors.green),
+            snackPosition: SnackPosition.TOP,
+            colorText: secondaryColor,
+            backgroundColor: Colors.white.withOpacity(0.7),
+            duration: const Duration(milliseconds: 700),
+          );
+
+          Future.delayed(const Duration(milliseconds: 1700), () {
+            Get.back();
+            fullNameController.clear();
+            relationshipController.clear();
+            phoneController.clear();
+            passwordController.clear();
+            password_confirmationController.clear();
+          });
+        } else {
+          Get.defaultDialog(
+              content: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    height: 60.0,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/images/error.gif',
+                    width: 55,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Center(
+                child: Text(
+                  'Số điện thoại đăng ký đã tồn tại',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ));
+          final listAcc = await ApiSecondAccount.listSecondAccount();
+          resuft = listAcc?.data;
+          update();
+        }
       }
+      allSecondAccount.value = resuft;
+      update();
+    } else {
+      buttonLoading.value = true;
+      List<Data>? resuft = [];
+      var response = await ApiAddSecondAccount.addSecondAccount(
+        fullname: fullname,
+        relationship: relationship,
+        phone: phone,
+        password: password,
+        password_confirmation: password_confirmation,
+        addedby: addedby,
+      );
+      if (fullNameController.text.isEmpty ||
+          relationshipController.text.isEmpty ||
+          phoneController.text.isEmpty ||
+          passwordController.text.isEmpty ||
+          password_confirmationController.text.isEmpty) {
+        buttonLoading.value = false;
+        Get.defaultDialog(
+            content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: 60.0,
+                  width: 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/error.gif',
+                  width: 55,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(
+              child: Text(
+                '''Các trường bắt buộc không được để trống!''',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ));
+      } else if (passwordController.text !=
+          password_confirmationController.text) {
+        buttonLoading.value = false;
+        Get.defaultDialog(
+            content: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  height: 60.0,
+                  width: 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.red,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Image.asset(
+                  'assets/images/error.gif',
+                  width: 55,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Center(
+              child: Text(
+                '''Mật khẩu xác nhận không đúng!''',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ));
+      } else {
+        buttonLoading.value = false;
+        if (response == 200) {
+          final listAcc = await ApiSecondAccount.listSecondAccount();
+          resuft = listAcc?.data;
+          Get.snackbar(
+            "Tạo tài khoản phụ thành công",
+            "Tài khoản phụ đã được thêm vào danh sách",
+            icon: const Icon(Icons.check_circle, color: Colors.green),
+            snackPosition: SnackPosition.TOP,
+            colorText: secondaryColor,
+            backgroundColor: Colors.white.withOpacity(0.7),
+            duration: const Duration(milliseconds: 700),
+          );
+
+          Future.delayed(const Duration(milliseconds: 1700), () {
+            Get.back();
+            fullNameController.clear();
+            relationshipController.clear();
+            phoneController.clear();
+            passwordController.clear();
+            password_confirmationController.clear();
+          });
+        } else {
+          Get.defaultDialog(
+              content: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    height: 60.0,
+                    width: 60,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Image.asset(
+                    'assets/images/error.gif',
+                    width: 55,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Center(
+                child: Text(
+                  'Số điện thoại đăng ký đã tồn tại',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ],
+          ));
+          final listAcc = await ApiSecondAccount.listSecondAccount();
+          resuft = listAcc?.data;
+          update();
+        }
+      }
+      allSecondAccount.value = resuft;
+      update();
     }
-    allSecondAccount.value = resuft;
-    update();
   }
 
   // edit secondAccount

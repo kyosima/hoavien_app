@@ -42,7 +42,7 @@ class ApiSecondAccount {
       String? password,
       String? confirmPassword}) async {
     var response = await client
-        .put(Uri.parse('$baseURL/api/update-customer-secondary'), body: {
+        .post(Uri.parse('$baseURL/api/update-customer-secondary'), body: {
       'id': id,
       'addedby': addedby,
       'fullname': fullName,
@@ -53,7 +53,8 @@ class ApiSecondAccount {
     });
     if (response.statusCode == 200) {
       return statusModelFromJson(response.body);
-    } else
+    } else {
       return null;
+    }
   }
 }

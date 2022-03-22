@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'dart:io';
+
 SecondAccountModel secondAccountModelFromJson(String str) =>
     SecondAccountModel.fromJson(json.decode(str));
 
@@ -38,7 +40,7 @@ class Data {
   int? id;
   String? phone;
   String? role;
-  Null? avatar;
+  File? avatar;
   UserInfo? userInfo;
 
   Data({this.id, this.phone, this.role, this.avatar, this.userInfo});
@@ -48,19 +50,18 @@ class Data {
     phone = json['phone'];
     role = json['role'];
     avatar = json['avatar'];
-    userInfo = json['user_info'] != null
-        ? new UserInfo.fromJson(json['user_info'])
-        : null;
+    userInfo =
+        json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['phone'] = this.phone;
-    data['role'] = this.role;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['phone'] = phone;
+    data['role'] = role;
     data['avatar'] = this.avatar;
-    if (this.userInfo != null) {
-      data['user_info'] = this.userInfo!.toJson();
+    if (userInfo != null) {
+      data['user_info'] = userInfo!.toJson();
     }
     return data;
   }
@@ -80,10 +81,10 @@ class UserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['fullname'] = this.fullname;
-    data['relationship'] = this.relationship;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['fullname'] = fullname;
+    data['relationship'] = relationship;
     return data;
   }
 }

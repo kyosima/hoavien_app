@@ -175,7 +175,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -187,7 +187,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                       const SizedBox(
                         width: 5,
                       ),
-                      CustomTitleText(title: 'ComBo HOT'),
+                      const CustomTitleText(title: 'ComBo HOT'),
                     ],
                   ),
                   TextButton(
@@ -205,7 +205,71 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
               ),
               Obx(() {
                 if (controller.isLoadingCombo.value) {
-                  return Container();
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 3, right: 10, top: 10, bottom: 10),
+                          child: Container(
+                            width: 243.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(
+                                        height: 135, width: double.infinity),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 150),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 30, width: 80),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ShimmerBox(height: 30, width: 50),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 90),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
                 } else {
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -263,7 +327,71 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
               ),
               Obx(() {
                 if (controller.isLoadingServiceBurial.value) {
-                  return Container();
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 3, right: 10, top: 10, bottom: 10),
+                          child: Container(
+                            width: 243.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(
+                                        height: 135, width: double.infinity),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 150),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 30, width: 80),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ShimmerBox(height: 30, width: 50),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 90),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
                 } else {
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -329,7 +457,71 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
               ),
               Obx(() {
                 if (controller.isLoadingServiceDesign.value) {
-                  return Container();
+                  return Container(
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 3, right: 10, top: 10, bottom: 10),
+                          child: Container(
+                            width: 243.0,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(
+                                        height: 135, width: double.infinity),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 150),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 30, width: 80),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        ShimmerBox(height: 30, width: 50),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    const ShimmerBox(height: 30, width: 90),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      // This next line does the trick.
+                      scrollDirection: Axis.horizontal,
+                    ),
+                  );
                 } else {
                   return Container(
                     margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -369,13 +561,13 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                   );
                 }
               }),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomTitleText(title: 'Vật dụng thờ cúng'),
+                  const CustomTitleText(title: 'Vật dụng thờ cúng'),
                   TextButton(
                       onPressed: () {
                         Get.toNamed('/secondaccountproduct');
@@ -389,12 +581,69 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                       ))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Obx(() {
                 if (controller.isLoadingProduct.value) {
-                  return Container();
+                  return GridView.count(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    childAspectRatio: (0.64),
+
+                    // Create a grid with 2 columns. If you change the scrollDirection to
+                    // horizontal, this produces 2 rows.
+                    crossAxisCount: 2,
+                    // Generate 100 widgets that display their index in the List.
+                    children: List.generate(4, (index) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    ShimmerBox(
+                                        height: 140, width: double.infinity),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    ShimmerBox(height: 20, width: 140),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    ShimmerBox(height: 20, width: 120),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    ShimmerBox(height: 20, width: 100),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    }),
+                  );
                 } else {
                   return GridView.count(
                     shrinkWrap: true,

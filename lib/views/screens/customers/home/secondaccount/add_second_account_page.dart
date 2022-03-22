@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -42,7 +44,9 @@ class AddSecondAccountPage extends StatelessWidget {
                     ),
                     Center(
                         child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.pickAvatar();
+                      },
                       icon: const Icon(
                         Icons.camera_alt,
                         size: 30,
@@ -164,15 +168,28 @@ class AddSecondAccountPage extends StatelessWidget {
                     child: TextButton(
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
-                        controller.addAccount(
-                            fullname: controller.fullNameController.text,
-                            relationship:
-                                controller.relationshipController.text,
-                            phone: controller.phoneController.text,
-                            password: controller.passwordController.text,
-                            password_confirmation:
-                                controller.password_confirmationController.text,
-                            addedby: prefs.getInt('id').toString());
+                        if (controller.avatar.value != '') {
+                          controller.addAccount(
+                              avatar: File(controller.avatar.value),
+                              fullname: controller.fullNameController.text,
+                              relationship:
+                                  controller.relationshipController.text,
+                              phone: controller.phoneController.text,
+                              password: controller.passwordController.text,
+                              password_confirmation: controller
+                                  .password_confirmationController.text,
+                              addedby: prefs.getInt('id').toString());
+                        } else {
+                          controller.addAccount(
+                              fullname: controller.fullNameController.text,
+                              relationship:
+                                  controller.relationshipController.text,
+                              phone: controller.phoneController.text,
+                              password: controller.passwordController.text,
+                              password_confirmation: controller
+                                  .password_confirmationController.text,
+                              addedby: prefs.getInt('id').toString());
+                        }
                       },
                       child: controller.buttonLoading.value == true
                           ? const SizedBox(
