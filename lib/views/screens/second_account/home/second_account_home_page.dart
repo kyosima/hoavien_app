@@ -192,7 +192,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/combohot');
+                        Get.toNamed('/secondaccountcombo');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -280,7 +280,11 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (_, index) {
                         return CustomService(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed('/secondaccountcombodetail',
+                                  arguments:
+                                      controller.allCombo.value![index].id);
+                            },
                             image:
                                 '$baseURL${controller.allCombo.value![index].avatar}',
                             title: controller.allCombo.value![index].name
@@ -314,7 +318,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/dichvuantangcaitang');
+                        Get.toNamed('/secondaccountserviceburial');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -403,17 +407,19 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                           controller.serviceBurial.value![0].services!.length,
                       itemBuilder: (_, index) {
                         return CustomService(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed('/secondaccountserviceburialdetail',
+                                  arguments: controller.serviceBurial.value![0]
+                                      .services![index].id);
+                            },
                             image:
                                 '$baseURL${controller.serviceBurial.value![0].services![index].avatar}',
                             title: controller
                                 .serviceBurial.value![0].services![index].name
                                 .toString(),
-                            price: NumberFormat.currency(locale: 'vi').format(controller
-                                .serviceBurial
-                                .value![0]
-                                .services![index]
-                                .price),
+                            price: NumberFormat.currency(locale: 'vi').format(
+                                controller.serviceBurial.value![0]
+                                    .services![index].price),
                             priceSale: controller.serviceBurial.value![0]
                                         .services![index].pricePromotion ==
                                     null
@@ -444,7 +450,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                   ),
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/dichvuthietkexaydung');
+                        Get.toNamed('/secondaccountservicedesign');
                       },
                       child: const Text(
                         'Xem thêm',
@@ -533,17 +539,19 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                           controller.serviceDesign.value![0].services!.length,
                       itemBuilder: (_, index) {
                         return CustomService(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed('/secondaccountservicedesigndetail',
+                                  arguments: controller.serviceDesign.value![0]
+                                      .services![index].id);
+                            },
                             image:
                                 '$baseURL${controller.serviceDesign.value![0].services![index].avatar}',
                             title: controller
                                 .serviceDesign.value![0].services![index].name
                                 .toString(),
-                            price: NumberFormat.currency(locale: 'vi').format(controller
-                                .serviceDesign
-                                .value![0]
-                                .services![index]
-                                .price),
+                            price: NumberFormat.currency(locale: 'vi').format(
+                                controller.serviceDesign.value![0]
+                                    .services![index].price),
                             priceSale: controller.serviceDesign.value![0]
                                         .services![index].pricePromotion ==
                                     null

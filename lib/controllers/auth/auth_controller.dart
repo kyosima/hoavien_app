@@ -89,7 +89,7 @@ class AuthController extends GetxController {
         loginProcess.value = false;
         if (user?.data?.role == 'customer') {
           await prefs.setString('userRole', user?.data?.role ?? "");
-          Get.toNamed('/dashboard', arguments: user);
+          Get.offNamed('/dashboard', arguments: user);
           Get.snackbar(
             "Đăng nhập thành công",
             "Chúc mừng bạn đã đăng nhập thành công",
@@ -100,7 +100,7 @@ class AuthController extends GetxController {
           );
         } else if (user?.data?.role == 'sale') {
           await prefs.setString('userRole', user?.data?.role ?? "");
-          Get.toNamed('/salerdashboard', arguments: user);
+          Get.offNamed('/salerdashboard', arguments: user);
           Get.snackbar(
             "Đăng nhập thành công",
             "Chúc mừng bạn đã đăng nhập thành công",
@@ -111,7 +111,7 @@ class AuthController extends GetxController {
           );
         } else if (user?.data?.role == 'customer-secondary') {
           await prefs.setString('userRole', user?.data?.role ?? "");
-          Get.toNamed('/secondaccountdashboard');
+          Get.offNamed('/secondaccountdashboard');
           Get.snackbar(
             "Đăng nhập thành công",
             "Chúc mừng bạn đã đăng nhập thành công",

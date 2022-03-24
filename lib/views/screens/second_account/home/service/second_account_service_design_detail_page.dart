@@ -3,7 +3,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/second_account/home/combo/second_account_combo_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/service/service_design_detail_controller.dart';
+import 'package:hoavien_app/controllers/second_account/home/service/second_account_service_design_detail_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
 import 'package:hoavien_app/views/widgets/custom_share_button.dart';
@@ -12,9 +13,9 @@ import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shimmer/shimmer.dart';
 
-class SecondAccountComboDetail extends StatelessWidget {
-  final controller = Get.put(SecondAccountComboDetailController());
-  SecondAccountComboDetail({Key? key}) : super(key: key);
+class SecondAccountServiceDesignDetailPage extends StatelessWidget {
+  final controller = Get.put(SecondAccountServiceDesignDetailController());
+  SecondAccountServiceDesignDetailPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class SecondAccountComboDetail extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(child: Obx(() {
-        if (controller.isLoadingCombo.value) {
+        if (controller.isLoadingService.value) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -156,7 +157,7 @@ class SecondAccountComboDetail extends StatelessWidget {
                       ),
                     ),
                     Obx(() {
-                      if (controller.isLoadingRelatedCombo.value) {
+                      if (controller.isLoadingRelatedService.value) {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10.0),
                           height: 289,
@@ -233,36 +234,38 @@ class SecondAccountComboDetail extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(vertical: 10.0),
                           height: 289,
                           child: ListView.builder(
-                            itemCount: controller.relatedCombo.value!.length,
+                            itemCount: controller.relatedService.value!.length,
                             itemBuilder: (_, index) {
                               return CustomService(
                                   onTap: () {
                                     Get.delete<
-                                        SecondAccountComboDetailController>();
-                                    Get.to(() => SecondAccountComboDetail(),
+                                        SecondAccountServiceDesignDetailController>();
+                                    Get.to(
+                                        () =>
+                                            SecondAccountServiceDesignDetailPage(),
                                         arguments: controller
-                                            .relatedCombo.value![index].id);
-                                    Get.toNamed('/secondaccountcombodetail',
+                                            .relatedService.value![index].id);
+                                    Get.toNamed(
+                                        '/secondaccountservicedesigndetail',
                                         arguments: controller
-                                            .relatedCombo.value![index].id);
+                                            .relatedService.value![index].id);
                                   },
                                   image:
-                                      '$baseURL${controller.relatedCombo.value![index].avatar}',
-                                  title: controller
-                                      .relatedCombo.value![index].name
+                                      '$baseURL${controller.relatedService.value![index].avatar}',
+                                  title: controller.relatedService.value![index].name
                                       .toString(),
                                   price: NumberFormat.currency(locale: 'vi')
                                       .format(controller
-                                          .relatedCombo.value![index].price),
-                                  priceSale: controller.relatedCombo
+                                          .relatedService.value![index].price),
+                                  priceSale: controller.relatedService
                                               .value![index].pricePromotion ==
                                           null
                                       ? ""
                                       : NumberFormat.currency(locale: 'vi')
-                                          .format(controller.relatedCombo
+                                          .format(controller.relatedService
                                               .value![index].pricePromotion),
                                   info: controller
-                                      .relatedCombo.value![index].shortDetail
+                                      .relatedService.value![index].shortDetail
                                       .toString());
                             },
                             // This next line does the trick.
@@ -287,7 +290,7 @@ class SecondAccountComboDetail extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.network(
-                          '$baseURL${controller.comboDetail.value?.avatar}',
+                          '$baseURL${controller.serviceDetail.value?.avatar}',
                           width: double.infinity,
                           fit: BoxFit.cover,
                         ),
@@ -322,17 +325,15 @@ class SecondAccountComboDetail extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Image.asset('assets/images/hot.png'),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  Text(
-                                    controller.comboDetail.value!.name
-                                        .toString(),
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: secondaryColor,
+                                  Flexible(
+                                    child: Text(
+                                      controller.serviceDetail.value!.name
+                                          .toString(),
+                                      style: const TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: secondaryColor,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -368,10 +369,10 @@ class SecondAccountComboDetail extends StatelessWidget {
                                         width: 10,
                                       ),
                                       Text(
-                                          '${controller.rate.value}/ ${controller.comboDetail.value?.comboReview?.length}')
+                                          '${controller.rate.value}/ ${controller.serviceDetail.value?.serviceReview?.length}')
                                     ],
                                   ),
-                                  Text('Đã bán : 1.5k')
+                                  const Text('Đã bán : 1.5k')
                                 ],
                               ),
                               const SizedBox(
@@ -381,7 +382,7 @@ class SecondAccountComboDetail extends StatelessWidget {
                                 children: [
                                   Text(
                                     NumberFormat.currency(locale: 'vi').format(
-                                        controller.comboDetail.value?.price),
+                                        controller.serviceDetail.value?.price),
                                     style: const TextStyle(
                                       color: Colors.red,
                                       fontSize: 16,
@@ -392,13 +393,13 @@ class SecondAccountComboDetail extends StatelessWidget {
                                     width: 15,
                                   ),
                                   Text(
-                                    controller.comboDetail.value
+                                    controller.serviceDetail.value
                                                 ?.pricePromotion ==
                                             null
                                         ? ""
                                         : NumberFormat.currency(locale: 'vi')
-                                            .format(controller.comboDetail.value
-                                                ?.pricePromotion),
+                                            .format(controller.serviceDetail
+                                                .value?.pricePromotion),
                                     style: const TextStyle(
                                       color: Colors.grey,
                                       decoration: TextDecoration.lineThrough,
@@ -432,7 +433,7 @@ class SecondAccountComboDetail extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    Html(data: '${controller.comboDetail.value?.detail}'),
+                    Html(data: '${controller.serviceDetail.value?.detail}'),
                     const SizedBox(
                       height: 20,
                     ),
@@ -445,43 +446,45 @@ class SecondAccountComboDetail extends StatelessWidget {
                       ),
                     ),
                     Obx(() {
-                      if (controller.isLoadingRelatedCombo.value) {
+                      if (controller.isLoadingRelatedService.value) {
                         return CircularProgressIndicator();
                       } else {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10.0),
                           height: 289,
                           child: ListView.builder(
-                            itemCount: controller.relatedCombo.value!.length,
+                            itemCount: controller.relatedService.value!.length,
                             itemBuilder: (_, index) {
                               return CustomService(
                                   onTap: () {
                                     Get.delete<
-                                        SecondAccountComboDetailController>();
-                                    Get.to(() => SecondAccountComboDetail(),
+                                        SecondAccountServiceDesignDetailController>();
+                                    Get.to(
+                                        () =>
+                                            SecondAccountServiceDesignDetailPage(),
                                         arguments: controller
-                                            .relatedCombo.value![index].id);
-                                    Get.toNamed('/secondaccountcombodetail',
+                                            .relatedService.value![index].id);
+                                    Get.toNamed(
+                                        '/secondaccountservicedesigndetail',
                                         arguments: controller
-                                            .relatedCombo.value![index].id);
+                                            .relatedService.value![index].id);
                                   },
                                   image:
-                                      '$baseURL${controller.relatedCombo.value![index].avatar}',
-                                  title: controller
-                                      .relatedCombo.value![index].name
+                                      '$baseURL${controller.relatedService.value![index].avatar}',
+                                  title: controller.relatedService.value![index].name
                                       .toString(),
                                   price: NumberFormat.currency(locale: 'vi')
                                       .format(controller
-                                          .relatedCombo.value![index].price),
-                                  priceSale: controller.relatedCombo
+                                          .relatedService.value![index].price),
+                                  priceSale: controller.relatedService
                                               .value![index].pricePromotion ==
                                           null
                                       ? ""
                                       : NumberFormat.currency(locale: 'vi')
-                                          .format(controller.relatedCombo
+                                          .format(controller.relatedService
                                               .value![index].pricePromotion),
                                   info: controller
-                                      .relatedCombo.value![index].shortDetail
+                                      .relatedService.value![index].shortDetail
                                       .toString());
                             },
                             // This next line does the trick.

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/second_account/home/combo/second_account_combo_controller.dart';
+import 'package:hoavien_app/controllers/second_account/home/service/second_account_service_burial_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
+import '../../../../../constance.dart';
+import 'package:get/get.dart';
 
-class SecondAccountCombo extends StatelessWidget {
-  final controller = Get.put(SecondAccountComboController());
-  SecondAccountCombo({Key? key}) : super(key: key);
+class SecondAccountServiceBurial extends StatelessWidget {
+  final controller = Get.put(SecondAccountServiceBurialController());
+  SecondAccountServiceBurial({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[300],
         appBar: AppBar(
-          centerTitle: false,
           elevation: 1,
+          centerTitle: false,
           backgroundColor: Colors.white,
           iconTheme: const IconThemeData(
             color: secondaryColor,
           ),
           title: const CustomTitleText(
-            title: 'Combo Hot',
+            title: 'Dịch vụ an táng, cải táng',
           ),
         ),
         body: Obx(() {
@@ -44,9 +44,7 @@ class SecondAccountCombo extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const ShimmerBox(
-                                height: double.infinity,
-                                width: 120,
-                              ),
+                                  height: double.infinity, width: 120),
                               const SizedBox(
                                 width: 10,
                               ),
@@ -54,16 +52,20 @@ class SecondAccountCombo extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  children: const [
-                                    ShimmerBox(height: 20, width: 150),
-                                    SizedBox(
+                                  children: [
+                                    Row(
+                                      children: const [
+                                        ShimmerBox(height: 20, width: 120)
+                                      ],
+                                    ),
+                                    const SizedBox(
                                       height: 10,
                                     ),
-                                    ShimmerBox(height: 20, width: 140),
-                                    SizedBox(
+                                    const ShimmerBox(height: 20, width: 100),
+                                    const SizedBox(
                                       height: 10,
                                     ),
-                                    ShimmerBox(height: 40, width: 140),
+                                    const ShimmerBox(height: 40, width: 120)
                                   ],
                                 ),
                               )
@@ -71,7 +73,7 @@ class SecondAccountCombo extends StatelessWidget {
                           ),
                         ),
                       ),
-                      height: 150,
+                      height: 160,
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
@@ -91,12 +93,13 @@ class SecondAccountCombo extends StatelessWidget {
           } else {
             return ListView.builder(
                 padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
-                itemCount: controller.allCombo.value!.length,
+                itemCount: controller.allService.value![0].services!.length,
                 itemBuilder: (BuildContext context, int index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed('/secondaccountcombodetail',
-                          arguments: controller.allCombo.value![index].id);
+                      Get.toNamed('/secondaccountserviceburialdetail',
+                          arguments: controller
+                              .allService.value![0].services![index].id);
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10),
@@ -107,7 +110,7 @@ class SecondAccountCombo extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Image.network(
-                                '$baseURL${controller.allCombo.value![index].avatar}',
+                                '$baseURL${controller.allService.value![0].services![index].avatar}',
                                 height: double.infinity,
                                 width: 120,
                                 fit: BoxFit.cover,
@@ -134,56 +137,64 @@ class SecondAccountCombo extends StatelessWidget {
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 15,
                                                 ),
-                                                text:
-                                                    '${controller.allCombo.value![index].name}'),
+                                                text: controller
+                                                    .allService
+                                                    .value![0]
+                                                    .services![index]
+                                                    .name
+                                                    .toString()),
                                           ),
                                         ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Image.asset('assets/images/hot.png')
                                       ],
                                     ),
                                     const SizedBox(
-                                      height: 10,
+                                      height: 5,
                                     ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          NumberFormat.currency(locale: 'vi')
-                                              .format(controller.allCombo
-                                                  .value![index].price),
-                                          style: const TextStyle(
-                                              color: Colors.red,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        const SizedBox(
-                                          width: 6,
-                                        ),
-                                        Text(
-                                          controller.allCombo.value![index]
+                                    Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            NumberFormat.currency(locale: 'vi')
+                                                .format(controller
+                                                    .allService
+                                                    .value![0]
+                                                    .services![index]
+                                                    .price),
+                                            style: const TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          const SizedBox(
+                                            width: 6,
+                                          ),
+                                          controller
+                                                      .allService
+                                                      .value![0]
+                                                      .services![index]
                                                       .pricePromotion ==
                                                   null
-                                              ? ""
-                                              : NumberFormat.currency(
-                                                      locale: 'vi')
-                                                  .format(controller
-                                                      .allCombo
-                                                      .value![index]
-                                                      .pricePromotion),
-                                          style: const TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 13,
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
+                                              ? Container()
+                                              : Text(
+                                                  NumberFormat.currency(
+                                                          locale: 'vi')
+                                                      .format(controller
+                                                          .allService
+                                                          .value![0]
+                                                          .services![index]
+                                                          .pricePromotion),
+                                                  style: const TextStyle(
+                                                      color: Colors.grey,
+                                                      fontSize: 13,
+                                                      decoration: TextDecoration
+                                                          .lineThrough,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                        ]),
                                     RichText(
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
@@ -192,10 +203,10 @@ class SecondAccountCombo extends StatelessWidget {
                                       text: TextSpan(
                                           style: const TextStyle(
                                             color: secondaryColor,
-                                            fontSize: 14,
+                                            fontSize: 15,
                                           ),
-                                          text: controller.allCombo
-                                              .value![index].shortDetail
+                                          text: controller.allService.value![0]
+                                              .services![index].shortDetail
                                               .toString()),
                                     ),
                                   ],
@@ -204,7 +215,7 @@ class SecondAccountCombo extends StatelessWidget {
                             ],
                           ),
                         ),
-                        height: 150,
+                        height: 160,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),

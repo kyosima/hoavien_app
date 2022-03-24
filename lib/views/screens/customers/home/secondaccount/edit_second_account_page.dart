@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -37,14 +39,22 @@ class EditSecondAccountPage extends StatelessWidget {
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    const Center(
+                    Center(
                       child: CircleAvatar(
                         radius: 45,
+                        backgroundImage: userInfo.avatar == null
+                            ? const AssetImage(defaultUser)
+                            : controller.avatarEdit.value == ''
+                                ? NetworkImage('$baseURL${userInfo.avatar}')
+                                    as ImageProvider
+                                : AssetImage(controller.avatarEdit.value),
                       ),
                     ),
                     Center(
                         child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.pickAvatarEdit();
+                      },
                       icon: const Icon(
                         Icons.camera_alt,
                         size: 30,
@@ -168,17 +178,32 @@ class EditSecondAccountPage extends StatelessWidget {
                       onPressed: () async {
                         final prefs = await SharedPreferences.getInstance();
                         final idAdded = prefs.getInt('id');
-                        controller.editSecondAccount(
-                          id: userInfo.id.toString(),
-                          fullname: controller.editFullNameController.text,
-                          relationship:
-                              controller.editRelationshipController.text,
-                          phone: controller.editPhoneController.text,
-                          password: controller.editPasswordController.text,
-                          confirmpassword:
-                              controller.editConfirmPasswordController.text,
-                          addedby: idAdded.toString(),
-                        );
+                        if (controller.avatarEdit.value == '') {
+                          controller.editSecondAccount(
+                            id: userInfo.id.toString(),
+                            fullname: controller.editFullNameController.text,
+                            relationship:
+                                controller.editRelationshipController.text,
+                            phone: controller.editPhoneController.text,
+                            password: controller.editPasswordController.text,
+                            confirmpassword:
+                                controller.editConfirmPasswordController.text,
+                            addedby: idAdded.toString(),
+                          );
+                        } else {
+                          controller.editSecondAccount(
+                            id: userInfo.id.toString(),
+                            fullname: controller.editFullNameController.text,
+                            relationship:
+                                controller.editRelationshipController.text,
+                            phone: controller.editPhoneController.text,
+                            password: controller.editPasswordController.text,
+                            confirmpassword:
+                                controller.editConfirmPasswordController.text,
+                            addedby: idAdded.toString(),
+                            avatar: File(controller.avatarEdit.value),
+                          );
+                        }
                       },
                       child: controller.isLoadingButton.value == true
                           ? const SizedBox(

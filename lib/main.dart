@@ -29,6 +29,7 @@ import 'package:hoavien_app/controllers/saler/statistical/statistical_controller
 import 'package:hoavien_app/controllers/saler/transaction/transaction_controller.dart';
 import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
+import 'package:hoavien_app/controllers/second_account/home/combo/second_account_combo_detail_controller.dart';
 import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_controller.dart';
 import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_detail_controller.dart';
 import 'package:hoavien_app/views/dashboard/customer/dashboard_customer_page.dart';
@@ -90,8 +91,14 @@ import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dar
 import 'package:hoavien_app/views/screens/saler/user/change_password_saler_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/info_user_saler_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/combo/combo_detail_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/combo/combo_page.dart';
 import 'package:hoavien_app/views/screens/second_account/home/product/second_account_product_detail_page.dart';
 import 'package:hoavien_app/views/screens/second_account/home/product/second_account_product_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/service/second_account_burial_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/service/second_account_service_burial_detail.dart';
+import 'package:hoavien_app/views/screens/second_account/home/service/second_account_service_design_detail_page.dart';
+import 'package:hoavien_app/views/screens/second_account/home/service/second_account_service_design_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/change_second_account_password_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/info_second_account_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -406,6 +413,30 @@ class MyApp extends StatelessWidget {
             name: '/secondaccountproductdetail',
             page: () => SecondAccountProductDetailPage(),
             binding: SecondAccountProductDetailBinding(),
+          ),
+          GetPage(
+            name: '/secondaccountcombo',
+            page: () => SecondAccountCombo(),
+          ),
+          GetPage(
+            name: '/secondaccountcombodetail',
+            page: () => SecondAccountComboDetail(),
+          ),
+          GetPage(
+            name: '/secondaccountserviceburial',
+            page: () => SecondAccountServiceBurial(),
+          ),
+          GetPage(
+            name: '/secondaccountserviceburialdetail',
+            page: () => SecondAccountServiceBurialDetailPage(),
+          ),
+          GetPage(
+            name: '/secondaccountservicedesign',
+            page: () => SecondAccountServiceDesignPage(),
+          ),
+          GetPage(
+            name: '/secondaccountservicedesigndetail',
+            page: () => SecondAccountServiceDesignDetailPage(),
           ),
         ]);
   }

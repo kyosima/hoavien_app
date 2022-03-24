@@ -26,6 +26,7 @@ class ProductDetailPage extends StatelessWidget {
         leading: InkWell(
           onTap: () {
             Get.back();
+            Get.back();
           },
           child: Stack(
             alignment: Alignment.center,
