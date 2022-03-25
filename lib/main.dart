@@ -296,7 +296,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/taosukien',
-            page: () => const CreateEventPage(),
+            page: () => CreateEventPage(),
             binding: CreateEventBindings(),
           ),
           GetPage(

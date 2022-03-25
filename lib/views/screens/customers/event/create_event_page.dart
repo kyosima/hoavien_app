@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
+import 'package:hoavien_app/controllers/customers/event/event_controller.dart';
+import 'package:hoavien_app/models/event/event_model.dart';
 import 'package:hoavien_app/views/widgets/custom_button_loginpage.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
-class CreateEventPage extends GetView<CreateEventController> {
-  const CreateEventPage({Key? key}) : super(key: key);
+class CreateEventPage extends StatefulWidget {
+  CreateEventPage({Key? key}) : super(key: key);
+
+  @override
+  State<CreateEventPage> createState() => _CreateEventPageState();
+}
+
+class _CreateEventPageState extends State<CreateEventPage> {
+  final controller = Get.put(EventController());
+
+  final DateTime selectedDate = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +50,11 @@ class CreateEventPage extends GetView<CreateEventController> {
               const SizedBox(
                 height: 15,
               ),
-              const CustomTextField(
-                  title: 'Tên sự kiện', inputType: TextInputType.text),
+              CustomTextField(
+                title: 'Tên sự kiện',
+                inputType: TextInputType.text,
+                controller: controller.eventController,
+              ),
               const SizedBox(
                 height: 15,
               ),
@@ -50,12 +63,12 @@ class CreateEventPage extends GetView<CreateEventController> {
                 children: [
                   Expanded(
                     child: CustomTextField(
-                      controller: controller.timeController,
+                      // controller: .timeController,
                       title: 'Thời gian',
                       inputType: TextInputType.datetime,
                       icon: Icons.timer_outlined,
                       onPressed: () {
-                        controller.setEventTime();
+                        // controller.setEventTime();
                       },
                     ),
                   ),
@@ -65,11 +78,11 @@ class CreateEventPage extends GetView<CreateEventController> {
                   Expanded(
                     child: CustomTextField(
                       title: 'Ngày',
-                      controller: controller.dateController,
+                      // controller: controller.dateController,
                       inputType: TextInputType.datetime,
                       icon: Icons.calendar_today,
                       onPressed: () {
-                        controller.setEventDay();
+                        // controller.setEventDay();
                       },
                     ),
                   ),
@@ -111,7 +124,33 @@ class CreateEventPage extends GetView<CreateEventController> {
               const SizedBox(
                 height: 15,
               ),
-              const Center(child: CustomButtonLoginPage(title: 'Lưu')),
+              Center(
+                  child: CustomButtonLoginPage(
+                title: 'Lưu',
+                onPressed: () {
+                  if (controller.eventController.text.isEmpty) {
+                    print('1');
+                    return;
+                  } else {
+                    if (controller.selectedEvent![selectedDate] != null) {
+                      controller.selectedEvent![selectedDate]!.add(EventModel(
+                          title: controller.eventController.text,
+                          time: controller.timeController.text));
+                      print('3');
+                    } else {
+                      controller.selectedEvent![selectedDate] = [
+                        EventModel(
+                            title: controller.eventController.text,
+                            time: controller.timeController.text)
+                      ];
+                    }
+                    controller.eventController.clear();
+                    setState(() {});
+                    Get.back();
+                    return;
+                  }
+                },
+              )),
             ],
           ),
         ),
