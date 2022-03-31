@@ -31,7 +31,7 @@ dependencies:
   get:
   otp_text_field: any
   awesome_dialog: any
-  flutter_image_slideshow: any
+  flutter_image_slideshow: ^0.1.2
   flutter_native_splash: any
   webview_flutter: any
   qr_code_scanner: any

@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/event/event_model.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class EventBinding implements Bindings {
   @override
@@ -21,6 +23,9 @@ class EventController extends GetxController {
   final eventController = TextEditingController();
   final dateController = TextEditingController();
   final timeController = TextEditingController();
+  DateTime focusDate = DateTime.now();
+  DateTime selectedDate = DateTime.now();
+  late final ValueNotifier<List<EventModel>> selectedEvents;
 
   @override
   void dispose() {
@@ -29,12 +34,16 @@ class EventController extends GetxController {
     eventController.dispose();
   }
 
+  List<EventModel> getEventsForDay(DateTime day) {
+    // Implementation example
+    return kEvents[day] ?? [];
+  }
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     Timer.periodic(const Duration(seconds: 1), (timer) => getTime());
-    selectedEvent = {};
   }
 
   List<EventModel> getEventFromDate(DateTime date) {
@@ -65,3 +74,28 @@ class EventController extends GetxController {
     second.value = DateTime.now().second;
   }
 }
+
+final kEvents = LinkedHashMap<DateTime, List<EventModel>>(
+  equals: isSameDay,
+  hashCode: getHashCode,
+)..addAll(kEventSource);
+
+final kEventSource = {
+  DateTime.utc(kToday.year, kToday.month, kToday.day - 1): [
+    EventModel(title: 'Oke', time: '11:12'),
+    EventModel(title: 'Oke 1', time: '11:12'),
+    EventModel(title: 'Oke 2', time: '11:12'),
+  ],
+  DateTime.utc(kToday.year, kToday.month, kToday.day): [
+    EventModel(title: 'Oke', time: '11:12'),
+    EventModel(title: 'Oke 1', time: '11:12'),
+  ],
+};
+
+int getHashCode(DateTime key) {
+  return key.day * 1000000 + key.month * 10000 + key.year;
+}
+
+final kToday = DateTime.now();
+final kFirstDay = DateTime(kToday.year, kToday.month - 3, kToday.day);
+final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
