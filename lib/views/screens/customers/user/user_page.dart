@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/controllers/auth/auth_controller.dart';
@@ -171,7 +173,13 @@ class UserPage extends StatelessWidget {
                       _customButtonUser(
                         icon: Icons.share,
                         label: 'Chia sẻ app',
-                        onTap: () {},
+                        onTap: () {
+                          if (Platform.isIOS) {
+                            print('share IOS');
+                          } else {
+                            print('share andoird');
+                          }
+                        },
                       ),
                       const SizedBox(
                         height: 10,

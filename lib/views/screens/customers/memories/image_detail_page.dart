@@ -24,10 +24,7 @@ class ImageDetailPage extends StatelessWidget {
         ],
       ),
       body: PhotoView(
-        imageProvider: NetworkImage(image),
-        minScale: PhotoViewComputedScale.contained * 0.8,
-        maxScale: PhotoViewComputedScale.covered * 1.8,
-        initialScale: PhotoViewComputedScale.contained * 1.1,
+        imageProvider: NetworkImage('$baseURL$image'),
       ),
     );
   }

@@ -395,6 +395,7 @@ class _EventPageState extends State<EventPage> {
                                   controller.focusDate = focusDay;
                                   controller.selectedDate = selectedDay;
                                 });
+                                print(selectedDay);
                               },
                               selectedDayPredicate: (day) {
                                 return isSameDay(controller.selectedDate, day);

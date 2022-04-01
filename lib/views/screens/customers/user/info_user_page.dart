@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -173,12 +175,22 @@ class InfoUserPage extends StatelessWidget {
                           border: Border.all(color: primaryColor, width: 1.0)),
                       child: TextButton(
                         onPressed: () {
-                          controller.updateInfo(
-                            id: controller.infoUser.value?.id.toString(),
-                            fullname: controller.fullNameController.text,
-                            gender: controller.sexMenuController.text,
-                            birthday: controller.dateController.text,
-                          );
+                          if (controller.avatar.value == '') {
+                            controller.updateInfo(
+                              id: controller.infoUser.value?.id.toString(),
+                              fullname: controller.fullNameController.text,
+                              gender: controller.sexMenuController.text,
+                              birthday: controller.dateController.text,
+                            );
+                          } else {
+                            controller.updateInfo(
+                              id: controller.infoUser.value?.id.toString(),
+                              fullname: controller.fullNameController.text,
+                              gender: controller.sexMenuController.text,
+                              birthday: controller.dateController.text,
+                              avatar: File(controller.avatar.value),
+                            );
+                          }
                         },
                         child: controller.loadingButton.value == true
                             ? const SizedBox(
