@@ -730,7 +730,7 @@ class HomePage extends StatelessWidget {
                     child: const Text('Xem Thêm'),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),

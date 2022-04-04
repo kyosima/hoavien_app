@@ -33,8 +33,9 @@ class ApiSecondAccount {
     });
     if (response.statusCode == 200) {
       return statusModelFromJson(response.body);
-    } else
+    } else {
       return null;
+    }
   }
 
   static Future<int?> editSecondAccount(
