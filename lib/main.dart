@@ -287,7 +287,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/danhsachthanhvien',
-            page: () => const ListUserPage(),
+            page: () => ListUserPage(),
           ),
           GetPage(
             name: '/taogiapha',

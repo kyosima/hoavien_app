@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
@@ -119,12 +120,12 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                                   .toString());
                           i++) ...[
                         ClipRRect(
-                          borderRadius: BorderRadius.circular(15.0),
-                          child: Image.network(
-                            '$baseURL${controller.allBanner.value![i].image}',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: CachedNetworkImage(
+                              imageUrl:
+                                  '$baseURL${controller.allBanner.value![i].image}',
+                              fit: BoxFit.cover,
+                            )),
                       ]
                     ],
 

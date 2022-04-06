@@ -42,12 +42,17 @@ class EditSecondAccountPage extends StatelessWidget {
                     Center(
                       child: CircleAvatar(
                         radius: 45,
-                        backgroundImage: userInfo.avatar == null
+                        backgroundImage: userInfo.avatar == null &&
+                                controller.avatarEdit.value == ''
                             ? const AssetImage(defaultUser)
-                            : controller.avatarEdit.value == ''
-                                ? NetworkImage('$baseURL${userInfo.avatar}')
-                                    as ImageProvider
-                                : AssetImage(controller.avatarEdit.value),
+                            : userInfo.avatar == null &&
+                                    controller.avatarEdit.value != ''
+                                ? AssetImage(controller.avatarEdit.value)
+                                : userInfo.avatar != null &&
+                                        controller.avatarEdit.value == ''
+                                    ? NetworkImage('$baseURL${userInfo.avatar}')
+                                        as ImageProvider
+                                    : AssetImage(controller.avatarEdit.value),
                       ),
                     ),
                     Center(
