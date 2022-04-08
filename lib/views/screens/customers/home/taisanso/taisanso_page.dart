@@ -13,114 +13,112 @@ class TaiSanSoPage extends GetView<TaisansoController> {
     return Scaffold(
       key: _key,
       endDrawer: Drawer(
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        height: 100,
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment(0.8,
-                                0.0), // 10% of the width, so there are ten blinds.
-                            colors: <Color>[
-                              Color(0xffFF9900),
-                              Color(0xffF5C037)
-                            ], // red to yellow
-                            // repeats the gradient over the canvas
-                          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      height: 100,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment(0.8,
+                              0.0), // 10% of the width, so there are ten blinds.
+                          colors: <Color>[
+                            Color(0xffFF9900),
+                            Color(0xffF5C037)
+                          ], // red to yellow
+                          // repeats the gradient over the canvas
                         ),
-                      ),
-                      const Positioned(
-                        bottom: 15,
-                        left: 30,
-                        child: Text(
-                          'Bộ lọc tìm kiếm',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(left: 15),
-                            child: Text(
-                              'Phân loại theo khu',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          GetBuilder<TaisansoController>(
-                              builder: (_) => ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  padding: EdgeInsets.all(0),
-                                  shrinkWrap: true,
-                                  itemCount: controller.phanLoaiKhu.length,
-                                  itemBuilder: (_, index) {
-                                    return CheckboxListTile(
-                                        controlAffinity:
-                                            ListTileControlAffinity.leading,
-                                        title: Text(controller
-                                            .phanLoaiKhu[index]['name']),
-                                        value: controller.phanLoaiKhu[index]
-                                            ['isCheck'],
-                                        onChanged: (value) {
-                                          controller.isCheck(index);
-                                        });
-                                  })),
-                        ],
                       ),
                     ),
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 70,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OutlinedButton(
-                    onPressed: () {},
-                    child: Text('Mặc định'),
+                    const Positioned(
+                      bottom: 15,
+                      left: 30,
+                      child: Text(
+                        'Bộ lọc tìm kiếm',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 15),
+                          child: Text(
+                            'Phân loại theo khu',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GetBuilder<TaisansoController>(
+                            builder: (_) => ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                padding: const EdgeInsets.all(0),
+                                shrinkWrap: true,
+                                itemCount: controller.phanLoaiKhu.length,
+                                itemBuilder: (_, index) {
+                                  return CheckboxListTile(
+                                      controlAffinity:
+                                          ListTileControlAffinity.leading,
+                                      title: Text(controller.phanLoaiKhu[index]
+                                          ['name']),
+                                      value: controller.phanLoaiKhu[index]
+                                          ['isCheck'],
+                                      onChanged: (value) {
+                                        controller.isCheck(index);
+                                      });
+                                })),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  FlatButton(
-                    color: primaryColor,
-                    onPressed: () {},
-                    child: Text('Áp dụng'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 70,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text('Mặc định'),
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                FlatButton(
+                  color: primaryColor,
+                  onPressed: () {},
+                  child: const Text('Áp dụng'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: secondaryColor,
           ),
@@ -129,11 +127,11 @@ class TaiSanSoPage extends GetView<TaisansoController> {
           },
         ),
         elevation: 1,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: Colors.white,
         ),
         backgroundColor: Colors.white,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Tài sản số',
         ),
       ),
@@ -147,16 +145,16 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 15, right: 15, top: 10, bottom: 10),
                       child: SizedBox(
                         height: 45,
                         child: Container(
                             height: 40.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
+                                borderRadius: BorderRadius.all(
+                                    const Radius.circular(10))),
                             child: Directionality(
                                 textDirection: TextDirection.ltr,
                                 child: TextField(
@@ -164,22 +162,22 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                     controller.findTaisanso(value);
                                   },
                                   autofocus: false,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 16.0, color: secondaryColor),
                                   decoration: InputDecoration(
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: 'Tìm kiếm',
-                                    contentPadding: EdgeInsets.only(
+                                    contentPadding: const EdgeInsets.only(
                                         left: 14.0, bottom: 13.0, top: 8.0),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.white),
+                                          const BorderSide(color: Colors.white),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.white),
+                                          const BorderSide(color: Colors.white),
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
@@ -191,14 +189,15 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                     onPressed: () {
                       _key.currentState!.openEndDrawer();
                     },
-                    icon: Icon(Icons.filter_alt),
+                    icon: const Icon(Icons.filter_alt),
                   )
                 ],
               ),
               Obx(
                 () => Expanded(
                   child: ListView.builder(
-                      padding: EdgeInsets.only(top: 5, left: 15, right: 15),
+                      padding:
+                          const EdgeInsets.only(top: 5, left: 15, right: 15),
                       itemCount: controller.foundTaisanso.value.length,
                       itemBuilder: (BuildContext context, int index) {
                         return InkWell(
@@ -218,7 +217,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                       width: 80,
                                       fit: BoxFit.cover,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Flexible(
@@ -231,10 +230,10 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                           RichText(
                                             overflow: TextOverflow.ellipsis,
                                             maxLines: 2,
-                                            strutStyle:
-                                                StrutStyle(fontSize: 19.0),
+                                            strutStyle: const StrutStyle(
+                                                fontSize: 19.0),
                                             text: TextSpan(
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   color: secondaryColor,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 19,
@@ -242,12 +241,12 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                                 text: controller.foundTaisanso
                                                     .value[index]['name']),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 15,
                                           ),
                                           Row(
                                             children: [
-                                              Text(
+                                              const Text(
                                                 'Thuộc khu :',
                                                 style: TextStyle(
                                                     color: secondaryColor,
@@ -255,13 +254,13 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                                     fontWeight:
                                                         FontWeight.w500),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               Text(
                                                 controller.foundTaisanso
                                                     .value[index]['location'],
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: secondaryColor,
                                                     fontSize: 14,
                                                     fontWeight:
@@ -269,12 +268,12 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 15,
                                           ),
                                           Row(
                                             children: [
-                                              Text(
+                                              const Text(
                                                 'Chủ sở hữu :',
                                                 style: TextStyle(
                                                     color: secondaryColor,
@@ -282,13 +281,13 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                                     fontWeight:
                                                         FontWeight.w300),
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 5,
                                               ),
                                               Text(
                                                 controller.foundTaisanso
                                                     .value[index]['host'],
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                   fontSize: 14,
                                                   color: secondaryColor,
                                                   fontWeight: FontWeight.w300,

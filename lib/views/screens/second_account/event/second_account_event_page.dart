@@ -13,14 +13,14 @@ class SecondAccountEventPage extends StatelessWidget {
     return Scaffold(
         extendBodyBehindAppBar: true,
         floatingActionButton: FloatingActionButton(
-          child: CustomAddGalleryButton(),
+          child: const CustomAddGalleryButton(),
           onPressed: () {
             Get.toNamed('/taosukien');
           },
         ),
         body: SingleChildScrollView(
           child: Container(
-            color: Color(0xffFDF2D7),
+            color: const Color(0xffFDF2D7),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,7 +31,7 @@ class SecondAccountEventPage extends StatelessWidget {
                       children: [
                         Container(
                           height: 50,
-                          color: Color(0xffFFC950),
+                          color: const Color(0xffFFC950),
                         ),
                         Image.asset(
                           'assets/images/eventbackground.png',
@@ -41,7 +41,7 @@ class SecondAccountEventPage extends StatelessWidget {
                         ),
                         Container(
                           height: 400,
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               color: Color(0xffFFC950),
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(10),
@@ -58,11 +58,11 @@ class SecondAccountEventPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              CustomTitleText(title: 'Sự kiện'),
-                              SizedBox(
+                              const CustomTitleText(title: 'Sự kiện'),
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Text(
+                              const Text(
                                 'Âm lịch',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -70,21 +70,21 @@ class SecondAccountEventPage extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                    color: Color(0xffFDF2D7),
+                                    color: const Color(0xffFDF2D7),
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       Column(
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Giờ',
                                             style: TextStyle(
@@ -117,7 +117,7 @@ class SecondAccountEventPage extends StatelessWidget {
                                         ],
                                       ),
                                       Column(
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Ngày',
                                             style: TextStyle(
@@ -150,7 +150,7 @@ class SecondAccountEventPage extends StatelessWidget {
                                         ],
                                       ),
                                       Column(
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Tháng',
                                             style: TextStyle(
@@ -183,7 +183,7 @@ class SecondAccountEventPage extends StatelessWidget {
                                         ],
                                       ),
                                       Column(
-                                        children: [
+                                        children: const [
                                           Text(
                                             'Năm',
                                             style: TextStyle(
@@ -219,10 +219,10 @@ class SecondAccountEventPage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 15,
                               ),
-                              Text(
+                              const Text(
                                 'Dương lịch',
                                 style: TextStyle(
                                   fontSize: 16,
@@ -230,12 +230,12 @@ class SecondAccountEventPage extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Color(0xffFDF2D7),
+                                  color: const Color(0xffFDF2D7),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: TableCalendar(
@@ -262,7 +262,7 @@ class SecondAccountEventPage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-                          children: [
+                          children: const [
                             Icon(
                               Icons.star,
                               color: Color(0xffB71F45),
@@ -285,8 +285,8 @@ class SecondAccountEventPage extends StatelessWidget {
                 ),
                 Container(
                   child: ListView.builder(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      physics: NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: 5,
                       itemBuilder: (BuildContext context, index) {
@@ -295,7 +295,7 @@ class SecondAccountEventPage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 border: Border(
                                   left: BorderSide(
                                       color: secondaryColor, width: 3),
@@ -307,8 +307,8 @@ class SecondAccountEventPage extends StatelessWidget {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: [
+                                        CrossAxisAlignment.start,
+                                    children: const [
                                       Text(
                                         'Sinh nhật Linh Anh',
                                         style: TextStyle(

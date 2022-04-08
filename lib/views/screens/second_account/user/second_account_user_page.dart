@@ -43,13 +43,17 @@ class SecondAccountUserPage extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          CircleAvatar(
-                            backgroundImage: NetworkImage(controller
-                                        .infoUser.value?.avatar ==
-                                    null
-                                ? defaultUser
-                                : "$baseURL${controller.infoUser.value?.avatar}"),
-                            radius: 42,
+                          Obx(
+                            () => CircleAvatar(
+                              backgroundImage: controller
+                                          .infoUser.value?.avatar ==
+                                      null
+                                  ? const AssetImage(defaultUser)
+                                  : NetworkImage(
+                                          '$baseURL${controller.infoUser.value?.avatar}')
+                                      as ImageProvider,
+                              radius: 42,
+                            ),
                           ),
                           const SizedBox(
                             width: 15,

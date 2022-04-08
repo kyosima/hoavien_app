@@ -13,10 +13,10 @@ class CheckoutPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 1,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Thanh toán',
         ),
       ),
@@ -36,13 +36,14 @@ class CheckoutPage extends StatelessWidget {
                       child: ButtonsTabBar(
                         backgroundColor: primaryColor,
                         unselectedBackgroundColor: Colors.white,
-                        unselectedLabelStyle: TextStyle(color: secondaryColor),
-                        labelStyle: TextStyle(
+                        unselectedLabelStyle:
+                            const TextStyle(color: secondaryColor),
+                        labelStyle: const TextStyle(
                             letterSpacing: 0.7,
                             fontSize: 15,
                             color: secondaryColor,
                             fontWeight: FontWeight.bold),
-                        tabs: [
+                        tabs: const [
                           Tab(
                             text: "Chờ thanh toán",
                           ),
@@ -63,8 +64,8 @@ class CheckoutPage extends StatelessWidget {
                     child: TabBarView(
                       children: <Widget>[
                         ListView.builder(
-                            padding:
-                                EdgeInsets.only(top: 5, left: 10, right: 10),
+                            padding: const EdgeInsets.only(
+                                top: 5, left: 10, right: 10),
                             itemCount: 10,
                             itemBuilder: (BuildContext context, int index) {
                               return Padding(
@@ -78,7 +79,7 @@ class CheckoutPage extends StatelessWidget {
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
-                                            children: [
+                                            children: const [
                                               Text(
                                                 'Chờ thanh toán',
                                                 style: TextStyle(
@@ -95,7 +96,7 @@ class CheckoutPage extends StatelessWidget {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 5,
                                           ),
                                           Row(
@@ -106,7 +107,7 @@ class CheckoutPage extends StatelessWidget {
                                                 'assets/images/taisanso.png',
                                                 width: 100,
                                               ),
-                                              SizedBox(
+                                              const SizedBox(
                                                 width: 10,
                                               ),
                                               Flexible(
@@ -120,9 +121,10 @@ class CheckoutPage extends StatelessWidget {
                                                       overflow:
                                                           TextOverflow.ellipsis,
                                                       maxLines: 2,
-                                                      strutStyle: StrutStyle(
-                                                          fontSize: 19.0),
-                                                      text: TextSpan(
+                                                      strutStyle:
+                                                          const StrutStyle(
+                                                              fontSize: 19.0),
+                                                      text: const TextSpan(
                                                           style: TextStyle(
                                                             color:
                                                                 secondaryColor,
@@ -132,11 +134,11 @@ class CheckoutPage extends StatelessWidget {
                                                           ),
                                                           text: 'PQ2.3-02-01'),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                     Row(
-                                                      children: [
+                                                      children: const [
                                                         Text(
                                                           'Thuộc khu :',
                                                           style: TextStyle(
@@ -162,11 +164,11 @@ class CheckoutPage extends StatelessWidget {
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                     Row(
-                                                      children: [
+                                                      children: const [
                                                         Text(
                                                           'Chủ sở hữu :',
                                                           style: TextStyle(
@@ -192,14 +194,14 @@ class CheckoutPage extends StatelessWidget {
                                                         ),
                                                       ],
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                     Row(
                                                       crossAxisAlignment:
                                                           CrossAxisAlignment
                                                               .start,
-                                                      children: [
+                                                      children: const [
                                                         Text(
                                                           'Thanh toán đợt 2:',
                                                           style: TextStyle(
@@ -236,7 +238,7 @@ class CheckoutPage extends StatelessWidget {
                                                             Get.toNamed(
                                                                 '/checkoutdetail');
                                                           },
-                                                          child: Text(
+                                                          child: const Text(
                                                             'Xem chi tiết',
                                                             style: TextStyle(
                                                               color:
@@ -272,13 +274,13 @@ class CheckoutPage extends StatelessWidget {
                                 ),
                               );
                             }),
-                        Center(
+                        const Center(
                           child: Icon(Icons.directions_transit),
                         ),
-                        Center(
+                        const Center(
                           child: Icon(Icons.directions_bike),
                         ),
-                        Center(
+                        const Center(
                           child: Icon(Icons.directions_car),
                         ),
                       ],

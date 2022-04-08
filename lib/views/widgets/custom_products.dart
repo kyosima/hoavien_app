@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../constance.dart';
@@ -25,8 +26,8 @@ class CustomProducts extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            image,
+          CachedNetworkImage(
+            imageUrl: image,
             fit: BoxFit.cover,
             height: 140,
             width: double.infinity,

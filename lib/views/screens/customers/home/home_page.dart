@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
@@ -128,9 +129,10 @@ class HomePage extends StatelessWidget {
                           i++) ...[
                         ClipRRect(
                           borderRadius: BorderRadius.circular(15.0),
-                          child: Image.network(
-                            '$baseURL${controller.allBanner.value![i].image}',
+                          child: CachedNetworkImage(
                             fit: BoxFit.cover,
+                            imageUrl:
+                                '$baseURL${controller.allBanner.value![i].image}',
                           ),
                         ),
                       ],

@@ -23,15 +23,15 @@ class ListSecondAccountModel {
     if (json['data'] != null) {
       data = <Data>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(Data.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -53,19 +53,18 @@ class Data {
     phone = json['phone'];
     avatar = json['avatar'];
     role = json['role'];
-    userInfo = json['user_info'] != null
-        ? new UserInfo.fromJson(json['user_info'])
-        : null;
+    userInfo =
+        json['user_info'] != null ? UserInfo.fromJson(json['user_info']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['phone'] = this.phone;
-    data['avatar'] = this.avatar;
-    data['role'] = this.role;
-    if (this.userInfo != null) {
-      data['user_info'] = this.userInfo!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['phone'] = phone;
+    data['avatar'] = avatar;
+    data['role'] = role;
+    if (userInfo != null) {
+      data['user_info'] = userInfo!.toJson();
     }
     return data;
   }
@@ -85,10 +84,10 @@ class UserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['fullname'] = this.fullname;
-    data['relationship'] = this.relationship;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['fullname'] = fullname;
+    data['relationship'] = relationship;
     return data;
   }
 }

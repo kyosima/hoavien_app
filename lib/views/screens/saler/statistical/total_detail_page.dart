@@ -13,10 +13,10 @@ class TotalDetailPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         centerTitle: false,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Chi tiết báo cáo',
         ),
       ),
@@ -30,8 +30,8 @@ class TotalDetailPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('Tổng doanh thu (tạm tính)'),
-                      SizedBox(
+                      const Text('Tổng doanh thu (tạm tính)'),
+                      const SizedBox(
                         height: 15,
                       ),
                       Stack(
@@ -45,9 +45,9 @@ class TotalDetailPage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                             ),
                           ),
-                          Text(
+                          const Text(
                             '11.000.000.000 đ',
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: secondaryColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
@@ -55,23 +55,23 @@ class TotalDetailPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 15,
                       ),
-                      Text('Tổng số giao dịch : 12')
+                      const Text('Tổng số giao dịch : 12')
                     ],
                   ),
                 ),
               ),
               ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 10,
                   itemBuilder: (BuildContext context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.white,
                         ),
                         child: Padding(
@@ -79,7 +79,7 @@ class TotalDetailPage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 'Thông tin giao dịch',
                                 style: TextStyle(
                                   color: Color(0xff355EC5),
@@ -87,37 +87,46 @@ class TotalDetailPage extends StatelessWidget {
                                   fontSize: 14,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [Text('Ngày'), Text('12/11/2021')],
+                                children: const [
+                                  Text('Ngày'),
+                                  Text('12/11/2021')
+                                ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [Text('Mã đơn'), Text('PQ2001')],
+                                children: const [
+                                  Text('Mã đơn'),
+                                  Text('PQ2001')
+                                ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [Text('Mã lô'), Text('PQ2.2-01-02')],
+                                children: const [
+                                  Text('Mã lô'),
+                                  Text('PQ2.2-01-02')
+                                ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [
+                                children: const [
                                   Text('Giá bán'),
                                   Text('1.000.000.000 đ')
                                 ],

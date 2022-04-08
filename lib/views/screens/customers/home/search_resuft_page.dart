@@ -66,18 +66,18 @@ class SearchResuftPage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           GetBuilder<SearchController>(builder: (_) {
                             return ListView.builder(
                                 padding: EdgeInsets.zero,
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemCount: controller.phanLoai.length,
                                 itemBuilder: (_, index) {
                                   return CheckboxListTile(
-                                      contentPadding: EdgeInsets.all(0),
+                                      contentPadding: const EdgeInsets.all(0),
                                       controlAffinity:
                                           ListTileControlAffinity.leading,
                                       title: Text(
@@ -89,7 +89,7 @@ class SearchResuftPage extends StatelessWidget {
                                       });
                                 });
                           }),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           const Padding(
@@ -142,7 +142,7 @@ class SearchResuftPage extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 70,
               ),
               Row(
@@ -150,15 +150,15 @@ class SearchResuftPage extends StatelessWidget {
                 children: [
                   OutlinedButton(
                     onPressed: () {},
-                    child: Text('Mặc định'),
+                    child: const Text('Mặc định'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 20,
                   ),
                   FlatButton(
                     color: primaryColor,
                     onPressed: () {},
-                    child: Text('Áp dụng'),
+                    child: const Text('Áp dụng'),
                   ),
                 ],
               ),
@@ -182,7 +182,7 @@ class SearchResuftPage extends StatelessWidget {
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.search),
+                      icon: const Icon(Icons.search),
                     ),
                     filled: true,
                     fillColor: Colors.white,
@@ -216,7 +216,7 @@ class SearchResuftPage extends StatelessWidget {
                 ),
                 Center(
                     child: IconButton(
-                  icon: Icon(Icons.filter_alt),
+                  icon: const Icon(Icons.filter_alt),
                   onPressed: () {
                     Scaffold.of(context).openEndDrawer();
                   },
@@ -237,7 +237,7 @@ class SearchResuftPage extends StatelessWidget {
               children: [
                 ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 10,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
@@ -251,7 +251,7 @@ class SearchResuftPage extends StatelessWidget {
                                 Image.asset(
                                   'assets/images/search_resuft.png',
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 10,
                                 ),
                                 Flexible(
@@ -262,8 +262,9 @@ class SearchResuftPage extends StatelessWidget {
                                       RichText(
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 2,
-                                        strutStyle: StrutStyle(fontSize: 19.0),
-                                        text: TextSpan(
+                                        strutStyle:
+                                            const StrutStyle(fontSize: 19.0),
+                                        text: const TextSpan(
                                             style: TextStyle(
                                               color: secondaryColor,
                                               fontWeight: FontWeight.w500,
@@ -271,16 +272,16 @@ class SearchResuftPage extends StatelessWidget {
                                             ),
                                             text: 'Cải táng hộc lưu tro HVBA '),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
-                                      Text(
+                                      const Text(
                                         'đ 500.000',
                                         style: TextStyle(
                                             color: Colors.red,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 5,
                                       ),
                                       Flexible(
@@ -288,9 +289,9 @@ class SearchResuftPage extends StatelessWidget {
                                           overflow: TextOverflow.ellipsis,
                                           maxLines: 2,
                                           strutStyle:
-                                              StrutStyle(fontSize: 19.0),
-                                          text: TextSpan(
-                                              style: TextStyle(
+                                              const StrutStyle(fontSize: 19.0),
+                                          text: const TextSpan(
+                                              style: const TextStyle(
                                                 color: secondaryColor,
                                               ),
                                               text:

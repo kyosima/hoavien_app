@@ -22,13 +22,13 @@ class SecondAccountModel {
   SecondAccountModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -59,7 +59,7 @@ class Data {
     data['id'] = id;
     data['phone'] = phone;
     data['role'] = role;
-    data['avatar'] = this.avatar;
+    data['avatar'] = avatar;
     if (userInfo != null) {
       data['user_info'] = userInfo!.toJson();
     }

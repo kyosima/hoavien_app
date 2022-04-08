@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
-import 'package:photo_view/photo_view.dart';
 
 class CartHistoryPage extends StatelessWidget {
   const CartHistoryPage({Key? key}) : super(key: key);
@@ -15,10 +14,10 @@ class CartHistoryPage extends StatelessWidget {
         elevation: 1,
         centerTitle: false,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Lịch sử mua hàng',
         ),
       ),
@@ -30,28 +29,26 @@ class CartHistoryPage extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  child: ButtonsTabBar(
-                    backgroundColor: primaryColor,
-                    unselectedBackgroundColor: Colors.white,
-                    unselectedLabelStyle: TextStyle(color: secondaryColor),
-                    labelStyle: TextStyle(
-                        letterSpacing: 1,
-                        fontSize: 16,
-                        color: secondaryColor,
-                        fontWeight: FontWeight.bold),
-                    tabs: [
-                      Tab(
-                        text: "Chờ xác nhận",
-                      ),
-                      Tab(
-                        text: "Đã hoàn thành",
-                      ),
-                      Tab(
-                        text: "Đã hủy",
-                      ),
-                    ],
-                  ),
+                child: ButtonsTabBar(
+                  backgroundColor: primaryColor,
+                  unselectedBackgroundColor: Colors.white,
+                  unselectedLabelStyle: const TextStyle(color: secondaryColor),
+                  labelStyle: const TextStyle(
+                      letterSpacing: 1,
+                      fontSize: 16,
+                      color: secondaryColor,
+                      fontWeight: FontWeight.bold),
+                  tabs: const [
+                    Tab(
+                      text: "Chờ xác nhận",
+                    ),
+                    Tab(
+                      text: "Đã hoàn thành",
+                    ),
+                    Tab(
+                      text: "Đã hủy",
+                    ),
+                  ],
                 ),
               ),
               Expanded(
@@ -75,7 +72,7 @@ class CartHistoryPage extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: [
+                                      children: const [
                                         Text(
                                           'Chờ xác nhận',
                                           style: TextStyle(
@@ -93,7 +90,7 @@ class CartHistoryPage extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
@@ -105,7 +102,7 @@ class CartHistoryPage extends StatelessWidget {
                                           width: 100,
                                           fit: BoxFit.cover,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         Column(
@@ -114,23 +111,23 @@ class CartHistoryPage extends StatelessWidget {
                                           children: [
                                             Text(
                                               'Đĩa trái cây $index',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                                 color: secondaryColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 15,
                                             ),
-                                            Text(
+                                            const Text(
                                               'Phân loại : Đế đen Ấn Độ ',
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 color: secondaryColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 15,
                                             ),
                                             Row(
@@ -139,7 +136,7 @@ class CartHistoryPage extends StatelessWidget {
                                                       .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
-                                              children: [
+                                              children: const [
                                                 Text(
                                                   'Đơn giá : 200.000 đ',
                                                   style: TextStyle(
@@ -160,21 +157,21 @@ class CartHistoryPage extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                           ],
                                         )
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         TextButton(
@@ -187,9 +184,8 @@ class CartHistoryPage extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Text(
                                                   'Xem chi tiết',
                                                   style: TextStyle(
@@ -224,7 +220,7 @@ class CartHistoryPage extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: [
+                                      children: const [
                                         Text(
                                           'Đã hoàn thành',
                                           style: TextStyle(
@@ -242,7 +238,7 @@ class CartHistoryPage extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
@@ -254,7 +250,7 @@ class CartHistoryPage extends StatelessWidget {
                                           width: 100,
                                           fit: BoxFit.cover,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         Column(
@@ -263,23 +259,23 @@ class CartHistoryPage extends StatelessWidget {
                                           children: [
                                             Text(
                                               'Đĩa trái cây $index',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                                 color: secondaryColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 15,
                                             ),
-                                            Text(
+                                            const Text(
                                               'Phân loại : Đế đen Ấn Độ ',
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 color: secondaryColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 15,
                                             ),
                                             Row(
@@ -288,7 +284,7 @@ class CartHistoryPage extends StatelessWidget {
                                                       .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
-                                              children: [
+                                              children: const [
                                                 Text(
                                                   'Đơn giá : 200.000 đ',
                                                   style: TextStyle(
@@ -309,21 +305,21 @@ class CartHistoryPage extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                           ],
                                         )
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         TextButton(
@@ -336,9 +332,8 @@ class CartHistoryPage extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Text(
                                                   'Xem chi tiết',
                                                   style: TextStyle(
@@ -373,7 +368,7 @@ class CartHistoryPage extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: [
+                                      children: const [
                                         Text(
                                           'Đã hủy',
                                           style: TextStyle(
@@ -391,7 +386,7 @@ class CartHistoryPage extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
@@ -403,7 +398,7 @@ class CartHistoryPage extends StatelessWidget {
                                           width: 100,
                                           fit: BoxFit.cover,
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         Column(
@@ -412,23 +407,23 @@ class CartHistoryPage extends StatelessWidget {
                                           children: [
                                             Text(
                                               'Đĩa trái cây $index',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 16,
                                                 color: secondaryColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 15,
                                             ),
-                                            Text(
+                                            const Text(
                                               'Phân loại : Đế đen Ấn Độ ',
                                               style: TextStyle(
                                                 fontSize: 16,
                                                 color: secondaryColor,
                                               ),
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 15,
                                             ),
                                             Row(
@@ -437,7 +432,7 @@ class CartHistoryPage extends StatelessWidget {
                                                       .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.end,
-                                              children: [
+                                              children: const [
                                                 Text(
                                                   'Đơn giá : 200.000 đ',
                                                   style: TextStyle(
@@ -458,21 +453,21 @@ class CartHistoryPage extends StatelessWidget {
                                                 ),
                                               ],
                                             ),
-                                            SizedBox(
+                                            const SizedBox(
                                               height: 10,
                                             ),
                                           ],
                                         )
                                       ],
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
                                         TextButton(
@@ -485,9 +480,8 @@ class CartHistoryPage extends StatelessWidget {
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                               ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(8.0),
                                                 child: Text(
                                                   'Xem chi tiết',
                                                   style: TextStyle(

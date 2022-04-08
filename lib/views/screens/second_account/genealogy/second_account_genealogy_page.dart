@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/second_account/genealogy/secondaccount_genealogy_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
-class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyController> {
+
+class SecondAccountGenealogyPage
+    extends GetView<SecondAccountGenealogyController> {
   const SecondAccountGenealogyPage({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +15,7 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
         backgroundColor: Colors.white,
         elevation: 0,
         automaticallyImplyLeading: false,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Gia phả',
         ),
         actions: [
@@ -32,7 +34,7 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                 child: Padding(
                   padding: const EdgeInsets.all(6.0),
                   child: Row(
-                    children: [
+                    children: const [
                       Icon(
                         Icons.add_circle,
                         color: colorText,
@@ -78,20 +80,20 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Họ Trần',
                         style: TextStyle(
                             fontSize: 16,
                             color: secondaryColor,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.people,
                             color: colorText,
@@ -108,13 +110,13 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.timer_outlined,
                             color: colorText,
@@ -131,13 +133,13 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.location_on,
                             color: colorText,
@@ -154,13 +156,13 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
+                        children: const [
                           Icon(
                             Icons.person,
                             color: colorText,
@@ -177,7 +179,7 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
@@ -185,14 +187,14 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Color(0xffFBE5AF),
+                              color: const Color(0xffFBE5AF),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             height: 40,
                             child: TextButton(
                                 onPressed: () {},
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.delete,
                                       size: 16,
@@ -210,7 +212,7 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                             child: TextButton(
                                 onPressed: () {},
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.edit,
                                       size: 16,
@@ -221,14 +223,14 @@ class SecondAccountGenealogyPage extends GetView<SecondAccountGenealogyControlle
                           ),
                           Container(
                             decoration: BoxDecoration(
-                              color: Color(0xff865841),
+                              color: const Color(0xff865841),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             height: 40,
                             child: TextButton(
                                 onPressed: () {},
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.bubble_chart,
                                       size: 16,

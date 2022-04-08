@@ -17,13 +17,13 @@ class TransactionPage extends GetView<TransactionController> {
         centerTitle: false,
         backgroundColor: Colors.grey[200],
         elevation: 0,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Giao dịch của tôi',
         ),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: secondaryColor,
             ),
@@ -45,16 +45,16 @@ class TransactionPage extends GetView<TransactionController> {
                   color: Colors.white,
                 ),
                 tabs: [
-                  Tab(
+                  const Tab(
                     text: "Giữ chổ",
                   ),
-                  Tab(
+                  const Tab(
                     text: "Đã cọc",
                   ),
-                  Tab(
+                  const Tab(
                     text: "Đã ký hợp đồng",
                   ),
-                  Tab(
+                  const Tab(
                     text: "Đã hủy",
                   ),
                 ],
@@ -95,7 +95,7 @@ class TransactionPage extends GetView<TransactionController> {
                                         fit: BoxFit.cover,
                                         height: 90,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
                                       Column(
@@ -104,32 +104,32 @@ class TransactionPage extends GetView<TransactionController> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Text(
+                                          const Text(
                                             'Phú Quý 2.3-01-02',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 15,
                                               color: secondaryColor,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
-                                          Text('Thuộc khu : Phú Quý 2',
+                                          const Text('Thuộc khu : Phú Quý 2',
                                               style: TextStyle(
                                                 fontSize: 15,
                                                 color: colorText,
                                               )),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
-                                          Text('Giữ chổ',
-                                              style: TextStyle(
+                                          const Text('Giữ chổ',
+                                              style: const TextStyle(
                                                 fontSize: 15,
-                                                color: Color(0xffFD81FD),
+                                                color: const Color(0xffFD81FD),
                                                 fontWeight: FontWeight.w600,
                                               )),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10,
                                           ),
                                         ],
@@ -170,7 +170,7 @@ class TransactionPage extends GetView<TransactionController> {
                                       fit: BoxFit.cover,
                                       height: 90,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -179,32 +179,32 @@ class TransactionPage extends GetView<TransactionController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Phú Quý 2.3-01-02',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             color: secondaryColor,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Thuộc khu : Phú Quý 2',
-                                            style: TextStyle(
+                                        const Text('Thuộc khu : Phú Quý 2',
+                                            style: const TextStyle(
                                               fontSize: 15,
                                               color: colorText,
                                             )),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Đã cọc',
+                                        const Text('Đã cọc',
                                             style: TextStyle(
                                               fontSize: 15,
                                               color: Color(0xffFD81FD),
                                               fontWeight: FontWeight.w600,
                                             )),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                       ],
@@ -244,7 +244,7 @@ class TransactionPage extends GetView<TransactionController> {
                                       fit: BoxFit.cover,
                                       height: 90,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -253,32 +253,32 @@ class TransactionPage extends GetView<TransactionController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Phú Quý 2.3-01-02',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 15,
                                             color: secondaryColor,
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Thuộc khu : Phú Quý 2',
-                                            style: TextStyle(
+                                        const Text('Thuộc khu : Phú Quý 2',
+                                            style: const TextStyle(
                                               fontSize: 15,
                                               color: colorText,
                                             )),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Đã ký hợp đồng',
+                                        const Text('Đã ký hợp đồng',
                                             style: TextStyle(
                                               fontSize: 15,
                                               color: Color(0xff07BE02),
                                               fontWeight: FontWeight.w600,
                                             )),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                       ],
@@ -318,7 +318,7 @@ class TransactionPage extends GetView<TransactionController> {
                                       fit: BoxFit.cover,
                                       height: 90,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -327,7 +327,7 @@ class TransactionPage extends GetView<TransactionController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Phú Quý 2.3-01-02',
                                           style: TextStyle(
                                             fontSize: 15,
@@ -335,24 +335,24 @@ class TransactionPage extends GetView<TransactionController> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Thuộc khu : Phú Quý 2',
-                                            style: TextStyle(
+                                        const Text('Thuộc khu : Phú Quý 2',
+                                            style: const TextStyle(
                                               fontSize: 15,
                                               color: colorText,
                                             )),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
-                                        Text('Đã hủy',
+                                        const Text('Đã hủy',
                                             style: TextStyle(
                                               fontSize: 15,
                                               color: Colors.grey,
                                               fontWeight: FontWeight.w600,
                                             )),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                       ],

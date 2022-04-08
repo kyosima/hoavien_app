@@ -30,7 +30,7 @@ class StatisticalPage extends StatelessWidget {
         automaticallyImplyLeading: false,
         backgroundColor: Colors.grey[200],
         elevation: 0,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Thống kê',
         ),
       ),
@@ -43,13 +43,13 @@ class StatisticalPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Theo ngày'),
-                  SizedBox(
+                  const Text('Theo ngày'),
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                       ),
                       autofocus: false,
@@ -89,12 +89,12 @@ class StatisticalPage extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                       ),
                       autofocus: false,
@@ -136,21 +136,21 @@ class StatisticalPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text('Theo tháng'),
-                  SizedBox(
+                  const Text('Theo tháng'),
+                  const SizedBox(
                     width: 10,
                   ),
                   Container(
                     width: 150,
                     child: TextField(
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         color: secondaryColor,
                         fontWeight: FontWeight.w500,
@@ -158,7 +158,7 @@ class StatisticalPage extends StatelessWidget {
                       showCursor: false,
                       controller: controller.monthController,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(left: 10),
+                        contentPadding: const EdgeInsets.only(left: 10),
                         filled: true,
                         fillColor: Colors.white,
                         hintText: month[0],
@@ -200,7 +200,7 @@ class StatisticalPage extends StatelessWidget {
                               return new PopupMenuItem(
                                   child: new Text(
                                     value,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 14,
                                     ),
                                   ),
@@ -213,7 +213,7 @@ class StatisticalPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               InkWell(
@@ -229,17 +229,17 @@ class StatisticalPage extends StatelessWidget {
                     padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.monetization_on,
                           color: secondaryColor,
                           size: 50,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               'Tổng doanh thu (tạm tính)',
                               style: TextStyle(
@@ -276,7 +276,7 @@ class StatisticalPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Container(
@@ -288,17 +288,17 @@ class StatisticalPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.monetization_on,
                         color: secondaryColor,
                         size: 50,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Doanh thu đã ký hợp đồng',
                             style: TextStyle(
@@ -334,7 +334,7 @@ class StatisticalPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Container(
@@ -346,17 +346,17 @@ class StatisticalPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.monetization_on,
                         color: secondaryColor,
                         size: 50,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Doanh thu đã cọc',
                             style: TextStyle(

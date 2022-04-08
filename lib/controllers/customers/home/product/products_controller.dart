@@ -77,14 +77,13 @@ class ProductsController extends GetxController {
   void increasePriceProduct() async {
     var response = await ProductService.increasePrice();
     allProduct.value = response?.data;
-    print(response?.message);
+
     refresh();
   }
 
   void decreasePriceProduct() async {
     var response = await ProductService.decreasePrice();
     allProduct.value = response?.data;
-    print(response?.message);
     refresh();
   }
 }

@@ -36,9 +36,9 @@ class _QrScanPageState extends State<QrScanPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
-        iconTheme: IconThemeData(color: secondaryColor),
+        iconTheme: const IconThemeData(color: secondaryColor),
         backgroundColor: Colors.white,
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Quét mã QR kiếm tra thông tin',
         ),
       ),
@@ -57,7 +57,7 @@ class _QrScanPageState extends State<QrScanPage> {
               child: (result != null)
                   ? Text(
                       'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                  : Text('Scan a code'),
+                  : const Text('Scan a code'),
             ),
           )
         ],

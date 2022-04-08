@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -106,8 +107,9 @@ class SecondAccountCombo extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image.network(
-                                '$baseURL${controller.allCombo.value![index].avatar}',
+                              CachedNetworkImage(
+                                imageUrl:
+                                    '$baseURL${controller.allCombo.value![index].avatar}',
                                 height: double.infinity,
                                 width: 120,
                                 fit: BoxFit.cover,

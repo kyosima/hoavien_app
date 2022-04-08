@@ -31,7 +31,7 @@ class RateProductPage extends StatelessWidget {
               ),
               ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
@@ -133,7 +133,7 @@ class RateProductPage extends StatelessWidget {
                               const SizedBox(
                                 height: 8,
                               ),
-                              Text('Lựa chọn số sao tương ứng'),
+                              const Text('Lựa chọn số sao tương ứng'),
                             ],
                           ),
                         ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../constance.dart';
@@ -43,11 +44,11 @@ class CustomService extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(
-                  image,
+                CachedNetworkImage(
                   height: 135,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  imageUrl: image,
                 ),
                 const SizedBox(
                   height: 5,

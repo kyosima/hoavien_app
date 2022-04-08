@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/info_user_model.dart';
 import 'package:hoavien_app/service_api/auth/info_user_service.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SecondAccountUserBinding implements Bindings {
   @override
@@ -22,11 +25,24 @@ class SecondAccountUserController extends GetxController {
   final sexMenuController = TextEditingController();
   final isLoading = false.obs;
   final loadingButton = false.obs;
+  final imageEdit = ''.obs;
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     getInfoUser();
+  }
+
+  final ImagePicker _picker = ImagePicker();
+
+  void pickImageFromGalerry() async {
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      imageEdit.value = image.path;
+      print(image.path);
+    } else {
+      print('User not pick image');
+    }
   }
 
   void getInfoUser() async {
@@ -51,27 +67,56 @@ class SecondAccountUserController extends GetxController {
   }
 
   void updateInfo(
-      {String? id, String? fullname, String? gender, String? birthday}) async {
-    loadingButton.value = true;
-    await InfoUserService.updateInfoUser(
-      id: id,
-      gender: gender,
-      fullname: fullname,
-      birthday: birthday,
-    );
-    var response = await InfoUserService.infoUser();
-    infoUser.value = response?.data;
-    update();
-    Get.snackbar(
-      "Cập nhật thông tin thành công",
-      "Thông tin cá nhân đã được cập nhật",
-      icon: const Icon(Icons.check_circle, color: Colors.green),
-      snackPosition: SnackPosition.TOP,
-      colorText: secondaryColor,
-      backgroundColor: Colors.white.withOpacity(0.7),
-      duration: const Duration(milliseconds: 700),
-    );
-    fullNameController.clear();
-    loadingButton.value = false;
+      {String? id,
+      String? fullname,
+      String? gender,
+      String? birthday,
+      File? avatar}) async {
+    if (avatar == null) {
+      loadingButton.value = true;
+      await InfoUserService.updateInfoUser(
+        id: id,
+        gender: gender,
+        fullname: fullname,
+        birthday: birthday,
+      );
+      var response = await InfoUserService.infoUser();
+      infoUser.value = response?.data;
+      update();
+      Get.snackbar(
+        "Cập nhật thông tin thành công",
+        "Thông tin cá nhân đã được cập nhật",
+        icon: const Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
+        duration: const Duration(milliseconds: 700),
+      );
+      fullNameController.clear();
+      loadingButton.value = false;
+    } else {
+      loadingButton.value = true;
+      await InfoUserService.updateInfoUser(
+        id: id,
+        gender: gender,
+        fullname: fullname,
+        birthday: birthday,
+        avatar: avatar,
+      );
+      var response = await InfoUserService.infoUser();
+      infoUser.value = response?.data;
+      update();
+      Get.snackbar(
+        "Cập nhật thông tin thành công",
+        "Thông tin cá nhân đã được cập nhật",
+        icon: const Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
+        duration: const Duration(milliseconds: 700),
+      );
+      fullNameController.clear();
+      loadingButton.value = false;
+    }
   }
 }

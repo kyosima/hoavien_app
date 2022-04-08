@@ -77,4 +77,16 @@ class SecondAccountProductController extends GetxController {
     filterCategory[index]['isCheck'] = !filterCategory[index]['isCheck'];
     refresh();
   }
+
+  void increasePrice() async {
+    var response = await ProductService.increasePrice();
+    allProduct.value = response?.data;
+    update();
+  }
+
+  void decreasePrice() async {
+    var response = await ProductService.decreasePrice();
+    allProduct.value = response?.data;
+    update();
+  }
 }

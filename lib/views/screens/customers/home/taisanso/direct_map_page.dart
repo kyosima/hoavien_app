@@ -25,14 +25,14 @@ class _DirectMapPageState extends State<DirectMapPage> {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Sơ đồ chỉ dẫn',
         ),
       ),
-      body: WebView(
+      body: const WebView(
         javascriptMode: JavascriptMode.unrestricted,
         initialUrl: 'https://vr360.hoavienbinhan.vn/#van-phuc',
       ),

@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/second_account/memories/secondaccount_memory_controller.dart';
-import 'package:hoavien_app/views/screens/customers/memories/image_detail_page.dart';
 import 'package:hoavien_app/views/screens/second_account/memories/second_account_detail_image_page.dart';
 import 'package:hoavien_app/views/widgets/custom_add_gallery.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
-import 'package:photo_view/photo_view.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccountMemoriesPage extends StatelessWidget {
@@ -24,6 +22,8 @@ class SecondAccountMemoriesPage extends StatelessWidget {
     'https://placeimg.com/640/480/any',
     'https://placeimg.com/640/480/any',
   ];
+
+  SecondAccountMemoriesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -252,7 +252,10 @@ class SecondAccountProductPage extends StatelessWidget {
                                             fontWeight: FontWeight.w600,
                                           ))),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      controller.increasePrice();
+                                      Get.back();
+                                    },
                                     child: Row(children: const [
                                       Text(
                                         'Giá tăng dần',
@@ -268,7 +271,10 @@ class SecondAccountProductPage extends StatelessWidget {
                                     ]),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      controller.decreasePrice();
+                                      Get.back();
+                                    },
                                     child: Row(children: const [
                                       Text(
                                         'Giá giảm dần',
@@ -399,7 +405,10 @@ class SecondAccountProductPage extends StatelessWidget {
                                             fontWeight: FontWeight.w600,
                                           ))),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      controller.increasePrice();
+                                      Get.back();
+                                    },
                                     child: Row(children: const [
                                       Text(
                                         'Giá tăng dần',
@@ -415,7 +424,10 @@ class SecondAccountProductPage extends StatelessWidget {
                                     ]),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      controller.decreasePrice();
+                                      Get.back();
+                                    },
                                     child: Row(children: const [
                                       Text(
                                         'Giá giảm dần',

@@ -15,10 +15,10 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Tạo gia phả',
         ),
       ),
@@ -29,15 +29,15 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Thông tin gia phả',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: secondaryColor,
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -46,7 +46,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                   title: 'Tên gia phả',
                   inputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -55,7 +55,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                   title: 'Địa chỉ',
                   inputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -66,10 +66,10 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                   maxLines: 4,
                   height: 100,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                Text(
+                const Text(
                   'Thủy tổ/ Thế hệ thứ nhất',
                   style: TextStyle(
                     color: secondaryColor,
@@ -77,7 +77,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -85,7 +85,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                   title: 'Họ và tên',
                   inputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -93,7 +93,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                   title: 'Biệt danh/Tên gợi nhớ',
                   inputType: TextInputType.text,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -105,7 +105,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                     controller.setBirthday();
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -117,7 +117,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                     controller.setDeathday();
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 CustomTextField(
@@ -128,7 +128,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
                   maxLines: 4,
                   height: 100,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Center(

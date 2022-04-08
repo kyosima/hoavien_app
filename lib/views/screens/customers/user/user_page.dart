@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/controllers/auth/auth_controller.dart';
@@ -57,7 +58,7 @@ class UserPage extends StatelessWidget {
                                             .infoUser.value?.avatar ==
                                         null
                                     ? const AssetImage(defaultUser)
-                                    : NetworkImage(
+                                    : CachedNetworkImageProvider(
                                             '$baseURL${controller.infoUser.value?.avatar}')
                                         as ImageProvider,
                               ),

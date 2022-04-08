@@ -34,16 +34,16 @@ class TransactionDetailPage extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Trạng thái',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const Text(
+                          Text(
                             'Giữ chổ',
                             style: TextStyle(
                               fontSize: 15,
@@ -58,17 +58,17 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Ngày giữ chổ',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             '20/06/2022',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
@@ -80,15 +80,15 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Nhân viên bán hàng',
                             style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             'Nguyễn Chính Hưng',
                             style: TextStyle(
                               fontSize: 15,
@@ -112,8 +112,8 @@ class TransactionDetailPage extends StatelessWidget {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Thông tin lô',
                             style: TextStyle(
                               fontSize: 16,
@@ -128,15 +128,15 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Mã lô',
                             style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             'PQ2.3-02-01',
                             style: TextStyle(
                               fontSize: 15,
@@ -151,15 +151,15 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Vị trí (khu)',
                             style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             'Phú Quý',
                             style: TextStyle(
                               fontSize: 15,
@@ -173,15 +173,15 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Kích thước',
                             style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             '7.2 x 9',
                             style: TextStyle(
                               fontSize: 15,
@@ -195,15 +195,15 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Diện tích',
                             style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             '64.8 m2',
                             style: TextStyle(
                               fontSize: 15,
@@ -217,17 +217,17 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Giá đất',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             '120.000.000 đ',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
                               color: secondaryColor,
@@ -240,15 +240,15 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Chi phí chăm sóc',
                             style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             '15.000.000 đ',
                             style: TextStyle(
                               fontSize: 15,
@@ -263,17 +263,17 @@ class TransactionDetailPage extends StatelessWidget {
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
+                        children: const [
+                          Text(
                             'Tổng giá tiền',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 15,
                               color: secondaryColor,
                             ),
                           ),
-                          const Text(
+                          Text(
                             '135.000.000 đ',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 15,
                               color: secondaryColor,

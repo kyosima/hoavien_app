@@ -13,10 +13,10 @@ class CartPage extends GetView<CartController> {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Giỏ hàng',
         ),
       ),
@@ -33,7 +33,7 @@ class CartPage extends GetView<CartController> {
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
+                    child: SizedBox(
                       width: double.infinity,
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,7 @@ class CartPage extends GetView<CartController> {
                             width: 140,
                             fit: BoxFit.cover,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Obx(
@@ -52,35 +52,35 @@ class CartPage extends GetView<CartController> {
                               children: [
                                 Text(
                                   'Đĩa trái cây $index',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 15,
                                     color: secondaryColor,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'Phân loại : Đế đen Ấn Độ ',
                                   style: TextStyle(
                                     fontSize: 15,
                                     color: secondaryColor,
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: const [
                                     Text('Đơn giá :'),
                                     Text('200.000 đ'),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
@@ -92,7 +92,7 @@ class CartPage extends GetView<CartController> {
                                         controller.minus();
                                       },
                                       child: Stack(
-                                        children: [
+                                        children: const [
                                           CircleAvatar(
                                             radius: 17,
                                             backgroundColor: secondaryColor,
@@ -110,14 +110,14 @@ class CartPage extends GetView<CartController> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     SizedBox(
                                         width: 20,
                                         child:
                                             Text('${controller.unit.value}')),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     InkWell(
@@ -125,7 +125,7 @@ class CartPage extends GetView<CartController> {
                                         controller.plus();
                                       },
                                       child: Stack(
-                                        children: [
+                                        children: const [
                                           CircleAvatar(
                                             radius: 17,
                                             backgroundColor: secondaryColor,

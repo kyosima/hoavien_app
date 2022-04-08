@@ -50,7 +50,7 @@ class PickTaisanso extends StatelessWidget {
                                 RichText(
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
-                                  strutStyle: StrutStyle(fontSize: 19.0),
+                                  strutStyle: const StrutStyle(fontSize: 19.0),
                                   text: const TextSpan(
                                       style: TextStyle(
                                         color: secondaryColor,
@@ -59,11 +59,11 @@ class PickTaisanso extends StatelessWidget {
                                       ),
                                       text: 'PQ2.3-02-01'),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Row(
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Thuộc khu :',
                                       style: TextStyle(
@@ -83,11 +83,11 @@ class PickTaisanso extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 ),
                                 Row(
-                                  children: [
+                                  children: const [
                                     Text(
                                       'Chủ sở hữu :',
                                       style: TextStyle(

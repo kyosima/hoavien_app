@@ -443,7 +443,7 @@ class ServiceDesignDetailPage extends StatelessWidget {
                     ),
                     Obx(() {
                       if (controller.isLoadingRelatedService.value) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       } else {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10.0),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../constance.dart';
@@ -43,8 +44,8 @@ class CustomComboHot extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.network(
-                  image,
+                CachedNetworkImage(
+                  imageUrl: image,
                   height: 135,
                   width: double.infinity,
                   fit: BoxFit.cover,

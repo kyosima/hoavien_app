@@ -255,7 +255,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/product',
-            page: () => ProductPage(),
+            page: () => const ProductPage(),
             binding: ProductsBinding(),
           ),
           GetPage(
@@ -273,12 +273,12 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/chitietgiapha',
-            page: () => GenealoryDetailPage(),
+            page: () => const GenealoryDetailPage(),
             binding: GenealoryDetailBindings(),
           ),
           GetPage(
             name: '/sukien',
-            page: () => EventPage(),
+            page: () => const EventPage(),
             binding: EventBinding(),
           ),
           GetPage(

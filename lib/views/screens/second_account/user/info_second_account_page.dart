@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -45,17 +47,24 @@ class InfoSecondAccount extends StatelessWidget {
                     children: [
                       Center(
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage(controller
-                                      .infoUser.value?.avatar ==
-                                  null
-                              ? defaultUser
-                              : "$baseURL${controller.infoUser.value?.avatar}"),
+                          backgroundImage: controller.infoUser.value?.avatar ==
+                                      null &&
+                                  controller.imageEdit.value == ''
+                              ? AssetImage(defaultUser)
+                              : controller.infoUser.value?.avatar != null &&
+                                      controller.imageEdit.value == ''
+                                  ? NetworkImage(
+                                          '$baseURL${controller.infoUser.value?.avatar}')
+                                      as ImageProvider
+                                  : AssetImage(controller.imageEdit.value),
                           radius: 45,
                         ),
                       ),
                       Center(
                           child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.pickImageFromGalerry();
+                        },
                         icon: const Icon(
                           Icons.camera_alt,
                           size: 30,
@@ -157,12 +166,22 @@ class InfoSecondAccount extends StatelessWidget {
                           border: Border.all(color: primaryColor, width: 1.0)),
                       child: TextButton(
                         onPressed: () {
-                          controller.updateInfo(
-                            id: controller.infoUser.value?.id.toString(),
-                            fullname: controller.fullNameController.text,
-                            gender: controller.sexMenuController.text,
-                            birthday: controller.dateController.text,
-                          );
+                          if (controller.imageEdit.value == "") {
+                            controller.updateInfo(
+                              id: controller.infoUser.value?.id.toString(),
+                              fullname: controller.fullNameController.text,
+                              gender: controller.sexMenuController.text,
+                              birthday: controller.dateController.text,
+                            );
+                          } else {
+                            controller.updateInfo(
+                              id: controller.infoUser.value?.id.toString(),
+                              fullname: controller.fullNameController.text,
+                              gender: controller.sexMenuController.text,
+                              birthday: controller.dateController.text,
+                              avatar: File(controller.imageEdit.value),
+                            );
+                          }
                         },
                         child: controller.loadingButton.value == true
                             ? const SizedBox(

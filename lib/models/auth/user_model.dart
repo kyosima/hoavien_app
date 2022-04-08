@@ -83,11 +83,11 @@ class UserInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['fullname'] = this.fullname;
-    data['birthday'] = this.birthday;
-    data['gender'] = this.gender;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['fullname'] = fullname;
+    data['birthday'] = birthday;
+    data['gender'] = gender;
     return data;
   }
 }

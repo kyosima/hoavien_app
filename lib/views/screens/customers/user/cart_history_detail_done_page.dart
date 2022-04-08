@@ -14,10 +14,10 @@ class CartHistoryDetailDonePage extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
         elevation: 1,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Thông tin đặt hàng',
         ),
       ),
@@ -26,7 +26,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
           color: Colors.grey[200],
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -35,7 +35,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
+                    children: const [
                       Text(
                         'Đã hoàn thành',
                         style: TextStyle(
@@ -56,7 +56,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
@@ -69,7 +69,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                     children: [
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'CD 1.2 - 01 -14 ( Mặc định )',
                             style: TextStyle(
@@ -102,7 +102,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.edit,
                           color: secondaryColor,
                         ),
@@ -111,14 +111,14 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 color: Colors.white,
                 child: ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 2,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
@@ -133,7 +133,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
@@ -144,7 +144,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                                       width: 100,
                                       fit: BoxFit.cover,
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 10,
                                     ),
                                     Column(
@@ -153,23 +153,23 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                                       children: [
                                         Text(
                                           'Đĩa trái cây $index',
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,
                                             color: secondaryColor,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 15,
                                         ),
-                                        Text(
+                                        const Text(
                                           'Phân loại : Đế đen Ấn Độ ',
                                           style: TextStyle(
                                             fontSize: 16,
                                             color: secondaryColor,
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 15,
                                         ),
                                         Row(
@@ -177,7 +177,7 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           crossAxisAlignment:
                                               CrossAxisAlignment.end,
-                                          children: [
+                                          children: const [
                                             Text(
                                               'Đơn giá : 200.000 đ',
                                               style: TextStyle(
@@ -198,20 +198,20 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 10,
                                         ),
                                       ],
                                     )
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                  children: [
+                                  children: const [
                                     SizedBox(
                                       width: 10,
                                     ),
@@ -224,12 +224,12 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                       );
                     }),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Container(
                 color: Colors.white,
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.all(15),
                   child: Text(
                     '''Hình thức thanh toán
@@ -241,89 +241,81 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: CustomTextField(
-                    title: 'Ghi chú',
-                    inputType: TextInputType.text,
-                    height: 100,
-                    maxLines: 3,
-                  ),
+              const Padding(
+                padding: EdgeInsets.all(15.0),
+                child: CustomTextField(
+                  title: 'Ghi chú',
+                  inputType: TextInputType.text,
+                  height: 100,
+                  maxLines: 3,
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tổng tiền',
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Tổng tiền',
+                      style: TextStyle(
+                        fontSize: 17,
                       ),
-                      Text(
-                        '2.123.323 đ',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    ),
+                    Text(
+                      '2.123.323 đ',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Thuế GTGT',
-                        style: TextStyle(
-                          fontSize: 17,
-                        ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Thuế GTGT',
+                      style: TextStyle(
+                        fontSize: 17,
                       ),
-                      Text(
-                        '0 đ',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                        ),
+                    ),
+                    Text(
+                      '0 đ',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Tổng thanh toán',
-                        style: TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Tổng thanh toán',
+                      style:
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '0 đ',
+                      style: TextStyle(
+                        fontSize: 17,
+                        color: Colors.red,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Text(
-                        '0 đ',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               Center(
@@ -336,8 +328,8 @@ class CartHistoryDetailDonePage extends StatelessWidget {
                       color: primaryColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: Text(
                         'Đánh giá',
                         style: TextStyle(

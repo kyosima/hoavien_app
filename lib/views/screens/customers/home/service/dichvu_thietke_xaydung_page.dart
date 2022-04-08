@@ -13,17 +13,17 @@ class DichvuThietkeXaydungPage extends StatelessWidget {
       appBar: AppBar(
         elevation: 1,
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(
+        iconTheme: const IconThemeData(
           color: secondaryColor,
         ),
-        title: CustomTitleText(
+        title: const CustomTitleText(
           title: 'Dịch vụ thiết kế và xây dựng',
         ),
       ),
       body: Container(
         color: Colors.grey[300],
         child: ListView.builder(
-            padding: EdgeInsets.only(top: 5, left: 15, right: 15),
+            padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
               return InkWell(
@@ -44,7 +44,7 @@ class DichvuThietkeXaydungPage extends StatelessWidget {
                             width: 120,
                             fit: BoxFit.cover,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           Flexible(
@@ -58,8 +58,9 @@ class DichvuThietkeXaydungPage extends StatelessWidget {
                                       child: RichText(
                                         overflow: TextOverflow.ellipsis,
                                         maxLines: 1,
-                                        strutStyle: StrutStyle(fontSize: 19.0),
-                                        text: TextSpan(
+                                        strutStyle:
+                                            const StrutStyle(fontSize: 19.0),
+                                        text: const TextSpan(
                                             style: TextStyle(
                                               color: secondaryColor,
                                               fontWeight: FontWeight.w600,
@@ -71,24 +72,24 @@ class DichvuThietkeXaydungPage extends StatelessWidget {
                                     Image.asset('assets/images/hot.png')
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
-                                Text(
+                                const Text(
                                   'đ 500.000',
                                   style: TextStyle(
                                       color: Colors.red,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                                 RichText(
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
-                                  strutStyle: StrutStyle(fontSize: 19.0),
-                                  text: TextSpan(
+                                  strutStyle: const StrutStyle(fontSize: 19.0),
+                                  text: const TextSpan(
                                       style: TextStyle(
                                         color: secondaryColor,
                                         fontSize: 15,

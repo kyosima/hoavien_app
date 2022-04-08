@@ -11,7 +11,7 @@ class NotificationsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primaryColor,
-        title: Text(
+        title: const Text(
           'Thông báo',
           style: TextStyle(
             color: secondaryColor,
@@ -31,18 +31,19 @@ class NotificationsPage extends StatelessWidget {
                       Get.toNamed('/notificationdetail');
                     },
                     child: Card(
-                        color:
-                            index % 2 == 0 ? Color(0xffFDF2D7) : Colors.white,
+                        color: index % 2 == 0
+                            ? const Color(0xffFDF2D7)
+                            : Colors.white,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.notifications_active,
                                 size: 40,
                                 color: primaryColor,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Flexible(
@@ -52,8 +53,9 @@ class NotificationsPage extends StatelessWidget {
                                     RichText(
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 2,
-                                      strutStyle: StrutStyle(fontSize: 19.0),
-                                      text: TextSpan(
+                                      strutStyle:
+                                          const StrutStyle(fontSize: 19.0),
+                                      text: const TextSpan(
                                           style: TextStyle(
                                             color: secondaryColor,
                                             fontSize: 16,
@@ -61,11 +63,11 @@ class NotificationsPage extends StatelessWidget {
                                           text:
                                               'Khuyến mại tri ân khách hàng nhân dịp năm mới cùng nhiều ưu đãi'),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 8,
                                     ),
                                     Row(
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Icons.calendar_today_outlined,
                                           size: 18,
