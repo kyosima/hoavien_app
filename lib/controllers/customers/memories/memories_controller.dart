@@ -7,6 +7,7 @@ import 'package:hoavien_app/models/memories/memories_model.dart';
 import 'package:hoavien_app/service_api/customer/memories/memories_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 class MemoriesBindings implements Bindings {
   @override
@@ -21,6 +22,7 @@ class MemoriesController extends GetxController {
   final isLoadingImage = false.obs;
   final isLoadingVideo = false.obs;
   final allVideo = MemoriesModel().data.obs;
+  final thumnail = ''.obs;
 
   @override
   void onInit() {
@@ -28,6 +30,7 @@ class MemoriesController extends GetxController {
     super.onInit();
     getImage();
     getVideo();
+    getVideo2();
   }
 
   final ImagePicker _picker = ImagePicker();
@@ -114,5 +117,16 @@ class MemoriesController extends GetxController {
     );
     var response = await MemoriesService.getImage(id: idUser);
     allImage.value = response?.data;
+  }
+
+  void getVideo2() async {
+    final fileName = await VideoThumbnail.thumbnailFile(
+      video:
+          "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
+      imageFormat: ImageFormat.WEBP,
+      // specify the height of the thumbnail, let the width auto-scaled to keep the source aspect ratio
+      quality: 75,
+    );
+    thumnail.value = fileName ?? '';
   }
 }

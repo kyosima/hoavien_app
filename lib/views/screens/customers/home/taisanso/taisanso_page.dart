@@ -158,9 +158,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                             child: Directionality(
                                 textDirection: TextDirection.ltr,
                                 child: TextField(
-                                  onChanged: (value) {
-                                    controller.findTaisanso(value);
-                                  },
+                                  onChanged: (value) {},
                                   autofocus: false,
                                   style: const TextStyle(
                                       fontSize: 16.0, color: secondaryColor),
@@ -193,133 +191,139 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                   )
                 ],
               ),
-              Obx(
-                () => Expanded(
-                  child: ListView.builder(
-                      padding:
-                          const EdgeInsets.only(top: 5, left: 15, right: 15),
-                      itemCount: controller.foundTaisanso.value.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return InkWell(
-                          onTap: () {
-                            Get.toNamed('/taisansodetail');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/taisanso.png',
-                                      width: 80,
-                                      fit: BoxFit.cover,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Flexible(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          RichText(
-                                            overflow: TextOverflow.ellipsis,
-                                            maxLines: 2,
-                                            strutStyle: const StrutStyle(
-                                                fontSize: 19.0),
-                                            text: TextSpan(
-                                                style: const TextStyle(
-                                                  color: secondaryColor,
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 19,
-                                                ),
-                                                text: controller.foundTaisanso
-                                                    .value[index]['name']),
-                                          ),
-                                          const SizedBox(
-                                            height: 15,
-                                          ),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Thuộc khu :',
-                                                style: TextStyle(
-                                                    color: secondaryColor,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                controller.foundTaisanso
-                                                    .value[index]['location'],
-                                                style: const TextStyle(
-                                                    color: secondaryColor,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w500),
-                                              ),
-                                            ],
-                                          ),
-                                          const SizedBox(
-                                            height: 15,
-                                          ),
-                                          Row(
-                                            children: [
-                                              const Text(
-                                                'Chủ sở hữu :',
-                                                style: TextStyle(
-                                                    color: secondaryColor,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.w300),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Text(
-                                                controller.foundTaisanso
-                                                    .value[index]['host'],
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: secondaryColor,
-                                                  fontWeight: FontWeight.w300,
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        ],
+              Obx(() {
+                if (controller.isLoadingTaisanso.value) {
+                  return const CircularProgressIndicator();
+                } else {
+                  return Expanded(
+                    child: ListView.builder(
+                        padding:
+                            const EdgeInsets.only(top: 5, left: 15, right: 15),
+                        itemCount:
+                            controller.allTaisanso.value?.dataTaisanso?.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return InkWell(
+                            onTap: () {
+                              Get.toNamed('/taisansodetail');
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Row(
+                                    children: [
+                                      Image.network(
+                                        '$baseURL${controller.allTaisanso.value?.dataTaisanso![index].avatar}',
+                                        width: 80,
+                                        fit: BoxFit.cover,
                                       ),
-                                    )
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Flexible(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            RichText(
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              strutStyle: const StrutStyle(
+                                                  fontSize: 19.0),
+                                              text: TextSpan(
+                                                  style: const TextStyle(
+                                                    color: secondaryColor,
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 19,
+                                                  ),
+                                                  text: controller
+                                                      .allTaisanso
+                                                      .value
+                                                      ?.dataTaisanso![index]
+                                                      .name),
+                                            ),
+                                            const SizedBox(
+                                              height: 15,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  '${controller.allTaisanso.value?.dataTaisanso![index].area?.name}',
+                                                  style: const TextStyle(
+                                                      color: secondaryColor,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                                const SizedBox(
+                                                  width: 5,
+                                                ),
+                                                const Text(
+                                                  '123',
+                                                  style: TextStyle(
+                                                      color: secondaryColor,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(
+                                              height: 15,
+                                            ),
+                                            Row(
+                                              children: const [
+                                                Text(
+                                                  'Chủ sở hữu : 123',
+                                                  style: TextStyle(
+                                                      color: secondaryColor,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w300),
+                                                ),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
+                                                Text(
+                                                  '123',
+                                                  style: TextStyle(
+                                                    fontSize: 14,
+                                                    color: secondaryColor,
+                                                    fontWeight: FontWeight.w300,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 10,
+                                      offset: const Offset(
+                                          0, 0), // changes position of shadow
+                                    ),
                                   ],
                                 ),
                               ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        0, 0), // changes position of shadow
-                                  ),
-                                ],
-                              ),
                             ),
-                          ),
-                        );
-                      }),
-                ),
-              )
+                          );
+                        }),
+                  );
+                }
+              })
             ],
           ),
         ),

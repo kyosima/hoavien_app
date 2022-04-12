@@ -255,7 +255,14 @@ class MemoriesPage extends StatelessWidget {
                       ]);
                     }
                   }),
-                  Container(),
+                  Obx(
+                    () => Image.asset(
+                      controller.thumnail.value,
+                      height: 100,
+                      width: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ],
               ),
             ),
