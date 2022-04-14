@@ -64,4 +64,21 @@ class MemoriesService {
       return null;
     }
   }
+
+  static Future<int?> createVideo({String? id, File? video}) async {
+    var stream = http.ByteStream(DelegatingStream.typed(video!.openRead()));
+    var length = await video.length();
+    var request = http.MultipartRequest(
+        "POST", Uri.parse('$baseURL/api/user-gallery/create'));
+    var multipartFile = http.MultipartFile('file', stream, length,
+        filename: basename(video.path));
+    var body = {
+      'user_id': id ?? '',
+      'type': 'video',
+    };
+    request.files.add(multipartFile);
+    request.fields.addAll(body);
+    var response = await request.send();
+    return response.statusCode;
+  }
 }

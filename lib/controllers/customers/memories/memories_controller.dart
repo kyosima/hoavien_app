@@ -7,7 +7,6 @@ import 'package:hoavien_app/models/memories/memories_model.dart';
 import 'package:hoavien_app/service_api/customer/memories/memories_service.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 
 class MemoriesBindings implements Bindings {
   @override
@@ -30,7 +29,6 @@ class MemoriesController extends GetxController {
     super.onInit();
     getImage();
     getVideo();
-    getVideo2();
   }
 
   final ImagePicker _picker = ImagePicker();
@@ -73,7 +71,33 @@ class MemoriesController extends GetxController {
   void pickVideoFromGalerry() async {
     final XFile? video = await _picker.pickVideo(source: ImageSource.gallery);
     if (video != null) {
-      print(video.path);
+      final prefs = await SharedPreferences.getInstance();
+      final idUser = prefs.getInt('id').toString();
+      var response = await MemoriesService.createVideo(
+          id: idUser, video: File(video.path));
+      if (response == 200) {
+        var resuft = await MemoriesService.getVideo(id: idUser);
+        allVideo.value = resuft?.data;
+        Get.snackbar(
+          "Thêm Video mới thành công",
+          "Video đã được cập nhật",
+          icon: const Icon(Icons.check_circle, color: Colors.green),
+          snackPosition: SnackPosition.TOP,
+          colorText: secondaryColor,
+          backgroundColor: Colors.white.withOpacity(0.7),
+          duration: const Duration(milliseconds: 1000),
+        );
+      } else {
+        Get.snackbar(
+          "Thêm video mới thất bại",
+          "Không thể cập nhật video mới",
+          icon: const Icon(Icons.error, color: Colors.redAccent),
+          snackPosition: SnackPosition.TOP,
+          colorText: secondaryColor,
+          backgroundColor: Colors.white.withOpacity(0.7),
+          duration: const Duration(milliseconds: 1000),
+        );
+      }
     } else {
       print('user not pick video');
     }
@@ -117,16 +141,5 @@ class MemoriesController extends GetxController {
     );
     var response = await MemoriesService.getImage(id: idUser);
     allImage.value = response?.data;
-  }
-
-  void getVideo2() async {
-    final fileName = await VideoThumbnail.thumbnailFile(
-      video:
-          "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
-      imageFormat: ImageFormat.WEBP,
-      // specify the height of the thumbnail, let the width auto-scaled to keep the source aspect ratio
-      quality: 75,
-    );
-    thumnail.value = fileName ?? '';
   }
 }

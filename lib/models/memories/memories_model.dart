@@ -37,18 +37,21 @@ class MemoriesModel {
 class Data {
   int? id;
   String? link;
+  String? thumbnail;
 
-  Data({this.id, this.link});
+  Data({this.id, this.link, this.thumbnail});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     link = json['link'];
+    thumbnail = json['thumbnail'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['link'] = link;
+    data['thumbnail'] = thumbnail;
     return data;
   }
 }

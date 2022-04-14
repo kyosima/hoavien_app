@@ -211,10 +211,28 @@ class MemoriesPage extends StatelessWidget {
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
                                 ),
-                                child:
-                                    VideoPlayer(VideoPlayerController.network(
-                                  'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-                                )),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      imageUrl:
+                                          '$baseURL${controller.allVideo.value![index].thumbnail}',
+                                    ),
+                                    Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      color: Colors.grey.withOpacity(0.4),
+                                    ),
+                                    const Icon(
+                                      Icons.play_circle_outline,
+                                      color: Colors.white,
+                                      size: 40,
+                                    )
+                                  ],
+                                ),
                               ),
                             );
                           }),
@@ -224,7 +242,7 @@ class MemoriesPage extends StatelessWidget {
                             right: 15,
                             child: InkWell(
                               onTap: () {
-                                controller.pickImageFromGalerry();
+                                controller.pickVideoFromGalerry();
                               },
                               child:
                                   Stack(alignment: Alignment.center, children: [
@@ -255,14 +273,7 @@ class MemoriesPage extends StatelessWidget {
                       ]);
                     }
                   }),
-                  Obx(
-                    () => Image.asset(
-                      controller.thumnail.value,
-                      height: 100,
-                      width: 200,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                  Container(),
                 ],
               ),
             ),

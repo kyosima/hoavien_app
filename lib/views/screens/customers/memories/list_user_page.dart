@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -120,10 +121,17 @@ class ListUserPage extends StatelessWidget {
                                       Row(
                                         children: [
                                           CircleAvatar(
-                                            backgroundImage: NetworkImage(
-                                                '$baseURL${controller.allUser.value![index].avatar}'),
-                                            radius: 40,
-                                          ),
+                                              radius: 40,
+                                              backgroundImage: controller
+                                                          .allUser
+                                                          .value![index]
+                                                          .avatar ==
+                                                      null
+                                                  ? const AssetImage(
+                                                      defaultUser)
+                                                  : CachedNetworkImageProvider(
+                                                          '$baseURL${controller.allUser.value![index].avatar}')
+                                                      as ImageProvider),
                                           const SizedBox(
                                             width: 10,
                                           ),

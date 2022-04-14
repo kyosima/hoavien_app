@@ -177,7 +177,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/taisansodetail',
-            page: () => const TaisansoDetailPage(),
+            page: () => TaisansoDetailPage(),
             binding: TaisansoDetailBindings(),
           ),
           GetPage(

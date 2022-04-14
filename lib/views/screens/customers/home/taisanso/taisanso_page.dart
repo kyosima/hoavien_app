@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
+import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
-import 'package:hoavien_app/views/widgets/customsearch.dart';
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 
 class TaiSanSoPage extends GetView<TaisansoController> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  TaiSanSoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,43 +56,44 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 15),
-                          child: Text(
-                            'Phân loại theo khu',
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w500,
-                            ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 15),
+                        child: Text(
+                          'Phân loại theo khu',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        GetBuilder<TaisansoController>(
-                            builder: (_) => ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: const EdgeInsets.all(0),
-                                shrinkWrap: true,
-                                itemCount: controller.phanLoaiKhu.length,
-                                itemBuilder: (_, index) {
-                                  return CheckboxListTile(
-                                      controlAffinity:
-                                          ListTileControlAffinity.leading,
-                                      title: Text(controller.phanLoaiKhu[index]
-                                          ['name']),
-                                      value: controller.phanLoaiKhu[index]
-                                          ['isCheck'],
-                                      onChanged: (value) {
-                                        controller.isCheck(index);
-                                      });
-                                })),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GetBuilder<TaisansoController>(builder: (_) {
+                        if (controller.isLoadingArea.value) {
+                          return CircularProgressIndicator();
+                        } else {
+                          return ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding: const EdgeInsets.all(0),
+                              shrinkWrap: true,
+                              itemCount: controller.allArea.value!.length,
+                              itemBuilder: (_, index) {
+                                return CheckboxListTile(
+                                    controlAffinity:
+                                        ListTileControlAffinity.leading,
+                                    title: Text(controller
+                                        .allArea.value![index].name
+                                        .toString()),
+                                    value: false,
+                                    onChanged: (value) {});
+                              });
+                        }
+                      }),
+                    ],
                   ),
                 )
               ],
@@ -153,8 +158,8 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                             height: 40.0,
                             decoration: const BoxDecoration(
                                 color: Colors.white,
-                                borderRadius: BorderRadius.all(
-                                    const Radius.circular(10))),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10))),
                             child: Directionality(
                                 textDirection: TextDirection.ltr,
                                 child: TextField(
@@ -193,7 +198,76 @@ class TaiSanSoPage extends GetView<TaisansoController> {
               ),
               Obx(() {
                 if (controller.isLoadingTaisanso.value) {
-                  return const CircularProgressIndicator();
+                  return Expanded(
+                    child: ListView.builder(
+                        padding:
+                            const EdgeInsets.only(top: 5, left: 15, right: 15),
+                        itemCount: 6,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Shimmer.fromColors(
+                                  baseColor: baseShimmer,
+                                  highlightColor: highLightShimmer,
+                                  child: Row(
+                                    children: [
+                                      const ShimmerBox(height: 80, width: 80),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Flexible(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: const [
+                                            ShimmerBox(
+                                              height: 20,
+                                              width: 150,
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            ShimmerBox(
+                                              height: 20,
+                                              width: 150,
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            ShimmerBox(
+                                              height: 20,
+                                              width: 140,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+                  );
                 } else {
                   return Expanded(
                     child: ListView.builder(
@@ -204,7 +278,9 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
                             onTap: () {
-                              Get.toNamed('/taisansodetail');
+                              Get.toNamed('/taisansodetail',
+                                  arguments: controller.allTaisanso.value
+                                      ?.dataTaisanso![index].id);
                             },
                             child: Padding(
                               padding: const EdgeInsets.only(top: 10),
@@ -214,10 +290,12 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                   padding: const EdgeInsets.all(10.0),
                                   child: Row(
                                     children: [
-                                      Image.network(
-                                        '$baseURL${controller.allTaisanso.value?.dataTaisanso![index].avatar}',
+                                      CachedNetworkImage(
                                         width: 80,
+                                        height: 80,
                                         fit: BoxFit.cover,
+                                        imageUrl:
+                                            '$baseURL${controller.allTaisanso.value?.dataTaisanso![index].avatar}',
                                       ),
                                       const SizedBox(
                                         width: 10,
@@ -247,7 +325,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                                       .name),
                                             ),
                                             const SizedBox(
-                                              height: 15,
+                                              height: 10,
                                             ),
                                             Row(
                                               children: [
@@ -273,7 +351,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                               ],
                                             ),
                                             const SizedBox(
-                                              height: 15,
+                                              height: 10,
                                             ),
                                             Row(
                                               children: const [
