@@ -378,7 +378,6 @@ class _EventPageState extends State<EventPage> {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold),
                               ),
-                              locale: 'vi_VN',
                               firstDay: DateTime.utc(2010, 10, 16),
                               lastDay: DateTime.utc(2030, 3, 14),
                               focusedDay: controller.selectedDate,

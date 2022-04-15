@@ -12,19 +12,6 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const BottomAppBar(
-        elevation: 0,
-        color: Colors.transparent,
-        child: Text(
-          '''Liên hệ với chúng tôi nếu bạn chưa có tài khoản
-        Hotline: 1900776589''',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.brown,
-            fontSize: 15,
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -131,6 +118,18 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   )),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Text(
+                    '''Liên hệ với chúng tôi nếu bạn chưa có tài khoản
+        Hotline: 1900776589''',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.brown,
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
             ),

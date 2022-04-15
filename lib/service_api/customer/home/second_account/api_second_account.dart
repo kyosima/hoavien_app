@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
 import 'package:hoavien_app/models/home/second_account/list_second_account_model.dart';
@@ -20,8 +19,9 @@ class ApiSecondAccount {
         });
     if (response.statusCode == 200) {
       return listSecondAccountModelFromJson(response.body);
-    } else
+    } else {
       return null;
+    }
   }
 
   static Future<StatusModel?> deleteSecondAccount(

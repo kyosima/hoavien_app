@@ -27,30 +27,30 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  graphview: any
+  graphview:
   get:
-  otp_text_field: any
-  awesome_dialog: any
-  flutter_image_slideshow: ^0.1.2
-  flutter_native_splash: any
-  webview_flutter: any
-  qr_code_scanner: any
+  otp_text_field:
+  awesome_dialog:
+  flutter_image_slideshow:
+  flutter_native_splash:
+  webview_flutter:
+  qr_code_scanner:
   image_picker:
-  buttons_tabbar: any
-  flutter_rating_bar: any
-  share_plus: any
+  buttons_tabbar:
+  flutter_rating_bar:
+  share_plus:
   photo_view:
     git:
       url: https://github.com/bluefireteam/photo_view
       ref: master
-  table_calendar: any
-  intl: any
-  dropdown_formfield: ^0.1.4
+  table_calendar: ^3.0.5
+  intl: ^0.17.0
+  dropdown_formfield: any
   http:
   shared_preferences: ^2.0.13
-  shimmer: ^2.0.0
-  flutter_html: ^2.2.1
-  video_player: ^2.3.0
+  shimmer:
+  flutter_html: any
+  video_player: any
   cached_network_image: any
   flutter:
     sdk: flutter

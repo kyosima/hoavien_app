@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -101,12 +103,21 @@ import 'package:hoavien_app/views/screens/second_account/home/service/second_acc
 import 'package:hoavien_app/views/screens/second_account/home/service/second_account_service_design_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/change_second_account_password_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/info_second_account_page.dart';
-import 'package:intl/date_symbol_data_local.dart';
 
 import 'controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
 
-void main() async {
-  await initializeDateFormatting().then((_) => runApp(const MyApp()));
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
+void main() {
+  HttpOverrides.global = MyHttpOverrides();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
