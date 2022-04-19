@@ -52,6 +52,7 @@ dependencies:
   flutter_html: any
   video_player: any
   cached_network_image: any
+  chewie:
   flutter:
     sdk: flutter
 

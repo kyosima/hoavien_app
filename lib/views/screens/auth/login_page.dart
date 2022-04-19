@@ -118,10 +118,10 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   )),
-                  SizedBox(
+                  const SizedBox(
                     height: 60,
                   ),
-                  Text(
+                  const Text(
                     '''Liên hệ với chúng tôi nếu bạn chưa có tài khoản
         Hotline: 1900776589''',
                     textAlign: TextAlign.center,

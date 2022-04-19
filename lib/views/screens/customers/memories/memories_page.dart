@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
+import 'package:hoavien_app/views/screens/customers/memories/video_detail_page.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:video_player/video_player.dart';
 
 class MemoriesPage extends StatelessWidget {
   final controller = Get.put(MemoriesController());
@@ -200,9 +200,9 @@ class MemoriesPage extends StatelessWidget {
                               controller.allVideo.value!.length, (index) {
                             return InkWell(
                               onTap: () {
-                                Get.toNamed('/imagedetail',
+                                Get.to(() => const ChewieDemo(),
                                     arguments:
-                                        controller.allVideo.value![index]);
+                                        controller.allVideo.value![index].link);
                               },
                               child: ClipRRect(
                                 borderRadius: const BorderRadius.only(
