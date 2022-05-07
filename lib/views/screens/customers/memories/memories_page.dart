@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
+import 'package:hoavien_app/views/screens/customers/memories/image_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/video_detail_page.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:shimmer/shimmer.dart';
@@ -65,7 +66,7 @@ class MemoriesPage extends StatelessWidget {
               child: TabBarView(
                 children: <Widget>[
                   Obx(() {
-                    if (controller.allImage.value == null) {
+                    if (controller.isLoadingImage.value) {
                       return GridView.count(
                         crossAxisCount: 3,
                         padding: const EdgeInsets.all(8),
@@ -102,7 +103,7 @@ class MemoriesPage extends StatelessWidget {
                               controller.allImage.value!.length, (index) {
                             return InkWell(
                               onTap: () {
-                                Get.toNamed('/imagedetail',
+                                Get.to(() => ImageDetailPage(),
                                     arguments:
                                         controller.allImage.value![index]);
                               },
@@ -113,14 +114,12 @@ class MemoriesPage extends StatelessWidget {
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
                                 ),
-                                child: Hero(
-                                  tag:
-                                      '${controller.allImage.value![index].link}',
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        '$baseURL${controller.allImage.value![index].link}',
-                                    fit: BoxFit.cover,
-                                  ),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  imageUrl:
+                                      '$baseURL${controller.allImage.value![index].link}',
                                 ),
                               ),
                             );
@@ -163,7 +162,7 @@ class MemoriesPage extends StatelessWidget {
                     }
                   }),
                   Obx(() {
-                    if (controller.allVideo.value == null) {
+                    if (controller.isLoadingVideo.value) {
                       return GridView.count(
                         crossAxisCount: 3,
                         padding: const EdgeInsets.all(8),
@@ -200,9 +199,9 @@ class MemoriesPage extends StatelessWidget {
                               controller.allVideo.value!.length, (index) {
                             return InkWell(
                               onTap: () {
-                                Get.to(() => const ChewieDemo(),
+                                Get.to(() => VideoDetail(),
                                     arguments:
-                                        controller.allVideo.value![index].link);
+                                        controller.allVideo.value![index]);
                               },
                               child: ClipRRect(
                                 borderRadius: const BorderRadius.only(

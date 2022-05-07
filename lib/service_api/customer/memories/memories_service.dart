@@ -9,9 +9,7 @@ import 'package:async/async.dart';
 
 class MemoriesService {
   static var client = http.Client();
-  static Future<MemoriesModel?> getImage({
-    String? id,
-  }) async {
+  static Future<MemoriesModel?> getImage({String? id}) async {
     var response = await client.get(
         Uri.parse('$baseURL/api/user-gallery?user_id=$id&type=image'),
         headers: {
@@ -55,6 +53,17 @@ class MemoriesService {
   }
 
   static Future<StatusModel?> deleteImage({String? id, String? idUser}) async {
+    var response = await client.delete(
+        Uri.parse('$baseURL/api/user-gallery/delete'),
+        body: {'id': id, 'user_id': idUser});
+    if (response.statusCode == 200) {
+      return statusModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<StatusModel?> deleteVideo({String? id, String? idUser}) async {
     var response = await client.delete(
         Uri.parse('$baseURL/api/user-gallery/delete'),
         body: {'id': id, 'user_id': idUser});
