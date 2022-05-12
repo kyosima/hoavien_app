@@ -24,31 +24,6 @@ class TaisansoController extends GetxController {
     super.onInit();
     getTaisanso();
     getArea();
-    filter();
-  }
-
-  void filter() {
-    List list = ['steve', 'bill', 'musk'];
-    List map = [
-      for (var item in list)
-        {
-          'name': '$item',
-          'isChecked': false,
-        }
-    ].obs;
-    phanLoaiKhu2.value = map;
-    update();
-  }
-
-  final phanLoaiKhu = <Map>[
-    {"name": 'Tất cả', "isCheck": false},
-    {"name": 'Khu Phú Quý 1', "isCheck": false},
-    {"name": 'Khu Phú Quý 2', "isCheck": false},
-  ].obs;
-
-  void isCheck(index) {
-    phanLoaiKhu2[index]['isCheck'] = !phanLoaiKhu2[index]['isCheck'];
-    refresh();
   }
 
   void getTaisanso() async {

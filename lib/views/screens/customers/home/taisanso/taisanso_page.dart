@@ -58,6 +58,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                   padding: const EdgeInsets.all(20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       const Padding(
                         padding: EdgeInsets.only(left: 15),
@@ -74,7 +75,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                       ),
                       GetBuilder<TaisansoController>(builder: (_) {
                         if (controller.isLoadingArea.value) {
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         } else {
                           return ListView.builder(
                               physics: const NeverScrollableScrollPhysics(),
@@ -82,14 +83,26 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                               shrinkWrap: true,
                               itemCount: controller.allArea.value!.length,
                               itemBuilder: (_, index) {
-                                return CheckboxListTile(
-                                    controlAffinity:
-                                        ListTileControlAffinity.leading,
-                                    title: Text(controller
-                                        .allArea.value![index].name
-                                        .toString()),
-                                    value: false,
-                                    onChanged: (value) {});
+                                return Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: TextButton(
+                                      child: Text(
+                                        controller.allArea.value![index].name
+                                            .toString(),
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        print(controller
+                                            .allArea.value![index].id);
+                                      },
+                                    ),
+                                  ),
+                                );
                               });
                         }
                       }),
@@ -100,23 +113,6 @@ class TaiSanSoPage extends GetView<TaisansoController> {
             ),
             const SizedBox(
               height: 70,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                OutlinedButton(
-                  onPressed: () {},
-                  child: const Text('Mặc định'),
-                ),
-                const SizedBox(
-                  width: 20,
-                ),
-                FlatButton(
-                  color: primaryColor,
-                  onPressed: () {},
-                  child: const Text('Áp dụng'),
-                ),
-              ],
             ),
           ],
         ),
@@ -327,54 +323,22 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                             const SizedBox(
                                               height: 10,
                                             ),
-                                            Row(
-                                              children: [
-                                                Text(
-                                                  '${controller.allTaisanso.value?.dataTaisanso![index].area?.name}',
-                                                  style: const TextStyle(
-                                                      color: secondaryColor,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                                const SizedBox(
-                                                  width: 5,
-                                                ),
-                                                const Text(
-                                                  '123',
-                                                  style: TextStyle(
-                                                      color: secondaryColor,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ],
+                                            Text(
+                                              '${controller.allTaisanso.value?.dataTaisanso![index].area?.name}',
+                                              style: const TextStyle(
+                                                  color: secondaryColor,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500),
                                             ),
                                             const SizedBox(
                                               height: 10,
                                             ),
-                                            Row(
-                                              children: const [
-                                                Text(
-                                                  'Chủ sở hữu : 123',
-                                                  style: TextStyle(
-                                                      color: secondaryColor,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w300),
-                                                ),
-                                                SizedBox(
-                                                  width: 5,
-                                                ),
-                                                Text(
-                                                  '123',
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: secondaryColor,
-                                                    fontWeight: FontWeight.w300,
-                                                  ),
-                                                ),
-                                              ],
+                                            const Text(
+                                              'Chủ sở hữu : 123',
+                                              style: TextStyle(
+                                                  color: secondaryColor,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w300),
                                             )
                                           ],
                                         ),
