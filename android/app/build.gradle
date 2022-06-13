@@ -73,5 +73,11 @@ android {
     defaultConfig {
         minSdkVersion 20
         multiDexEnabled true
+        compileSdkVersion 32
+
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
     }
 }
