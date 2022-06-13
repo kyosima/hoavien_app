@@ -12,16 +12,7 @@ import 'package:shimmer/shimmer.dart';
 
 class SecondAccountMemoriesPage extends StatelessWidget {
   final controller = Get.put(SecondAccountMemoryController());
-  final ImageMemories = [
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-    'https://placeimg.com/640/480/any',
-  ];
+
 
   SecondAccountMemoriesPage({Key? key}) : super(key: key);
 
@@ -33,6 +24,18 @@ class SecondAccountMemoriesPage extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         title: Center(child: Image.asset('assets/images/mienkyuc.png')),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed('/danhsachthanhvien');
+            },
+            icon: const Icon(
+              Icons.people,
+              color: colorText,
+              size: 32,
+            ),
+          )
+        ],
       ),
       body: DefaultTabController(
         length: 3,
@@ -66,10 +69,8 @@ class SecondAccountMemoriesPage extends StatelessWidget {
               child: TabBarView(
                 children: <Widget>[
                   Obx(() {
-                    if (controller.allImage.value == null) {
+                    if (controller.isLoadingImage.value) {
                       return GridView.count(
-                        // Create a grid with 2 columns. If you change the scrollDirection to
-                        // horizontal, this produces 2 rows.
                         crossAxisCount: 3,
                         padding: const EdgeInsets.all(8),
                         crossAxisSpacing: 8,
@@ -87,10 +88,7 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                 bottomLeft: Radius.circular(8.0),
                                 bottomRight: Radius.circular(8.0),
                               ),
-                              child: ShimmerBox(
-                                height: 100,
-                                width: 100,
-                              ),
+                              child: ShimmerBox(height: 100, width: 100),
                             ),
                           );
                         }),
@@ -98,8 +96,6 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                     } else {
                       return Stack(children: [
                         GridView.count(
-                          // Create a grid with 2 columns. If you change the scrollDirection to
-                          // horizontal, this produces 2 rows.
                           crossAxisCount: 3,
                           padding: const EdgeInsets.all(8),
                           crossAxisSpacing: 8,
@@ -112,7 +108,7 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                               onTap: () {
                                 Get.to(() => SecondAccountImageDetailPage(),
                                     arguments:
-                                        controller.allImage.value![index]);
+                                    controller.allImage.value![index]);
                               },
                               child: ClipRRect(
                                 borderRadius: const BorderRadius.only(
@@ -121,15 +117,12 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
                                 ),
-                                child: Hero(
-                                  tag:
-                                      '${controller.allImage.value![index].link}',
-                                  child: CachedNetworkImage(
-                                    // width: 300,
-                                    fit: BoxFit.cover,
-                                    imageUrl:
-                                        '$baseURL${controller.allImage.value![index].link}',
-                                  ),
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  imageUrl:
+                                  '$baseURL${controller.allImage.value![index].link}',
                                 ),
                               ),
                             );
@@ -143,7 +136,7 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                                 controller.pickImageFromGalerry();
                               },
                               child:
-                                  Stack(alignment: Alignment.center, children: [
+                              Stack(alignment: Alignment.center, children: [
                                 Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
@@ -171,151 +164,118 @@ class SecondAccountMemoriesPage extends StatelessWidget {
                       ]);
                     }
                   }),
-                  const Center(
-                    child: Icon(Icons.directions_transit),
-                  ),
-                  Stack(children: [
-                    GridView.count(
-                      // Create a grid with 2 columns. If you change the scrollDirection to
-                      // horizontal, this produces 2 rows.
-                      crossAxisCount: 2,
-                      padding: const EdgeInsets.all(8),
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 8,
-                      childAspectRatio: 1 / 1.6,
-                      // Generate 100 widgets that display their index in the List.
-                      children: List.generate(ImageMemories.length, (index) {
-                        return InkWell(
-                          onTap: () {},
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ClipRRect(
+                  Obx(() {
+                    if (controller.isLoadingVideo.value) {
+                      return GridView.count(
+                        crossAxisCount: 3,
+                        padding: const EdgeInsets.all(8),
+                        crossAxisSpacing: 8,
+                        mainAxisSpacing: 8,
+                        childAspectRatio: 1 / 1.3,
+                        // Generate 100 widgets that display their index in the List.
+                        children: List.generate(12, (index) {
+                          return Shimmer.fromColors(
+                            baseColor: baseShimmer,
+                            highlightColor: highLightShimmer,
+                            child: const ClipRRect(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(8.0),
+                                topRight: Radius.circular(8.0),
+                                bottomLeft: Radius.circular(8.0),
+                                bottomRight: Radius.circular(8.0),
+                              ),
+                              child: ShimmerBox(height: 100, width: 100),
+                            ),
+                          );
+                        }),
+                      );
+                    } else {
+                      return Stack(children: [
+                        GridView.count(
+                          crossAxisCount: 3,
+                          padding: const EdgeInsets.all(8),
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          childAspectRatio: 1 / 1.3,
+                          // Generate 100 widgets that display their index in the List.
+                          children: List.generate(
+                              controller.allVideo.value!.length, (index) {
+                            return InkWell(
+                              // onTap: () {
+                              //   Get.to(() => VideoDetail(),
+                              //       arguments:
+                              //       controller.allVideo.value![index]);
+                              // },
+                              child: ClipRRect(
                                 borderRadius: const BorderRadius.only(
                                   topLeft: Radius.circular(8.0),
                                   topRight: Radius.circular(8.0),
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
                                 ),
-                                child: Image.network(
-                                  ImageMemories[index],
-                                  height: 200,
-                                  // width: 300,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text(
-                                'Ảnh cưới gia đình',
-                                style: TextStyle(
-                                  color: secondaryColor,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              const Text(
-                                '1802',
-                                style: TextStyle(
-                                  color: secondaryColor,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
-                    ),
-                    Positioned(
-                      bottom: 15,
-                      right: 15,
-                      child: CustomAddGalleryButton(
-                        onTap: () {
-                          Get.bottomSheet(
-                            Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                              ),
-                              height: 250,
-                              child: Padding(
-                                padding: const EdgeInsets.all(25.0),
-                                child: Column(
+                                child: Stack(
+                                  alignment: Alignment.center,
                                   children: [
-                                    const Text(
-                                      'Tạo một album',
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                      ),
+                                    CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      imageUrl:
+                                      '$baseURL${controller.allVideo.value![index].thumbnail}',
                                     ),
-                                    const SizedBox(
-                                      height: 15,
+                                    Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      color: Colors.grey.withOpacity(0.4),
                                     ),
-                                    const CustomTextField(
-                                      maxLines: 1,
-                                      title: 'Tên Album',
-                                      inputType: TextInputType.text,
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        TextButton(
-                                            onPressed: () {
-                                              Get.back();
-                                            },
-                                            child: Container(
-                                              height: 40,
-                                              width: 130,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: Colors.white,
-                                                  border: Border.all(
-                                                      color: secondaryColor)),
-                                              child: const Center(
-                                                  child: Text(
-                                                'Hủy',
-                                                style: TextStyle(
-                                                  fontSize: 18,
-                                                ),
-                                              )),
-                                            )),
-                                        TextButton(
-                                            onPressed: () {},
-                                            child: Container(
-                                              height: 40,
-                                              width: 130,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                color: primaryColor,
-                                              ),
-                                              child: const Center(
-                                                  child: Text(
-                                                'Ok',
-                                                style: TextStyle(
-                                                  fontSize: 18,
-                                                ),
-                                              )),
-                                            )),
-                                      ],
+                                    const Icon(
+                                      Icons.play_circle_outline,
+                                      color: Colors.white,
+                                      size: 40,
                                     )
                                   ],
                                 ),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ]),
+                            );
+                          }),
+                        ),
+                        Positioned(
+                            bottom: 15,
+                            right: 15,
+                            child: InkWell(
+                              onTap: () {
+                                controller.pickVideoFromGalerry();
+                              },
+                              child:
+                              Stack(alignment: Alignment.center, children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment(0.8,
+                                          0.0), // 10% of the width, so there are ten blinds.
+                                      colors: <Color>[
+                                        Color(0xffFF9900),
+                                        Color(0xffF5C037)
+                                      ], // red to yellow
+                                      // repeats the gradient over the canvas
+                                    ),
+                                  ),
+                                  height: 70,
+                                  width: 70,
+                                ),
+                                const Icon(
+                                  Icons.add,
+                                  size: 40,
+                                  color: Colors.white,
+                                ),
+                              ]),
+                            ))
+                      ]);
+                    }
+                  }),
+                  Container(),
                 ],
               ),
             ),
