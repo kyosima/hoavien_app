@@ -34,7 +34,7 @@ dependencies:
   flutter_image_slideshow:
   flutter_native_splash:
   webview_flutter:
-  qr_code_scanner:
+  qr_code_scanner: ^1.0.0
   image_picker:
   buttons_tabbar:
   flutter_rating_bar:
