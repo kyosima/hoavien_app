@@ -31,7 +31,6 @@ import 'package:hoavien_app/controllers/saler/statistical/statistical_controller
 import 'package:hoavien_app/controllers/saler/transaction/transaction_controller.dart';
 import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
-import 'package:hoavien_app/controllers/second_account/home/combo/second_account_combo_detail_controller.dart';
 import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_controller.dart';
 import 'package:hoavien_app/controllers/second_account/home/product/second_account_product_detail_controller.dart';
 import 'package:hoavien_app/views/dashboard/customer/dashboard_customer_page.dart';
