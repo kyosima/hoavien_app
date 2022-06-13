@@ -9,7 +9,7 @@ import 'package:video_player/video_player.dart';
 import 'package:get/get.dart';
 
 class VideoDetail extends StatefulWidget {
-  VideoDetail({
+  const VideoDetail({
     Key? key,
     this.title = 'Chewie Demo',
   }) : super(key: key);
@@ -25,7 +25,6 @@ class VideoDetail extends StatefulWidget {
 class _ChewieDemoState extends State<VideoDetail> {
   final controller = Get.put(MemoriesController());
   Data video = Get.arguments;
-  TargetPlatform? _platform;
   late VideoPlayerController _videoPlayerController1;
   ChewieController? _chewieController;
 

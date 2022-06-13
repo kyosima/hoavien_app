@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
 import 'package:hoavien_app/models/memories/memories_model.dart';
-import 'package:hoavien_app/views/screens/customers/memories/memories_page.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';

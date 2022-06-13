@@ -243,15 +243,13 @@ class CartHistoryDetailCancelPage extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                child: const Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: CustomTextField(
-                    title: 'Ghi chú',
-                    inputType: TextInputType.text,
-                    height: 100,
-                    maxLines: 3,
-                  ),
+              const Padding(
+                padding: EdgeInsets.all(15.0),
+                child: CustomTextField(
+                  title: 'Ghi chú',
+                  inputType: TextInputType.text,
+                  height: 100,
+                  maxLines: 3,
                 ),
               ),
               Padding(
