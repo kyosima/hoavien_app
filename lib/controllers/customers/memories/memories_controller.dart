@@ -21,7 +21,9 @@ class MemoriesController extends GetxController {
   final isLoadingImage = false.obs;
   final isLoadingVideo = false.obs;
   final allVideo = MemoriesModel().data.obs;
+  final isLoadingAlbum = false.obs;
   final thumnail = ''.obs;
+  final nameAlbum = TextEditingController();
 
   @override
   void onInit() {
@@ -155,6 +157,12 @@ class MemoriesController extends GetxController {
     } finally {
       isLoadingImage.value = false;
     }
+  }
+  void createAlbum() async{
+    final prefs = await SharedPreferences.getInstance();
+    final idUser = prefs.getInt('id').toString();
+    var response = await MemoriesService.createAlbum(id: idUser, name: nameAlbum.toString());
+
   }
 
   void deleteVideo({String? id, String? idUser}) async {

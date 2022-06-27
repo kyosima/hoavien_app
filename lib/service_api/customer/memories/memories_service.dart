@@ -74,6 +74,21 @@ class MemoriesService {
     }
   }
 
+  static Future<StatusModel?> createAlbum({String? id, String? name}) async {
+    var response = await client.post(Uri.parse('$baseURL/api/user-album/create'),body: {
+      'user_id':id,
+      'name':name
+    });
+    if(response.statusCode == 200){
+      return statusModelFromJson(response.body);
+    }
+    else{
+      return null;
+    }
+
+  }
+  
+
   static Future<int?> createVideo({String? id, File? video}) async {
     var stream = http.ByteStream(DelegatingStream.typed(video!.openRead()));
     var length = await video.length();
@@ -90,4 +105,5 @@ class MemoriesService {
     var response = await request.send();
     return response.statusCode;
   }
+  
 }
