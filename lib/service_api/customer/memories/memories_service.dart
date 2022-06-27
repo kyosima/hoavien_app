@@ -81,7 +81,6 @@ class MemoriesService {
     });
     if(response.statusCode == 200){
       return statusModelFromJson(response.body);
-
     }
     else{
       return null;
