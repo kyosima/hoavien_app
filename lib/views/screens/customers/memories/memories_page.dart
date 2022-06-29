@@ -457,6 +457,8 @@ class MemoriesPage extends StatelessWidget {
                                                 child: TextButton(
                                                   child: const Text('Hủy'),
                                                   onPressed: () {
+                                                    controller.nameAlbum
+                                                        .clear();
                                                     Get.back();
                                                   },
                                                 ),

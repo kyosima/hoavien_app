@@ -28,7 +28,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   graphview:
-  get:
+  get: ^4.6.5
   otp_text_field:
   awesome_dialog:
   flutter_image_slideshow:
@@ -49,9 +49,9 @@ dependencies:
   http:
   shared_preferences: ^2.0.13
   shimmer:
-  flutter_html: any
+  flutter_html: ^2.2.1
   video_player: any
-  cached_network_image: any
+  cached_network_image: ^3.2.1
   chewie:
   flutter:
     sdk: flutter
