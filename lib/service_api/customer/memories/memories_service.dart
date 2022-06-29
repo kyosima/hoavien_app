@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:async/async.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
+import 'package:hoavien_app/models/memories/album_model.dart';
 import 'package:hoavien_app/models/memories/memories_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
-import 'package:async/async.dart';
 
 class MemoriesService {
   static var client = http.Client();
@@ -75,19 +76,39 @@ class MemoriesService {
   }
 
   static Future<StatusModel?> createAlbum({String? id, String? name}) async {
-    var response = await client.post(Uri.parse('$baseURL/api/user-album/create'),body: {
-      'user_id':id,
-      'name':name
-    });
-    if(response.statusCode == 200){
+    var response = await client.post(
+        Uri.parse('$baseURL/api/user-album/create'),
+        body: {'user_id': id, 'name': name});
+    if (response.statusCode == 200) {
       return statusModelFromJson(response.body);
-    }
-    else{
+    } else {
       return null;
     }
-
   }
-  
+
+  static Future<StatusModel?> deleteAlbum({String? id, String? idUser}) async {
+    var response =
+        await client.delete(Uri.parse('$baseURL/api/user-album/delete'), body: {
+      'id': id,
+      'user_id': idUser,
+    });
+    if (response.statusCode == 200) {
+      return statusModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<AlbumModel?> getAlbum({String? id}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/user-album?user_id=$id'),
+        headers: {'X-TOKEN-ACCESS': tokenAccess});
+    if (response.statusCode == 200) {
+      return albumModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
 
   static Future<int?> createVideo({String? id, File? video}) async {
     var stream = http.ByteStream(DelegatingStream.typed(video!.openRead()));
@@ -105,5 +126,4 @@ class MemoriesService {
     var response = await request.send();
     return response.statusCode;
   }
-  
 }
