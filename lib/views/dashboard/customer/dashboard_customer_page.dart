@@ -22,7 +22,7 @@ class DashboardPage extends StatelessWidget {
             children: [
               HomePage(),
               MemoriesPage(),
-              const GenealogyPage(),
+              GenealogyPage(),
               EventPage(),
               UserPage(),
             ],

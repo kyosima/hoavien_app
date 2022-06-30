@@ -3,19 +3,19 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/controllers/auth/control_view_controller.dart';
 import 'package:hoavien_app/controllers/auth/forget_password_controller.dart';
-import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/controllers/auth/resetpasword_controller.dart';
 import 'package:hoavien_app/controllers/customers/dashboard/dashboard_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/create_event_controller.dart';
 import 'package:hoavien_app/controllers/customers/event/event_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/add_genealogy_controller.dart';
 import 'package:hoavien_app/controllers/customers/genealogy/genealogy_detail_controller.dart';
-import 'package:hoavien_app/controllers/customers/home/product/product_detail_controller.dart';
-import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart/cart_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/home_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/product/product_detail_controller.dart';
+import 'package:hoavien_app/controllers/customers/home/product/products_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/second_account/second_account_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/service/service_burial_detail_controller.dart';
@@ -46,28 +46,28 @@ import 'package:hoavien_app/views/screens/customers/event/event_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/add_genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/genealory_detail_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_second_account_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/cart/cart_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/secondaccount/edit_second_account_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_detail_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/service_burial_detail_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/service_burial_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/dichvu_thietke_xaydung_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/service_design_detail_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/service/service_design_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/taisanso/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/home_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/notification/notification_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/notification/notifications_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/product/product_detail_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/search_resuft_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/product/products_page.dart';
-import 'package:hoavien_app/views/screens/customers/home/secondaccount/pick_taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/qr/qr_scan_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/search_resuft_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/add_second_account_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/edit_second_account_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/secondaccount/pick_taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/secondaccount/second_account_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/combo_hot_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/dichvu_thietke_xaydung_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_burial_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_burial_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_design_detail_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/service/service_design_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/taisanso/direct_map_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso/taisanso_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/taisanso/taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/memories/image_detail_page.dart';
@@ -103,6 +103,7 @@ import 'package:hoavien_app/views/screens/second_account/home/service/second_acc
 import 'package:hoavien_app/views/screens/second_account/user/change_second_account_password_page.dart';
 import 'package:hoavien_app/views/screens/second_account/user/info_second_account_page.dart';
 
+import 'controllers/customers/genealogy/genealogy_controller.dart';
 import 'controllers/second_account/dashboard/secondaccount_dashboard_controller.dart';
 
 class MyHttpOverrides extends HttpOverrides {
@@ -279,7 +280,8 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/giapha',
-            page: () => const GenealogyPage(),
+            page: () => GenealogyPage(),
+            binding: GenealogyBindings(),
           ),
           GetPage(
             name: '/chitietgiapha',
