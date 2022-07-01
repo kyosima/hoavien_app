@@ -5,9 +5,7 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/second_account/memories/secondaccount_memory_controller.dart';
 import 'package:hoavien_app/views/screens/second_account/memories/second_account_detail_image_page.dart';
-import 'package:hoavien_app/views/widgets/custom_add_gallery.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
-import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccountMemoriesPage extends StatelessWidget {

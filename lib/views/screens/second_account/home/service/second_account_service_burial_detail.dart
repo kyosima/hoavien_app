@@ -3,7 +3,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/home/service/service_burial_detail_controller.dart';
 import 'package:hoavien_app/controllers/second_account/home/service/second_account_service_burial_detail_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';
@@ -445,7 +444,7 @@ class SecondAccountServiceBurialDetailPage extends StatelessWidget {
                     ),
                     Obx(() {
                       if (controller.isLoadingRelatedService.value) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       } else {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10.0),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
@@ -81,7 +80,7 @@ class GenealogyPage extends StatelessWidget {
                     children: [
                       const Text(
                         'Họ Trần',
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 16,
                             color: secondaryColor,
                             fontWeight: FontWeight.bold),

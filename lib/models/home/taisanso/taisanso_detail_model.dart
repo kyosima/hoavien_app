@@ -16,13 +16,13 @@ class TaisansoDetailModel {
   TaisansoDetailModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
@@ -64,44 +64,44 @@ class Data {
     status = json['status'];
     avatar = json['avatar'];
     detail = json['detail'];
-    area = json['area'] != null ? new Area.fromJson(json['area']) : null;
+    area = json['area'] != null ? Area.fromJson(json['area']) : null;
     if (json['gallery'] != null) {
       gallery = <Gallery>[];
       json['gallery'].forEach((v) {
-        gallery!.add(new Gallery.fromJson(v));
+        gallery!.add(Gallery.fromJson(v));
       });
     }
     customer = json['customer'] != null
-        ? new Customer.fromJson(json['customer'])
+        ? Customer.fromJson(json['customer'])
         : null;
     if (json['related'] != null) {
       related = <Related>[];
       json['related'].forEach((v) {
-        related!.add(new Related.fromJson(v));
+        related!.add(Related.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['digital_asset_area_id'] = this.digitalAssetAreaId;
-    data['customer_id'] = this.customerId;
-    data['name'] = this.name;
-    data['status'] = this.status;
-    data['avatar'] = this.avatar;
-    data['detail'] = this.detail;
-    if (this.area != null) {
-      data['area'] = this.area!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['digital_asset_area_id'] = digitalAssetAreaId;
+    data['customer_id'] = customerId;
+    data['name'] = name;
+    data['status'] = status;
+    data['avatar'] = avatar;
+    data['detail'] = detail;
+    if (area != null) {
+      data['area'] = area!.toJson();
     }
-    if (this.gallery != null) {
-      data['gallery'] = this.gallery!.map((v) => v.toJson()).toList();
+    if (gallery != null) {
+      data['gallery'] = gallery!.map((v) => v.toJson()).toList();
     }
-    if (this.customer != null) {
-      data['customer'] = this.customer!.toJson();
+    if (customer != null) {
+      data['customer'] = customer!.toJson();
     }
-    if (this.related != null) {
-      data['related'] = this.related!.map((v) => v.toJson()).toList();
+    if (related != null) {
+      data['related'] = related!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -120,16 +120,16 @@ class Area {
     parentId = json['parent_id'];
     name = json['name'];
     parent =
-        json['parent'] != null ? new Parent.fromJson(json['parent']) : null;
+        json['parent'] != null ? Parent.fromJson(json['parent']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['parent_id'] = this.parentId;
-    data['name'] = this.name;
-    if (this.parent != null) {
-      data['parent'] = this.parent!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['parent_id'] = parentId;
+    data['name'] = name;
+    if (parent != null) {
+      data['parent'] = parent!.toJson();
     }
     return data;
   }
@@ -147,9 +147,9 @@ class Parent {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
     return data;
   }
 }
@@ -166,9 +166,9 @@ class Gallery {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['digital_assets_id'] = this.digitalAssetsId;
-    data['image'] = this.image;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['digital_assets_id'] = digitalAssetsId;
+    data['image'] = image;
     return data;
   }
 }
@@ -185,9 +185,9 @@ class Customer {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['fullname'] = this.fullname;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['fullname'] = fullname;
     return data;
   }
 }
@@ -210,12 +210,12 @@ class Related {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['price'] = this.price;
-    data['avatar'] = this.avatar;
-    data['short_detail'] = this.shortDetail;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['price'] = price;
+    data['avatar'] = avatar;
+    data['short_detail'] = shortDetail;
     return data;
   }
 }

@@ -1,8 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/home/service/related_service_model.dart';
 import 'package:hoavien_app/models/home/service/service_detail_model.dart';
 import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';
-import 'package:collection/collection.dart';
 
 class ServiceBurialDetailBinding implements Bindings {
   @override
@@ -32,7 +32,7 @@ class ServiceBurialDetailController extends GetxController {
       isLoadingService.value = true;
       var response = await Service.getDetailService(id: idService.toString());
       serviceBurial.value = response?.data;
-      if (serviceBurial.value?.serviceReview?.length != 0) {
+      if (serviceBurial.value?.serviceReview != null) {
         var result =
             serviceBurial.value?.serviceReview?.map((m) => m.rating!).average;
         rate.value = result ?? 0.0;

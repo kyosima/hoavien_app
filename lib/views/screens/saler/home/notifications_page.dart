@@ -58,7 +58,7 @@ class SalerNotificationsPage extends StatelessWidget {
                                     strutStyle:
                                         const StrutStyle(fontSize: 19.0),
                                     text: const TextSpan(
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: secondaryColor,
                                           fontSize: 16,
                                         ),
@@ -69,18 +69,18 @@ class SalerNotificationsPage extends StatelessWidget {
                                     height: 8,
                                   ),
                                   Row(
-                                    children: [
-                                      const Icon(
+                                    children: const [
+                                      Icon(
                                         Icons.calendar_today_outlined,
                                         size: 18,
                                         color: secondaryColor,
                                       ),
-                                      const SizedBox(
+                                      SizedBox(
                                         width: 5,
                                       ),
-                                      const Text(
+                                      Text(
                                         '12/11/2021   -   09:65',
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           color: Colors.grey,
                                         ),
                                       ),

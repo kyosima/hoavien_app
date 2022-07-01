@@ -50,7 +50,7 @@ class InfoSecondAccount extends StatelessWidget {
                           backgroundImage: controller.infoUser.value?.avatar ==
                                       null &&
                                   controller.imageEdit.value == ''
-                              ? AssetImage(defaultUser)
+                              ? const AssetImage(defaultUser)
                               : controller.infoUser.value?.avatar != null &&
                                       controller.imageEdit.value == ''
                                   ? NetworkImage(

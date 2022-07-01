@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/banner_model.dart';
 import 'package:hoavien_app/models/home/product/product_model.dart';
 import 'package:hoavien_app/models/home/service/combo_model.dart';
-import 'package:hoavien_app/models/home/service/service_detail_model.dart';
 import 'package:hoavien_app/models/home/service/service_model.dart';
 import 'package:hoavien_app/service_api/auth/api_banner.dart';
 import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';

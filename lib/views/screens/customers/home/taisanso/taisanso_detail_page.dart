@@ -36,7 +36,7 @@ class TaisansoDetailPage extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: Obx(() {
               if (controller.isLoading.value) {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               } else {
                 return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,7 +97,7 @@ class TaisansoDetailPage extends StatelessWidget {
                       ),
                       Text(
                         controller.taisansoDetails.value!.name.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: secondaryColor,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -108,11 +108,11 @@ class TaisansoDetailPage extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.location_on,
                             color: Colors.blue,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(controller.taisansoDetails.value?.area?.name

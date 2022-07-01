@@ -1,6 +1,6 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:collection/collection.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/home/product/product_detail_model.dart';
 import 'package:hoavien_app/models/home/product/product_model.dart';
@@ -37,7 +37,7 @@ class SecondAccountProductDetailController extends GetxController {
       var resuft = await ProductService.getRelatedProduct(id: id.toString());
       product.value = response?.data;
       relatedProduct.value = resuft?.data;
-      if (product.value?.productReview?.length != 0) {
+      if (product.value?.productReview != null) {
         var result =
             product.value?.productReview?.map((m) => m.rating!).average;
         rate.value = result ?? 0.0;

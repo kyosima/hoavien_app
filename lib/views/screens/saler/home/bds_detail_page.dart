@@ -245,8 +245,8 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                         itemBuilder: (BuildContext context) {
                           return items
                               .map<PopupMenuItem<String>>((String value) {
-                            return new PopupMenuItem(
-                                child: new Text(
+                            return PopupMenuItem(
+                                child: Text(
                                   value,
                                   style: const TextStyle(
                                     fontSize: 14,

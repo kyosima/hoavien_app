@@ -4,7 +4,6 @@ import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/auth/auth_controller.dart';
 import 'package:hoavien_app/controllers/saler/user/saler_user_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SalerUserPage extends StatelessWidget {
   final SalerUserController controller = Get.put(SalerUserController());

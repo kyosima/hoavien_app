@@ -33,7 +33,7 @@ class CustomBottomBar extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.phone,
                       color: Colors.white,
@@ -54,7 +54,7 @@ class CustomBottomBar extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.shopping_cart_sharp,
                       color: Colors.white,
@@ -75,7 +75,7 @@ class CustomBottomBar extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.shopping_basket,
                       color: Colors.white,

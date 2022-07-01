@@ -115,7 +115,7 @@ class _TreeViewPageState extends State<GenealoryDetailPage> {
                 width: 124,
                 decoration: BoxDecoration(
                     color: primaryColor,
-                    border: Border.all(color: Color(0xffAE0C01), width: 2)),
+                    border: Border.all(color: const Color(0xffAE0C01), width: 2)),
               ),
               Image.asset(
                 'assets/images/giapha.png',

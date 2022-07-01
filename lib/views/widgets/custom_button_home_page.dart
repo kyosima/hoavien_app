@@ -48,7 +48,7 @@ class CustomButtonHomePage extends StatelessWidget {
           ),
           Text(
             tittle,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 12,
               fontWeight: FontWeight.w600,
             ),

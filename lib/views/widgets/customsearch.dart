@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../constance.dart';
 
@@ -29,7 +28,7 @@ class CustomSearch extends StatelessWidget {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                   onPressed: onPressed,
-                  icon: Icon(Icons.search),
+                  icon: const Icon(Icons.search),
                 ),
                 filled: true,
                 fillColor: Colors.white,

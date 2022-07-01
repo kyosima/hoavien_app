@@ -3,7 +3,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/home/service/service_burial_detail_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/service/service_design_detail_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_service.dart';

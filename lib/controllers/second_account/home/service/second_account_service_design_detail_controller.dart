@@ -1,8 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/home/service/related_service_model.dart';
 import 'package:hoavien_app/models/home/service/service_detail_model.dart';
 import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';
-import 'package:collection/collection.dart';
 
 class SecondAccountServiceDesignDetailBinding implements Bindings {
   @override
@@ -33,7 +33,7 @@ class SecondAccountServiceDesignDetailController extends GetxController {
       isLoadingService.value = true;
       var response = await Service.getDetailService(id: idService.toString());
       serviceDetail.value = response?.data;
-      if (serviceDetail.value?.serviceReview?.length != 0) {
+      if (serviceDetail.value?.serviceReview != null) {
         var result =
             serviceDetail.value?.serviceReview?.map((m) => m.rating!).average;
         rate.value = result ?? 0.0;

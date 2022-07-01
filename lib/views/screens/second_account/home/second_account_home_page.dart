@@ -713,7 +713,7 @@ class SecondAccountHomePage extends GetView<SecondAccountHomeController> {
                     onPressed: () {
                       controller.readmore();
                     },
-                    child: Text('Xem Thêm'),
+                    child: const Text('Xem Thêm'),
                   ),
                 ),
               )

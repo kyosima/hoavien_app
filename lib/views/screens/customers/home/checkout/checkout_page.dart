@@ -31,7 +31,7 @@ class CheckoutPage extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.all(7.0),
-                    child: Container(
+                    child: SizedBox(
                       height: 50,
                       child: ButtonsTabBar(
                         backgroundColor: primaryColor,

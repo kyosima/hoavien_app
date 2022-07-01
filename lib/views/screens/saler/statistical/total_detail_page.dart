@@ -47,7 +47,7 @@ class TotalDetailPage extends StatelessWidget {
                           ),
                           const Text(
                             '11.000.000.000 đ',
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: secondaryColor,
                               fontSize: 16,
                               fontWeight: FontWeight.bold,

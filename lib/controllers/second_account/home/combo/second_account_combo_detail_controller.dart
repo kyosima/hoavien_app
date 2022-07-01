@@ -1,8 +1,8 @@
+import 'package:collection/collection.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/home/service/combo_detail_model.dart';
 import 'package:hoavien_app/models/home/service/combo_model.dart';
 import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';
-import 'package:collection/collection.dart';
 
 class SecondAccountComboDetailBinding implements Bindings {
   @override
@@ -33,7 +33,7 @@ class SecondAccountComboDetailController extends GetxController {
       var response = await ComboService.getComboDetail(id: idCombo.toString());
 
       comboDetail.value = response?.data;
-      if (comboDetail.value?.comboReview?.length != 0) {
+      if (comboDetail.value?.comboReview != null) {
         var result =
             comboDetail.value?.comboReview?.map((m) => m.rating!).average;
         rate.value = result ?? 0.0;

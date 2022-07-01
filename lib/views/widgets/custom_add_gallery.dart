@@ -26,7 +26,7 @@ class CustomAddGalleryButton extends StatelessWidget {
           height: 70,
           width: 70,
         ),
-        Icon(
+        const Icon(
           Icons.add,
           size: 40,
           color: Colors.white,

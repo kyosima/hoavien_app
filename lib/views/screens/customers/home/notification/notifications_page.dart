@@ -24,7 +24,7 @@ class NotificationsPage extends StatelessWidget {
           child: ListView.builder(
               itemCount: 6,
               itemBuilder: (BuildContext context, int index) {
-                return Container(
+                return SizedBox(
                   height: MediaQuery.of(context).size.height / 7,
                   child: InkWell(
                     onTap: () {

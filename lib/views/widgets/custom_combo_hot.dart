@@ -107,9 +107,9 @@ class CustomComboHot extends StatelessWidget {
                   child: RichText(
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    strutStyle: StrutStyle(fontSize: 19.0),
+                    strutStyle: const StrutStyle(fontSize: 19.0),
                     text: TextSpan(
-                        style: TextStyle(color: secondaryColor), text: info),
+                        style: const TextStyle(color: secondaryColor), text: info),
                   ),
                 ),
               ],

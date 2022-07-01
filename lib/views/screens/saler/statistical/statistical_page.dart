@@ -147,7 +147,7 @@ class StatisticalPage extends StatelessWidget {
                   const SizedBox(
                     width: 10,
                   ),
-                  Container(
+                  SizedBox(
                     width: 150,
                     child: TextField(
                       style: const TextStyle(
@@ -197,8 +197,8 @@ class StatisticalPage extends StatelessWidget {
                           itemBuilder: (BuildContext context) {
                             return month
                                 .map<PopupMenuItem<String>>((String value) {
-                              return new PopupMenuItem(
-                                  child: new Text(
+                              return PopupMenuItem(
+                                  child: Text(
                                     value,
                                     style: const TextStyle(
                                       fontSize: 14,

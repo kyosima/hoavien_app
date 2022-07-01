@@ -8,7 +8,7 @@ import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class CreateEventPage extends StatefulWidget {
-  CreateEventPage({Key? key}) : super(key: key);
+  const CreateEventPage({Key? key}) : super(key: key);
 
   @override
   State<CreateEventPage> createState() => _CreateEventPageState();

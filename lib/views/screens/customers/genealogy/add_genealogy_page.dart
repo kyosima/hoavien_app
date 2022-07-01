@@ -31,7 +31,7 @@ class AddGenealogyPage extends GetView<AddGenealogyController> {
               children: [
                 const Text(
                   'Thông tin gia phả',
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: secondaryColor,
                     fontSize: 17,
                     fontWeight: FontWeight.bold,

@@ -44,17 +44,17 @@ class TransactionPage extends GetView<TransactionController> {
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
                 ),
-                tabs: [
-                  const Tab(
+                tabs: const [
+                  Tab(
                     text: "Giữ chổ",
                   ),
-                  const Tab(
+                  Tab(
                     text: "Đã cọc",
                   ),
-                  const Tab(
+                  Tab(
                     text: "Đã ký hợp đồng",
                   ),
-                  const Tab(
+                  Tab(
                     text: "Đã hủy",
                   ),
                 ],
@@ -103,33 +103,33 @@ class TransactionPage extends GetView<TransactionController> {
                                             CrossAxisAlignment.start,
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
-                                        children: [
-                                          const Text(
+                                        children: const [
+                                          Text(
                                             'Phú Quý 2.3-01-02',
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                               fontSize: 15,
                                               color: secondaryColor,
                                               fontWeight: FontWeight.w600,
                                             ),
                                           ),
-                                          const SizedBox(
+                                          SizedBox(
                                             height: 10,
                                           ),
-                                          const Text('Thuộc khu : Phú Quý 2',
+                                          Text('Thuộc khu : Phú Quý 2',
                                               style: TextStyle(
                                                 fontSize: 15,
                                                 color: colorText,
                                               )),
-                                          const SizedBox(
+                                          SizedBox(
                                             height: 10,
                                           ),
-                                          const Text('Giữ chổ',
-                                              style: const TextStyle(
+                                          Text('Giữ chổ',
+                                              style: TextStyle(
                                                 fontSize: 15,
-                                                color: const Color(0xffFD81FD),
+                                                color: Color(0xffFD81FD),
                                                 fontWeight: FontWeight.w600,
                                               )),
-                                          const SizedBox(
+                                          SizedBox(
                                             height: 10,
                                           ),
                                         ],
@@ -178,156 +178,8 @@ class TransactionPage extends GetView<TransactionController> {
                                           CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          'Phú Quý 2.3-01-02',
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            color: secondaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text('Thuộc khu : Phú Quý 2',
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              color: colorText,
-                                            )),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text('Đã cọc',
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: Color(0xffFD81FD),
-                                              fontWeight: FontWeight.w600,
-                                            )),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                    ListView.builder(
-                        itemCount: 4,
-                        itemBuilder: (BuildContext context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                left: 15.0, right: 15, top: 10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        0, 0), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/taisanso.png',
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        const Text(
-                                          'Phú Quý 2.3-01-02',
-                                          style: const TextStyle(
-                                            fontSize: 15,
-                                            color: secondaryColor,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text('Thuộc khu : Phú Quý 2',
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              color: colorText,
-                                            )),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        const Text('Đã ký hợp đồng',
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                              color: Color(0xff07BE02),
-                                              fontWeight: FontWeight.w600,
-                                            )),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                    ListView.builder(
-                        itemCount: 4,
-                        itemBuilder: (BuildContext context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                left: 15.0, right: 15, top: 10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        0, 0), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/taisanso.png',
-                                      fit: BoxFit.cover,
-                                      height: 90,
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        const Text(
+                                      children: const [
+                                        Text(
                                           'Phú Quý 2.3-01-02',
                                           style: TextStyle(
                                             fontSize: 15,
@@ -335,24 +187,172 @@ class TransactionPage extends GetView<TransactionController> {
                                             fontWeight: FontWeight.w600,
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 10,
                                         ),
-                                        const Text('Thuộc khu : Phú Quý 2',
-                                            style: const TextStyle(
+                                        Text('Thuộc khu : Phú Quý 2',
+                                            style: TextStyle(
                                               fontSize: 15,
                                               color: colorText,
                                             )),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 10,
                                         ),
-                                        const Text('Đã hủy',
+                                        Text('Đã cọc',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Color(0xffFD81FD),
+                                              fontWeight: FontWeight.w600,
+                                            )),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                    ListView.builder(
+                        itemCount: 4,
+                        itemBuilder: (BuildContext context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15.0, right: 15, top: 10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/taisanso.png',
+                                      fit: BoxFit.cover,
+                                      height: 90,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: const [
+                                        Text(
+                                          'Phú Quý 2.3-01-02',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text('Thuộc khu : Phú Quý 2',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: colorText,
+                                            )),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text('Đã ký hợp đồng',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: Color(0xff07BE02),
+                                              fontWeight: FontWeight.w600,
+                                            )),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+                    ListView.builder(
+                        itemCount: 4,
+                        itemBuilder: (BuildContext context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15.0, right: 15, top: 10),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/taisanso.png',
+                                      fit: BoxFit.cover,
+                                      height: 90,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: const [
+                                        Text(
+                                          'Phú Quý 2.3-01-02',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text('Thuộc khu : Phú Quý 2',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                              color: colorText,
+                                            )),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Text('Đã hủy',
                                             style: TextStyle(
                                               fontSize: 15,
                                               color: Colors.grey,
                                               fontWeight: FontWeight.w600,
                                             )),
-                                        const SizedBox(
+                                        SizedBox(
                                           height: 10,
                                         ),
                                       ],

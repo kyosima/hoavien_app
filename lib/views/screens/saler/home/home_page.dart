@@ -48,7 +48,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    '${user?.data?.userInfo?.fullname ?? "Saler"}',
+                    user?.data?.userInfo?.fullname ?? "Saler",
                     style: const TextStyle(
                       wordSpacing: 0,
                       letterSpacing: 0,

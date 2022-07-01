@@ -371,7 +371,7 @@ class SecondAccountComboDetail extends StatelessWidget {
                                           '${controller.rate.value}/ ${controller.comboDetail.value?.comboReview?.length}')
                                     ],
                                   ),
-                                  Text('Đã bán : 1.5k')
+                                  const Text('Đã bán : 1.5k')
                                 ],
                               ),
                               const SizedBox(
@@ -446,7 +446,7 @@ class SecondAccountComboDetail extends StatelessWidget {
                     ),
                     Obx(() {
                       if (controller.isLoadingRelatedCombo.value) {
-                        return CircularProgressIndicator();
+                        return const CircularProgressIndicator();
                       } else {
                         return Container(
                           margin: const EdgeInsets.symmetric(vertical: 10.0),

@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/search_controller.dart';
@@ -291,7 +289,7 @@ class SearchResuftPage extends StatelessWidget {
                                           strutStyle:
                                               const StrutStyle(fontSize: 19.0),
                                           text: const TextSpan(
-                                              style: const TextStyle(
+                                              style: TextStyle(
                                                 color: secondaryColor,
                                               ),
                                               text:
