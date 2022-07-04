@@ -2,14 +2,14 @@ import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
-import 'package:hoavien_app/controllers/customers/memories/memories_controller.dart';
+import 'package:hoavien_app/controllers/second_account/memories/secondaccount_memory_controller.dart';
 import 'package:hoavien_app/models/memories/memories_model.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:video_player/video_player.dart';
 
-class VideoDetail extends StatefulWidget {
-  const VideoDetail({
+class SecondAccountVideoDetail extends StatefulWidget {
+  const SecondAccountVideoDetail({
     Key? key,
     this.title = 'Chewie Demo',
   }) : super(key: key);
@@ -22,8 +22,8 @@ class VideoDetail extends StatefulWidget {
   }
 }
 
-class _ChewieDemoState extends State<VideoDetail> {
-  final controller = Get.put(MemoriesController());
+class _ChewieDemoState extends State<SecondAccountVideoDetail> {
+  final controller = Get.put(SecondAccountMemoryController());
   Data video = Get.arguments;
   late VideoPlayerController _videoPlayerController1;
   ChewieController? _chewieController;
@@ -32,7 +32,6 @@ class _ChewieDemoState extends State<VideoDetail> {
   void initState() {
     super.initState();
     initializePlayer();
-    print('$baseURL${video.link}');
   }
 
   @override

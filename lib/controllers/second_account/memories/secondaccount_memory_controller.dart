@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/models/memories/album_model.dart';
 import 'package:hoavien_app/models/memories/memories_model.dart';
 import 'package:hoavien_app/service_api/customer/memories/memories_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -21,7 +22,10 @@ class SecondAccountMemoryController extends GetxController {
   final isLoadingImage = false.obs;
   final isLoadingVideo = false.obs;
   final allVideo = MemoriesModel().data.obs;
+  final isLoadingAlbum = false.obs;
   final thumnail = ''.obs;
+  final nameAlbum = TextEditingController();
+  final allAlbum = AlbumModel().data.obs;
 
   @override
   void onInit() {
@@ -29,9 +33,22 @@ class SecondAccountMemoryController extends GetxController {
     super.onInit();
     getImage();
     getVideo();
+    getAlbum();
   }
 
   final ImagePicker _picker = ImagePicker();
+
+  void getAlbum() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final userId = prefs.getInt('id').toString();
+      isLoadingAlbum.value = true;
+      var response = await MemoriesService.getAlbum(id: userId);
+      allAlbum.value = response?.data;
+    } finally {
+      isLoadingAlbum.value = false;
+    }
+  }
 
   void pickImageFromGalerry() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
@@ -154,6 +171,52 @@ class SecondAccountMemoryController extends GetxController {
       allImage.value = response?.data;
     } finally {
       isLoadingImage.value = false;
+    }
+  }
+
+  void deleteAlbum({String? id}) async {
+    try {
+      isLoadingAlbum.value = true;
+      final prefs = await SharedPreferences.getInstance();
+      final idUser = prefs.getInt('id').toString();
+      await MemoriesService.deleteAlbum(id: id, idUser: idUser);
+      Get.snackbar(
+        "Xóa Album thành công",
+        "Album đã được xóa khỏi danh sách",
+        icon: const Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
+        duration: const Duration(milliseconds: 1000),
+      );
+      var response = await MemoriesService.getAlbum(id: idUser);
+      allAlbum.value = response?.data;
+    } finally {
+      isLoadingAlbum.value = false;
+    }
+  }
+
+  void createAlbum({String? name}) async {
+    try {
+      isLoadingAlbum.value = true;
+      final prefs = await SharedPreferences.getInstance();
+      final idUser = prefs.getInt('id').toString();
+      await MemoriesService.createAlbum(id: idUser, name: name);
+      Get.snackbar(
+        "Thêm Album thành công",
+        "Album đã được thêm vào danh sách Album",
+        icon: const Icon(Icons.check_circle, color: Colors.green),
+        snackPosition: SnackPosition.TOP,
+        colorText: secondaryColor,
+        backgroundColor: Colors.white.withOpacity(0.7),
+        duration: const Duration(milliseconds: 1000),
+      );
+      nameAlbum.clear();
+      var response = await MemoriesService.getAlbum(id: idUser);
+      allAlbum.value = response?.data;
+      update();
+    } finally {
+      isLoadingAlbum.value = false;
     }
   }
 
