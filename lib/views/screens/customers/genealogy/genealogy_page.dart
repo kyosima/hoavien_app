@@ -143,7 +143,8 @@ class GenealogyPage extends StatelessWidget {
                                             ),
                                             Text(
                                               'Ngày tạo: ' +
-                                                  '${controller.allGenalogy.value?[index].createdAt != null ? DateFormat('d/M/y').parse(controller.allGenalogy.value?[index].createdAt.toString()) : ""}',
+                                                  '${controller.allGenalogy.value![index].createdAt != null ? DateFormat('dd/MM/yyyy '
+                                                      'hh:mm a').format(DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(controller.allGenalogy.value![index].createdAt.toString())) : ""}',
                                               style: TextStyle(
                                                 color: colorText,
                                                 fontSize: 15,
