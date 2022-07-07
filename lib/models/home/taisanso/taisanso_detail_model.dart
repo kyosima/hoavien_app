@@ -38,23 +38,32 @@ class Data {
   int? status;
   String? avatar;
   String? detail;
+  String? map;
+  String? sale_contract;
+  String? certificate;
+  String? construction_contract;
   Area? area;
   List<Gallery>? gallery;
   Customer? customer;
   List<Related>? related;
 
-  Data(
-      {this.id,
-      this.digitalAssetAreaId,
-      this.customerId,
-      this.name,
-      this.status,
-      this.avatar,
-      this.detail,
-      this.area,
-      this.gallery,
-      this.customer,
-      this.related});
+  Data({
+    this.map,
+    this.certificate,
+    this.construction_contract,
+    this.sale_contract,
+    this.id,
+    this.digitalAssetAreaId,
+    this.customerId,
+    this.name,
+    this.status,
+    this.avatar,
+    this.detail,
+    this.area,
+    this.gallery,
+    this.customer,
+    this.related,
+  });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -64,6 +73,10 @@ class Data {
     status = json['status'];
     avatar = json['avatar'];
     detail = json['detail'];
+    map = json['map'];
+    sale_contract = json['sale_contract'];
+    construction_contract = json['construction_contract'];
+    certificate = json['certificate'];
     area = json['area'] != null ? Area.fromJson(json['area']) : null;
     if (json['gallery'] != null) {
       gallery = <Gallery>[];
@@ -71,9 +84,8 @@ class Data {
         gallery!.add(Gallery.fromJson(v));
       });
     }
-    customer = json['customer'] != null
-        ? Customer.fromJson(json['customer'])
-        : null;
+    customer =
+        json['customer'] != null ? Customer.fromJson(json['customer']) : null;
     if (json['related'] != null) {
       related = <Related>[];
       json['related'].forEach((v) {
@@ -91,6 +103,10 @@ class Data {
     data['status'] = status;
     data['avatar'] = avatar;
     data['detail'] = detail;
+    data['map'] = map;
+    data['sale_contract'] = sale_contract;
+    data['construction_contract'] = construction_contract;
+    data['certificate'] = certificate;
     if (area != null) {
       data['area'] = area!.toJson();
     }
@@ -119,8 +135,7 @@ class Area {
     id = json['id'];
     parentId = json['parent_id'];
     name = json['name'];
-    parent =
-        json['parent'] != null ? Parent.fromJson(json['parent']) : null;
+    parent = json['parent'] != null ? Parent.fromJson(json['parent']) : null;
   }
 
   Map<String, dynamic> toJson() {

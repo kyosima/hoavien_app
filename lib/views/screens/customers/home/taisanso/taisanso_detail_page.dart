@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
+import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_detail_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_button_taisanso_detail.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
-import 'package:get/get.dart';
 
 class TaisansoDetailPage extends StatelessWidget {
   final controller = Get.put(TaisansoDetailController());
@@ -56,6 +56,15 @@ class TaisansoDetailPage extends StatelessWidget {
                         /// The color to paint behind th indicator.
                         indicatorBackgroundColor: Colors.grey,
 
+                        /// Called whenever the page in the center of the viewport changes.
+
+                        /// Auto scroll interval.
+                        /// Do not auto scroll with null or 0.
+                        autoPlayInterval: 7000,
+
+                        /// Loops back to first slide.
+                        isLoop: true,
+
                         /// The widgets to display in the [ImageSlideshow].
                         /// Add the sample image file into the images folder
                         children: [
@@ -82,15 +91,6 @@ class TaisansoDetailPage extends StatelessWidget {
                             ),
                           ),
                         ],
-
-                        /// Called whenever the page in the center of the viewport changes.
-
-                        /// Auto scroll interval.
-                        /// Do not auto scroll with null or 0.
-                        autoPlayInterval: 7000,
-
-                        /// Loops back to first slide.
-                        isLoop: true,
                       ),
                       const SizedBox(
                         height: 30,
@@ -147,12 +147,23 @@ class TaisansoDetailPage extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const CustomButtonTaisansoDetail(
-                          icon: Icons.book, title: 'Sổ hồng'),
+                      CustomButtonTaisansoDetail(
+                        onTap: () {
+                          print(controller.taisansoDetails.value?.certificate
+                              .toString());
+                        },
+                        icon: Icons.book,
+                        title: 'Sổ hồng',
+                      ),
                       const SizedBox(
                         height: 10,
                       ),
-                      const CustomButtonTaisansoDetail(
+                      CustomButtonTaisansoDetail(
+                          onTap: () {
+                            print(controller
+                                .taisansoDetails.value?.sale_contract
+                                .toString());
+                          },
                           icon: Icons.article_rounded,
                           title: 'Hợp đồng mua bán'),
                       const SizedBox(
