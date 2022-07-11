@@ -119,15 +119,6 @@ class HomePage extends StatelessWidget {
                     /// The color to paint behind th indicator.
                     indicatorBackgroundColor: Colors.grey,
 
-                    /// Called whenever the page in the center of the viewport changes.
-
-                    /// Auto scroll interval.
-                    /// Do not auto scroll with null or 0.
-                    autoPlayInterval: 7000,
-
-                    /// Loops back to first slide.
-                    isLoop: true,
-
                     /// The widgets to display in the [ImageSlideshow].
                     /// Add the sample image file into the images folder
                     children: [
@@ -146,6 +137,15 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ],
+
+                    /// Called whenever the page in the center of the viewport changes.
+
+                    /// Auto scroll interval.
+                    /// Do not auto scroll with null or 0.
+                    autoPlayInterval: 7000,
+
+                    /// Loops back to first slide.
+                    isLoop: true,
                   );
                 }
               }),
