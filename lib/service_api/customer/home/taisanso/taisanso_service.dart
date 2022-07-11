@@ -41,4 +41,18 @@ class TaisansoService {
       return null;
     }
   }
+
+  static Future<TaisansoModel?> searchTaisanso(
+      {String? key, String? area}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/digital-asset?key=$key&area=$area'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
+    if (response.statusCode == 200) {
+      return taisansoModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
 }

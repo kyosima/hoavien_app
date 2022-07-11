@@ -19,6 +19,8 @@ class ProductDetailController extends GetxController {
   final isLoadingProduct = false.obs;
   final idController = TextEditingController();
   final id = Get.arguments;
+  final price = 0.obs;
+  final selectedVariation = 0.obs;
   final product = ProductDetailModel().data.obs;
   final relatedProduct = ProductModel().data.obs;
   RxDouble rate = 0.0.obs;
@@ -63,5 +65,11 @@ class ProductDetailController extends GetxController {
       backgroundColor: Colors.white.withOpacity(0.7),
       duration: const Duration(milliseconds: 700),
     );
+  }
+
+  int changeButton(int index) {
+    selectedVariation.value = index;
+    update();
+    return selectedVariation.value;
   }
 }

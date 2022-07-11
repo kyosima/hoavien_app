@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/home/taisanso/area_model.dart';
 import 'package:hoavien_app/models/home/taisanso/taisanso_model.dart';
@@ -17,6 +18,8 @@ class TaisansoController extends GetxController {
   final phanLoaiKhu2 = [].obs;
   final isLoadingArea = false.obs;
   final allArea = AreaModel().data.obs;
+  final searchController = TextEditingController();
+  final isSearchLoading = false.obs;
 
   @override
   void onInit() {
@@ -43,6 +46,17 @@ class TaisansoController extends GetxController {
       allArea.value = response?.data;
     } finally {
       isLoadingArea.value = false;
+    }
+  }
+
+  void searchTaisanso({String? key, String? area}) async {
+    try {
+      isSearchLoading.value = true;
+      var response = await TaisansoService.searchTaisanso(key: key, area: area);
+      allTaisanso.value = response?.data;
+      print(response?.message);
+    } finally {
+      isSearchLoading.value = false;
     }
   }
 }

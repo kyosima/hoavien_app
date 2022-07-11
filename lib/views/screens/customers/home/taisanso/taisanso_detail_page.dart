@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
@@ -36,7 +37,7 @@ class TaisansoDetailPage extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: Obx(() {
               if (controller.isLoading.value) {
-                return const CircularProgressIndicator();
+                return Center(child: const CircularProgressIndicator());
               } else {
                 return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,21 +76,20 @@ class TaisansoDetailPage extends StatelessWidget {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset(
-                              'assets/images/banner.png',
-                              height: 300,
-                              fit: BoxFit.cover,
+                          for (var i = 0;
+                              i <
+                                  num.parse(
+                                      '${controller.taisansoDetails.value?.gallery?.length}');
+                              i++) ...[
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                imageUrl:
+                                    '$baseURL${controller.taisansoDetails.value?.gallery![i].image}',
+                              ),
                             ),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(15.0),
-                            child: Image.asset(
-                              'assets/images/banner.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                          ],
                         ],
                       ),
                       const SizedBox(
@@ -124,15 +124,19 @@ class TaisansoDetailPage extends StatelessWidget {
                         height: 8,
                       ),
                       Row(
-                        children: const [
-                          Icon(
+                        children: [
+                          const Icon(
                             Icons.person,
                             color: Colors.blue,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
-                          Text('Chủ sở hữu : Nguyễn Chính Hưng'),
+                          Text(controller.taisansoDetails.value?.customer
+                                      ?.fullname ==
+                                  null
+                              ? 'Chưa có chủ sở hữu'
+                              : '${controller.taisansoDetails.value?.customer?.fullname}'),
                         ],
                       ),
                       const SizedBox(

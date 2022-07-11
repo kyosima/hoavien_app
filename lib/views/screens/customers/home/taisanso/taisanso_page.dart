@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/customers/home/taisanso/taisanso_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class TaiSanSoPage extends GetView<TaisansoController> {
@@ -73,7 +73,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                       const SizedBox(
                         height: 10,
                       ),
-                      GetBuilder<TaisansoController>(builder: (_) {
+                      Obx(() {
                         if (controller.isLoadingArea.value) {
                           return const CircularProgressIndicator();
                         } else {
@@ -97,15 +97,19 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        print(controller
-                                            .allArea.value![index].id);
+                                        controller.searchTaisanso(
+                                            key: '',
+                                            area: controller
+                                                .allArea.value![index].id
+                                                .toString());
+                                        Get.back();
                                       },
                                     ),
                                   ),
                                 );
                               });
                         }
-                      }),
+                      })
                     ],
                   ),
                 )
@@ -131,6 +135,7 @@ class TaiSanSoPage extends GetView<TaisansoController> {
         iconTheme: const IconThemeData(
           color: Colors.white,
         ),
+        centerTitle: false,
         backgroundColor: Colors.white,
         title: const CustomTitleText(
           title: 'Tài sản số',
@@ -159,11 +164,19 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                             child: Directionality(
                                 textDirection: TextDirection.ltr,
                                 child: TextField(
-                                  onChanged: (value) {},
+                                  controller: controller.searchController,
                                   autofocus: false,
                                   style: const TextStyle(
                                       fontSize: 16.0, color: secondaryColor),
                                   decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                      icon: Icon(Icons.search),
+                                      onPressed: () {
+                                        controller.searchTaisanso(
+                                            key: controller
+                                                .searchController.text);
+                                      },
+                                    ),
                                     filled: true,
                                     fillColor: Colors.white,
                                     hintText: 'Tìm kiếm',
@@ -204,6 +217,19 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                             padding: const EdgeInsets.only(top: 10),
                             child: Container(
                               width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
+                                ],
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Shimmer.fromColors(
@@ -247,19 +273,6 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                   ),
                                 ),
                               ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: const Offset(
-                                        0, 0), // changes position of shadow
-                                  ),
-                                ],
-                              ),
                             ),
                           );
                         }),
@@ -282,6 +295,19 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                               padding: const EdgeInsets.only(top: 10),
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: 1,
+                                      blurRadius: 10,
+                                      offset: const Offset(
+                                          0, 0), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Row(
@@ -333,9 +359,17 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                             const SizedBox(
                                               height: 10,
                                             ),
-                                            const Text(
-                                              'Chủ sở hữu : 123',
-                                              style: TextStyle(
+                                            Text(
+                                              controller
+                                                          .allTaisanso
+                                                          .value
+                                                          ?.dataTaisanso![index]
+                                                          .customer
+                                                          ?.fullname ==
+                                                      null
+                                                  ? 'Chưa có chủ sở hữu'
+                                                  : '${controller.allTaisanso.value?.dataTaisanso![index].customer?.fullname}',
+                                              style: const TextStyle(
                                                   color: secondaryColor,
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w300),
@@ -345,19 +379,6 @@ class TaiSanSoPage extends GetView<TaisansoController> {
                                       )
                                     ],
                                   ),
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 1,
-                                      blurRadius: 10,
-                                      offset: const Offset(
-                                          0, 0), // changes position of shadow
-                                    ),
-                                  ],
                                 ),
                               ),
                             ),
