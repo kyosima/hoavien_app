@@ -20,7 +20,7 @@ class ServiceDesignDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: const CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {

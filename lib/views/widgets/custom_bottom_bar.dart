@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomBottomBar extends StatelessWidget {
-  const CustomBottomBar({Key? key}) : super(key: key);
+  final Function()? onPressedAddToCart;
+  const CustomBottomBar({Key? key, this.onPressedAddToCart}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: Colors.transparent,
+      elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Container(
@@ -51,26 +53,29 @@ class CustomBottomBar extends StatelessWidget {
                     )
                   ],
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
-                      Icons.shopping_cart_sharp,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Thêm vào giỏ hàng',
-                      style: TextStyle(
+                InkWell(
+                  onTap: onPressedAddToCart,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.shopping_cart_sharp,
                         color: Colors.white,
-                        fontSize: 13,
+                        size: 35,
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Thêm vào giỏ hàng',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 13,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,7 +103,6 @@ class CustomBottomBar extends StatelessWidget {
           ),
         ),
       ),
-      elevation: 0,
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/home/product/product_detail_model.dart';
 import 'package:hoavien_app/models/home/product/product_model.dart';
+import 'package:hoavien_app/service_api/customer/home/cart/cart_service.dart';
 import 'package:hoavien_app/service_api/customer/home/product/product_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,6 +21,7 @@ class ProductDetailController extends GetxController {
   final idController = TextEditingController();
   final id = Get.arguments;
   final price = 0.obs;
+  final variationSelect = 0.obs;
   final selectedVariation = 0.obs;
   final product = ProductDetailModel().data.obs;
   final relatedProduct = ProductModel().data.obs;
@@ -71,5 +73,22 @@ class ProductDetailController extends GetxController {
     selectedVariation.value = index;
     update();
     return selectedVariation.value;
+  }
+
+  void addToCart(
+      {String? userId, String? productId, String? variationId}) async {
+    await CartService.addToCart();
+    var response = await CartService.addToCart(
+        userId: userId, productId: productId, variationId: variationId);
+    print(response?.message);
+    Get.snackbar(
+      "Đã thêm sản phẩm vào giỏ hàng",
+      "Giỏ hàng đã cập nhật sản phẩm mới",
+      icon: const Icon(Icons.check_circle, color: Colors.green),
+      snackPosition: SnackPosition.TOP,
+      colorText: secondaryColor,
+      backgroundColor: Colors.white.withOpacity(0.7),
+      duration: const Duration(milliseconds: 900),
+    );
   }
 }

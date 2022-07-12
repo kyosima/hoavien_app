@@ -56,30 +56,55 @@ class HomePage extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Center(
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  decoration: const BoxDecoration(
-                    color: Colors.brown,
-                    shape: BoxShape.circle,
+          Obx(() {
+            if (controller.isLoadingCart.value) {
+              return Container();
+            } else {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  Center(
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: const BoxDecoration(
+                        color: Colors.brown,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Center(
-                  child: IconButton(
-                icon: const Icon(
-                  Icons.shopping_basket,
-                ),
-                onPressed: () {
-                  Get.toNamed('/cart');
-                },
-              ))
-            ],
-          ),
+                  Center(
+                      child: IconButton(
+                    icon: const Icon(
+                      Icons.shopping_basket,
+                    ),
+                    onPressed: () {
+                      Get.toNamed('/cart');
+                    },
+                  )),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                      height: 25,
+                      width: 25,
+                      child: Center(
+                        child: Text(
+                          '${controller.infoCart.value!.length}',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      decoration: const BoxDecoration(
+                        color: Colors.redAccent,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
+          }),
           const SizedBox(
             width: 5,
           ),

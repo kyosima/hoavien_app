@@ -9,6 +9,7 @@ import 'package:hoavien_app/views/widgets/custom_share_button.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../../constance.dart';
@@ -22,7 +23,19 @@ class ProductDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: const CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(
+        onPressedAddToCart: () async {
+          final prefs = await SharedPreferences.getInstance();
+          final userId = prefs.getInt('id').toString();
+          controller.addToCart(
+            userId: userId,
+            productId: controller.product.value?.id.toString(),
+            variationId: controller.variationSelect.value == 0
+                ? null
+                : controller.variationSelect.value.toString(),
+          );
+        },
+      ),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
@@ -59,8 +72,54 @@ class ProductDetailPage extends StatelessWidget {
             },
           ),
           const SizedBox(
-            width: 15,
-          )
+            width: 5,
+          ),
+          Stack(
+            alignment: Alignment.center,
+            children: [
+              Center(
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                    color: secondaryColor,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+              Center(
+                  child: IconButton(
+                icon: const Icon(
+                  Icons.shopping_basket,
+                ),
+                onPressed: () {
+                  Get.toNamed('/cart');
+                },
+              )),
+              Positioned(
+                top: 0,
+                right: 0,
+                child: Container(
+                  height: 25,
+                  width: 25,
+                  child: Center(
+                    child: Text(
+                      '12',
+                      style:
+                          TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Colors.redAccent,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            width: 5,
+          ),
         ],
       ),
       body: Obx(() {
@@ -517,6 +576,16 @@ class ProductDetailPage extends StatelessWidget {
                                                               .productAttributeVariation![
                                                                   index1]
                                                               .price!;
+                                                      controller.variationSelect
+                                                              .value =
+                                                          controller
+                                                              .product
+                                                              .value!
+                                                              .productAttributes![
+                                                                  index]
+                                                              .productAttributeVariation![
+                                                                  index1]
+                                                              .id!;
                                                     },
                                                   ),
                                                 ),

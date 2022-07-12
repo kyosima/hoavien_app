@@ -1,11 +1,14 @@
 import 'package:get/get.dart';
 import 'package:hoavien_app/models/auth/banner_model.dart';
-import 'package:hoavien_app/models/home/service/combo_model.dart';
+import 'package:hoavien_app/models/home/cart/cart_model.dart';
 import 'package:hoavien_app/models/home/product/product_model.dart';
+import 'package:hoavien_app/models/home/service/combo_model.dart';
 import 'package:hoavien_app/models/home/service/service_model.dart';
 import 'package:hoavien_app/service_api/auth/api_banner.dart';
+import 'package:hoavien_app/service_api/customer/home/cart/cart_service.dart';
 import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';
 import 'package:hoavien_app/service_api/customer/home/product/product_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeBinding implements Bindings {
   @override
@@ -32,6 +35,11 @@ class HomeController extends GetxController {
   final isLoadingServiceDesign = false.obs;
   final allServiceDesign = ServiceModel().data.obs;
 
+  //Cart
+  final isLoadingCart = false.obs;
+  final quantityCart = 0.obs;
+  final infoCart = CartModel().data.obs;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -41,6 +49,7 @@ class HomeController extends GetxController {
     getCombo();
     getServiceBurial();
     getServiceDesign();
+    getInfoCart();
   }
 
   void readMore() {
@@ -96,6 +105,18 @@ class HomeController extends GetxController {
       allServiceDesign.value = response?.data;
     } finally {
       isLoadingServiceDesign.value = false;
+    }
+  }
+
+  void getInfoCart() async {
+    try {
+      isLoadingCart.value = true;
+      final prefs = await SharedPreferences.getInstance();
+      final userId = prefs.getInt('id').toString();
+      var response = await CartService.getCartInfo(userId: userId);
+      infoCart.value = response?.data;
+    } finally {
+      isLoadingCart.value = false;
     }
   }
 }

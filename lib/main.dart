@@ -239,7 +239,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/cart',
-            page: () => const CartPage(),
+            page: () => CartPage(),
             binding: CartBinding(),
           ),
           GetPage(

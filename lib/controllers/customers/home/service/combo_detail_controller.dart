@@ -31,7 +31,6 @@ class ComboDetailController extends GetxController {
     try {
       isLoadingCombo.value = true;
       var response = await ComboService.getComboDetail(id: idCombo.toString());
-
       comboDetail.value = response?.data;
       if (comboDetail.value?.comboReview != null) {
         var result =
