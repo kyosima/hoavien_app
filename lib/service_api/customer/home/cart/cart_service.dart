@@ -30,4 +30,34 @@ class CartService {
       return null;
     }
   }
+
+  static Future<StatusModel?> updateProductCart(
+      {String? id, String? userId, String? quantity}) async {
+    var reponse =
+        await client.put(Uri.parse('$baseURL/api/cart/update'), body: {
+      "id": id ?? '',
+      "user_id": userId ?? '',
+      "quantity": quantity ?? '',
+    });
+    if (reponse.statusCode == 200) {
+      return statusModelFromJson(reponse.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<StatusModel?> deleteProductCart(
+      {String? id, String? userId}) async {
+    var response =
+        await client.delete(Uri.parse('$baseURL/api/cart/delete'), body: {
+      "id": id ?? '',
+      "user_id": userId ?? '',
+    });
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      return statusModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
 }
