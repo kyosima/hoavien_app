@@ -18,7 +18,7 @@ class EditProductCartPage extends StatefulWidget {
 
 class _EditProductCartPageState extends State<EditProductCartPage> {
   final controller = Get.put(CartController());
-  final Data productCart = Get.arguments;
+  final Items productCart = Get.arguments;
 
   @override
   Widget build(BuildContext context) {

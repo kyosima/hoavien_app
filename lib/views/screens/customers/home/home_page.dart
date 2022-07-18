@@ -88,16 +88,16 @@ class HomePage extends StatelessWidget {
                     child: Container(
                       height: 25,
                       width: 25,
-                      child: Center(
-                        child: Text(
-                          '${controller.infoCart.value!.length}',
-                          style: TextStyle(
-                              fontSize: 10, fontWeight: FontWeight.bold),
-                        ),
-                      ),
                       decoration: const BoxDecoration(
                         color: Colors.redAccent,
                         shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${controller.infoCart.value?.items!.length}',
+                          style: const TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
@@ -144,6 +144,15 @@ class HomePage extends StatelessWidget {
                     /// The color to paint behind th indicator.
                     indicatorBackgroundColor: Colors.grey,
 
+                    /// Called whenever the page in the center of the viewport changes.
+
+                    /// Auto scroll interval.
+                    /// Do not auto scroll with null or 0.
+                    autoPlayInterval: 7000,
+
+                    /// Loops back to first slide.
+                    isLoop: true,
+
                     /// The widgets to display in the [ImageSlideshow].
                     /// Add the sample image file into the images folder
                     children: [
@@ -162,15 +171,6 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ],
-
-                    /// Called whenever the page in the center of the viewport changes.
-
-                    /// Auto scroll interval.
-                    /// Do not auto scroll with null or 0.
-                    autoPlayInterval: 7000,
-
-                    /// Loops back to first slide.
-                    isLoop: true,
                   );
                 }
               }),

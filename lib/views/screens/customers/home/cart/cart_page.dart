@@ -15,7 +15,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var total = 0;
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         child: Container(
@@ -25,9 +24,26 @@ class CartPage extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Thành tiền : 100'),
+                Obx(() {
+                  if (controller.isLoadingCart.value) {
+                    return Shimmer.fromColors(
+                        baseColor: baseShimmer,
+                        highlightColor: highLightShimmer,
+                        child: ShimmerBox(height: 30, width: 200));
+                  } else {
+                    return Text(
+                      'Thành tiền : ${NumberFormat.currency(locale: 'vi').format(controller.cartInfo.value?.total)}',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    );
+                  }
+                }),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed('/checkoutdetailpage',
+                        arguments: controller.cartInfo.value);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         color: primaryColor,
@@ -52,9 +68,6 @@ class CartPage extends StatelessWidget {
       ),
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        leading: BackButton(onPressed: () {
-          Get.back(result: {'unit': '${controller.cartInfo.value?.length}'});
-        }),
         actions: [
           Stack(
             alignment: Alignment.center,
@@ -105,13 +118,17 @@ class CartPage extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Center(
-                    child: Obx(
-                      () => Text(
-                        '${controller.cartInfo.value?.length}',
-                        style: const TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+                    child: Obx(() {
+                      if (controller.isLoadingCart.value) {
+                        return const CircularProgressIndicator();
+                      } else {
+                        return Text(
+                          '${controller.cartInfo.value?.items!.length}',
+                          style: const TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.bold),
+                        );
+                      }
+                    }),
                   ),
                 ),
               ),
@@ -203,12 +220,13 @@ class CartPage extends StatelessWidget {
               child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: controller.cartInfo.value!.length,
+                  itemCount: controller.cartInfo.value?.items!.length,
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
                         Get.toNamed('/editcart',
-                            arguments: controller.cartInfo.value![index]);
+                            arguments:
+                                controller.cartInfo.value?.items![index]);
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(top: 8.0),
@@ -224,12 +242,15 @@ class CartPage extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  CachedNetworkImage(
-                                    imageUrl:
-                                        '$baseURL${controller.cartInfo.value![index].content?.avatar}',
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          '$baseURL${controller.cartInfo.value?.items![index].content?.avatar}',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                   const SizedBox(
                                     width: 10,
@@ -241,7 +262,7 @@ class CartPage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            '${controller.cartInfo.value![index].content?.name}',
+                                            '${controller.cartInfo.value?.items![index].content?.name}',
                                             style: const TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 16,
@@ -250,7 +271,8 @@ class CartPage extends StatelessWidget {
                                           ),
                                           controller
                                                       .cartInfo
-                                                      .value![index]
+                                                      .value
+                                                      ?.items![index]
                                                       .content
                                                       ?.variation
                                                       ?.name ==
@@ -262,7 +284,7 @@ class CartPage extends StatelessWidget {
                                                       height: 10,
                                                     ),
                                                     Text(
-                                                      'Phân loại : ${controller.cartInfo.value![index].content?.variation?.name}',
+                                                      'Phân loại : ${controller.cartInfo.value?.items![index].content?.variation?.name}',
                                                       style: const TextStyle(
                                                         fontSize: 15,
                                                         color: secondaryColor,
@@ -279,7 +301,7 @@ class CartPage extends StatelessWidget {
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
-                                              Text('Đơn giá : '),
+                                              const Text('Đơn giá : '),
                                               const SizedBox(
                                                 width: 20,
                                               ),
@@ -288,7 +310,8 @@ class CartPage extends StatelessWidget {
                                                         locale: 'vi')
                                                     .format(controller
                                                         .cartInfo
-                                                        .value![index]
+                                                        .value
+                                                        ?.items![index]
                                                         .content
                                                         ?.price)
                                                     .toString(),
@@ -305,7 +328,7 @@ class CartPage extends StatelessWidget {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                'x${controller.cartInfo.value![index].content!.quantity}',
+                                                'x${controller.cartInfo.value?.items![index].content!.quantity}',
                                                 style: const TextStyle(
                                                     color: Colors.blueAccent,
                                                     fontWeight: FontWeight.bold,

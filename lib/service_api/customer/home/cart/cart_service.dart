@@ -1,6 +1,7 @@
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_model.dart';
+import 'package:hoavien_app/models/home/cart/cart_taisanso_model.dart';
 import 'package:http/http.dart' as http;
 
 class CartService {
@@ -56,6 +57,19 @@ class CartService {
     print(response.statusCode);
     if (response.statusCode == 200) {
       return statusModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<CartTaisansoModel?> getCartTaisanso({String? userId}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/digital-asset/simple?customer_id=$userId'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
+    if (response.statusCode == 200) {
+      return cartTaisansoModelFromJson(response.body);
     } else {
       return null;
     }

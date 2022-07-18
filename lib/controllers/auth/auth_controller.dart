@@ -41,7 +41,6 @@ class AuthController extends GetxController {
 
   Future<void> submit() async {
     final prefs = await SharedPreferences.getInstance();
-
     loginProcess.value = true;
     if (passWord.text.isEmpty || phoneNumber.text.isEmpty) {
       loginProcess.value = false;
@@ -84,11 +83,14 @@ class AuthController extends GetxController {
     } else {
       UserModel? user =
           await login(phone: phoneNumber.text, password: passWord.text);
-      if (user?.data != null) {
-        await prefs.setInt('id', user?.data?.id ?? 0);
+      final data = user?.data;
+      if (data != null) {
+        await prefs.setInt('id', data.id ?? 0);
+        await prefs.setString('phoneNumber', data.phone ?? '');
+        await prefs.setString('fullName', data.userInfo?.fullname ?? '');
         loginProcess.value = false;
-        if (user?.data?.role == 'customer') {
-          await prefs.setString('userRole', user?.data?.role ?? "");
+        if (data.role == 'customer') {
+          await prefs.setString('userRole', data.role ?? "");
           Get.offNamed('/dashboard', arguments: user);
           Get.snackbar(
             "Đăng nhập thành công",
@@ -98,8 +100,8 @@ class AuthController extends GetxController {
             colorText: secondaryColor,
             backgroundColor: Colors.white.withOpacity(0.7),
           );
-        } else if (user?.data?.role == 'sale') {
-          await prefs.setString('userRole', user?.data?.role ?? "");
+        } else if (data.role == 'sale') {
+          await prefs.setString('userRole', data.role ?? "");
           Get.offNamed('/salerdashboard', arguments: user);
           Get.snackbar(
             "Đăng nhập thành công",
@@ -109,8 +111,8 @@ class AuthController extends GetxController {
             colorText: secondaryColor,
             backgroundColor: Colors.white.withOpacity(0.7),
           );
-        } else if (user?.data?.role == 'customer-secondary') {
-          await prefs.setString('userRole', user?.data?.role ?? "");
+        } else if (data.role == 'customer-secondary') {
+          await prefs.setString('userRole', data.role ?? "");
           Get.offNamed('/secondaccountdashboard');
           Get.snackbar(
             "Đăng nhập thành công",
@@ -166,6 +168,8 @@ class AuthController extends GetxController {
   Future<void> logOut() async {
     final preps = await SharedPreferences.getInstance();
     await preps.remove('id');
+    await preps.remove('phoneNumber');
+    await preps.remove('fullName');
     await preps.remove('userRole');
     Get.offAllNamed('/login');
     Get.deleteAll();

@@ -7,19 +7,14 @@ String cartModelToJson(CartModel data) => json.encode(data.toJson());
 class CartModel {
   int? status;
   String? message;
-  List<Data>? data;
+  Data? data;
 
   CartModel({this.status, this.message, this.data});
 
   CartModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
-      });
-    }
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -27,20 +22,46 @@ class CartModel {
     data['status'] = status;
     data['message'] = message;
     if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
+      data['data'] = this.data!.toJson();
     }
     return data;
   }
 }
 
 class Data {
+  int? total;
+  List<Items>? items;
+
+  Data({this.total, this.items});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    total = json['total'];
+    if (json['items'] != null) {
+      items = <Items>[];
+      json['items'].forEach((v) {
+        items!.add(Items.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['total'] = total;
+    if (items != null) {
+      data['items'] = items!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Items {
   int? id;
   Content? content;
   int? status;
 
-  Data({this.id, this.content, this.status});
+  Items({this.id, this.content, this.status});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Items.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     content =
         json['content'] != null ? Content.fromJson(json['content']) : null;
@@ -100,7 +121,7 @@ class Content {
 }
 
 class Variation {
-  Null? id;
+  int? id;
   String? name;
 
   Variation({this.id, this.name});

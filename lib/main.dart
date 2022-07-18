@@ -47,7 +47,9 @@ import 'package:hoavien_app/views/screens/customers/genealogy/add_genealogy_page
 import 'package:hoavien_app/views/screens/customers/genealogy/genealogy_page.dart';
 import 'package:hoavien_app/views/screens/customers/genealogy/genealory_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/cart/cart_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/cart/checkout_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/cart/edit_product_cart_page.dart';
+import 'package:hoavien_app/views/screens/customers/home/cart/select_cart_taisanso_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_detail_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/checkout/checkout_page.dart';
 import 'package:hoavien_app/views/screens/customers/home/home_page.dart';
@@ -211,6 +213,14 @@ class MyApp extends StatelessWidget {
           GetPage(
             name: '/checkoutdetail',
             page: () => const CheckoutDetail(),
+          ),
+          GetPage(
+            name: '/checkoutdetailpage',
+            page: () => CheckoutDetailPage(),
+          ),
+          GetPage(
+            name: '/selectcarttaisanso',
+            page: () => SelectCartTaisansoPage(),
           ),
           GetPage(
             name: '/secondaccount',
