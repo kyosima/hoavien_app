@@ -339,7 +339,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/donhangchoxacnhan',
-            page: () => const CartHistoryDetailWaittingPage(),
+            page: () => CartHistoryDetailWaittingPage(),
           ),
           GetPage(
             name: '/donhangdahoanthanh',

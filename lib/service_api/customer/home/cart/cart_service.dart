@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
+import 'package:hoavien_app/models/home/cart/cart_history_deital_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_history_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_taisanso_model.dart';
@@ -114,6 +115,20 @@ class CartService {
 
     if (reponse.statusCode == 200) {
       return cartHistoryModelFromJson(reponse.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<CartHistoryDetailModel?> getCartHistoryDetail(
+      {String? userId, String? id}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/order/show?user_id=$userId&id=$id'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
+    if (response.statusCode == 200) {
+      return cartHistoryDetailModelFromJson(response.body);
     } else {
       return null;
     }
