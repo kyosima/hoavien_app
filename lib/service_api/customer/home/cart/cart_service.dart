@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
+import 'package:hoavien_app/models/home/cart/cart_history_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_taisanso_model.dart';
 import 'package:http/http.dart' as http;
@@ -70,6 +73,47 @@ class CartService {
         });
     if (response.statusCode == 200) {
       return cartTaisansoModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<StatusModel?> createOrder(
+      {String? userId,
+      String? taisansoId,
+      List<dynamic>? itemId,
+      String? dateUse,
+      String? fullName,
+      String? phoneNumber,
+      String? note}) async {
+    var url = "$baseURL/api/order/create";
+    var response = await client.post(Uri.parse(url), body: {
+      "user_id": userId,
+      "digital_asset_id": taisansoId,
+      "item_id": json.encode(itemId),
+      "date_use": dateUse,
+      "fullname": fullName,
+      "phone": phoneNumber,
+      "address": "",
+      "note": note
+    });
+    if (response.statusCode == 200) {
+      return statusModelFromJson(response.body);
+    } else {
+      return null;
+    }
+  }
+
+  static Future<CartHistoryModel?> getCartHistory(
+      {String? userId, String? status}) async {
+    var reponse = await client.get(
+        Uri.parse('$baseURL/api/order?user_id=$userId&status=$status'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
+
+    if (reponse.statusCode == 200) {
+      return cartHistoryModelFromJson(reponse.body);
     } else {
       return null;
     }

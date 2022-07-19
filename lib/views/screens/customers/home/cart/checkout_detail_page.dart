@@ -6,6 +6,7 @@ import 'package:hoavien_app/controllers/customers/home/cart/checkout_detail_cont
 import 'package:hoavien_app/models/home/cart/cart_model.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckoutDetailPage extends StatelessWidget {
   final controller = Get.put(CheckoutDetailController());
@@ -31,7 +32,61 @@ class CheckoutDetailPage extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    if (controller.taisansoSelectId.value == 0) {
+                      Get.defaultDialog(
+                          content: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                height: 60.0,
+                                width: 60,
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              Image.asset(
+                                'assets/images/error.gif',
+                                width: 55,
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Center(
+                            child: Text(
+                              '''Vui lòng lựa chọn Lô sử dụng!''',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ));
+                    } else {
+                      final prefs = await SharedPreferences.getInstance();
+                      final userId = prefs.getInt('id').toString();
+                      controller.createOrder(
+                        userId: userId,
+                        phoneNumber: controller.phone.value,
+                        fullName: controller.fullName.value,
+                        itemId: controller.productsId,
+                        taisansoId:
+                            controller.taisansoSelectId.value.toString(),
+                        note: controller.noteController.text,
+                        dateUse: controller.dateTimeController.text,
+                      );
+                      Get.back();
+                      Get.back();
+                    }
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         color: primaryColor,
@@ -361,6 +416,9 @@ class CheckoutDetailPage extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(
+              height: 50,
+            )
           ],
         ),
       ),

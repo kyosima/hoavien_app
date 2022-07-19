@@ -32,7 +32,7 @@ class CartPage extends StatelessWidget {
                         child: ShimmerBox(height: 30, width: 200));
                   } else {
                     return Text(
-                      'Thành tiền : ${NumberFormat.currency(locale: 'vi').format(controller.cartInfo.value?.total)}',
+                      'Tổng tiền : ${NumberFormat.currency(locale: 'vi').format(controller.cartInfo.value?.total)}',
                       style: const TextStyle(
                         fontWeight: FontWeight.w500,
                       ),

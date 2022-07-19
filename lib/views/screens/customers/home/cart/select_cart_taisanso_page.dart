@@ -36,6 +36,8 @@ class SelectCartTaisansoPage extends StatelessWidget {
                   onTap: () {
                     controller.taisansoSelectName.value =
                         controller.cartTaisanso.value![index].name!;
+                    controller.taisansoSelectId.value =
+                        controller.cartTaisanso.value![index].id!;
                     Get.back();
                   },
                   child: Padding(

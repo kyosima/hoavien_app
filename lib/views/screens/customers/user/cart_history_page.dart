@@ -2,10 +2,12 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/home/cart/cart_history_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
 
 class CartHistoryPage extends StatelessWidget {
-  const CartHistoryPage({Key? key}) : super(key: key);
+  final controller = Get.put(CartHistoryController());
+  CartHistoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,154 +56,165 @@ class CartHistoryPage extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: <Widget>[
-                    ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(
-                                left: 15, right: 15, bottom: 15),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: const [
-                                        Text(
-                                          'Chờ xác nhận',
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Text(
-                                          '12/11/2021',
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                    Obx(() {
+                      if (controller.isLoadingWaitOrder.value) {
+                        return CircularProgressIndicator();
+                      } else {
+                        return ListView.builder(
+                            itemCount: 2,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15, right: 15, bottom: 15),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
                                       children: [
-                                        Image.asset(
-                                          'assets/images/product.png',
-                                          width: 100,
-                                          fit: BoxFit.cover,
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Chờ xác nhận',
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                            Text(
+                                              '',
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         const SizedBox(
-                                          width: 10,
+                                          height: 10,
                                         ),
-                                        Column(
+                                        Row(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              'Đĩa trái cây $index',
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
-                                                color: secondaryColor,
-                                              ),
+                                            Image.asset(
+                                              'assets/images/product.png',
+                                              width: 100,
+                                              fit: BoxFit.cover,
                                             ),
                                             const SizedBox(
-                                              height: 15,
+                                              width: 10,
                                             ),
-                                            const Text(
-                                              'Phân loại : Đế đen Ấn Độ ',
-                                              style: TextStyle(
-                                                fontSize: 16,
-                                                color: secondaryColor,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 15,
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
+                                            Column(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: const [
+                                                  CrossAxisAlignment.start,
+                                              children: [
                                                 Text(
-                                                  'Đơn giá : 200.000 đ',
+                                                  '${controller.waitOrder.value?[index].orderDetail?.name}',
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: secondaryColor,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 15,
+                                                ),
+                                                const Text(
+                                                  'Phân loại : Đế đen Ấn Độ ',
                                                   style: TextStyle(
                                                     fontSize: 16,
                                                     color: secondaryColor,
                                                   ),
                                                 ),
-                                                SizedBox(
-                                                  width: 20,
+                                                const SizedBox(
+                                                  height: 15,
                                                 ),
-                                                Text(
-                                                  'x 2',
-                                                  style: TextStyle(
-                                                    color: Colors.red,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 17,
-                                                  ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: const [
+                                                    Text(
+                                                      'Đơn giá : 200.000 đ',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: secondaryColor,
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                      width: 20,
+                                                    ),
+                                                    Text(
+                                                      'x 2',
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 17,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
                                                 ),
                                               ],
-                                            ),
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
                                             const SizedBox(
-                                              height: 10,
+                                              width: 10,
                                             ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Get.toNamed(
+                                                    '/donhangchoxacnhan');
+                                              },
+                                              child: Container(
+                                                  decoration: BoxDecoration(
+                                                    color: primaryColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  child: const Padding(
+                                                    padding:
+                                                        EdgeInsets.all(8.0),
+                                                    child: Text(
+                                                      'Xem chi tiết',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  )),
+                                            )
                                           ],
                                         )
                                       ],
                                     ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        TextButton(
-                                          onPressed: () {
-                                            Get.toNamed('/donhangchoxacnhan');
-                                          },
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                color: primaryColor,
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                              ),
-                                              child: const Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Text(
-                                                  'Xem chi tiết',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              )),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          );
-                        }),
+                              );
+                            });
+                      }
+                    }),
                     ListView.builder(
                         itemCount: 5,
                         itemBuilder: (BuildContext context, int index) {
