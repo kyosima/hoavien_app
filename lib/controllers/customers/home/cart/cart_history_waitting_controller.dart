@@ -1,5 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hoavien_app/models/home/cart/cart_history_deital_model.dart';
+import 'package:hoavien_app/models/home/cart/cart_history_detail_model.dart';
 import 'package:hoavien_app/service_api/customer/home/cart/cart_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +16,7 @@ class CartHistoryWaittingController extends GetxController {
   final isLoadingDetailWaitOrder = false.obs;
   final detailWaitOrder = CartHistoryDetailModel().data.obs;
   final id = Get.arguments;
+  final noteController = TextEditingController();
   @override
   void onInit() {
     // TODO: implement onInit
@@ -30,7 +32,7 @@ class CartHistoryWaittingController extends GetxController {
       var response = await CartService.getCartHistoryDetail(
           userId: userId, id: id.toString());
       detailWaitOrder.value = response?.data;
-      print(response?.message);
+
     } finally {
       isLoadingDetailWaitOrder.value = false;
     }

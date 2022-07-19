@@ -165,8 +165,8 @@ class CartHistoryPage extends StatelessWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            const Text(
-                                              'Chờ xác nhận',
+                                             const Text(
+                                              'Chờ xác nhận ',
                                               style: TextStyle(
                                                 color: secondaryColor,
                                                 fontWeight: FontWeight.w600,

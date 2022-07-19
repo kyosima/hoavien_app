@@ -42,20 +42,22 @@ class Data {
   String? dateUse;
   DigitalAssetUse? digitalAssetUse;
   Contact? contact;
+  String? note;
   String? createdAt;
   String? updatedAt;
   List<OrderDetails>? orderDetails;
 
   Data(
       {this.id,
-      this.tax,
-      this.total,
-      this.dateUse,
-      this.digitalAssetUse,
-      this.contact,
-      this.createdAt,
-      this.updatedAt,
-      this.orderDetails});
+        this.tax,
+        this.total,
+        this.dateUse,
+        this.digitalAssetUse,
+        this.contact,
+        this.note,
+        this.createdAt,
+        this.updatedAt,
+        this.orderDetails});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -66,7 +68,8 @@ class Data {
         ? new DigitalAssetUse.fromJson(json['digital_asset_use'])
         : null;
     contact =
-        json['contact'] != null ? new Contact.fromJson(json['contact']) : null;
+    json['contact'] != null ? new Contact.fromJson(json['contact']) : null;
+    note = json['note'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     if (json['order_details'] != null) {
@@ -89,6 +92,7 @@ class Data {
     if (this.contact != null) {
       data['contact'] = this.contact!.toJson();
     }
+    data['note'] = this.note;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     if (this.orderDetails != null) {
@@ -106,22 +110,18 @@ class DigitalAssetUse {
   String? name;
   int? row;
   int? column;
-  int? digitalAssetSizeId;
   String? avatar;
   Area? area;
-  Size? size;
 
   DigitalAssetUse(
       {this.id,
-      this.digitalAssetAreaId,
-      this.customerId,
-      this.name,
-      this.row,
-      this.column,
-      this.digitalAssetSizeId,
-      this.avatar,
-      this.area,
-      this.size});
+        this.digitalAssetAreaId,
+        this.customerId,
+        this.name,
+        this.row,
+        this.column,
+        this.avatar,
+        this.area});
 
   DigitalAssetUse.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -130,10 +130,8 @@ class DigitalAssetUse {
     name = json['name'];
     row = json['row'];
     column = json['column'];
-    digitalAssetSizeId = json['digital_asset_size_id'];
     avatar = json['avatar'];
     area = json['area'] != null ? new Area.fromJson(json['area']) : null;
-    size = json['size'] != null ? new Size.fromJson(json['size']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -144,13 +142,9 @@ class DigitalAssetUse {
     data['name'] = this.name;
     data['row'] = this.row;
     data['column'] = this.column;
-    data['digital_asset_size_id'] = this.digitalAssetSizeId;
     data['avatar'] = this.avatar;
     if (this.area != null) {
       data['area'] = this.area!.toJson();
-    }
-    if (this.size != null) {
-      data['size'] = this.size!.toJson();
     }
     return data;
   }
@@ -171,28 +165,6 @@ class Area {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
-    return data;
-  }
-}
-
-class Size {
-  int? id;
-  double? length;
-  int? width;
-
-  Size({this.id, this.length, this.width});
-
-  Size.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    length = json['length'];
-    width = json['width'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['length'] = this.length;
-    data['width'] = this.width;
     return data;
   }
 }
@@ -228,7 +200,7 @@ class OrderDetails {
   OrderDetails.fromJson(Map<String, dynamic> json) {
     orderId = json['order_id'];
     content =
-        json['content'] != null ? new Content.fromJson(json['content']) : null;
+    json['content'] != null ? new Content.fromJson(json['content']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -244,27 +216,43 @@ class OrderDetails {
 class Content {
   int? productId;
   String? name;
+  String? category;
   int? quantity;
   int? price;
   String? avatar;
+  Area? variation;
 
-  Content({this.productId, this.name, this.quantity, this.price, this.avatar});
+  Content(
+      {this.productId,
+        this.name,
+        this.category,
+        this.quantity,
+        this.price,
+        this.avatar,
+        this.variation});
 
   Content.fromJson(Map<String, dynamic> json) {
     productId = json['product_id'];
     name = json['name'];
+    category = json['category'];
     quantity = json['quantity'];
     price = json['price'];
     avatar = json['avatar'];
+    variation =
+    json['variation'] != null ? new Area.fromJson(json['variation']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['product_id'] = this.productId;
     data['name'] = this.name;
+    data['category'] = this.category;
     data['quantity'] = this.quantity;
     data['price'] = this.price;
     data['avatar'] = this.avatar;
+    if (this.variation != null) {
+      data['variation'] = this.variation!.toJson();
+    }
     return data;
   }
 }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
+import 'package:hoavien_app/controllers/customers/home/cart/cart_history_controller.dart';
 import 'package:hoavien_app/controllers/customers/home/cart/cart_history_waitting_controller.dart';
 import 'package:hoavien_app/views/widgets/custom_textfield.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
@@ -9,6 +10,7 @@ import 'package:intl/intl.dart';
 
 class CartHistoryDetailWaittingPage extends StatelessWidget {
   final controller = Get.put(CartHistoryWaittingController());
+  final controller2 = Get.put(CartHistoryController());
   CartHistoryDetailWaittingPage({Key? key}) : super(key: key);
 
   @override
@@ -27,10 +29,11 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
+
             color: Colors.grey[200],
             child: Obx(() {
               if (controller.isLoadingDetailWaitOrder.value) {
-                return CircularProgressIndicator();
+                return Center(child: CircularProgressIndicator());
               } else {
                 return Column(
                   children: [
@@ -117,8 +120,7 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller
-                              .detailWaitOrder.value![0].orderDetails!.length,
+                          itemCount: controller.detailWaitOrder.value![0].orderDetails!.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding:
@@ -157,63 +159,71 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                                           const SizedBox(
                                             width: 10,
                                           ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Đĩa trái cây $index',
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 16,
-                                                  color: secondaryColor,
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  '${controller.detailWaitOrder.value![0].orderDetails![index].content?.name}',
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 16,
+                                                    color: secondaryColor,
+                                                  ),
                                                 ),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              const Text(
-                                                'Phân loại : Đế đen Ấn Độ ',
-                                                style: TextStyle(
-                                                  fontSize: 16,
-                                                  color: secondaryColor,
+
+                                                controller.detailWaitOrder.value![0].orderDetails![index].content?.variation == null ? Container():
+                                                 Column(
+                                                   children: [
+                                                     const SizedBox(
+                                                       height: 10,
+                                                     ),
+                                                     Text(
+                                                      'Phân loại : ${controller.detailWaitOrder.value![0].orderDetails![index].content?.variation?.name}',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: secondaryColor,
+                                                      ),
                                                 ),
-                                              ),
-                                              const SizedBox(
-                                                height: 15,
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.end,
-                                                children: const [
-                                                  Text(
-                                                    'Đơn giá : 200.000 đ',
-                                                    style: TextStyle(
-                                                      fontSize: 16,
-                                                      color: secondaryColor,
+                                                   ],
+                                                 ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children:  [
+                                                    Text(
+                                                      'Đơn giá : ${NumberFormat.currency(locale: 'vi').format(controller.detailWaitOrder.value![0].orderDetails![index].content?.price)}',
+                                                      style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: secondaryColor,
+                                                      ),
                                                     ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 20,
-                                                  ),
-                                                  Text(
-                                                    'x 2',
-                                                    style: TextStyle(
-                                                      color: Colors.red,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 17,
+                                                    SizedBox(
+                                                      width: 20,
                                                     ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                            ],
+                                                    Text(
+                                                      'x ${controller.detailWaitOrder.value![0].orderDetails![index].content?.quantity}',
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 17,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                              ],
+                                            ),
                                           )
                                         ],
                                       ),
@@ -228,8 +238,10 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                                             width: 10,
                                           ),
                                         ],
-                                      )
+                                      ),
+
                                     ],
+
                                   ),
                                 ),
                               ),
@@ -256,12 +268,14 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Padding(
+                     Padding(
                       padding: EdgeInsets.all(15.0),
                       child: CustomTextField(
+                        enable: false,
                         title: 'Ghi chú',
                         inputType: TextInputType.text,
                         height: 100,
+                        controller: controller.noteController..text = '${controller.detailWaitOrder.value![0].note}',
                         maxLines: 3,
                       ),
                     ),
@@ -269,7 +283,7 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children:  [
                           Text(
                             'Tổng tiền',
                             style: TextStyle(
@@ -277,7 +291,7 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '2.123.323 đ',
+                            '${NumberFormat.currency(locale: 'vi').format(controller.detailWaitOrder.value![0].total)}',
                             style: TextStyle(
                               fontSize: 17,
                               color: Colors.red,
@@ -377,7 +391,10 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          controller2.cancelOrder(id: controller.detailWaitOrder.value![0].id.toString());
+                          Get.back();
+                        },
                       ),
                     ),
                   ],

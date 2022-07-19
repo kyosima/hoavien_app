@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/auth/status_model.dart';
-import 'package:hoavien_app/models/home/cart/cart_history_deital_model.dart';
+import 'package:hoavien_app/models/home/cart/cart_history_detail_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_history_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_model.dart';
 import 'package:hoavien_app/models/home/cart/cart_taisanso_model.dart';
@@ -130,6 +130,16 @@ class CartService {
     if (response.statusCode == 200) {
       return cartHistoryDetailModelFromJson(response.body);
     } else {
+      return null;
+    }
+  }
+  static Future<StatusModel?> cancelOrder({String? id, String? userId}) async{
+    var response = await client.put(Uri.parse('$baseURL/api/order/update'),body: { "id": id,
+      "user_id": userId});
+    if(response.statusCode == 200){
+      return statusModelFromJson(response.body);
+    }
+    else{
       return null;
     }
   }
