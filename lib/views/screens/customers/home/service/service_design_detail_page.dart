@@ -23,14 +23,64 @@ class ServiceDesignDetailPage extends StatelessWidget {
       extendBodyBehindAppBar: true,
       bottomNavigationBar: CustomBottomBar(
         onPressedAddToCart: () async {
-          final prefs = await SharedPreferences.getInstance();
-          final userId = prefs.getInt('id').toString();
-          controller.addToCart(
-              userId: userId,
-              productId: controller.serviceDetail.value?.id.toString(),
-              variationId: controller.variationSelect.value == 0
-                  ? null
-                  : controller.variationSelect.value.toString());
+          if (controller.serviceDetail.value!.serviceAttribute!.isEmpty) {
+            final prefs = await SharedPreferences.getInstance();
+            final userId = prefs.getInt('id').toString();
+            controller.addToCart(
+                userId: userId,
+                productId: controller.serviceDetail.value?.id.toString(),
+                variationId: controller.variationSelect.value == 0
+                    ? null
+                    : controller.variationSelect.value.toString());
+          } else {
+            if (controller.variationSelect.value == 0) {
+              Get.defaultDialog(
+                  content: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: 60.0,
+                        width: 60,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Image.asset(
+                        'assets/images/error.gif',
+                        width: 55,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Center(
+                    child: Text(
+                      '''Vui lòng chọn phân loại!''',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ));
+            } else {
+              final prefs = await SharedPreferences.getInstance();
+              final userId = prefs.getInt('id').toString();
+              controller.addToCart(
+                  userId: userId,
+                  productId: controller.serviceDetail.value?.id.toString(),
+                  variationId: controller.variationSelect.value == 0
+                      ? null
+                      : controller.variationSelect.value.toString());
+            }
+          }
         },
       ),
       appBar: AppBar(

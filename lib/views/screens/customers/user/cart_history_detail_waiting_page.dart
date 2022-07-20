@@ -29,11 +29,10 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-
             color: Colors.grey[200],
             child: Obx(() {
               if (controller.isLoadingDetailWaitOrder.value) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: const CircularProgressIndicator());
               } else {
                 return Column(
                   children: [
@@ -47,7 +46,7 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
+                            const Text(
                               'Chờ xác nhận',
                               style: TextStyle(
                                 fontWeight: FontWeight.w700,
@@ -56,9 +55,10 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              DateFormat.yMd().format(DateTime.parse(controller
-                                  .detailWaitOrder.value![0].createdAt!)),
-                              style: TextStyle(
+                              DateFormat('dd-MM-yyyy').format(DateTime.parse(
+                                  controller
+                                      .detailWaitOrder.value![0].createdAt!)),
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16,
                                 color: secondaryColor,
@@ -81,28 +81,38 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                           children: [
                             Text(
                               '${controller.detailWaitOrder.value![0].digitalAssetUse?.name}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 17,
                                 color: secondaryColor,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
                               '${controller.detailWaitOrder.value![0].contact?.fullname}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: secondaryColor,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             Text(
                               '${controller.detailWaitOrder.value![0].contact?.phone}',
-                              style: TextStyle(
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: secondaryColor,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Ngày sử dụng : ${DateFormat('dd-MM-yyyy').format(DateTime.parse('${controller.detailWaitOrder.value![0].dateUse}'))}',
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: secondaryColor,
                               ),
@@ -120,7 +130,8 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                           padding: EdgeInsets.zero,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: controller.detailWaitOrder.value![0].orderDetails!.length,
+                          itemCount: controller
+                              .detailWaitOrder.value![0].orderDetails!.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding:
@@ -172,22 +183,31 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                                                     color: secondaryColor,
                                                   ),
                                                 ),
-
-                                                controller.detailWaitOrder.value![0].orderDetails![index].content?.variation == null ? Container():
-                                                 Column(
-                                                   children: [
-                                                     const SizedBox(
-                                                       height: 10,
-                                                     ),
-                                                     Text(
-                                                      'Phân loại : ${controller.detailWaitOrder.value![0].orderDetails![index].content?.variation?.name}',
-                                                      style: TextStyle(
-                                                        fontSize: 16,
-                                                        color: secondaryColor,
+                                                controller
+                                                            .detailWaitOrder
+                                                            .value![0]
+                                                            .orderDetails![
+                                                                index]
+                                                            .content
+                                                            ?.variation ==
+                                                        null
+                                                    ? Container()
+                                                    : Column(
+                                                        children: [
+                                                          const SizedBox(
+                                                            height: 10,
+                                                          ),
+                                                          Text(
+                                                            'Phân loại : ${controller.detailWaitOrder.value![0].orderDetails![index].content?.variation?.name}',
+                                                            style:
+                                                                const TextStyle(
+                                                              fontSize: 15,
+                                                              color:
+                                                                  secondaryColor,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
-                                                ),
-                                                   ],
-                                                 ),
                                                 const SizedBox(
                                                   height: 10,
                                                 ),
@@ -197,20 +217,20 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                                                           .spaceBetween,
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.end,
-                                                  children:  [
+                                                  children: [
                                                     Text(
                                                       'Đơn giá : ${NumberFormat.currency(locale: 'vi').format(controller.detailWaitOrder.value![0].orderDetails![index].content?.price)}',
-                                                      style: TextStyle(
-                                                        fontSize: 16,
+                                                      style: const TextStyle(
+                                                        fontSize: 15,
                                                         color: secondaryColor,
                                                       ),
                                                     ),
-                                                    SizedBox(
+                                                    const SizedBox(
                                                       width: 20,
                                                     ),
                                                     Text(
                                                       'x ${controller.detailWaitOrder.value![0].orderDetails![index].content?.quantity}',
-                                                      style: TextStyle(
+                                                      style: const TextStyle(
                                                         color: Colors.red,
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -218,9 +238,6 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                                                       ),
                                                     ),
                                                   ],
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
                                                 ),
                                               ],
                                             ),
@@ -239,9 +256,7 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-
                                     ],
-
                                   ),
                                 ),
                               ),
@@ -268,14 +283,18 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-                     Padding(
-                      padding: EdgeInsets.all(15.0),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
                       child: CustomTextField(
                         enable: false,
                         title: 'Ghi chú',
                         inputType: TextInputType.text,
                         height: 100,
-                        controller: controller.noteController..text = '${controller.detailWaitOrder.value![0].note}',
+                        controller: controller.noteController
+                          ..text = controller.detailWaitOrder.value![0].note ==
+                                  null
+                              ? ''
+                              : '${controller.detailWaitOrder.value![0].note}',
                         maxLines: 3,
                       ),
                     ),
@@ -283,16 +302,17 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:  [
-                          Text(
+                        children: [
+                          const Text(
                             'Tổng tiền',
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 17,
                             ),
                           ),
                           Text(
-                            '${NumberFormat.currency(locale: 'vi').format(controller.detailWaitOrder.value![0].total)}',
-                            style: TextStyle(
+                            NumberFormat.currency(locale: 'vi').format(
+                                controller.detailWaitOrder.value![0].total),
+                            style: const TextStyle(
                               fontSize: 17,
                               color: Colors.red,
                               fontWeight: FontWeight.w600,
@@ -305,16 +325,17 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             'Thuế GTGT',
                             style: TextStyle(
                               fontSize: 17,
                             ),
                           ),
                           Text(
-                            '0 đ',
-                            style: TextStyle(
+                            NumberFormat.currency(locale: 'vi').format(
+                                controller.detailWaitOrder.value![0].tax),
+                            style: const TextStyle(
                               fontSize: 17,
                               color: Colors.red,
                               fontWeight: FontWeight.w600,
@@ -327,15 +348,17 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
+                        children: [
+                          const Text(
                             'Tổng thanh toán',
                             style: TextStyle(
                                 fontSize: 17, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            '0 đ',
-                            style: TextStyle(
+                            NumberFormat.currency(locale: 'vi').format(
+                                controller.detailWaitOrder.value![0].total! +
+                                    controller.detailWaitOrder.value![0].tax!),
+                            style: const TextStyle(
                               fontSize: 17,
                               color: Colors.red,
                               fontWeight: FontWeight.w600,
@@ -392,8 +415,50 @@ class CartHistoryDetailWaittingPage extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          controller2.cancelOrder(id: controller.detailWaitOrder.value![0].id.toString());
-                          Get.back();
+                          Get.defaultDialog(
+                              content: Column(
+                                children: const [
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Text(
+                                    'Xác nhận hủy đơn hàng?',
+                                    style: TextStyle(
+                                      color: colorText,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: const Text('Không')),
+                                TextButton(
+                                    onPressed: () {
+                                      controller2.cancelOrder(
+                                          id: controller
+                                              .detailWaitOrder.value![0].id
+                                              .toString());
+                                      Get.back();
+                                      Get.back();
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Đồng ý',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    )),
+                              ]);
                         },
                       ),
                     ),

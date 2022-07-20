@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hoavien_app/models/home/taisanso/area_model.dart';
 import 'package:hoavien_app/models/home/taisanso/taisanso_model.dart';
 import 'package:hoavien_app/service_api/customer/home/taisanso/taisanso_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TaisansoBinding implements Bindings {
   @override
@@ -31,8 +32,10 @@ class TaisansoController extends GetxController {
 
   void getTaisanso() async {
     try {
+      final prefs = await SharedPreferences.getInstance();
+      final userId = prefs.getInt('id').toString();
       isLoadingTaisanso.value = true;
-      var response = await TaisansoService.getTaisanso();
+      var response = await TaisansoService.getTaisanso(userId: userId);
       allTaisanso.value = response?.data;
     } finally {
       isLoadingTaisanso.value = false;
@@ -51,8 +54,11 @@ class TaisansoController extends GetxController {
 
   void searchTaisanso({String? key, String? area}) async {
     try {
+      final prefs = await SharedPreferences.getInstance();
+      final userId = prefs.getInt('id').toString();
       isSearchLoading.value = true;
-      var response = await TaisansoService.searchTaisanso(key: key, area: area);
+      var response = await TaisansoService.searchTaisanso(
+          key: key, area: area, userId: userId);
       allTaisanso.value = response?.data;
       print(response?.message);
     } finally {

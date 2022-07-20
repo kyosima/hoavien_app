@@ -133,13 +133,18 @@ class CartService {
       return null;
     }
   }
-  static Future<StatusModel?> cancelOrder({String? id, String? userId}) async{
-    var response = await client.put(Uri.parse('$baseURL/api/order/update'),body: { "id": id,
-      "user_id": userId});
-    if(response.statusCode == 200){
+
+  static Future<StatusModel?> changeOrderStatus(
+      {String? id, String? userId, String? status}) async {
+    var response =
+        await client.put(Uri.parse('$baseURL/api/order/update'), body: {
+      "id": id,
+      "user_id": userId,
+      "status": status,
+    });
+    if (response.statusCode == 200) {
       return statusModelFromJson(response.body);
-    }
-    else{
+    } else {
       return null;
     }
   }

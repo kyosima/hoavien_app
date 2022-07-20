@@ -6,11 +6,12 @@ import 'package:http/http.dart' as http;
 
 class TaisansoService {
   static var client = http.Client();
-  static Future<TaisansoModel?> getTaisanso() async {
-    var response =
-        await client.get(Uri.parse('$baseURL/api/digital-asset'), headers: {
-      'X-TOKEN-ACCESS': tokenAccess,
-    });
+  static Future<TaisansoModel?> getTaisanso({String? userId}) async {
+    var response = await client.get(
+        Uri.parse('$baseURL/api/digital-asset?customer_id=$userId'),
+        headers: {
+          'X-TOKEN-ACCESS': tokenAccess,
+        });
     if (response.statusCode == 200) {
       return taisansoModelFromJson(response.body);
     } else {
@@ -43,9 +44,10 @@ class TaisansoService {
   }
 
   static Future<TaisansoModel?> searchTaisanso(
-      {String? key, String? area}) async {
+      {String? key, String? area, String? userId}) async {
     var response = await client.get(
-        Uri.parse('$baseURL/api/digital-asset?key=$key&area=$area'),
+        Uri.parse(
+            '$baseURL/api/digital-asset?customer_id=$userId&key=$key&area=$area'),
         headers: {
           'X-TOKEN-ACCESS': tokenAccess,
         });

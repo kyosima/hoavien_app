@@ -343,7 +343,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/donhangdahoanthanh',
-            page: () => const CartHistoryDetailDonePage(),
+            page: () => CartHistoryDetailDonePage(),
           ),
           GetPage(
             name: '/danhgiasanpham',
@@ -351,7 +351,7 @@ class MyApp extends StatelessWidget {
           ),
           GetPage(
             name: '/donhangdahuy',
-            page: () => const CartHistoryDetailCancelPage(),
+            page: () => CartHistoryDetailCancelPage(),
           ),
           GetPage(
             name: '/thaydoimatkhau',

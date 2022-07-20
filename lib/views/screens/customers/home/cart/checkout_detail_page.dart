@@ -316,7 +316,7 @@ class CheckoutDetailPage extends StatelessWidget {
                         ),
                         controller: controller.dateTimeController
                           ..text = controller.dateTimeController.text == ''
-                              ? '${controller.dateTime.year}-${controller.dateTime.month}-${controller.dateTime.day}'
+                              ? DateFormat('yyyy-MM-dd').format(DateTime.now())
                               : controller.dateTimeController.text,
                       ),
                     ),
