@@ -1,7 +1,10 @@
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/models/home/service/combo_detail_model.dart';
 import 'package:hoavien_app/models/home/service/combo_model.dart';
+import 'package:hoavien_app/service_api/customer/home/cart/cart_service.dart';
 import 'package:hoavien_app/service_api/customer/home/combo_and_service/service_combo.dart';
 
 class SecondAccountComboDetailBinding implements Bindings {
@@ -27,11 +30,26 @@ class SecondAccountComboDetailController extends GetxController {
     getRelatedCombo();
   }
 
+  void addToCart(
+      {String? userId, String? productId, String? variationId}) async {
+    var response = await CartService.addToCart(
+        userId: userId, productId: productId, variationId: variationId);
+    print(response?.message);
+    Get.snackbar(
+      "Đã thêm sản phẩm vào giỏ hàng",
+      "Giỏ hàng đã cập nhật sản phẩm mới",
+      icon: const Icon(Icons.check_circle, color: Colors.green),
+      snackPosition: SnackPosition.TOP,
+      colorText: secondaryColor,
+      backgroundColor: Colors.white.withOpacity(0.7),
+      duration: const Duration(milliseconds: 900),
+    );
+  }
+
   void getComboDetail() async {
     try {
       isLoadingCombo.value = true;
       var response = await ComboService.getComboDetail(id: idCombo.toString());
-
       comboDetail.value = response?.data;
       if (comboDetail.value?.comboReview != null) {
         var result =

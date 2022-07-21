@@ -9,6 +9,7 @@ import 'package:hoavien_app/views/widgets/custom_bottom_bar.dart';
 import 'package:hoavien_app/views/widgets/custom_share_button.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../widgets/custom_shimmer.dart';
@@ -21,10 +22,74 @@ class SecondAccountProductDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(
+        onPressedAddToCart: () async {
+          if (controller.product.value!.productAttributes!.isEmpty) {
+            final prefs = await SharedPreferences.getInstance();
+            final userId = prefs.getInt('id').toString();
+            controller.addToCart(
+              userId: userId,
+              productId: controller.product.value?.id.toString(),
+              variationId: controller.variationSelect.value == 0
+                  ? null
+                  : controller.variationSelect.value.toString(),
+            );
+          } else {
+            if (controller.variationSelect.value == 0) {
+              Get.defaultDialog(
+                  content: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: 60.0,
+                        width: 60,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Image.asset(
+                        'assets/images/error.gif',
+                        width: 55,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Center(
+                    child: Text(
+                      '''Vui lòng chọn phân loại!''',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ));
+            } else {
+              final prefs = await SharedPreferences.getInstance();
+              final userId = prefs.getInt('id').toString();
+              controller.addToCart(
+                userId: userId,
+                productId: controller.product.value?.id.toString(),
+                variationId: controller.variationSelect.value == 0
+                    ? null
+                    : controller.variationSelect.value.toString(),
+              );
+            }
+          }
+        },
+      ),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
+            Get.back();
             Get.back();
           },
           child: Stack(
@@ -57,8 +122,8 @@ class SecondAccountProductDetailPage extends StatelessWidget {
             },
           ),
           const SizedBox(
-            width: 15,
-          )
+            width: 5,
+          ),
         ],
       ),
       body: Obx(() {
@@ -153,7 +218,7 @@ class SecondAccountProductDetailPage extends StatelessWidget {
                           ],
                         ),
                         const Text(
-                          '1.Màu đá',
+                          '1',
                           style: TextStyle(
                             color: secondaryColor,
                             fontSize: 15,
@@ -296,6 +361,15 @@ class SecondAccountProductDetailPage extends StatelessWidget {
                   /// The color to paint behind th indicator.
                   indicatorBackgroundColor: Colors.grey,
 
+                  /// Called whenever the page in the center of the viewport changes.
+
+                  /// Auto scroll interval.
+                  /// Do not auto scroll with null or 0.
+                  autoPlayInterval: 7000,
+
+                  /// Loops back to first slide.
+                  isLoop: true,
+
                   /// The widgets to display in the [ImageSlideshow].
                   /// Add the sample image file into the images folder
                   children: [
@@ -319,15 +393,6 @@ class SecondAccountProductDetailPage extends StatelessWidget {
                       ),
                     ],
                   ],
-
-                  /// Called whenever the page in the center of the viewport changes.
-
-                  /// Auto scroll interval.
-                  /// Do not auto scroll with null or 0.
-                  autoPlayInterval: 7000,
-
-                  /// Loops back to first slide.
-                  isLoop: true,
                 ),
                 const SizedBox(
                   height: 10,
@@ -404,8 +469,11 @@ class SecondAccountProductDetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                NumberFormat.currency(locale: 'vi')
-                                    .format(controller.product.value?.price),
+                                controller.price.value == 0
+                                    ? NumberFormat.currency(locale: 'vi')
+                                        .format(controller.product.value?.price)
+                                    : NumberFormat.currency(locale: 'vi')
+                                        .format(controller.price.value),
                                 style: const TextStyle(
                                   color: Colors.red,
                                   fontSize: 16,
@@ -421,62 +489,124 @@ class SecondAccountProductDetailPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Phân loại',
-                            style: TextStyle(
-                              color: secondaryColor,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Xem chi tiết',
-                              ))
-                        ],
-                      ),
-                      const Text(
-                        '1.Màu đá',
-                        style: TextStyle(
-                          color: secondaryColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
                       const SizedBox(
                         height: 10,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemCount: 4,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                        color: secondaryColor,
-                                      )),
-                                  child: TextButton(
-                                    child: const Text('Đá đen Ấn Độ'),
-                                    onPressed: () {},
-                                  ),
-                                ),
-                              );
-                            }),
                       ),
                       const Divider(
                         height: 15,
                         thickness: 1,
+                      ),
+                      controller.product.value!.productAttributes!.isEmpty
+                          ? Container()
+                          : ListView.builder(
+                              padding: EdgeInsets.zero,
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: controller
+                                  .product.value?.productAttributes!.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '${controller.product.value?.productAttributes![index].name}',
+                                      style: const TextStyle(
+                                        color: secondaryColor,
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    SizedBox(
+                                      height: 50,
+                                      child: ListView.builder(
+                                          padding: EdgeInsets.zero,
+                                          scrollDirection: Axis.horizontal,
+                                          shrinkWrap: true,
+                                          physics:
+                                              const ClampingScrollPhysics(),
+                                          itemCount: controller
+                                              .product
+                                              .value
+                                              ?.productAttributes![index]
+                                              .productAttributeVariation!
+                                              .length,
+                                          itemBuilder: (context, index1) {
+                                            return Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Obx(
+                                                () => Container(
+                                                  decoration: BoxDecoration(
+                                                      color: controller
+                                                                  .selectedVariation
+                                                                  .value ==
+                                                              index1
+                                                          ? primaryColor
+                                                          : Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                      border: Border.all(
+                                                          color: controller
+                                                                      .selectedVariation
+                                                                      .value ==
+                                                                  index1
+                                                              ? primaryColor
+                                                              : secondaryColor)),
+                                                  child: TextButton(
+                                                    child: Text(
+                                                      '${controller.product.value?.productAttributes![index].productAttributeVariation![index1].name}',
+                                                      style: TextStyle(
+                                                          color: controller
+                                                                      .selectedVariation
+                                                                      .value ==
+                                                                  index1
+                                                              ? Colors.white
+                                                              : secondaryColor),
+                                                    ),
+                                                    onPressed: () {
+                                                      controller
+                                                          .changeButton(index1);
+                                                      controller.price.value =
+                                                          controller
+                                                              .product
+                                                              .value!
+                                                              .productAttributes![
+                                                                  index]
+                                                              .productAttributeVariation![
+                                                                  index1]
+                                                              .price!;
+                                                      controller.variationSelect
+                                                              .value =
+                                                          controller
+                                                              .product
+                                                              .value!
+                                                              .productAttributes![
+                                                                  index]
+                                                              .productAttributeVariation![
+                                                                  index1]
+                                                              .id!;
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                    ),
+                                    const Divider(
+                                      height: 15,
+                                      thickness: 1,
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                      const SizedBox(
+                        height: 15,
                       ),
                       const Text(
                         'Chi tiết dịch vụ',

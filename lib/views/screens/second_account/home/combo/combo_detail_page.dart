@@ -10,6 +10,7 @@ import 'package:hoavien_app/views/widgets/custom_share_button.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccountComboDetail extends StatelessWidget {
@@ -20,7 +21,17 @@ class SecondAccountComboDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(
+        onPressedAddToCart: () async {
+          final prefs = await SharedPreferences.getInstance();
+          final userId = prefs.getInt('id');
+          controller.addToCart(
+            userId: userId.toString(),
+            productId: controller.comboDetail.value?.id.toString(),
+            variationId: null,
+          );
+        },
+      ),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {

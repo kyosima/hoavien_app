@@ -10,6 +10,7 @@ import 'package:hoavien_app/views/widgets/custom_share_button.dart';
 import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SecondAccountServiceDesignDetailPage extends StatelessWidget {
@@ -20,7 +21,68 @@ class SecondAccountServiceDesignDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      bottomNavigationBar: CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(
+        onPressedAddToCart: () async {
+          if (controller.serviceDetail.value!.serviceAttribute!.isEmpty) {
+            final prefs = await SharedPreferences.getInstance();
+            final userId = prefs.getInt('id').toString();
+            controller.addToCart(
+                userId: userId,
+                productId: controller.serviceDetail.value?.id.toString(),
+                variationId: controller.variationSelect.value == 0
+                    ? null
+                    : controller.variationSelect.value.toString());
+          } else {
+            if (controller.variationSelect.value == 0) {
+              Get.defaultDialog(
+                  content: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        height: 60.0,
+                        width: 60,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Image.asset(
+                        'assets/images/error.gif',
+                        width: 55,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Center(
+                    child: Text(
+                      '''Vui lòng chọn phân loại!''',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ));
+            } else {
+              final prefs = await SharedPreferences.getInstance();
+              final userId = prefs.getInt('id').toString();
+              controller.addToCart(
+                  userId: userId,
+                  productId: controller.serviceDetail.value?.id.toString(),
+                  variationId: controller.variationSelect.value == 0
+                      ? null
+                      : controller.variationSelect.value.toString());
+            }
+          }
+        },
+      ),
       appBar: AppBar(
         leading: InkWell(
           onTap: () {
@@ -379,15 +441,26 @@ class SecondAccountServiceDesignDetailPage extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text(
-                                    NumberFormat.currency(locale: 'vi').format(
-                                        controller.serviceDetail.value?.price),
-                                    style: const TextStyle(
-                                      color: Colors.red,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
+                                  controller.price.value == 0
+                                      ? Text(
+                                          NumberFormat.currency(locale: 'vi')
+                                              .format(controller
+                                                  .serviceDetail.value?.price),
+                                          style: const TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        )
+                                      : Text(
+                                          NumberFormat.currency(locale: 'vi')
+                                              .format(controller.price.value),
+                                          style: const TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
                                   const SizedBox(
                                     width: 15,
                                   ),
@@ -417,10 +490,120 @@ class SecondAccountServiceDesignDetailPage extends StatelessWidget {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.only(left: 15.0, right: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    controller.serviceDetail.value!.serviceAttribute!.isEmpty
+                        ? Container()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Phân loại',
+                                style: TextStyle(
+                                  color: secondaryColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                controller.serviceDetail.value!
+                                    .serviceAttribute![0].name
+                                    .toString(),
+                                style: const TextStyle(
+                                  color: secondaryColor,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SizedBox(
+                                height: 50,
+                                child: ListView.builder(
+                                    padding: EdgeInsets.zero,
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    physics: const ClampingScrollPhysics(),
+                                    itemCount: controller
+                                        .serviceDetail
+                                        .value
+                                        ?.serviceAttribute![0]
+                                        .serviceAttributeVariation!
+                                        .length,
+                                    itemBuilder: (context, index) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Obx(
+                                          () => Container(
+                                            decoration: BoxDecoration(
+                                                color: controller
+                                                            .selectedVariation
+                                                            .value ==
+                                                        index
+                                                    ? primaryColor
+                                                    : Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                border: Border.all(
+                                                    color: controller
+                                                                .selectedVariation
+                                                                .value ==
+                                                            index
+                                                        ? primaryColor
+                                                        : secondaryColor)),
+                                            child: TextButton(
+                                              child: Text(
+                                                '${controller.serviceDetail.value?.serviceAttribute![0].serviceAttributeVariation![index].name}',
+                                                style: TextStyle(
+                                                    color: controller
+                                                                .selectedVariation
+                                                                .value ==
+                                                            index
+                                                        ? Colors.white
+                                                        : secondaryColor),
+                                              ),
+                                              onPressed: () {
+                                                controller.changeButton(index);
+                                                controller.price.value = controller
+                                                    .serviceDetail
+                                                    .value!
+                                                    .serviceAttribute![0]
+                                                    .serviceAttributeVariation![
+                                                        index]
+                                                    .price!;
+                                                controller
+                                                        .variationSelect.value =
+                                                    controller
+                                                        .serviceDetail
+                                                        .value!
+                                                        .serviceAttribute![0]
+                                                        .serviceAttributeVariation![
+                                                            index]
+                                                        .id!;
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Divider(
+                                color: Colors.grey[300],
+                                thickness: 0.7,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              )
+                            ],
+                          ),
                     const Text(
                       'Thông tin chi tiết',
                       style: TextStyle(

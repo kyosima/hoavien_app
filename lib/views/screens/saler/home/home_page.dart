@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:get/get.dart';
@@ -106,7 +107,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
             ),
             InkWell(
               onTap: () {
-                Get.toNamed('thongbaosaler');
+                Get.toNamed('/thongbaosaler');
               },
               child: Stack(
                 alignment: Alignment.center,
@@ -197,95 +198,155 @@ class SalerHomePage extends GetView<SalerHomeController> {
               ),
             ),
             Obx(
-              () => ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.productCount.value,
-                  itemBuilder: (BuildContext context, index) {
-                    return InkWell(
-                      onTap: () {
-                        Get.toNamed('/chitietbatdongsan');
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, right: 15, top: 15),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.5),
-                                spreadRadius: 1,
-                                blurRadius: 10,
-                                offset: const Offset(
-                                    0, 0), // changes position of shadow
-                              ),
-                            ],
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/khuvuc.png',
-                                  fit: BoxFit.cover,
-                                  height: 80,
+              () {
+                if (controller.isLoadingArea.value) {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 4,
+                      itemBuilder: (BuildContext context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(
+                              left: 15.0, right: 15, top: 15),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 1,
+                                  blurRadius: 10,
+                                  offset: const Offset(
+                                      0, 0), // changes position of shadow
                                 ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        'Phú Quý 1',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 10,
-                                      ),
-                                      Text(
-                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Metus,',
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                      )
-                                    ],
-                                  ),
-                                )
                               ],
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Shimmer.fromColors(
+                                baseColor: baseShimmer,
+                                highlightColor: highLightShimmer,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const ShimmerBox(height: 80, width: 80),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const [
+                                          ShimmerBox(height: 15, width: 120),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          ShimmerBox(height: 15, width: 130),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          ShimmerBox(height: 35, width: 150),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  }),
+                        );
+                      });
+                } else {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.allArea.value!.length,
+                      itemBuilder: (BuildContext context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed('/chitietbatdongsan',
+                                arguments: controller.allArea.value![index].id);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 15.0, right: 15, top: 15),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: const Offset(
+                                        0, 0), // changes position of shadow
+                                  ),
+                                ],
+                                color: Colors.white,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            '$baseURL${controller.allArea.value![index].avatar}',
+                                        height: 80,
+                                        width: 80,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${controller.allArea.value![index].name}',
+                                            style: const TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            controller.allArea.value![index]
+                                                        .shortDesc ==
+                                                    null
+                                                ? ''
+                                                : '${controller.allArea.value![index].shortDesc}',
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 2,
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      });
+                }
+              },
             ),
             const SizedBox(
               height: 15,
-            ),
-            Center(
-              child: TextButton(
-                child: Container(
-                    width: 150,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: secondaryColor),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Center(child: Text('Xem thêm')),
-                    )),
-                onPressed: () {
-                  controller.viewMore();
-                },
-              ),
             ),
             const Padding(
               padding: EdgeInsets.all(15.0),

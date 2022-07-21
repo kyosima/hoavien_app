@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/dashboard/saler_dashboard_controller.dart';
-
 import 'package:hoavien_app/views/screens/saler/home/home_page.dart';
 import 'package:hoavien_app/views/screens/saler/statistical/statistical_page.dart';
 import 'package:hoavien_app/views/screens/saler/transaction/transaction_page.dart';
 import 'package:hoavien_app/views/screens/saler/user/user_page.dart';
 
 class SalerDashboardPage extends StatelessWidget {
-  final user = Get.arguments;
   final controller = Get.put(SalerDashboardController());
   SalerDashboardPage({Key? key}) : super(key: key);
 
@@ -22,9 +20,7 @@ class SalerDashboardPage extends StatelessWidget {
           body: IndexedStack(
             index: controller.tabIndex,
             children: [
-              SalerHomePage(
-                user: user,
-              ),
+              SalerHomePage(),
               const TransactionPage(),
               StatisticalPage(),
               SalerUserPage(),
