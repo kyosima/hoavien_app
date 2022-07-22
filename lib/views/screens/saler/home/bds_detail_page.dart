@@ -231,13 +231,17 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                     children: const [
                                       CircleAvatar(
                                         radius: 8,
-                                        backgroundColor: Color(0xffF5C037),
+                                        backgroundColor: secondaryColor,
+                                        child: CircleAvatar(
+                                          radius: 7,
+                                          backgroundColor: Colors.white,
+                                        ),
                                       ),
                                       SizedBox(
                                         width: 5,
                                       ),
                                       Text(
-                                        'Đang chọn',
+                                        'Đang trống',
                                         style: TextStyle(fontSize: 11),
                                       )
                                     ],
