@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hoavien_app/constance.dart';
 import 'package:hoavien_app/controllers/saler/home/bds_detail_controller.dart';
+import 'package:hoavien_app/models/home/taisanso/area_model.dart' show Data;
+import 'package:hoavien_app/views/widgets/custom_shimmer.dart';
 import 'package:hoavien_app/views/widgets/custom_title_text.dart';
+import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BdsDetailPage extends GetView<BdsDetailsController> {
-  var items = [
-    'Phú Quý 1.1',
-    'Phú Quý 1.2',
-    'Phú Quý 1.3',
-    'Phú Quý 1.14',
-  ];
-
+  final Data area = Get.arguments;
   BdsDetailPage({Key? key}) : super(key: key);
 
   @override
@@ -26,8 +24,8 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
         elevation: 0,
         centerTitle: false,
         backgroundColor: Colors.white,
-        title: const CustomTitleText(
-          title: 'Phú Quý 1',
+        title: CustomTitleText(
+          title: '${area.name}',
         ),
       ),
       body: SingleChildScrollView(
@@ -36,7 +34,110 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
           child: Obx(
             () {
               if (controller.isLoading.value) {
-                return CircularProgressIndicator();
+                return Shimmer.fromColors(
+                  baseColor: baseShimmer,
+                  highlightColor: highLightShimmer,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: const Color(0xff61C236),
+                            border: Border.all(color: Colors.green, width: 8)),
+                        child: const ShimmerBox(
+                          height: 200,
+                          width: double.infinity,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 1.5,
+                              ),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: const [
+                                    ShimmerBox(height: 10, width: 80),
+                                    ShimmerBox(height: 10, width: 80),
+                                    ShimmerBox(height: 10, width: 80),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                const ShimmerBox(height: 10, width: 80),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      const ShimmerBox(height: 30, width: 80),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      ListView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          itemCount: 1,
+                          itemBuilder: (context, indexChild) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const ShimmerBox(height: 15, width: 80),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                ListView.builder(
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: 1,
+                                    itemBuilder: (context, indexRow) {
+                                      return Column(
+                                        children: [
+                                          GridView.count(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            crossAxisCount: 6,
+                                            children: List.generate(
+                                                8,
+                                                (index) => const Padding(
+                                                      padding:
+                                                          EdgeInsets.all(5.0),
+                                                      child: ShimmerBox(
+                                                          height: 40,
+                                                          width: 40),
+                                                    )),
+                                          ),
+                                          const SizedBox(
+                                            height: 17,
+                                          ),
+                                        ],
+                                      );
+                                    })
+                              ],
+                            );
+                          }),
+                    ],
+                  ),
+                );
               } else {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,6 +159,12 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.white,
+                              width: 1.5,
+                            ),
+                            borderRadius: BorderRadius.circular(8)),
                         child: Padding(
                           padding: const EdgeInsets.all(15.0),
                           child: Column(
@@ -140,12 +247,6 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                             ],
                           ),
                         ),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 1.5,
-                            ),
-                            borderRadius: BorderRadius.circular(8)),
                       ),
                     ),
                     TextButton(
@@ -175,7 +276,7 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                   color: secondaryColor,
                                 ),
                               ),
-                              Icon(controller.showTable == true
+                              Icon(controller.showTable.value == true
                                   ? Icons.keyboard_arrow_down
                                   : Icons.chevron_right),
                             ],
@@ -186,7 +287,7 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    controller.showTable == true
+                    controller.showTable.value == true
                         ? Container(
                             decoration: BoxDecoration(
                                 color: Colors.white,
@@ -205,7 +306,7 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                     ),
                     ListView.builder(
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: controller.areaDetail.value?.child!.length,
                         itemBuilder: (context, indexChild) {
                           return Column(
@@ -213,17 +314,17 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                             children: [
                               Text(
                                 '${controller.areaDetail.value?.child![indexChild].name}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: secondaryColor,
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               ListView.builder(
                                   shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   itemCount: controller
                                       .areaDetail
                                       .value
@@ -245,277 +346,335 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                                   .child![indexChild]
                                                   .digitalAssets![indexRow]
                                                   .length,
-                                              (index) => InkWell(
+                                              (index) => GestureDetector(
                                                     onTap: () {
+                                                      controller
+                                                          .getTaisansoQuickview(
+                                                              id: controller
+                                                                  .areaDetail
+                                                                  .value!
+                                                                  .child![
+                                                                      indexChild]
+                                                                  .digitalAssets![
+                                                                      indexRow]
+                                                                      [index]
+                                                                  .id
+                                                                  .toString());
                                                       Get.defaultDialog(
-                                                        content: Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .all(8.0),
-                                                          child: Container(
-                                                            child: Column(
-                                                              children: [
-                                                                Row(
-                                                                  children: const [
-                                                                    Icon(
-                                                                      Icons
-                                                                          .info,
-                                                                      size: 20,
-                                                                    ),
-                                                                    SizedBox(
-                                                                      width: 8,
-                                                                    ),
-                                                                    Text(
-                                                                      'Thông tin lô',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        fontSize:
-                                                                            15,
+                                                        content: Obx(() {
+                                                          if (controller
+                                                              .isLoadingQuickView
+                                                              .value) {
+                                                            return const CircularProgressIndicator();
+                                                          } else {
+                                                            return Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                              child: Column(
+                                                                children: [
+                                                                  Row(
+                                                                    children: const [
+                                                                      Icon(
+                                                                        Icons
+                                                                            .info,
+                                                                        size:
+                                                                            20,
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Tên lô',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color:
-                                                                            secondaryColor,
-                                                                        fontSize:
-                                                                            14,
+                                                                      SizedBox(
+                                                                        width:
+                                                                            8,
                                                                       ),
-                                                                    ),
-                                                                    Text(
-                                                                      'PQ2.3-01-02',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color:
-                                                                            secondaryColor,
-                                                                        fontSize:
-                                                                            14,
+                                                                      Text(
+                                                                        'Thông tin lô',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          fontSize:
+                                                                              15,
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Khu',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      'Phú Quý',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Kích thước',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      '7.2 x 9',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Diện tích',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      '64.5 m2',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Giá bán',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      '102.000.000',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .green,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Giá CSBQ',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      '25.000.000',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .green,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: const [
-                                                                    Text(
-                                                                      'Tổng giá',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color:
-                                                                            secondaryColor,
-                                                                      ),
-                                                                    ),
-                                                                    Text(
-                                                                      '127.000.000',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        fontSize:
-                                                                            14,
-                                                                        color: Colors
-                                                                            .green,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 10,
-                                                                ),
-                                                                const Text(
-                                                                  'Khi bạn giữ chỗ người khác sẽ không thể đặt tiếp',
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontSize:
-                                                                        14,
-                                                                    color:
-                                                                        secondaryColor,
+                                                                    ],
                                                                   ),
-                                                                ),
-                                                                const SizedBox(
-                                                                  height: 15,
-                                                                ),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .spaceBetween,
-                                                                  children: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        Get.back();
-                                                                        Get.defaultDialog(
-                                                                            content: Container(
-                                                                          child:
-                                                                              Column(
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Tên lô',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              secondaryColor,
+                                                                          fontSize:
+                                                                              14,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        '${controller.taisansoQuickview.value?.name}',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          color:
+                                                                              secondaryColor,
+                                                                          fontSize:
+                                                                              14,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Khu',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        '${controller.taisansoQuickview.value?.area?.name}',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Kích thước',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        '${controller.taisansoQuickview.value?.size?.length} x ${controller.taisansoQuickview.value?.size?.width}',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Diện tích',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        '${(controller.taisansoQuickview.value!.size!.length! * controller.taisansoQuickview.value!.size!.width!).toStringAsFixed(2)} m2',
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Giá bán',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        NumberFormat.currency(locale: 'vi').format(controller
+                                                                            .taisansoQuickview
+                                                                            .value
+                                                                            ?.price),
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              Colors.green,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Giá CSBQ',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        NumberFormat.currency(locale: 'vi').format(controller
+                                                                            .taisansoQuickview
+                                                                            .value
+                                                                            ?.priceTakeCare),
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              Colors.green,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Kim tiền',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        NumberFormat.currency(locale: 'vi').format(controller
+                                                                            .taisansoQuickview
+                                                                            .value
+                                                                            ?.priceCoffin),
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              Colors.green,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      const Text(
+                                                                        'Tổng giá',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              secondaryColor,
+                                                                        ),
+                                                                      ),
+                                                                      Text(
+                                                                        NumberFormat.currency(locale: 'vi').format(controller.taisansoQuickview.value!.price! +
+                                                                            controller.taisansoQuickview.value!.priceTakeCare! +
+                                                                            controller.taisansoQuickview.value!.priceCoffin!),
+                                                                        style:
+                                                                            const TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          color:
+                                                                              Colors.green,
+                                                                        ),
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 10,
+                                                                  ),
+                                                                  const Text(
+                                                                    'Khi bạn giữ chỗ người khác sẽ không thể đặt tiếp',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          14,
+                                                                      color:
+                                                                          secondaryColor,
+                                                                    ),
+                                                                  ),
+                                                                  const SizedBox(
+                                                                    height: 15,
+                                                                  ),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceBetween,
+                                                                    children: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Get.back();
+                                                                          Get.defaultDialog(
+                                                                              content: Column(
                                                                             children: [
                                                                               const Icon(
                                                                                 Icons.check_circle,
@@ -570,36 +729,33 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                                                                     ),
                                                                                   ))
                                                                             ],
-                                                                          ),
-                                                                        ));
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            100,
-                                                                        decoration: BoxDecoration(
-                                                                            color: Colors.white,
-                                                                            border: Border.all(
-                                                                              color: secondaryColor,
-                                                                            ),
-                                                                            borderRadius: BorderRadius.circular(10)),
+                                                                          ));
+                                                                        },
                                                                         child:
-                                                                            const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
+                                                                            Container(
+                                                                          width:
+                                                                              100,
+                                                                          decoration: BoxDecoration(
+                                                                              color: Colors.white,
+                                                                              border: Border.all(
+                                                                                color: secondaryColor,
+                                                                              ),
+                                                                              borderRadius: BorderRadius.circular(10)),
                                                                           child:
-                                                                              Center(child: Text('Giữ chổ')),
+                                                                              const Padding(
+                                                                            padding:
+                                                                                EdgeInsets.all(8.0),
+                                                                            child:
+                                                                                Center(child: Text('Giữ chổ')),
+                                                                          ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        Get.back();
-                                                                        Get.defaultDialog(
-                                                                            content: Container(
-                                                                          child:
-                                                                              Column(
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          Get.back();
+                                                                          Get.defaultDialog(
+                                                                              content: Column(
                                                                             children: [
                                                                               const Icon(
                                                                                 Icons.check_circle,
@@ -654,34 +810,34 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                                                                     ),
                                                                                   ))
                                                                             ],
-                                                                          ),
-                                                                        ));
-                                                                      },
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            100,
-                                                                        decoration: BoxDecoration(
-                                                                            border: Border.all(
-                                                                              color: primaryColor,
-                                                                            ),
-                                                                            color: primaryColor,
-                                                                            borderRadius: BorderRadius.circular(10)),
+                                                                          ));
+                                                                        },
                                                                         child:
-                                                                            const Padding(
-                                                                          padding:
-                                                                              EdgeInsets.all(8.0),
+                                                                            Container(
+                                                                          width:
+                                                                              100,
+                                                                          decoration: BoxDecoration(
+                                                                              border: Border.all(
+                                                                                color: primaryColor,
+                                                                              ),
+                                                                              color: primaryColor,
+                                                                              borderRadius: BorderRadius.circular(10)),
                                                                           child:
-                                                                              Center(child: Text('Đặt cọc')),
+                                                                              const Padding(
+                                                                            padding:
+                                                                                EdgeInsets.all(8.0),
+                                                                            child:
+                                                                                Center(child: Text('Đặt cọc')),
+                                                                          ),
                                                                         ),
                                                                       ),
-                                                                    ),
-                                                                  ],
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ),
+                                                                    ],
+                                                                  )
+                                                                ],
+                                                              ),
+                                                            );
+                                                          }
+                                                        }),
                                                         barrierDismissible:
                                                             true,
                                                         radius: 10.0,
@@ -692,6 +848,63 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                                           const EdgeInsets.all(
                                                               5.0),
                                                       child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          border: Border.all(
+                                                              color: controller
+                                                                          .areaDetail
+                                                                          .value
+                                                                          ?.child![
+                                                                              indexChild]
+                                                                          .digitalAssets![
+                                                                              indexRow]
+                                                                              [
+                                                                              index]
+                                                                          .status ==
+                                                                      0
+                                                                  ? secondaryColor
+                                                                  : Colors
+                                                                      .white),
+                                                          color: controller
+                                                                      .areaDetail
+                                                                      .value
+                                                                      ?.child![
+                                                                          indexChild]
+                                                                      .digitalAssets![
+                                                                          indexRow]
+                                                                          [
+                                                                          index]
+                                                                      .status ==
+                                                                  1
+                                                              ? const Color(
+                                                                  0xffFD81FD)
+                                                              : controller
+                                                                          .areaDetail
+                                                                          .value
+                                                                          ?.child![
+                                                                              indexChild]
+                                                                          .digitalAssets![
+                                                                              indexRow]
+                                                                              [
+                                                                              index]
+                                                                          .status ==
+                                                                      2
+                                                                  ? const Color(
+                                                                      0xff61C236)
+                                                                  : controller
+                                                                              .areaDetail
+                                                                              .value
+                                                                              ?.child![indexChild]
+                                                                              .digitalAssets![indexRow][index]
+                                                                              .status ==
+                                                                          3
+                                                                      ? const Color(0xffFE7E00)
+                                                                      : Colors.white,
+                                                        ),
+                                                        height: 100,
                                                         child: Center(
                                                           child: Text(
                                                             'H${controller.areaDetail.value?.child![indexChild].digitalAssets![indexRow][index].row}.${controller.areaDetail.value?.child![indexChild].digitalAssets![indexRow][index].column}',
@@ -705,36 +918,11 @@ class BdsDetailPage extends GetView<BdsDetailsController> {
                                                             ),
                                                           ),
                                                         ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(5),
-                                                          border: Border.all(
-                                                              color: index %
-                                                                          5 ==
-                                                                      0
-                                                                  ? secondaryColor
-                                                                  : Colors
-                                                                      .white),
-                                                          color: index % 5 == 0
-                                                              ? Colors.white
-                                                              : index % 5 == 1
-                                                                  ? const Color(
-                                                                      0xffFD81FD)
-                                                                  : index % 5 ==
-                                                                          2
-                                                                      ? const Color(
-                                                                          0xff61C236)
-                                                                      : const Color(
-                                                                          0xffFE7E00),
-                                                        ),
-                                                        height: 100,
                                                       ),
                                                     ),
                                                   )),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 17,
                                         ),
                                       ],

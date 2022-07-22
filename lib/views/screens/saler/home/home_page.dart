@@ -269,7 +269,7 @@ class SalerHomePage extends GetView<SalerHomeController> {
                         return InkWell(
                           onTap: () {
                             Get.toNamed('/chitietbatdongsan',
-                                arguments: controller.allArea.value![index].id);
+                                arguments: controller.allArea.value![index]);
                           },
                           child: Padding(
                             padding: const EdgeInsets.only(
